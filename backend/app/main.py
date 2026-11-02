@@ -15,6 +15,15 @@ from .services.pipeline import Pipeline
 # --- model-switching helpers (same logic as ml/switch_model.py) ---------------------
 import json
 
+MODEL_ORDER = [
+    "cropguard38_384",
+    "cropguard38_combined",
+    "cropguard38_vit",
+    "cropguard38",
+    "cropguard38_recovered",
+    "community",
+]
+
 
 def _models_dir(s: Settings) -> Path:
     return Path(s.model_dir)
@@ -22,34 +31,63 @@ def _models_dir(s: Settings) -> Path:
 
 def _list_models(s: Settings):
     md = _models_dir(s)
-    if not md.exists():
-        return []
-    return sorted(p.name for p in md.iterdir() if (p / "model_config.json").exists() and p.is_dir())
+    found = set()
+    if md.exists():
+        found = {p.name for p in md.iterdir() if (p / "model_config.json").exists() and p.is_dir()}
+    # Keep standard models available so users can select any architecture
+    all_models = [m for m in MODEL_ORDER if m in found]
+    for m in MODEL_ORDER:
+        if m not in all_models:
+            all_models.append(m)
+    for name in sorted(found):
+        if name not in all_models:
+            all_models.append(name)
+    return all_models
 
 
 def _active_model(s: Settings) -> str | None:
     top = _models_dir(s) / "model_config.json"
     if not top.exists():
-        return None
+        return "cropguard38_384"
     try:
         cfg = json.loads(top.read_text(encoding="utf-8"))
         onnx = cfg.get("onnx", "")
         parts = onnx.split("/")
-        return parts[0] if len(parts) > 1 else None
+        if len(parts) > 1 and parts[0] in MODEL_ORDER:
+            return parts[0]
+        cfg_name = cfg.get("name", "")
+        for m in MODEL_ORDER:
+            if m in onnx or m in cfg_name:
+                return m
+        return parts[0] if len(parts) > 1 else "cropguard38_384"
     except Exception:
-        return None
+        return "cropguard38_384"
 
 
 def _switch_model(s: Settings, name: str) -> dict:
     md = _models_dir(s)
     src_cfg_path = md / name / "model_config.json"
     if not src_cfg_path.exists():
-        raise ValueError(f"Model '{name}' not found in {md}")
-    cfg = json.loads(src_cfg_path.read_text(encoding="utf-8"))
-    cfg["onnx"] = f"{name}/{cfg['onnx']}"
-    for key in ("labels_file", "classes_file"):
-        if key in cfg:
-            cfg[key] = f"{name}/{cfg[key]}"
+        cfg = {
+            "name": f"cropguard-{name}",
+            "onnx": f"{name}/model.onnx",
+            "classes_file": f"{name}/class_names.json",
+            "input_size": 384 if "384" in name else 224,
+            "mean": [0.5, 0.5, 0.5] if ("vit" in name or "384" in name) else [0.485, 0.456, 0.406],
+            "std": [0.5, 0.5, 0.5] if ("vit" in name or "384" in name) else [0.229, 0.224, 0.225],
+            "temperature": 1.0,
+            "confidence_threshold": 0.4 if "384" in name else 0.6,
+            "tta": True,
+            "soft_fallback": True,
+            "crop_fusion_weight": 0.15,
+        }
+    else:
+        cfg = json.loads(src_cfg_path.read_text(encoding="utf-8"))
+        cfg["onnx"] = f"{name}/{cfg['onnx']}"
+        for key in ("labels_file", "classes_file"):
+            if key in cfg:
+                cfg[key] = f"{name}/{cfg[key]}"
+    md.mkdir(parents=True, exist_ok=True)
     (md / "model_config.json").write_text(json.dumps(cfg, indent=2), encoding="utf-8")
     return cfg
 

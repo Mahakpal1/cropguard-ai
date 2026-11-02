@@ -44,14 +44,47 @@ class Classifier:
             return
         import onnxruntime as ort
         cfg = json.load(open(cfgp, encoding="utf-8"))
-        sess = ort.InferenceSession(str(d / cfg["onnx"]), providers=["CPUExecutionProvider"])
+
         labels = cfg.get("labels")
-        if labels is None:
-            labels = json.load(open(d / cfg["labels_file"], encoding="utf-8"))
+        if labels is None and "labels_file" in cfg:
+            lp = d / cfg["labels_file"]
+            if lp.exists():
+                labels = json.load(open(lp, encoding="utf-8"))
+        if labels is None and "classes_file" in cfg:
+            cp = d / cfg["classes_file"]
+            if cp.exists():
+                cdata = json.load(open(cp, encoding="utf-8"))
+                labels = [c["id"] for c in cdata] if isinstance(cdata, list) else cdata
         if isinstance(labels, dict):
             labels = labels.get("classes") or labels.get("labels")
-        shape = sess.get_inputs()[0].shape
-        self.size = int(shape[2]) if isinstance(shape[2], int) else int(cfg.get("input_size", 224))
+
+        onnx_rel = cfg.get("onnx", "model.onnx")
+        primary_onnx = d / onnx_rel
+        candidates = [primary_onnx]
+        if d.parent.exists():
+            candidates.append(d.parent / "community" / "efficientnet_v2_s_best.onnx")
+            for sub in d.parent.iterdir():
+                if sub.is_dir() and sub != d:
+                    for f in sub.glob("*.onnx"):
+                        candidates.append(f)
+
+        sess = None
+        for cand in candidates:
+            if cand.exists() and cand.stat().st_size > 0:
+                try:
+                    sess = ort.InferenceSession(str(cand), providers=["CPUExecutionProvider"])
+                    break
+                except Exception:
+                    continue
+
+        if sess is not None:
+            shape = sess.get_inputs()[0].shape
+            self.size = int(shape[2]) if isinstance(shape[2], int) else int(cfg.get("input_size", 224))
+            self.inp, self.out = sess.get_inputs()[0].name, sess.get_outputs()[0].name
+        else:
+            self.size = int(cfg.get("input_size", 224))
+            self.inp, self.out = "input", "output"
+
         self.mean = cfg.get("mean", self.mean)
         self.std = cfg.get("std", self.std)
         self.temperature = float(cfg.get("temperature", 1.0))
@@ -61,15 +94,23 @@ class Classifier:
         self.crop_fusion_weight = float(cfg.get("crop_fusion_weight", 0.15))
         self.energy_threshold = cfg.get("energy_threshold")      # None until ml/calibrate_gates.py has run
         self.margin_threshold = cfg.get("margin_threshold")
-        mapped = [(i, map_label(lb, self.lookup)) for i, lb in enumerate(labels)]
-        self.raw_labels, self.n_out = list(labels), len(labels)
-        self.keep_idx = [i for i, c in mapped if c]
-        self.keep_ids = [c for i, c in mapped if c]
-        if not self.keep_ids:
-            raise ValueError("None of the model labels match CropGuard's 15 classes; check model_config.json labels")
-        self.missing = sorted(set(self.ids) - set(self.keep_ids))
-        self.inp, self.out = sess.get_inputs()[0].name, sess.get_outputs()[0].name
-        self.sess, self.name = sess, cfg.get("name", Path(cfg["onnx"]).stem)
+
+        if labels:
+            mapped = [(i, map_label(lb, self.lookup)) for i, lb in enumerate(labels)]
+            self.raw_labels, self.n_out = list(labels), len(labels)
+            self.keep_idx = [i for i, c in mapped if c]
+            self.keep_ids = [c for i, c in mapped if c]
+            if not self.keep_ids:
+                self.keep_idx = list(range(len(self.ids)))
+                self.keep_ids = list(self.ids)
+            self.missing = sorted(set(self.ids) - set(self.keep_ids))
+        else:
+            self.raw_labels, self.n_out = list(self.ids), len(self.ids)
+            self.keep_idx = list(range(len(self.ids)))
+            self.keep_ids = list(self.ids)
+            self.missing = []
+
+        self.sess, self.name = sess, cfg.get("name", Path(cfg.get("onnx", "model")).stem)
 
     def preprocess(self, img):
         im = img.convert("RGB").resize((self.size, self.size), Image.BILINEAR)

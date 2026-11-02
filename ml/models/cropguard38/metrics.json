@@ -1,0 +1,84 @@
+{
+  "backbone": "convnext_tiny.fb_in22k_ft_in1k",
+  "classes": 38,
+  "crops": 14,
+  "images": 1520,
+  "split": "group-aware",
+  "dataset_valid_leak_pct": 15.412186379928317,
+  "test": {
+    "accuracy": 0.45394736842105265,
+    "macro_f1": 0.3966387450860462,
+    "top3": 0.6809210777282715
+  },
+  "test_accuracy_by_crop": {
+    "Apple": 0.3438,
+    "Blueberry": 0.625,
+    "Cherry": 0.9333,
+    "Grape": 0.7879,
+    "Maize": 0.3438,
+    "Orange": 0.5,
+    "Peach": 0.375,
+    "Pepper": 0.3125,
+    "Potato": 0.4167,
+    "Raspberry": 0.375,
+    "Soybean": 1.0,
+    "Squash": 0.0,
+    "Strawberry": 1.0,
+    "Tomato": 0.2375
+  },
+  "most_confused": [
+    [
+      0.75,
+      "Corn_maize___Cercospora_leaf_spot_Gray_leaf_spot",
+      "Corn_maize___Common_rust"
+    ],
+    [
+      0.625,
+      "Squash___Powdery_mildew",
+      "Grape___healthy"
+    ],
+    [
+      0.625,
+      "Raspberry___healthy",
+      "Strawberry___healthy"
+    ],
+    [
+      0.625,
+      "Potato___Late_blight",
+      "Potato___healthy"
+    ],
+    [
+      0.625,
+      "Potato___Early_blight",
+      "Potato___Late_blight"
+    ],
+    [
+      0.625,
+      "Corn_maize___healthy",
+      "Corn_maize___Cercospora_leaf_spot_Gray_leaf_spot"
+    ],
+    [
+      0.625,
+      "Corn_maize___Northern_Leaf_Blight",
+      "Corn_maize___Common_rust"
+    ],
+    [
+      0.5,
+      "Tomato___Late_blight",
+      "Tomato___Tomato_Yellow_Leaf_Curl_Virus"
+    ]
+  ],
+  "ece_before": 0.3308475580650427,
+  "ece_after": 0.09542514784678388,
+  "temperature": 0.41300663352012634,
+  "confidence_threshold": null,
+  "energy_threshold": -3.740921974182129,
+  "healthy_only_crops": [
+    "Blueberry",
+    "Raspberry",
+    "Soybean"
+  ],
+  "lab_vs_field": [],
+  "quick_run": true,
+  "seed": 42
+}

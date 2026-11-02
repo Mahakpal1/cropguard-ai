@@ -250,45 +250,60 @@ loadClassesForFeedback();
 apiHealth();
 
 /* ── Model catalogue & live switcher ─────────────────────────────────────── */
+const ALL_MODELS = [
+  { id: 'cropguard38_384',      label: 'ViT-384 Focal (Best)' },
+  { id: 'cropguard38_combined', label: 'Combined 224px (Fast)' },
+  { id: 'cropguard38_vit',      label: 'Base ViT 224px' },
+  { id: 'cropguard38',          label: 'MobileNet/ResNet' },
+  { id: 'cropguard38_recovered',label: 'Recovered ViT' },
+  { id: 'community',            label: 'Community Pretrained' },
+];
+
 async function loadModelList() {
   const sel = $('modelSel');
   const dot = $('modelDot');
   if (!sel) return;
-  if (location.protocol === 'file:' && !new URLSearchParams(location.search).get('api') && !window.CROPGUARD_API) {
-    return;
-  }
-  try {
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 4000);
-    const r = await fetch(API + '/models', { cache: 'no-store', signal: ctrl.signal });
-    clearTimeout(timer);
-    if (!r.ok) throw new Error(r.status);
-    const j = await r.json();
-    if (j.available && j.available.length) {
-      sel.innerHTML = j.available.map(name => {
-        const label = {
-          cropguard38_384:      'ViT-384 Focal (Best)',
-          cropguard38_combined: 'Combined 224px (Fast)',
-          cropguard38_vit:      'Base ViT 224px',
-          cropguard38:          'MobileNet/ResNet',
-          cropguard38_recovered:'Recovered ViT',
-          community:            'Community Pretrained',
-        }[name] || name;
-        const active = name === j.active;
-        return `<option value="${name}"${active ? ' selected' : ''}>${label}${active ? ' ✓' : ''}</option>`;
-      }).join('');
+
+  let activeModel = sel.value || 'cropguard38_384';
+  let availableList = ALL_MODELS.map(m => m.id);
+
+  if (location.protocol !== 'file:' || new URLSearchParams(location.search).get('api') || window.CROPGUARD_API) {
+    try {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 4000);
+      const r = await fetch(API + '/models', { cache: 'no-store', signal: ctrl.signal });
+      clearTimeout(timer);
+      if (r.ok) {
+        const j = await r.json();
+        if (j.active) activeModel = j.active;
+        if (j.available && j.available.length) {
+          // Merge keeping standard order first, then any custom backend models
+          const backendSet = new Set(j.available);
+          const ordered = ALL_MODELS.map(m => m.id);
+          j.available.forEach(name => { if (!ordered.includes(name)) ordered.push(name); });
+          availableList = ordered;
+        }
+        /* Update header chip */
+        const chip = $('demoChip');
+        if (chip && j.active_info) {
+          const m = j.active_info;
+          chip.innerHTML = `<i style="color:#22c55e">●</i> ${m.name}`;
+        }
+      }
+    } catch (err) {
+      console.warn('loadModelList info:', err);
     }
-    /* Update header chip */
-    const chip = $('demoChip');
-    if (chip && j.active_info) {
-      const m = j.active_info;
-      chip.innerHTML = `<i style="color:#22c55e">●</i> ${m.name}`;
-    }
-    if (dot) dot.className = 'model-status-dot';
-  } catch (err) {
-    console.warn('loadModelList info:', err);
-    if (dot) dot.className = 'model-status-dot';
   }
+
+  sel.innerHTML = availableList.map(name => {
+    const known = ALL_MODELS.find(m => m.id === name);
+    const label = known ? known.label : name;
+    const active = name === activeModel;
+    return `<option value="${name}"${active ? ' selected' : ''}>${label}${active ? ' ✓' : ''}</option>`;
+  }).join('');
+  sel.value = activeModel;
+
+  if (dot) dot.className = 'model-status-dot';
 }
 
 async function switchModel(name) {
