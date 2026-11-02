@@ -18,18 +18,27 @@ class CropID:
         self.sess = None
         if not (d / "config.json").exists():
             return
-        import onnxruntime as ort
-        cfg = json.load(open(d / "config.json", encoding="utf-8"))
-        self.sess = ort.InferenceSession(str(d / cfg["onnx"]), providers=["CPUExecutionProvider"])
-        self.inp, self.out = self.sess.get_inputs()[0].name, self.sess.get_outputs()[0].name
-        self.crops = cfg["crops"]
-        self.emb = np.load(d / cfg["embeddings"]).astype(np.float32)
-        self.emb /= np.linalg.norm(self.emb, axis=1, keepdims=True)
-        self.size = int(cfg.get("size", 224))
-        self.mean = np.array(cfg.get("mean", [0.4815, 0.4578, 0.4082]), np.float32)
-        self.std = np.array(cfg.get("std", [0.2686, 0.2613, 0.2758]), np.float32)
-        self.scale = float(cfg.get("logit_scale", 100.0))
-        self.threshold = float(cfg.get("threshold", 0.5))
+        try:
+            cfg = json.load(open(d / "config.json", encoding="utf-8"))
+            onnx_path = d / cfg.get("onnx", "crop_encoder.onnx")
+            if not onnx_path.exists():
+                return
+            emb_path = d / cfg.get("embeddings", "crop_embeddings.npy")
+            if not emb_path.exists():
+                return
+            import onnxruntime as ort
+            self.sess = ort.InferenceSession(str(onnx_path), providers=["CPUExecutionProvider"])
+            self.inp, self.out = self.sess.get_inputs()[0].name, self.sess.get_outputs()[0].name
+            self.crops = cfg["crops"]
+            self.emb = np.load(emb_path).astype(np.float32)
+            self.emb /= np.linalg.norm(self.emb, axis=1, keepdims=True)
+            self.size = int(cfg.get("size", 224))
+            self.mean = np.array(cfg.get("mean", [0.4815, 0.4578, 0.4082]), np.float32)
+            self.std = np.array(cfg.get("std", [0.2686, 0.2613, 0.2758]), np.float32)
+            self.scale = float(cfg.get("logit_scale", 100.0))
+            self.threshold = float(cfg.get("threshold", 0.5))
+        except Exception:
+            self.sess = None
 
     @property
     def available(self):
