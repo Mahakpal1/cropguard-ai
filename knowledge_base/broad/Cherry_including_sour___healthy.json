@@ -1,0 +1,72 @@
+{
+  "id": "Cherry_including_sour___healthy",
+  "crop": {
+    "en": "Cherry",
+    "hi": "चेरी"
+  },
+  "disease": {
+    "en": "Healthy",
+    "hi": "स्वस्थ"
+  },
+  "scientific_name": null,
+  "type": "healthy",
+  "healthy": true,
+  "symptoms": {
+    "en": [
+      "Even green colour across the leaf surface",
+      "No visible spots, blotches, powdery residue or curling",
+      "Foliage tissue is firm, vigorous and undamaged"
+    ],
+    "hi": [
+      "पत्ती की सतह पर एक समान हरा रंग",
+      "कोई धब्बा, फफूंद, चूर्ण या मुड़ाव नहीं",
+      "पत्ती का ऊतक स्वस्थ, मजबूत और अक्षत है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Continue regular monitoring of the crop canopy each week",
+      "Maintain adequate irrigation and balanced soil nutrient management",
+      "Inspect leaf undersides periodically for early pest activity"
+    ],
+    "hi": [
+      "हर हफ्ते फसल की नियमित रूप से निगरानी करते रहें",
+      "उचित सिंचाई और संतुलित पोषण प्रबंधन बनाए रखें",
+      "शुरुआती कीटों के संकेतों के लिए पत्तियों की निचली सतह की जांच करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [
+      "Do not apply unnecessary chemical pesticides on healthy foliage"
+    ],
+    "hi": [
+      "स्वस्थ पत्तियों पर अनावश्यक रासायनिक कीटनाशकों का छिड़काव न करें"
+    ]
+  },
+  "prevent": {
+    "en": [
+      "Ensure proper plant spacing to facilitate sunlight and air flow",
+      "Remove fallen crop debris and weeds around field borders",
+      "Source certified pathogen-free seeds and planting material"
+    ],
+    "hi": [
+      "धूप और हवा के लिए पौधों के बीच उचित दूरी रखें",
+      "खेत के आसपास गिरी पत्तियाँ और खरपतवार हटाएँ",
+      "प्रमाणित और रोगमुक्त रोपण सामग्री का उपयोग करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM Pest Management Guidelines",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "Penn State Extension",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Cherry healthy foliage."
+  }
+}

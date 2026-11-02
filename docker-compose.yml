@@ -1,0 +1,16 @@
+# One command for everyone:  docker compose up --build   ->  http://localhost:8000
+services:
+  app:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports: ["8000:8000"]
+    environment:
+      MODEL_DIR: /models          # put model_config.json + the .onnx file in ml/models/ (see ml/README.md)
+      DB_PATH: /data/cropguard.db
+      CORS_ORIGINS: "*"
+      OCCLUSION_GRID: "6"
+    volumes:
+      - ./ml/models:/models:ro
+      - ./data:/data
+    restart: unless-stopped

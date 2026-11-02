@@ -1,0 +1,68 @@
+{
+  "id": "Cherry_including_sour___Powdery_mildew",
+  "crop": {
+    "en": "Cherry",
+    "hi": "चेरी"
+  },
+  "disease": {
+    "en": "Powdery Mildew",
+    "hi": "चूर्णिल आसिता (पाउडरी मिल्ड्यू)"
+  },
+  "scientific_name": "Podosphaera clandestina",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "White powdery fungal patches on young leaves and shoot tips",
+      "Infected leaves curl upward, distort and become brittle",
+      "Severe infection stunts shoot elongation and blemishes fruit"
+    ],
+    "hi": [
+      "युवा पत्तियों और हरी टहनियों पर सफेद चूर्ण जैसी फफूंद",
+      "संक्रमित पत्तियाँ ऊपर की ओर मुड़ जाती हैं और विकृत होती हैं",
+      "गंभीर संक्रमण से नई टहनियों का विकास रुक जाता है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Prune affected terminal shoot tips to lower fungal inoculum",
+      "Improve sunlight penetration and air movement within the tree",
+      "Apply a registered sulfur or triazole fungicide strictly per label directions and expert consultation"
+    ],
+    "hi": [
+      "फफूंद को कम करने के लिए प्रभावित टहनियों की हल्की छंटाई करें",
+      "पेड़ के बीच धूप और हवा का आवागमन सुधारें",
+      "पंजीकृत सल्फर या अन्य फफूंदनाशक का उपयोग लेबल और विशेषज्ञ की सलाह अनुसार करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Avoid excessive nitrogen fertilizers that stimulate tender growth",
+      "Water trees using ground-level drip rather than overhead sprinklers",
+      "Sanitize pruning shears with disinfectant between cuts"
+    ],
+    "hi": [
+      "अत्यधिक नाइट्रोजन खाद से बचें जो कोमल कमजोर पत्तियों को बढ़ावा देती है",
+      "ऊपर से फुहार देने के बजाय ड्रिप से सिंचाई करें",
+      "छंटाई के औज़ारों को नियमित रूप से सैनिटाइज़ करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Washington State University Extension - Cherry Powdery Mildew",
+      "url": "http://treefruit.wsu.edu/"
+    },
+    {
+      "name": "UC IPM - Cherry Powdery Mildew",
+      "url": "https://ipm.ucanr.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Cherry Powdery Mildew."
+  }
+}

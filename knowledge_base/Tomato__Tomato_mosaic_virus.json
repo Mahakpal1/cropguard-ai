@@ -1,0 +1,76 @@
+{
+  "id": "Tomato__Tomato_mosaic_virus",
+  "crop": {
+    "en": "Tomato",
+    "hi": "टमाटर"
+  },
+  "disease": {
+    "en": "Mosaic Virus",
+    "hi": "मोज़ेक विषाणु"
+  },
+  "scientific_name": "Tomato mosaic virus (ToMV)",
+  "type": "viral",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Light and dark green mosaic pattern on leaves",
+      "Narrow, twisted or distorted leaves and stunted growth",
+      "Spreads by hands, tools and seed; no cure"
+    ],
+    "hi": [
+      "पत्तियों पर हल्के और गहरे हरे रंग का मोज़ेक पैटर्न",
+      "संकरी, मुड़ी या विकृत पत्तियाँ और रुका हुआ विकास",
+      "हाथों, औज़ारों और बीज से फैलता है; कोई इलाज नहीं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Remove and destroy infected plants",
+      "Wash hands with soap and disinfect tools between plants",
+      "Keep tobacco products away from plants and do not handle them before touching crops"
+    ],
+    "hi": [
+      "संक्रमित पौधों को हटाकर नष्ट करें",
+      "पौधों के बीच हाथ साबुन से धोएँ और औज़ारों को कीटाणुरहित करें",
+      "तंबाकू उत्पादों को पौधों से दूर रखें और फसल छूने से पहले उन्हें न छुएँ"
+    ]
+  },
+  "avoid_extra": {
+    "en": [
+      "Do not use chemical sprays hoping to cure the virus"
+    ],
+    "hi": [
+      "विषाणु ठीक होने की उम्मीद में रासायनिक छिड़काव न करें"
+    ]
+  },
+  "prevent": {
+    "en": [
+      "Use certified virus-free seed and resistant varieties",
+      "Keep tools and trays clean and control weeds",
+      "Rotate crops and remove old plant debris"
+    ],
+    "hi": [
+      "प्रमाणित विषाणु-मुक्त बीज और रोग-रोधी किस्में उपयोग करें",
+      "औज़ार और ट्रे साफ़ रखें और खरपतवार नियंत्रित करें",
+      "फसल चक्र अपनाएँ और पुराने पौधों के अवशेष हटाएँ"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM Pest Management Guidelines",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "Cornell Vegetable MD Online",
+      "url": "https://vegetablemdonline.ppath.cornell.edu/"
+    },
+    {
+      "name": "Penn State Extension",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Generated draft from general extension guidance. A native Hindi speaker and your local agriculture officer must review before the demo; attach exact source pages."
+  }
+}

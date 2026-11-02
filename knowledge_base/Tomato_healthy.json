@@ -1,0 +1,76 @@
+{
+  "id": "Tomato_healthy",
+  "crop": {
+    "en": "Tomato",
+    "hi": "टमाटर"
+  },
+  "disease": {
+    "en": "Healthy",
+    "hi": "स्वस्थ"
+  },
+  "scientific_name": null,
+  "type": "healthy",
+  "healthy": true,
+  "symptoms": {
+    "en": [
+      "Even green colour across the leaf",
+      "No spots, rings, mould or webbing",
+      "Leaf is firm and undamaged"
+    ],
+    "hi": [
+      "पूरी पत्ती पर समान हरा रंग",
+      "कोई धब्बा, छल्ला, फफूंद या जाला नहीं",
+      "पत्ती मज़बूत और अक्षत है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Keep monitoring plants every week",
+      "Water at the base and keep nutrition balanced",
+      "Remove fallen leaves and weeds regularly"
+    ],
+    "hi": [
+      "हर हफ्ते पौधों की निगरानी करते रहें",
+      "जड़ के पास पानी दें और पोषण संतुलित रखें",
+      "गिरी पत्तियाँ और खरपतवार नियमित रूप से हटाएँ"
+    ]
+  },
+  "avoid_extra": {
+    "en": [
+      "Do not spray pesticides on healthy plants"
+    ],
+    "hi": [
+      "स्वस्थ पौधों पर कीटनाशक का छिड़काव न करें"
+    ]
+  },
+  "prevent": {
+    "en": [
+      "Keep proper plant spacing for air flow",
+      "Rotate crops each season",
+      "Use clean tools and certified seed"
+    ],
+    "hi": [
+      "हवा के लिए पौधों के बीच उचित दूरी रखें",
+      "हर मौसम में फसल चक्र अपनाएँ",
+      "साफ़ औज़ार और प्रमाणित बीज इस्तेमाल करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM Pest Management Guidelines",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "Cornell Vegetable MD Online",
+      "url": "https://vegetablemdonline.ppath.cornell.edu/"
+    },
+    {
+      "name": "Penn State Extension",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Generated draft from general extension guidance. A native Hindi speaker and your local agriculture officer must review before the demo; attach exact source pages."
+  }
+}

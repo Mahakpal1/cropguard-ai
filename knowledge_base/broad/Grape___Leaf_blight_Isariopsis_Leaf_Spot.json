@@ -1,0 +1,68 @@
+{
+  "id": "Grape___Leaf_blight_Isariopsis_Leaf_Spot",
+  "crop": {
+    "en": "Grape",
+    "hi": "अंगूर"
+  },
+  "disease": {
+    "en": "Leaf Blight (Isariopsis Leaf Spot)",
+    "hi": "पत्ती झुलसा (इसारियोप्सिस पत्ती धब्बा)"
+  },
+  "scientific_name": "Pseudocercospora cladosporioides",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Irregular reddish-brown lesions with faint yellow halos on mature leaves",
+      "Lesions coalesce into large dry blighted areas causing leaf scorch",
+      "Premature defoliation exposes fruit clusters to direct sun damage"
+    ],
+    "hi": [
+      "परिपक्व पत्तियों पर हल्के पीले घेरे वाले अनियमित लाल-भूरे धब्बे",
+      "धब्बे मिलकर बड़े सूखे क्षेत्रों में बदल जाते हैं जिससे पत्ती झुलस जाती है",
+      "पत्तियों के झड़ने से अंगूर के गुच्छे धूप से जलने लगते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Remove and destroy heavily blighted leaves around fruit clusters",
+      "Improve canopy ventilation to facilitate quick morning drying",
+      "Spray a recommended copper fungicide strictly according to product label directions and agricultural advisor recommendations"
+    ],
+    "hi": [
+      "गुच्छों के आसपास की अत्यधिक रोगग्रस्त पत्तियों को तोड़कर नष्ट करें",
+      "हवा के संचार को सुधारें ताकि पत्तियाँ सुबह जल्दी सूख सकें",
+      "लेबल और विशेषज्ञ के निर्देशानुसार अनुशंसित कॉपर फफूंदनाशक का छिड़काव करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Ensure balanced vine nutrition without over-fertilizing with nitrogen",
+      "Collect and compost or bury fallen vineyard leaves in autumn",
+      "Inspect lower canopy leaves regularly following periods of warm rain"
+    ],
+    "hi": [
+      "संतुलित खाद दें और अत्यधिक नाइट्रोजन के प्रयोग से बचें",
+      "शरद ऋतु में बगीचे की गिरी हुई पत्तियों को इकट्ठा कर नष्ट करें",
+      "बारिश के बाद बेल की निचली पत्तियों की नियमित जांच करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM - Grape Diseases",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "ICAR-National Research Centre for Grapes",
+      "url": "https://nrcgrapes.icar.gov.in/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Grape Isariopsis Leaf Spot."
+  }
+}

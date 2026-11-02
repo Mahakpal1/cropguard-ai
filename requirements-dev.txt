@@ -1,0 +1,6 @@
+-r backend/requirements.txt
+pytest>=8
+httpx>=0.27
+jsonschema>=4.21
+pyyaml>=6
+onnx>=1.16

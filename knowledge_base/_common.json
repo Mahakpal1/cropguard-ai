@@ -1,0 +1,90 @@
+{
+  "avoid": {
+    "en": [
+      "Do not spray repeatedly without confirming the disease",
+      "Do not exceed the label dose or mix products without advice",
+      "Do not spray in rain, strong wind or the hottest part of the day",
+      "Do not leave infected plant parts in the field or put them in compost"
+    ],
+    "hi": [
+      "बिना रोग की पुष्टि किए बार-बार छिड़काव न करें",
+      "लेबल पर लिखी मात्रा से अधिक न डालें और बिना सलाह के दवाइयाँ न मिलाएँ",
+      "बारिश, तेज़ हवा या दोपहर की तेज़ धूप में छिड़काव न करें",
+      "संक्रमित पौधों के हिस्से खेत में न छोड़ें और खाद में न डालें"
+    ]
+  },
+  "disclaimer": {
+    "en": "This is an AI estimate from a photo. Always follow the product label and your local agricultural officer's guidance.",
+    "hi": "यह फोटो पर आधारित AI अनुमान है। हमेशा उत्पाद के लेबल और अपने स्थानीय कृषि अधिकारी की सलाह मानें।"
+  },
+  "retake_tips": {
+    "en": [
+      "Photograph one leaf in daylight",
+      "Keep it in focus and fill the frame",
+      "Avoid heavy shadows and hands covering the leaf"
+    ],
+    "hi": [
+      "दिन की रोशनी में एक पत्ती की फोटो लें",
+      "फोटो साफ़ रखें और पत्ती को फ्रेम में भरें",
+      "गहरी छाया और हाथ से ढकी पत्ती से बचें"
+    ]
+  },
+  "unsupported_crop": {
+    "en": "This demo covers tomato, potato and pepper leaves only.",
+    "hi": "यह डेमो केवल टमाटर, आलू और शिमला मिर्च की पत्तियों के लिए है।"
+  },
+  "low_confidence": {
+    "en": "The model is not sure about this photo. Please retake it.",
+    "hi": "मॉडल को इस फोटो के बारे में पक्का भरोसा नहीं है। कृपया फोटो दोबारा लें।"
+  },
+  "no_leaf": {
+    "en": "No clear leaf was found in the photo. Please retake it.",
+    "hi": "फोटो में पत्ती साफ़ नहीं दिखी। कृपया फोटो दोबारा लें।"
+  },
+  "no_entry_note": {
+    "en": "This disease does not have a reviewed advice entry yet.",
+    "hi": "इस रोग के लिए अभी समीक्षित सलाह उपलब्ध नहीं है।"
+  },
+  "no_entry_do": {
+    "en": [
+      "Show this photo to your local agricultural officer or Krishi Vigyan Kendra",
+      "Separate affected plants and avoid spraying until the disease is confirmed"
+    ],
+    "hi": [
+      "यह फोटो अपने स्थानीय कृषि अधिकारी या कृषि विज्ञान केंद्र को दिखाएँ",
+      "प्रभावित पौधों को अलग करें और रोग की पुष्टि होने तक छिड़काव न करें"
+    ]
+  },
+  "generic_healthy_note": {
+    "en": "No signs of the diseases this model knows were found.",
+    "hi": "इस मॉडल द्वारा पहचाने जाने वाले रोगों के कोई लक्षण नहीं मिले।"
+  },
+  "generic_healthy_do": {
+    "en": [
+      "Keep checking the plants every week",
+      "If you still see problems, show a photo to your agricultural officer"
+    ],
+    "hi": [
+      "हर हफ्ते पौधों की जाँच करते रहें",
+      "फिर भी समस्या दिखे तो फोटो अपने कृषि अधिकारी को दिखाएँ"
+    ]
+  },
+  "generic_healthy_prevent": {
+    "en": [
+      "Keep proper plant spacing and clean tools",
+      "Rotate crops each season"
+    ],
+    "hi": [
+      "पौधों के बीच उचित दूरी रखें और औज़ार साफ़ रखें",
+      "हर मौसम में फसल चक्र अपनाएँ"
+    ]
+  },
+  "generic_healthy_avoid": {
+    "en": [
+      "Do not spray pesticides on healthy plants"
+    ],
+    "hi": [
+      "स्वस्थ पौधों पर कीटनाशक का छिड़काव न करें"
+    ]
+  }
+}

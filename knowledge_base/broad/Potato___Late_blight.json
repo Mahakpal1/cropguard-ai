@@ -1,0 +1,76 @@
+{
+  "id": "Potato___Late_blight",
+  "crop": {
+    "en": "Potato",
+    "hi": "आलू"
+  },
+  "disease": {
+    "en": "Late Blight",
+    "hi": "पछेती झुलसा"
+  },
+  "scientific_name": "Phytophthora infestans",
+  "type": "oomycete",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Large, water-soaked dark patches on leaves and stems",
+      "White fuzzy growth on the underside in damp weather",
+      "Spreads very fast in cool, wet weather"
+    ],
+    "hi": [
+      "पत्तियों और तनों पर बड़े, पानी जैसे गहरे धब्बे",
+      "नमी वाले मौसम में पत्ती के नीचे सफेद रोएँदार फफूंद",
+      "ठंडे और नम मौसम में बहुत तेज़ी से फैलता है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Act today: remove and bag infected plants or leaves",
+      "Contact your local agricultural officer quickly; this disease can destroy a crop within days",
+      "Use a registered fungicide only as per its label and local guidance"
+    ],
+    "hi": [
+      "आज ही कार्रवाई करें: संक्रमित पौधे या पत्तियाँ हटाकर थैले में बंद करें",
+      "अपने स्थानीय कृषि अधिकारी से जल्दी संपर्क करें; यह रोग कुछ ही दिनों में फसल नष्ट कर सकता है",
+      "पंजीकृत फफूंदनाशक केवल लेबल और स्थानीय सलाह के अनुसार इस्तेमाल करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [
+      "Do not delay: late blight spreads quickly"
+    ],
+    "hi": [
+      "देरी न करें: पछेती झुलसा तेज़ी से फैलता है"
+    ]
+  },
+  "prevent": {
+    "en": [
+      "Use certified seed and resistant varieties where available",
+      "Keep leaves dry; avoid overhead and evening irrigation",
+      "Destroy volunteer plants and cull piles; check neighbouring plants often"
+    ],
+    "hi": [
+      "प्रमाणित बीज और उपलब्ध होने पर रोग-रोधी किस्में उगाएँ",
+      "पत्तियों को सूखा रखें; ऊपर से और शाम को सिंचाई से बचें",
+      "स्वतः उगे पौधे और फेंके हुए कंद नष्ट करें; आसपास के पौधों की नियमित जाँच करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM Pest Management Guidelines",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "Cornell Vegetable MD Online",
+      "url": "https://vegetablemdonline.ppath.cornell.edu/"
+    },
+    {
+      "name": "Penn State Extension",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Generated draft from general extension guidance. A native Hindi speaker and your local agriculture officer must review before the demo; attach exact source pages."
+  }
+}

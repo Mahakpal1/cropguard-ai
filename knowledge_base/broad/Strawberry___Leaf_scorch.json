@@ -1,0 +1,68 @@
+{
+  "id": "Strawberry___Leaf_scorch",
+  "crop": {
+    "en": "Strawberry",
+    "hi": "स्ट्रॉबेरी"
+  },
+  "disease": {
+    "en": "Leaf Scorch",
+    "hi": "पत्ती झुलसा (लीफ स्कॉर्च)"
+  },
+  "scientific_name": "Diplocarpon earlianum",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Numerous small, irregular dark purple or brown spots on upper leaf surface",
+      "Spots lack the white centre typical of common leaf spot",
+      "Tissues between spots turn purple or brown, giving the foliage a scorched look"
+    ],
+    "hi": [
+      "पत्ती की ऊपरी सतह पर अनेक छोटे, अनियमित गहरे बैंगनी या भूरे धब्बे",
+      "धब्बों के बीच में सफेद केंद्र नहीं होता",
+      "धब्बों के बीच की पत्ती सूखकर झुलसी हुई दिखाई देती है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Mow or clip off infected strawberry leaves after harvest and rake them away",
+      "Improve row aeration by thinning overcrowded runner plants",
+      "If infection is severe, apply an approved protective fungicide strictly per label instructions and local agricultural officer advice"
+    ],
+    "hi": [
+      "कटाई के बाद संक्रमित पत्तियों को काटकर खेत से बाहर निकालें",
+      "घने पौधों को छांटकर हवा का आवागमन सुधारें",
+      "गंभीर स्थिति में अनुमोदित फफूंदनाशक का उपयोग केवल लेबल और कृषि अधिकारी की सलाह पर करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Plant certified disease-free strawberry cultivars with scorch resistance",
+      "Avoid excessive overhead irrigation that leaves foliage damp overnight",
+      "Renew strawberry beds regularly and maintain clean mulch under plants"
+    ],
+    "hi": [
+      "झुलसा-प्रतिरोधी प्रमाणित स्ट्रॉबेरी पौधों का उपयोग करें",
+      "ऊपर से अधिक सिंचाई से बचें ताकि पत्तियाँ रात भर गीली न रहें",
+      "स्ट्रॉबेरी की क्यारियों को नियमित रूप से बदलें और साफ़ मल्च रखें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Penn State Extension - Strawberry Leaf Scorch",
+      "url": "https://extension.psu.edu/"
+    },
+    {
+      "name": "North Carolina State Extension - Strawberry Scorch",
+      "url": "https://content.ces.ncsu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Strawberry Leaf Scorch."
+  }
+}

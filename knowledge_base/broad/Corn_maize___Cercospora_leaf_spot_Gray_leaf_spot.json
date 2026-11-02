@@ -1,0 +1,68 @@
+{
+  "id": "Corn_maize___Cercospora_leaf_spot_Gray_leaf_spot",
+  "crop": {
+    "en": "Maize",
+    "hi": "मक्का"
+  },
+  "disease": {
+    "en": "Cercospora / Gray Leaf Spot",
+    "hi": "सर्कोस्पोरा / ग्रे पत्ती धब्बा"
+  },
+  "scientific_name": "Cercospora zeae-maydis",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Small tan spots with yellow halos expanding into rectangular lesions",
+      "Lesions are restricted by parallel leaf veins into blocky stripes",
+      "Gray fungal spores develop inside lesions under warm humid weather"
+    ],
+    "hi": [
+      "पीले घेरे वाले छोटे बादामी धब्बे जो आयताकार घावों में बदलते हैं",
+      "नसों की बनावट के कारण धब्बे आयताकार पट्टियों जैसे दिखते हैं",
+      "गर्म और आर्द्र मौसम में धब्बों पर धूसर फफूंद जम जाती है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Scout lower leaves around flowering to gauge infection severity",
+      "Tear away heavily diseased lower foliage if managing small farm plots",
+      "If threshold warrants, apply a recommended foliar fungicide strictly following label directions and extension guidance"
+    ],
+    "hi": [
+      "फूल आने के समय संक्रमण की जांच के लिए निचली पत्तियों को देखें",
+      "छोटे खेतों में अत्यधिक रोगग्रस्त निचली पत्तियों को हटाएँ",
+      "यदि आवश्यकता हो, तो अनुशंसित फफूंदनाशक का उपयोग केवल लेबल और कृषि सलाह अनुसार करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Plant maize hybrids with proven genetic resistance to gray leaf spot",
+      "Rotate fields with non-host crops like soybean or wheat",
+      "Incorporate crop residue into the soil after harvest to hasten decomposition"
+    ],
+    "hi": [
+      "ग्रे लीफ स्पॉट प्रतिरोधी मक्का की संकर किस्मों को बोएं",
+      "सोयाबीन या गेहूं जैसी गैर-फसलों के साथ फसल चक्र अपनाएँ",
+      "कटाई के बाद अवशेषों को मिट्टी में दबाकर नष्ट करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Purdue Extension - Gray Leaf Spot of Corn",
+      "url": "https://extension.purdue.edu/"
+    },
+    {
+      "name": "Iowa State University Extension",
+      "url": "https://crops.extension.iastate.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Gray Leaf Spot of Maize."
+  }
+}

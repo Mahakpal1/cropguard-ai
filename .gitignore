@@ -1,0 +1,28 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+data/*.db
+node_modules/
+# model weights are shared through Drive / GitHub Releases, never through git
+ml/models/*
+!ml/models/.gitkeep
+*.onnx
+*.onnx.data
+*.pt
+*.h5
+*.zip
+# notebook scratch space and your private photo sets
+work/
+ml/notebooks/work/
+ml/notebooks/my_photos/
+ml/notebooks/my_test_photos/
+data/raw/
+data/union/
+data/PlantVillage/
+data/disease_dataset/
+kaggle.json
+data/kaggle.json
+.pytest_tmp/
+ml/datasets/unmapped_*.csv

@@ -1,0 +1,68 @@
+{
+  "id": "Grape___Black_rot",
+  "crop": {
+    "en": "Grape",
+    "hi": "अंगूर"
+  },
+  "disease": {
+    "en": "Black Rot",
+    "hi": "काला सड़न रोग (ब्लैक रॉट)"
+  },
+  "scientific_name": "Guignardia bidwellii",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Small circular reddish-brown spots surrounded by dark borders on leaves",
+      "Tiny black pycnidia pimples form a ring inside leaf spots",
+      "Berries turn dark brown, shrivel into hard black wrinkled mummies"
+    ],
+    "hi": [
+      "पत्तियों पर लाल-भूरे गोल धब्बे जिनके चारों ओर गहरा किनारा होता है",
+      "धब्बों के अंदर छोटे काले दानों की एक गोल लकीर बनती है",
+      "अंगूर के दाने सूखकर काले, सिकुड़े हुए पत्थर जैसे हो जाते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Prune and remove all mummified fruit clusters hanging on the vines",
+      "Strip off early spotted leaves to restrict initial spore dispersal",
+      "Apply an approved systemic fungicide strictly per label directions and agricultural advisor recommendations"
+    ],
+    "hi": [
+      "बेलों पर लटके सभी सूखे और सड़े हुए अंगूरों के गुच्छों को तोड़कर नष्ट करें",
+      "बीजाणुओं के प्रसार को रोकने के लिए शुरुआती संक्रमित पत्तियों को हटाएँ",
+      "अनुमोदित फफूंदनाशक का उपयोग केवल लेबल और कृषि विशेषज्ञ की सलाह अनुसार करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Open up vine canopies through trellising and summer pruning for maximum airflow",
+      "Mow ground cover and remove vineyard floor debris that hosts spores",
+      "Maintain a protective spray schedule during critical spring shoot growth"
+    ],
+    "hi": [
+      "हवा के आवागमन के लिए बेलों की उचित छंटाई और सहारा दें",
+      "जमीन पर गिरे हुए संक्रमित अवशेषों को साफ़ रखें",
+      "वसंत ऋतु में नई टहनियों के निकलने के समय विशेष निगरानी रखें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Penn State Extension - Grape Black Rot",
+      "url": "https://extension.psu.edu/"
+    },
+    {
+      "name": "Cornell Fruit Resources - Grape Diseases",
+      "url": "https://cals.cornell.edu/fruit-resources"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Grape Black Rot."
+  }
+}

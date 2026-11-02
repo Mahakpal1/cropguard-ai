@@ -1,0 +1,182 @@
+[
+ {
+  "name": "Tomato",
+  "latin": "Solanum lycopersicum"
+ },
+ {
+  "name": "Potato",
+  "latin": "Solanum tuberosum"
+ },
+ {
+  "name": "Pepper",
+  "latin": "Capsicum annuum"
+ },
+ {
+  "name": "Brinjal",
+  "latin": "Solanum melongena"
+ },
+ {
+  "name": "Rice",
+  "latin": "Oryza sativa"
+ },
+ {
+  "name": "Wheat",
+  "latin": "Triticum aestivum"
+ },
+ {
+  "name": "Maize",
+  "latin": "Zea mays"
+ },
+ {
+  "name": "Cotton",
+  "latin": "Gossypium hirsutum"
+ },
+ {
+  "name": "Sugarcane",
+  "latin": "Saccharum officinarum"
+ },
+ {
+  "name": "Soybean",
+  "latin": "Glycine max"
+ },
+ {
+  "name": "Groundnut",
+  "latin": "Arachis hypogaea"
+ },
+ {
+  "name": "Mustard",
+  "latin": "Brassica juncea"
+ },
+ {
+  "name": "Cabbage",
+  "latin": "Brassica oleracea"
+ },
+ {
+  "name": "Cauliflower",
+  "latin": "Brassica oleracea var. botrytis"
+ },
+ {
+  "name": "Okra",
+  "latin": "Abelmoschus esculentus"
+ },
+ {
+  "name": "Cucumber",
+  "latin": "Cucumis sativus"
+ },
+ {
+  "name": "Pumpkin",
+  "latin": "Cucurbita maxima"
+ },
+ {
+  "name": "Squash",
+  "latin": "Cucurbita pepo"
+ },
+ {
+  "name": "Watermelon",
+  "latin": "Citrullus lanatus"
+ },
+ {
+  "name": "Mango",
+  "latin": "Mangifera indica"
+ },
+ {
+  "name": "Banana",
+  "latin": "Musa acuminata"
+ },
+ {
+  "name": "Orange",
+  "latin": "Citrus sinensis"
+ },
+ {
+  "name": "Apple",
+  "latin": "Malus domestica"
+ },
+ {
+  "name": "Grape",
+  "latin": "Vitis vinifera"
+ },
+ {
+  "name": "Peach",
+  "latin": "Prunus persica"
+ },
+ {
+  "name": "Cherry",
+  "latin": "Prunus avium"
+ },
+ {
+  "name": "Strawberry",
+  "latin": "Fragaria x ananassa"
+ },
+ {
+  "name": "Raspberry",
+  "latin": "Rubus idaeus"
+ },
+ {
+  "name": "Blueberry",
+  "latin": "Vaccinium corymbosum"
+ },
+ {
+  "name": "Onion",
+  "latin": "Allium cepa"
+ },
+ {
+  "name": "Garlic",
+  "latin": "Allium sativum"
+ },
+ {
+  "name": "Chickpea",
+  "latin": "Cicer arietinum"
+ },
+ {
+  "name": "Pigeonpea",
+  "latin": "Cajanus cajan"
+ },
+ {
+  "name": "Lentil",
+  "latin": "Lens culinaris"
+ },
+ {
+  "name": "Sorghum",
+  "latin": "Sorghum bicolor"
+ },
+ {
+  "name": "Millet",
+  "latin": "Pennisetum glaucum"
+ },
+ {
+  "name": "Cassava",
+  "latin": "Manihot esculenta"
+ },
+ {
+  "name": "Coffee",
+  "latin": "Coffea arabica"
+ },
+ {
+  "name": "Tea",
+  "latin": "Camellia sinensis"
+ },
+ {
+  "name": "Jute",
+  "latin": "Corchorus olitorius"
+ },
+ {
+  "name": "Sunflower",
+  "latin": "Helianthus annuus"
+ },
+ {
+  "name": "Bean",
+  "latin": "Phaseolus vulgaris"
+ },
+ {
+  "name": "Other plant",
+  "latin": "a plant leaf of another species"
+ },
+ {
+  "name": "Weed or wild plant",
+  "latin": "a wild weed plant"
+ },
+ {
+  "name": "Not a plant",
+  "latin": "an object that is not a plant"
+ }
+]

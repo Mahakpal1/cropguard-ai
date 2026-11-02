@@ -1,0 +1,68 @@
+{
+  "id": "Grape___Esca_Black_Measles",
+  "crop": {
+    "en": "Grape",
+    "hi": "अंगूर"
+  },
+  "disease": {
+    "en": "Esca (Black Measles)",
+    "hi": "एस्का (ब्लैक मीज़ल्स)"
+  },
+  "scientific_name": "Phaeomoniella chlamydospora",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Interveinal yellowing and necrosis producing a distinct tiger-stripe leaf pattern",
+      "Berries develop small dark purple to brown measles-like spots",
+      "Wood develops internal dark brown or black vascular streaking"
+    ],
+    "hi": [
+      "पत्तियों की नसों के बीच पीलापन और सूखापन, जिससे बाघ जैसी धारियां बनती हैं",
+      "अंगूरों पर चेचक जैसे छोटे गहरे बैंगनी या भूरे धब्बे पड़ते हैं",
+      "लकड़ी के अंदर गहरे भूरे या काले रंग की धारियाँ बन जाती हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Mark symptomatic vines during summer for delayed winter pruning",
+      "Cut out dead cordons and trunk wood well below the infected zone",
+      "Apply an approved wound protectant paste strictly following product label and expert instructions"
+    ],
+    "hi": [
+      "सर्दियों में छंटाई के लिए गर्मियों में ही रोगग्रस्त बेलों पर निशान लगा लें",
+      "संक्रमित हिस्से से काफी नीचे तक की सूखी लकड़ी को काटकर हटाएँ",
+      "विशेषज्ञ की सलाह से ताज़े कटे हुए हिस्सों पर घाव भरने वाला लेप लगाएँ"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Prune vines late in the dormant season during dry weather conditions",
+      "Disinfect pruning shears regularly with alcohol or disinfectant",
+      "Source certified disease-free rootstocks and nursery benchgrafts"
+    ],
+    "hi": [
+      "सर्दियों के अंत में सूखे मौसम में ही बेलों की छंटाई करें",
+      "कटाई के औज़ारों को नियमित रूप से सैनिटाइज़र से साफ़ करें",
+      "प्रमाणित और रोगमुक्त नर्सरी पौधों का ही उपयोग करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM - Esca (Black Measles)",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "Penn State Extension - Grape Trunk Diseases",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Grape Esca / Black Measles."
+  }
+}

@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "input_size": 224,
+  "mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "classes": [
+    {
+      "id": "Pepper__bell___Bacterial_spot",
+      "crop": {
+        "en": "Pepper",
+        "hi": "शिमला मिर्च"
+      },
+      "disease": {
+        "en": "Bacterial Spot",
+        "hi": "जीवाणु धब्बा रोग"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Pepper__bell___healthy",
+      "crop": {
+        "en": "Pepper",
+        "hi": "शिमला मिर्च"
+      },
+      "disease": {
+        "en": "Healthy",
+        "hi": "स्वस्थ"
+      },
+      "healthy": true
+    },
+    {
+      "id": "Potato___Early_blight",
+      "crop": {
+        "en": "Potato",
+        "hi": "आलू"
+      },
+      "disease": {
+        "en": "Early Blight",
+        "hi": "अगेती झुलसा"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Potato___Late_blight",
+      "crop": {
+        "en": "Potato",
+        "hi": "आलू"
+      },
+      "disease": {
+        "en": "Late Blight",
+        "hi": "पछेती झुलसा"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Potato___healthy",
+      "crop": {
+        "en": "Potato",
+        "hi": "आलू"
+      },
+      "disease": {
+        "en": "Healthy",
+        "hi": "स्वस्थ"
+      },
+      "healthy": true
+    },
+    {
+      "id": "Tomato_Bacterial_spot",
+      "crop": {
+        "en": "Tomato",
+        "hi": "टमाटर"
+      },
+      "disease": {
+        "en": "Bacterial Spot",
+        "hi": "जीवाणु धब्बा रोग"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Tomato_Early_blight",
+      "crop": {
+        "en": "Tomato",
+        "hi": "टमाटर"
+      },
+      "disease": {
+        "en": "Early Blight",
+        "hi": "अगेती झुलसा"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Tomato_Late_blight",
+      "crop": {
+        "en": "Tomato",
+        "hi": "टमाटर"
+      },
+      "disease": {
+        "en": "Late Blight",
+        "hi": "पछेती झुलसा"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Tomato_Leaf_Mold",
+      "crop": {
+        "en": "Tomato",
+        "hi": "टमाटर"
+      },
+      "disease": {
+        "en": "Leaf Mold",
+        "hi": "पर्ण फफूंद (लीफ मोल्ड)"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Tomato_Septoria_leaf_spot",
+      "crop": {
+        "en": "Tomato",
+        "hi": "टमाटर"
+      },
+      "disease": {
+        "en": "Septoria Leaf Spot",
+        "hi": "सेप्टोरिया पत्ती धब्बा"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Tomato_Spider_mites_Two_spotted_spider_mite",
+      "crop": {
+        "en": "Tomato",
+        "hi": "टमाटर"
+      },
+      "disease": {
+        "en": "Spider Mites",
+        "hi": "मकड़ी माइट (लाल मकड़ी)"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Tomato__Target_Spot",
+      "crop": {
+        "en": "Tomato",
+        "hi": "टमाटर"
+      },
+      "disease": {
+        "en": "Target Spot",
+        "hi": "टारगेट स्पॉट (लक्ष्य धब्बा)"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Tomato__Tomato_YellowLeaf__Curl_Virus",
+      "crop": {
+        "en": "Tomato",
+        "hi": "टमाटर"
+      },
+      "disease": {
+        "en": "Yellow Leaf Curl Virus",
+        "hi": "पीला पत्ती मोड़क विषाणु"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Tomato__Tomato_mosaic_virus",
+      "crop": {
+        "en": "Tomato",
+        "hi": "टमाटर"
+      },
+      "disease": {
+        "en": "Mosaic Virus",
+        "hi": "मोज़ेक विषाणु"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Tomato_healthy",
+      "crop": {
+        "en": "Tomato",
+        "hi": "टमाटर"
+      },
+      "disease": {
+        "en": "Healthy",
+        "hi": "स्वस्थ"
+      },
+      "healthy": true
+    }
+  ]
+}

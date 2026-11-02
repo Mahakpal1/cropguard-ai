@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>CropGuard – AI Crop Disease Detection</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css?v=20261101_v11">
+  <link rel="stylesheet" href="css/settings-page.css?v=20261101_v2">
+  <link rel="stylesheet" href="css/pipeline-page.css?v=20261101_v4">
+</head>
+<body>
+  <!-- Header Bar -->
+  <header class="top">
+    <div class="top-left-brand">
+      <div class="announcement-pill">
+        <span class="megaphone-ico">📢</span>
+        <span>Smart Farming. A Healthier Tomorrow.</span>
+      </div>
+    </div>
+
+    <div class="top-r">
+      <span class="demo" id="demoChip"><i class="led-dot">●</i> Live ViT-384 Model</span>
+
+      <label class="sel" title="Change Language">
+        <span>🌐</span>
+        <select id="langSel" aria-label="Language">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी (Hindi)</option>
+          <option value="pa">ਪੰਜਾਬੀ (Punjabi)</option>
+          <option value="mr">मराठी (Marathi)</option>
+          <option value="te">తెలుగు (Telugu)</option>
+          <option value="ta">தமிழ் (Tamil)</option>
+          <option value="gu">ગુજરાતી (Gujarati)</option>
+          <option value="kn">ಕನ್ನಡ (Kannada)</option>
+          <option value="bn">বাংলা (Bengali)</option>
+        </select>
+      </label>
+
+      <button id="th" class="theme-toggle-btn" title="Toggle theme">🌙 Dark</button>
+
+      <button class="notif-circle-btn" id="notifBtn" title="Notifications">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="notif-badge-dot"></span>
+      </button>
+
+      <div class="user-profile-chip">
+        <img src="img/side_card.jpg" alt="Ramesh Ji" class="user-avatar-round">
+        <div class="user-name-box">
+          <span>Hello, <b>Ramesh Ji</b></span>
+        </div>
+        <span class="user-caret">▾</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Application Shell -->
+  <div class="shell">
+    <!-- Left Navigation Sidebar -->
+    <nav class="side" id="side">
+      <div class="side-brand">
+        <div class="side-brand-shield">
+          <svg viewBox="0 0 36 36" width="32" height="32">
+            <path d="M18 3 L32 7 V16 C32 25 18 33 18 33 C18 33 4 25 4 16 V7 Z" fill="#2563eb" stroke="#38bdf8" stroke-width="1.6"/>
+            <path d="M12 20 C12 13 18 9 24 10 C24 17 18 23 12 20 Z" fill="#22c55e"/>
+            <path d="M14 20 Q18 16 22 12" stroke="#ffffff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <b class="brand-name">CropGuard</b>
+          <small class="brand-sub">Detect • Advise • Protect</small>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <a href="#dashboard" data-page="dashboard" class="on">
+          <svg viewBox="0 0 24 24"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="#scan" data-page="dashboard">
+          <svg viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+          <span>Scan Crop</span>
+        </a>
+        <a href="#farmMon" data-page="dashboard">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          <span>My Farm</span>
+        </a>
+        <a href="#history" data-page="history">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span>History</span>
+        </a>
+        <a href="#pipeline" data-page="pipeline">
+          <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          <span>Smart Advisory</span>
+        </a>
+        <a href="#settings" data-page="settings">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          <span>Settings</span>
+        </a>
+        <a href="#help" data-page="help">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span>Help</span>
+        </a>
+      </div>
+
+      <!-- Bottom Farmer Nature Card -->
+      <div class="side-farmer-card">
+        <img src="img/hero_banner.jpg" alt="Farmer in green crop field" class="side-farmer-bg">
+        <div class="side-farmer-overlay">
+          <p class="farmer-tagline">Healthy Crops,<br>Happy Farmers</p>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content Pages -->
+    <main class="main">
+      <!-- ================= PAGE 1: MAIN DASHBOARD ================= -->
+      <div class="page-view active" id="page-dashboard">
+        <button id="startScanBtn" style="display:none"></button>
+        <button id="sample" hidden></button>
+
+        <!-- ROW 1: Scan Section + Diagnosis Complete + Smart Features -->
+        <div class="dash-row-top">
+          <!-- Col 1: Scan Your Plant Leaf (kept same size and full functionality) -->
+          <section class="card scan-card" id="scan">
+            <div class="scan-card-head">
+              <div>
+                <h3><span class="ic">🍃</span>Scan Your Plant Leaf</h3>
+                <p class="sub">Upload a leaf image or use camera to detect diseases with AI</p>
+              </div>
+              <!-- Model Selector Pill -->
+              <div class="model-selector-wrap">
+                <label class="model-sel-label" for="modelSel">
+                  <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                  Model
+                </label>
+                <select id="modelSel" class="model-sel-dropdown" aria-label="Select AI model">
+                  <option value="cropguard38_384" selected>ViT-384 Focal (Best) ✓</option>
+                  <option value="cropguard38_combined">Combined 224px (Fast)</option>
+                  <option value="cropguard38_vit">Base ViT 224px</option>
+                  <option value="cropguard38">MobileNet/ResNet</option>
+                  <option value="cropguard38_recovered">Recovered ViT</option>
+                  <option value="community">Community Pretrained</option>
+                </select>
+                <span class="model-status-dot" id="modelDot"></span>
+              </div>
+            </div>
+
+            <!-- Holographic Scanner Stage — keeping exact size and functionality -->
+            <div class="holo-stage-wrap" id="drop">
+              <div class="float-leaf fl1">🍃</div>
+              <div class="float-leaf fl2">🌿</div>
+              <div class="float-leaf fl3">🍃</div>
+              <div class="float-leaf fl4">🌿</div>
+              <div class="holo-viewport" id="holoViewport">
+                <canvas id="img" width="224" height="224"></canvas>
+                <!-- Analyzed with AI badge inside viewport -->
+                <div class="ai-analyzed-badge" id="aiAnalyzedBadge" style="display:none">
+                  <span class="check-dot">✔</span>
+                  <span>Analyzed with AI</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action buttons below scanner -->
+            <div class="scan-action-row">
+              <label class="scan-pill-btn green-pill" for="file2">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                Choose Image
+              </label>
+              <input id="file2" type="file" accept="image/*" style="display:none">
+
+              <label class="scan-pill-btn white-pill" for="file">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                Use Camera
+              </label>
+              <input id="file" type="file" accept="image/*" capture="environment" style="display:none">
+            </div>
+            <p class="scan-file-note">Supports: JPG, PNG | Max: 5MB</p>
+
+            <!-- Analyse button -->
+            <button class="pri run-btn" id="run" disabled>
+              <span class="btn-play">▶</span>
+              <span>Analyse Leaf</span>
+            </button>
+          </section>
+
+          <!-- Col 2: Diagnosis Complete Card -->
+          <section class="card diag-complete-card" id="resCard">
+            <!-- Standby State before scan -->
+            <div class="recent-standby" id="recentStandby">
+              <div class="standby-icon-box">🍃</div>
+              <h4>Ready for Diagnosis</h4>
+              <p>Upload a leaf image or take a photo, then click <b>Analyse Leaf</b> to run diagnosis.</p>
+              <div class="standby-badges">
+                <span>⚡ ViT-384 Focal</span>
+                <span>🎯 96%+ Accuracy</span>
+                <span>🛡️ Curated Advisory</span>
+              </div>
+            </div>
+
+            <!-- Main Diagnosis Body -->
+            <div class="diag-body" id="res" style="display:none">
+              <div class="diag-header-row">
+                <div class="diag-info-left">
+                  <div class="diag-status-pill">
+                    <span class="chk-ico">✔</span>
+                    <span>Diagnosis Complete</span>
+                  </div>
+                  <h2 class="diag-title" id="dn">Tomato Early Blight</h2>
+                  <p class="diag-crop-name" id="sci">(Tomato Leaf)</p>
+
+                  <div class="diag-metrics-row">
+                    <!-- Circular Confidence Ring Gauge -->
+                    <div class="metric-gauge-card">
+                      <div class="circular-ring-wrap" id="ring">
+                        <svg viewBox="0 0 36 36" class="circular-ring-svg">
+                          <path class="ring-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                          <path class="ring-fg" id="ringFg" stroke-dasharray="94, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        </svg>
+                        <b class="ring-val" id="cf">94%</b>
+                      </div>
+                      <span class="metric-caption">Confidence</span>
+                    </div>
+
+                    <!-- Severity Bars Metric -->
+                    <div class="metric-gauge-card">
+                      <div class="sev-bar-icon">
+                        <span class="bar b1"></span>
+                        <span class="bar b2"></span>
+                        <span class="bar b3"></span>
+                      </div>
+                      <div class="sev-labels-wrap">
+                        <b id="sevpill" class="pl mid">Moderate Severity</b>
+                        <span class="metric-caption">Severity</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Metadata Chips -->
+                  <div class="diag-pills-row">
+                    <span class="tier-badge" id="tierBadge" hidden></span>
+                    <span class="crop-pill" id="cropPill" hidden></span>
+                    <span class="gate-pill" id="gate" style="display:none"></span>
+                  </div>
+                </div>
+
+                <!-- Right Side Botanical Illustration (adapts per crop) -->
+                <div class="diag-illus-right" id="diagIllusWrap">
+                  <svg viewBox="0 0 160 160" width="130" height="130" class="crop-tomatoes-svg" id="cropSvg">
+                    <defs>
+                      <radialGradient id="tomGrad1" cx="35%" cy="35%" r="65%">
+                        <stop offset="0%" stop-color="#ff6b6b"/>
+                        <stop offset="50%" stop-color="#ef4444"/>
+                        <stop offset="100%" stop-color="#991b1b"/>
+                      </radialGradient>
+                      <filter id="tomSh" x="-20%" y="-20%" width="140%" height="140%">
+                        <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#7f1d1d" flood-opacity="0.25"/>
+                      </filter>
+                    </defs>
+                    <path d="M30 40 Q70 20 120 45 Q140 60 150 90" fill="none" stroke="#2d6a2a" stroke-width="4.5" stroke-linecap="round"/>
+                    <path d="M60 30 Q50 15 40 10" fill="none" stroke="#3df5a0" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M100 37 Q115 15 130 8" fill="none" stroke="#2d6a2a" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M40 10 C35 2 20 6 22 18 C28 22 42 16 40 10 Z" fill="#22c55e"/>
+                    <path d="M130 8 C140 2 155 8 150 20 C140 25 125 18 130 8 Z" fill="#16a34a"/>
+                    <!-- Tomato 1 (Left) -->
+                    <circle cx="56" cy="88" r="32" fill="url(#tomGrad1)" filter="url(#tomSh)"/>
+                    <path d="M56 56 L52 64 L44 60 L50 67 L42 74 L52 72 L56 80 L60 72 L70 74 L62 67 L68 60 L60 64 Z" fill="#22c55e"/>
+                    <!-- Tomato 2 (Right Front) -->
+                    <circle cx="106" cy="94" r="38" fill="url(#tomGrad1)" filter="url(#tomSh)"/>
+                    <ellipse cx="94" cy="76" rx="10" ry="6" transform="rotate(-30 94 76)" fill="#ffffff" opacity="0.45"/>
+                    <ellipse cx="46" cy="74" rx="8" ry="4" transform="rotate(-25 46 74)" fill="#ffffff" opacity="0.4"/>
+                    <path d="M106 56 L101 65 L90 62 L98 70 L88 78 L100 76 L106 86 L112 76 L124 78 L114 70 L122 62 L111 65 Z" fill="#16a34a"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Affected Leaf Area Severity Track Gauge -->
+              <div class="diag-severity-track">
+                <div class="sev-track-head">
+                  <span class="sev-track-label">
+                    <span class="sev-ico">📊</span>
+                    <span>Affected Leaf Area</span>
+                  </span>
+                  <div class="sev-track-right">
+                    <b id="ap" class="sev-pct-val">18%</b>
+                    <span id="sv" class="sev-grade-badge">Moderate</span>
+                  </div>
+                </div>
+                <div class="sev-gauge-bar" id="gauge">
+                  <div class="sev-gauge-fill"></div>
+                  <b class="sev-gauge-marker" id="mk" style="left: 18%;"></b>
+                </div>
+                <div class="sev-gauge-scale">
+                  <span>0% Mild</span>
+                  <span>25% Moderate</span>
+                  <span>50%+ Severe</span>
+                </div>
+              </div>
+
+              <!-- Identified Visual Symptoms Section -->
+              <div class="diag-symptoms-box">
+                <h4 class="diag-sec-title">
+                  <span class="sec-ico">🔍</span>
+                  <span>Identified Visual Symptoms</span>
+                </h4>
+                <ul id="sym" class="diag-sym-list">
+                  <li>Dark brown spots with concentric halos</li>
+                  <li>Foliar necrosis along leaf margins</li>
+                  <li>Early stage fungal lesion expansion</li>
+                </ul>
+              </div>
+
+              <!-- Agronomist Field Protocol & Advisory Note -->
+              <div class="diag-field-advisory">
+                <div class="advisory-badge-row">
+                  <span class="advisory-dot">●</span>
+                  <b>Agronomist Field Protocol</b>
+                </div>
+                <p class="advisory-text" id="disc">Severity is an image-based estimate. Always follow the product label and consult your local agricultural extension officer.</p>
+              </div>
+
+              <!-- Preserve hidden elements for backward script compatibility -->
+              <div class="compat-hidden" style="display:none">
+                <canvas id="rthumb" width="112" height="112"></canvas>
+                <span id="cf2"></span>
+                <span id="rl1"></span>
+                <span id="ent"></span>
+                <div class="tabs" id="tabs"><button class="on"></button></div>
+                <div id="cols" data-tab="0"></div>
+              </div>
+
+              <!-- Action buttons row -->
+              <div class="diag-actions-row">
+                <button class="view-report-pill-btn" id="rep">
+                  <span>📖</span>
+                  <span>View Detailed Report →</span>
+                </button>
+                <button class="read-aloud-pill-btn" id="say">
+                  <span>🔊</span>
+                  <span>Read aloud</span>
+                </button>
+              </div>
+
+              <!-- Feedback box -->
+              <div class="fb-box" id="fbBox" hidden>
+                <div class="fb-head">
+                  <span>Was this diagnosis accurate?</span>
+                  <small id="fbStatus">Help calibrate CropGuard</small>
+                </div>
+                <div class="fb-btns" id="fbBtns">
+                  <button class="fb-btn correct" id="fbYes"><span>👍</span>Yes, accurate</button>
+                  <button class="fb-btn wrong" id="fbNo"><span>👎</span>Report error</button>
+                </div>
+                <div class="fb-form" id="fbForm" hidden>
+                  <select id="fbSelect"><option value="">Select actual disease...</option></select>
+                  <input type="text" id="fbNotes" placeholder="Optional notes for agricultural officers...">
+                  <button class="pri full" id="fbSubmit">Submit Correction</button>
+                </div>
+                <div class="fb-done" id="fbDone" hidden><span>✓</span>Thank you! Feedback recorded for active learning.</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Col 3: ⭐ Smart Features Card -->
+          <section class="card smart-features-card" id="smartFeaturesCard">
+            <div class="smart-feat-head">
+              <div class="smart-feat-title">
+                <span class="star-icon">⭐</span>
+                <h3>Smart Features</h3>
+              </div>
+              <span class="sparkle-ico">✨</span>
+            </div>
+
+            <div class="smart-feat-list">
+              <!-- Feature 1: Disease Trend -->
+              <div class="smart-feat-item" id="featTrend">
+                <div class="feat-icon-sq blue">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+                </div>
+                <div class="feat-text-box">
+                  <b>Disease Trend</b>
+                  <small>Track disease over time</small>
+                </div>
+                <span class="feat-chevron">›</span>
+              </div>
+
+              <!-- Feature 2: Pest Risk Alert -->
+              <div class="smart-feat-item" id="featRisk">
+                <div class="feat-icon-sq red">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                </div>
+                <div class="feat-text-box">
+                  <b>Pest Risk Alert</b>
+                  <small>High risk in your region</small>
+                </div>
+                <span class="feat-chevron">›</span>
+              </div>
+
+              <!-- Feature 3: Personalized Schedule -->
+              <div class="smart-feat-item" id="featSchedule">
+                <div class="feat-icon-sq purple">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                </div>
+                <div class="feat-text-box">
+                  <b>Personalized Schedule</b>
+                  <small>When to spray &amp; what to use</small>
+                </div>
+                <span class="feat-chevron">›</span>
+              </div>
+
+              <!-- Feature 4: Voice Assistant -->
+              <div class="smart-feat-item" id="featVoice">
+                <div class="feat-icon-sq teal">
+                  <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                </div>
+                <div class="feat-text-box">
+                  <b>Voice Assistant</b>
+                  <small>"Ask CropGuard..."</small>
+                </div>
+                <span class="feat-chevron">›</span>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- ROW 2: 3 Colorful Advisory Action Cards (Dynamically Tailored to Analysis) -->
+        <div class="advisory-section-wrap" id="advisoryWrap">
+          <div class="advisory-section-header">
+            <div class="advisory-title-group">
+              <h3 class="advisory-main-heading">
+                <span class="adv-ico">🛡️</span>
+                <span>AI-Tailored Action Advisory</span>
+              </h3>
+              <span class="advisory-state-pill" id="advisoryStatePill">Awaiting Diagnosis</span>
+            </div>
+            <p class="advisory-subtext" id="advisorySubtext">Upload a plant leaf above to generate disease-specific agronomic interventions, precautions, and prevention steps.</p>
+          </div>
+
+          <div class="dash-row-advisory">
+            <!-- Card 1: What to Do Now -->
+            <div class="card action-advisory-card do-now">
+              <div class="action-card-header navy">
+                <span class="action-ico bulb">💡</span>
+                <div class="action-header-text">
+                  <h4>What to Do Now</h4>
+                  <small id="subDo">Immediate Interventions</small>
+                </div>
+              </div>
+              <div class="action-card-body">
+                <ul class="action-styled-list green" id="actionDoList">
+                  <li class="standby-item">Scan a plant leaf to generate tailored immediate treatment steps.</li>
+                </ul>
+                <!-- Spray Bottle SVG Illustration -->
+                <div class="action-bottom-illus" id="illusSpray" style="display:none">
+                  <svg viewBox="0 0 80 80" width="68" height="68" class="spray-bot-svg">
+                    <defs>
+                      <linearGradient id="sprayGrad" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0%" stop-color="#fbbf24"/>
+                        <stop offset="100%" stop-color="#f59e0b"/>
+                      </linearGradient>
+                    </defs>
+                    <rect x="25" y="32" width="30" height="42" rx="10" fill="url(#sprayGrad)"/>
+                    <rect x="23" y="44" width="34" height="2" fill="#d97706" opacity="0.4"/>
+                    <rect x="23" y="56" width="34" height="2" fill="#d97706" opacity="0.4"/>
+                    <line x1="28" y1="38" x2="33" y2="38" stroke="#ffffff" stroke-width="2"/>
+                    <line x1="28" y1="48" x2="33" y2="48" stroke="#ffffff" stroke-width="2"/>
+                    <line x1="28" y1="58" x2="33" y2="58" stroke="#ffffff" stroke-width="2"/>
+                    <path d="M35 32 L35 22 L45 22 L45 32 Z" fill="#16a34a"/>
+                    <path d="M45 22 L55 18 L55 24 L45 26 Z" fill="#22c55e"/>
+                    <path d="M40 22 C40 14 30 14 30 22" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M46 25 Q54 28 50 36" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="62" cy="19" r="1.5" fill="#38bdf8"/>
+                    <circle cx="68" cy="17" r="1.8" fill="#38bdf8"/>
+                    <circle cx="73" cy="22" r="1.4" fill="#38bdf8"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2: What Not to Do -->
+            <div class="card action-advisory-card dont">
+              <div class="action-card-header red">
+                <span class="action-ico ban">🚫</span>
+                <div class="action-header-text">
+                  <h4>What Not to Do</h4>
+                  <small id="subDont">Critical Precautions</small>
+                </div>
+              </div>
+              <div class="action-card-body">
+                <ul class="action-styled-list red" id="actionDontList">
+                  <li class="standby-item">Precautions against harmful spraying or practices will appear after diagnosis.</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Card 3: Prevention -->
+            <div class="card action-advisory-card prevent">
+              <div class="action-card-header green">
+                <span class="action-ico shield">🛡️</span>
+                <div class="action-header-text">
+                  <h4>Prevention</h4>
+                  <small id="subPrevent">Long-Term Field Protocol</small>
+                </div>
+              </div>
+              <div class="action-card-body">
+                <ul class="action-styled-list green" id="actionPreventList">
+                  <li class="standby-item">Long-term cultural and crop rotation guidelines will populate post-analysis.</li>
+                </ul>
+                <!-- Seedling Plant SVG Illustration -->
+                <div class="action-bottom-illus" id="illusSprout" style="display:none">
+                  <svg viewBox="0 0 80 80" width="68" height="68" class="sprout-svg">
+                    <path d="M10 74 Q40 60 70 74 Z" fill="#78350f"/>
+                    <ellipse cx="40" cy="73" rx="30" ry="5" fill="#451a03"/>
+                    <path d="M40 70 Q41 45 40 25" fill="none" stroke="#16a34a" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M40 50 C26 44 20 54 28 58 C36 60 40 50 40 50 Z" fill="#22c55e"/>
+                    <path d="M40 45 C54 39 60 49 52 53 C44 55 40 45 40 45 Z" fill="#22c55e"/>
+                    <path d="M40 28 C28 18 32 10 40 20 C48 10 52 18 40 28 Z" fill="#4ade80"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROW 3: 3 Smart Feature Widgets -->
+        <div class="dash-row-bottom">
+          <!-- Widget 1: Crop Health Monitor (Analytical & Animated) -->
+          <section class="card widget-card health-monitor-widget" id="farmMon">
+            <div class="widget-head">
+              <div class="widget-title-wrap">
+                <span class="widget-ico pulse">📈</span>
+                <div>
+                  <h4>Crop Health Analytics</h4>
+                  <small class="widget-head-sub">NDVI &amp; Canopy Vitality Index</small>
+                </div>
+              </div>
+              <div class="widget-head-right">
+                <span class="live-status-pill"><i class="led-blink">●</i> Live Telemetry</span>
+              </div>
+            </div>
+
+            <div class="widget-body">
+              <!-- Analytical Telemetry Chart with Grid & Ticks -->
+              <div class="analytic-chart-container">
+                <svg viewBox="0 0 340 140" class="analytic-spline-svg" id="healthChartSvg">
+                  <defs>
+                    <linearGradient id="analyticGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#10b981" stop-opacity="0.45"/>
+                      <stop offset="60%" stop-color="#059669" stop-opacity="0.12"/>
+                      <stop offset="100%" stop-color="#059669" stop-opacity="0"/>
+                    </linearGradient>
+                    <linearGradient id="strokeGrad" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="#059669"/>
+                      <stop offset="50%" stop-color="#10b981"/>
+                      <stop offset="85%" stop-color="#34d399"/>
+                      <stop offset="100%" stop-color="#f59e0b"/>
+                    </linearGradient>
+                    <filter id="glowWave" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#10b981" flood-opacity="0.5"/>
+                    </filter>
+                  </defs>
+
+                  <!-- Horizontal Grid Lines -->
+                  <line x1="38" y1="20" x2="330" y2="20" stroke="rgba(148,163,184,0.18)" stroke-dasharray="3 3"/>
+                  <line x1="38" y1="50" x2="330" y2="50" stroke="rgba(148,163,184,0.18)" stroke-dasharray="3 3"/>
+                  <line x1="38" y1="80" x2="330" y2="80" stroke="rgba(148,163,184,0.18)" stroke-dasharray="3 3"/>
+                  <line x1="38" y1="110" x2="330" y2="110" stroke="rgba(148,163,184,0.3)"/>
+
+                  <!-- Y-Axis Value Labels -->
+                  <text x="32" y="24" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="end">1.0</text>
+                  <text x="32" y="54" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="end">0.8</text>
+                  <text x="32" y="84" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="end">0.6</text>
+                  <text x="32" y="113" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="end">0.4</text>
+
+                  <!-- Gradient Filled Area -->
+                  <path class="wave-area" d="M 45 92 Q 85 75, 125 78 T 205 48 T 265 65 T 320 38 L 320 110 L 45 110 Z" fill="url(#analyticGrad)"/>
+
+                  <!-- Animated Spline Curve -->
+                  <path class="wave-line animated-scan-line" d="M 45 92 Q 85 75, 125 78 T 205 48 T 265 65 T 320 38" fill="none" stroke="url(#strokeGrad)" stroke-width="3" stroke-linecap="round" filter="url(#glowWave)"/>
+
+                  <!-- Data Node Points -->
+                  <circle cx="45" cy="92" r="3.5" fill="#059669" stroke="#ffffff" stroke-width="1.5"/>
+                  <circle cx="125" cy="78" r="3.5" fill="#10b981" stroke="#ffffff" stroke-width="1.5"/>
+                  <circle cx="205" cy="48" r="4" fill="#10b981" stroke="#ffffff" stroke-width="1.5"/>
+                  <circle cx="265" cy="65" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>
+
+                  <!-- Live Pulsating Telemetry Point on Today -->
+                  <g transform="translate(320, 38)">
+                    <circle cx="0" cy="0" r="10" fill="#10b981" opacity="0.35" class="pulse-beacon-circle"/>
+                    <circle cx="0" cy="0" r="4.5" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
+                  </g>
+
+                  <!-- Floating Telemetry Tag -->
+                  <g transform="translate(185, 20)">
+                    <rect width="78" height="20" rx="10" fill="#065f46" opacity="0.95"/>
+                    <text x="39" y="14" fill="#a7f3d0" font-size="10" font-weight="700" text-anchor="middle">NDVI: 0.84</text>
+                  </g>
+
+                  <!-- X-Axis Timeline Labels -->
+                  <text x="45" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Mon</text>
+                  <text x="90" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Tue</text>
+                  <text x="135" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Wed</text>
+                  <text x="180" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Thu</text>
+                  <text x="225" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Fri</text>
+                  <text x="270" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Sat</text>
+                  <text x="320" y="126" fill="#10b981" font-size="9.5" font-weight="800" text-anchor="middle">Today</text>
+                </svg>
+              </div>
+
+              <!-- Key Analytics Micro-Pills -->
+              <div class="health-metrics-grid">
+                <div class="h-metric-item">
+                  <small>Canopy Cover</small>
+                  <b>92.4%</b>
+                </div>
+                <div class="h-metric-item">
+                  <small>Leaf Moisture</small>
+                  <b>76%</b>
+                </div>
+                <div class="h-metric-item">
+                  <small>Chlorophyll</small>
+                  <b>48.2 SPAD</b>
+                </div>
+                <div class="h-metric-item">
+                  <small>Stress Index</small>
+                  <b class="stress-low">Low (6%)</b>
+                </div>
+              </div>
+
+              <div class="health-footer-msg">
+                <span class="check-circle-green">✔</span>
+                <span><b>Crop Status: Optimal</b> · Normal transpiration &amp; vigorous biomass.</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Widget 2: Regional Alerts (Sync to Region + Weather + Live Conditions) -->
+          <section class="card widget-card regional-alerts-widget" id="regAlerts">
+            <div class="widget-head">
+              <div class="widget-title-wrap">
+                <span class="widget-ico alert">⚠️</span>
+                <div>
+                  <h4>Regional &amp; Weather Alerts</h4>
+                  <small class="widget-head-sub">Live Micro-Climate Telemetry</small>
+                </div>
+              </div>
+              <span class="alert-count-pill" id="alertCountBadge">2 Alerts Active</span>
+            </div>
+
+            <div class="widget-body regional-alert-body">
+              <!-- Region & Zone Selector -->
+              <div class="region-select-row">
+                <span class="geo-pin">📍</span>
+                <select id="regionSelect" class="region-dropdown" aria-label="Select Region">
+                  <option value="karnal" selected>Karnal, Haryana (Agro-Zone 4)</option>
+                  <option value="meerut">Meerut, Western UP (Agro-Zone 5)</option>
+                  <option value="ludhiana">Ludhiana, Punjab (Agro-Zone 3)</option>
+                  <option value="nashik">Nashik, Maharashtra (Zone 6)</option>
+                  <option value="indore">Indore, Malwa MP (Zone 7)</option>
+                </select>
+              </div>
+
+              <!-- Live Weather Conditions Bar -->
+              <div class="weather-telemetry-strip" id="weatherStrip">
+                <div class="weather-tele-item" title="Canopy Temperature">
+                  <span class="w-ico">🌡️</span>
+                  <span class="w-val" id="wTemp">27.4°C</span>
+                </div>
+                <div class="weather-tele-item" title="Relative Humidity">
+                  <span class="w-ico">💧</span>
+                  <span class="w-val" id="wHumidity">84% RH</span>
+                </div>
+                <div class="weather-tele-item" title="Wind Velocity">
+                  <span class="w-ico">💨</span>
+                  <span class="w-val" id="wWind">8 km/h</span>
+                </div>
+                <div class="weather-tele-item" title="Precipitation">
+                  <span class="w-ico">🌧️</span>
+                  <span class="w-val" id="wRain">12mm</span>
+                </div>
+              </div>
+
+              <!-- Live Advisory Alert Cards -->
+              <div class="live-alerts-list">
+                <div class="alert-banner-item danger">
+                  <div class="alert-banner-icon">🔴</div>
+                  <div class="alert-banner-text">
+                    <b id="alert1Title">High Fungal Spore Window</b>
+                    <p id="alert1Desc">84% humidity &amp; 27°C creates high risk of Blight &amp; Rust. Apply preventive protection.</p>
+                  </div>
+                </div>
+
+                <div class="alert-banner-item warning">
+                  <div class="alert-banner-icon">🟡</div>
+                  <div class="alert-banner-text">
+                    <b id="alert2Title">Optimal Spray Timing: 06:30–10:30 AM</b>
+                    <p id="alert2Desc">Wind speed calm (8 km/h). Complete foliar applications before afternoon showers.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="alert-footer-actions">
+                <a href="#help" class="quick-kvk-btn" id="dashKvkLink">
+                  <span>📍 Near KVK on Map ↗</span>
+                </a>
+                <a href="#pipeline" class="view-details-link" id="viewAlertDetails">View Details →</a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Widget 3: Ask CropGuard Anything AI & Dosage Doctor -->
+          <section class="card widget-card ask-ai-widget" id="askAi">
+            <div class="widget-head">
+              <div class="widget-title-wrap">
+                <span class="widget-ico chat">💬</span>
+                <div>
+                  <h4>Ask CropGuard AI</h4>
+                  <small class="widget-head-sub">Agronomic Doctor &amp; Advisor</small>
+                </div>
+              </div>
+              <button class="groq-config-btn" id="groqConfigBtn" title="Configure Groq AI Model">
+                <span>⚡</span>
+                <span id="groqStatusLabel">Groq LLM</span>
+              </button>
+            </div>
+
+            <div class="widget-body ask-ai-body">
+              <div class="ask-ai-left">
+                <div class="ai-input-row">
+                  <input type="text" id="aiInput" class="ai-text-field" placeholder="e.g. I sprayed 1L Mancozeb in 100L water — safe?">
+                  <button class="ai-send-round-btn" id="aiSendBtn" title="Ask AI Advisor">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                  </button>
+                </div>
+
+                <!-- Interactive Quick Chips with Real Farmer Questions -->
+                <div class="ai-chips-row">
+                  <button class="ai-chip" data-prompt="I sprayed 1 liter of Mancozeb in 100L water, is it good or bad and what should I do?">🧪 1L Mancozeb in 100L?</button>
+                  <button class="ai-chip" data-prompt="Safe dosage for Chlorothalonil on tomato leaves?">🧴 Chlorothalonil dose?</button>
+                  <button class="ai-chip" data-prompt="Can I spray fungicide when humidity is 85%?">🌧️ 85% humidity spray?</button>
+                  <button class="ai-chip" data-prompt="Crop leaves showing yellow margin scorch after spray, what to do?">⚠️ Leaf burn after spray?</button>
+                </div>
+
+                <!-- Dynamic AI Answer Bubble -->
+                <div class="ai-answer-bubble" id="aiAnswerBubble" style="display:none"></div>
+              </div>
+
+              <!-- Friendly Robot Farmer Mascot SVG — decorative overlay -->
+              <div class="ai-bot-mascot-wrap">
+                <svg viewBox="0 0 100 100" width="72" height="72" class="ai-bot-svg">
+                  <rect x="30" y="55" width="40" height="32" rx="14" fill="#e0e7ff" stroke="#6366f1" stroke-width="2"/>
+                  <circle cx="50" cy="71" r="7" fill="#ffffff"/>
+                  <path d="M47 73 C46 68 53 66 53 71 C53 74 48 76 47 73 Z" fill="#22c55e"/>
+                  <rect x="25" y="24" width="50" height="34" rx="16" fill="#f8fafc" stroke="#4f46e5" stroke-width="2.2"/>
+                  <rect x="31" y="32" width="38" height="18" rx="9" fill="#0f172a"/>
+                  <ellipse cx="42" cy="41" rx="4" ry="4.5" fill="#38bdf8"/>
+                  <ellipse cx="58" cy="41" rx="4" ry="4.5" fill="#38bdf8"/>
+                  <path d="M46 45 Q50 48 54 45" stroke="#38bdf8" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+                  <path d="M34 24 Q50 10 66 24 Z" fill="#fde047" stroke="#ca8a04" stroke-width="2"/>
+                  <ellipse cx="50" cy="24" rx="36" ry="7" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+                  <ellipse cx="50" cy="22" rx="20" ry="3.5" fill="#16a34a"/>
+                  <path d="M60 20 Q68 12 72 16 Q65 18 60 20 Z" fill="#22c55e"/>
+                  <ellipse cx="24" cy="68" rx="5" ry="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.8"/>
+                  <ellipse cx="76" cy="68" rx="5" ry="8" fill="#e0e7ff" stroke="#6366f1" stroke-width="1.8"/>
+                </svg>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- ================= PAGE 2: AI MODEL PIPELINE (SEPARATE PAGE!) ================= -->
+      <div class="page-view" id="page-pipeline">
+        <!-- Separate Page Header -->
+        <div class="pipeline-page-header">
+          <div class="pipe-header-left">
+            <button class="back-dash-btn" id="backToDashBtn">
+              <span>←</span>
+              <span>Back to Dashboard</span>
+            </button>
+            <div class="pipe-title-box">
+              <div class="pipe-hero-tag">
+                <span class="pulse-gem">✦</span>
+                <span>NEURAL DIAGNOSTIC SUITE</span>
+              </div>
+              <h2>AI Diagnostic Pipeline &amp; Model Architecture</h2>
+              <p>Two-stage Vision Transformer (384×384) with Focal Loss &amp; BioCLIP Bayesian Crop Router</p>
+            </div>
+          </div>
+          <div class="pipe-badge-box">
+            <div class="model-badge-card">
+              <div class="model-badge-head">
+                <span class="ai-chip-dot">●</span>
+                <span>ACTIVE ONNX BACKBONE</span>
+              </div>
+              <b class="badge-vit">cropguard-vit-384-focal</b>
+            </div>
+            <div class="acc-badge-card">
+              <div class="acc-badge-head">FIELD BENCHMARK</div>
+              <b class="badge-acc-val">78.81%</b>
+              <small>PlantDoc Real-World Test</small>
+            </div>
+          </div>
+        </div>
+
+        <!-- Architecture & Benchmark Spec Grid -->
+        <div class="arch-spec-grid">
+          <!-- Card 1: Active Backbone -->
+          <div class="spec-card">
+            <div class="spec-card-head">
+              <div class="spec-icon-sq" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">🧬</div>
+              <span class="spec-badge purple">Patch-16 · 384²</span>
+            </div>
+            <small class="spec-super">Active Neural Backbone</small>
+            <b class="spec-val">Vision Transformer (ViT)</b>
+            <div class="spec-mini-track">
+              <div class="spec-mini-fill purple" style="width: 100%;"></div>
+            </div>
+            <span class="spec-desc">384×384 resolution with positional interpolation &amp; self-attention heads.</span>
+          </div>
+
+          <!-- Card 2: Field Benchmark -->
+          <div class="spec-card">
+            <div class="spec-card-head">
+              <div class="spec-icon-sq" style="background:linear-gradient(135deg,#10b981,#059669)">🌾</div>
+              <span class="spec-badge green">+12.4% vs MobileNet</span>
+            </div>
+            <small class="spec-super">Field Benchmark (PlantDoc)</small>
+            <b class="spec-val">78.81%</b>
+            <div class="spec-mini-track">
+              <div class="spec-mini-fill green" style="width: 78.8%;"></div>
+            </div>
+            <span class="spec-desc">Evaluated on real-world unconstrained farm conditions with 3-View TTA.</span>
+          </div>
+
+          <!-- Card 3: Lab Benchmark -->
+          <div class="spec-card">
+            <div class="spec-card-head">
+              <div class="spec-icon-sq" style="background:linear-gradient(135deg,#0284c7,#38bdf8)">🔬</div>
+              <span class="spec-badge cyan">Top-1 Precision</span>
+            </div>
+            <small class="spec-super">Controlled Lab (PlantVillage)</small>
+            <b class="spec-val">99.86%</b>
+            <div class="spec-mini-track">
+              <div class="spec-mini-fill cyan" style="width: 99.8%;"></div>
+            </div>
+            <span class="spec-desc">38 distinct classes across 14 host agricultural crop species.</span>
+          </div>
+
+          <!-- Card 4: Evidence Router -->
+          <div class="spec-card">
+            <div class="spec-card-head">
+              <div class="spec-icon-sq" style="background:linear-gradient(135deg,#f59e0b,#d97706)">⚖️</div>
+              <span class="spec-badge amber">Bayesian Gate</span>
+            </div>
+            <small class="spec-super">BioCLIP Crop Router</small>
+            <b class="spec-val">Prior (w=0.15)</b>
+            <div class="spec-mini-track">
+              <div class="spec-mini-fill amber" style="width: 85%;"></div>
+            </div>
+            <span class="spec-desc">Zero-shot semantic prior eliminates cross-crop false-negative rejections.</span>
+          </div>
+        </div>
+
+        <!-- Interactive 7-Node Pipeline Graph -->
+        <section class="card wide pipeline-graph-card" id="insights">
+          <div class="pipe-graph-header">
+            <div class="pipe-graph-title-group">
+              <h3><span class="ic">🧠</span>Live Stage-by-Stage Processing Graph</h3>
+              <p>Data packets dynamically carry transformed leaf states across neural stages.</p>
+            </div>
+            <span class="pipe-live-indicator"><i class="led-blink">●</i> 8-Stage Real-Time Execution</span>
+          </div>
+          <div class="graph" id="graph"></div>
+          <div class="pipe-status-row">
+            <div class="prog">
+              <div class="pbar"><i id="pb"></i></div>
+              <b id="pct">0%</b>
+            </div>
+            <div class="cap" id="cap">
+              <b>Vision Transformer Ready</b>
+              <p>Select or upload a leaf photo to trigger the 7 live diagnostic stages.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Deep Inspection Canvases Grid -->
+        <div class="insp-grid">
+
+          <!-- Card 01: Model Input Tensor (Blue theme) -->
+          <section class="card ip ip-blue" id="ip0">
+            <div class="ip-glow-bar ip-glow-blue"></div>
+            <div class="ip-head">
+              <div class="ip-head-title-wrap">
+                <div class="ip-step-circle ip-sc-blue">
+                  <span class="ip-sc-icon">📷</span>
+                  <span class="ip-sc-num">01</span>
+                </div>
+                <div class="ip-title-block">
+                  <h3>Model Input Tensor</h3>
+                  <span class="ip-subtitle">RGB Channel Decomposition</span>
+                </div>
+              </div>
+              <div class="ip-badge-group">
+                <span class="ip-live-pill blue-pill"><i class="led-blink-blue">●</i> LIVE</span>
+                <small class="ip-tensor-dim ip-dim-blue">[1, 3, 224, 224] RGB</small>
+              </div>
+            </div>
+            <div class="canvas-frame canvas-frame-blue">
+              <div class="cf-scan-line"></div>
+              <canvas id="c0" width="520" height="170"></canvas>
+            </div>
+            <div class="ip-footer-rich">
+              <span class="ip-footer-icon">🔵</span>
+              <p class="ip-footer-text">Splits input into RGB sub-bands and calculates channel mean &amp; variance.</p>
+              <span class="ip-footer-stat blue-stat">float32</span>
+            </div>
+          </section>
+
+          <!-- Card 02: Chlorophyll Hue Spectrum (Emerald / Green theme) -->
+          <section class="card ip ip-green" id="ip1">
+            <div class="ip-glow-bar ip-glow-green"></div>
+            <div class="ip-head">
+              <div class="ip-head-title-wrap">
+                <div class="ip-step-circle ip-sc-green">
+                  <span class="ip-sc-icon">🌿</span>
+                  <span class="ip-sc-num">02</span>
+                </div>
+                <div class="ip-title-block">
+                  <h3>Chlorophyll Hue Spectrum</h3>
+                  <span class="ip-subtitle">Leaf Pigment Analysis</span>
+                </div>
+              </div>
+              <div class="ip-badge-group">
+                <span class="ip-live-pill green-pill"><i class="led-blink-green">●</i> LIVE</span>
+                <small class="ip-tensor-dim ip-dim-green">36-Bin Spectrum</small>
+              </div>
+            </div>
+            <div class="canvas-frame canvas-frame-green">
+              <div class="cf-scan-line"></div>
+              <canvas id="c1" width="520" height="170"></canvas>
+            </div>
+            <div class="ip-footer-rich">
+              <span class="ip-footer-icon">🌱</span>
+              <p class="ip-footer-text">Separates healthy green tissue (60°–170°) from necrotic lesion hues.</p>
+              <span class="ip-footer-stat green-stat">HSV</span>
+            </div>
+          </section>
+
+          <!-- Card 03: Spatial Convolution Kernels (Purple / Violet theme) -->
+          <section class="card ip ip-purple" id="ip2">
+            <div class="ip-glow-bar ip-glow-purple"></div>
+            <div class="ip-head">
+              <div class="ip-head-title-wrap">
+                <div class="ip-step-circle ip-sc-purple">
+                  <span class="ip-sc-icon">🔬</span>
+                  <span class="ip-sc-num">03</span>
+                </div>
+                <div class="ip-title-block">
+                  <h3>Spatial Convolution Kernels</h3>
+                  <span class="ip-subtitle">Edge &amp; Texture Filters</span>
+                </div>
+              </div>
+              <div class="ip-badge-group">
+                <span class="ip-live-pill purple-pill"><i class="led-blink-purple">●</i> LIVE</span>
+                <small class="ip-tensor-dim ip-dim-purple">Feature Filters</small>
+              </div>
+            </div>
+            <div class="canvas-frame canvas-frame-purple">
+              <div class="cf-scan-line"></div>
+              <canvas id="c2" width="520" height="170"></canvas>
+            </div>
+            <div class="ip-footer-rich">
+              <span class="ip-footer-icon">⚡</span>
+              <p class="ip-footer-text">Applies Sobel-X, Sobel-Y, Laplacian, and Gaussian spatial filters.</p>
+              <span class="ip-footer-stat purple-stat">3×3</span>
+            </div>
+          </section>
+
+          <!-- Card 04: Class Softmax Probabilities (Amber / Orange theme) -->
+          <section class="card ip ip-amber" id="ip3">
+            <div class="ip-glow-bar ip-glow-amber"></div>
+            <div class="ip-head">
+              <div class="ip-head-title-wrap">
+                <div class="ip-step-circle ip-sc-amber">
+                  <span class="ip-sc-icon">🧠</span>
+                  <span class="ip-sc-num">04</span>
+                </div>
+                <div class="ip-title-block">
+                  <h3>Class Softmax Probabilities</h3>
+                  <span class="ip-subtitle">Confidence Gate: 40%</span>
+                </div>
+              </div>
+              <div class="ip-badge-group">
+                <span class="ip-live-pill amber-pill"><i class="led-blink-amber">●</i> AI</span>
+                <small class="ip-tensor-dim ip-dim-amber">Calibrated Ranking</small>
+              </div>
+            </div>
+            <div class="canvas-frame canvas-frame-amber">
+              <div class="cf-scan-line"></div>
+              <canvas id="c3" width="520" height="170"></canvas>
+            </div>
+            <div class="ip-footer-rich">
+              <span class="ip-footer-icon">🎯</span>
+              <p class="ip-footer-text">Evaluates top disease candidates against the 40% confidence threshold gate.</p>
+              <span class="ip-footer-stat amber-stat">38 classes</span>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Architecture Flow Breakdown Chips -->
+        <div class="pipe-chips-bar">
+          <div class="pipe-chip-item"><span>🌿</span> PlantDoc &amp; PlantVillage</div>
+          <span class="pipe-arrow-sep">→</span>
+          <div class="pipe-chip-item"><span>⚖️</span> Stratified 80/20 Split</div>
+          <span class="pipe-arrow-sep">→</span>
+          <div class="pipe-chip-item"><span>🎨</span> Heavy MixUp &amp; CutMix</div>
+          <span class="pipe-arrow-sep">→</span>
+          <div class="pipe-chip-item"><span>🧠</span> ViT-384 + Focal Loss (γ=2.0)</div>
+          <span class="pipe-arrow-sep">→</span>
+          <div class="pipe-chip-item"><span>🛡️</span> BioCLIP Bayesian Fusion</div>
+          <span class="pipe-arrow-sep">→</span>
+          <div class="pipe-chip-item"><span>⚡</span> ONNX Runtime 8-Core</div>
+        </div>
+      </div>
+
+      <!-- Additional views for History / Settings if accessed -->
+      <div class="page-view" id="page-history">
+        <section class="card">
+          <div class="card-head">
+            <h3><span class="ic">🗂️</span>Complete Diagnostic Scan History</h3>
+            <button class="dark" id="clr">Clear History</button>
+          </div>
+          <div id="histList"></div>
+        </section>
+      </div>
+
+      <div class="page-view" id="page-settings">
+
+        <!-- Settings Hero Banner -->
+        <div class="settings-hero">
+          <div class="settings-hero-inner">
+            <div class="settings-hero-icon">⚙️</div>
+            <div>
+              <h2 class="settings-hero-title">Application Settings</h2>
+              <p class="settings-hero-sub">Personalise CropGuard — theme, language, AI model &amp; API keys.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Settings Grid -->
+        <div class="settings-page-grid">
+
+          <!-- Card 1: Appearance -->
+          <div class="card settings-card">
+            <div class="settings-card-head">
+              <div class="settings-card-icon" style="background:linear-gradient(135deg,#6366f1,#8b5cf6)">🎨</div>
+              <div>
+                <h4 class="settings-card-title">Appearance</h4>
+                <p class="settings-card-sub">Personalise the look &amp; feel of CropGuard</p>
+              </div>
+            </div>
+            <div class="settings-card-body">
+              <div class="settings-field">
+                <label class="settings-label">🌓 Theme Mode</label>
+                <div class="settings-seg-group">
+                  <button class="settings-seg-btn active on" data-th="light">
+                    <span>☀️</span><span>Light</span>
+                  </button>
+                  <button class="settings-seg-btn" data-th="dark">
+                    <span>🌙</span><span>Dark</span>
+                  </button>
+                </div>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-field">
+                <label class="settings-label" id="lblSetLang">🌐 Language</label>
+                <div class="settings-lang-grid">
+                  <button class="settings-seg-btn active on" data-l="en">
+                    <span>🇮🇳</span><span>English</span>
+                  </button>
+                  <button class="settings-seg-btn" data-l="hi">
+                    <span>🇮🇳</span><span>हिन्दी</span>
+                  </button>
+                  <button class="settings-seg-btn" data-l="pa">
+                    <span>🇮🇳</span><span>ਪੰਜਾਬੀ</span>
+                  </button>
+                  <button class="settings-seg-btn" data-l="mr">
+                    <span>🇮🇳</span><span>मराठी</span>
+                  </button>
+                  <button class="settings-seg-btn" data-l="te">
+                    <span>🇮🇳</span><span>తెలుగు</span>
+                  </button>
+                  <button class="settings-seg-btn" data-l="ta">
+                    <span>🇮🇳</span><span>தமிழ்</span>
+                  </button>
+                  <button class="settings-seg-btn" data-l="gu">
+                    <span>🇮🇳</span><span>ગુજરાતી</span>
+                  </button>
+                  <button class="settings-seg-btn" data-l="kn">
+                    <span>🇮🇳</span><span>ಕನ್ನಡ</span>
+                  </button>
+                  <button class="settings-seg-btn" data-l="bn">
+                    <span>🇮🇳</span><span>বাংলা</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: AI Model Configuration -->
+          <div class="card settings-card">
+            <div class="settings-card-head">
+              <div class="settings-card-icon" style="background:linear-gradient(135deg,#0ea5e9,#2563eb)">🤖</div>
+              <div>
+                <h4 class="settings-card-title">AI Model</h4>
+                <p class="settings-card-sub">Configure the ViT-384 diagnostic engine</p>
+              </div>
+            </div>
+            <div class="settings-card-body">
+              <div class="settings-field">
+                <label class="settings-label">🎯 Model Confidence Gate</label>
+                <div class="settings-conf-display">
+                  <span class="settings-conf-val" id="gateVal">40%</span>
+                  <span class="settings-conf-note">Predictions below this threshold are filtered out</span>
+                </div>
+                <div class="settings-conf-bar">
+                  <div class="settings-conf-fill" style="width:40%"></div>
+                </div>
+                <div class="settings-conf-scale">
+                  <span>10%</span><span>25%</span><span>40%</span><span>60%</span><span>80%</span>
+                </div>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-field">
+                <label class="settings-label">⚡ Active Model</label>
+                <div class="settings-model-badge">
+                  <span class="model-badge-dot">●</span>
+                  <span>cropguard-vit-384-focal</span>
+                  <span class="model-badge-acc">78.81%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Groq LLM API -->
+          <div class="card settings-card settings-card-groq">
+            <div class="settings-card-head">
+              <div class="settings-card-icon" style="background:linear-gradient(135deg,#f59e0b,#d97706)">⚡</div>
+              <div>
+                <h4 class="settings-card-title">Groq LLM API</h4>
+                <p class="settings-card-sub">Power CropGuard AI with Llama 3.3 70B</p>
+              </div>
+            </div>
+            <div class="settings-card-body">
+              <div class="settings-groq-banner">
+                <span class="groq-banner-ico">🧠</span>
+                <div>
+                  <b>Sub-second Agronomic Intelligence</b>
+                  <p>Connect your free Groq key for real-time pesticide dosage, disease diagnosis &amp; spray advice.</p>
+                </div>
+              </div>
+              <div class="settings-field">
+                <label class="settings-label">🔑 API Key <span class="settings-optional">(Optional — built-in engine always available)</span></label>
+                <div class="settings-key-row">
+                  <div class="settings-key-input-wrap">
+                    <span class="key-prefix-ico">🔐</span>
+                    <input type="password" id="settingsGroqKey" class="settings-groq-input" placeholder="gsk_...">
+                  </div>
+                  <button class="settings-save-btn" id="saveSettingsGroqKey">
+                    <span>💾</span><span>Save Key</span>
+                  </button>
+                </div>
+                <a href="https://console.groq.com/keys" target="_blank" rel="noopener" class="settings-groq-link">
+                  Get a free Groq API key at console.groq.com ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: About CropGuard -->
+          <div class="card settings-card">
+            <div class="settings-card-head">
+              <div class="settings-card-icon" style="background:linear-gradient(135deg,#22c55e,#16a34a)">🌿</div>
+              <div>
+                <h4 class="settings-card-title">About CropGuard</h4>
+                <p class="settings-card-sub">Version &amp; system information</p>
+              </div>
+            </div>
+            <div class="settings-card-body">
+              <div class="settings-about-grid">
+                <div class="settings-about-item">
+                  <span class="about-ico">🏷️</span>
+                  <div><small>Version</small><b>v2.0.1</b></div>
+                </div>
+                <div class="settings-about-item">
+                  <span class="about-ico">🧬</span>
+                  <div><small>Model</small><b>ViT-384 Focal</b></div>
+                </div>
+                <div class="settings-about-item">
+                  <span class="about-ico">🌾</span>
+                  <div><small>Crops</small><b>38 Classes</b></div>
+                </div>
+                <div class="settings-about-item">
+                  <span class="about-ico">📡</span>
+                  <div><small>Backend</small><b>FastAPI + ONNX</b></div>
+                </div>
+              </div>
+              <div class="settings-divider"></div>
+              <div class="settings-about-tagline">
+                <span>🌱</span>
+                <span><b>CropGuard</b> — Empowering farmers with AI for a healthier tomorrow.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ================= PAGE 5: HELP & NEARBY KVK SUPPORT ================= -->
+      <div class="page-view" id="page-help">
+        <div class="help-page-hero">
+          <div class="help-hero-content">
+            <button class="back-dash-btn" id="helpBackDashBtn">
+              <span>←</span>
+              <span>Back to Dashboard</span>
+            </button>
+            <div class="help-title-box">
+              <h2>🌾 Krishi Vigyan Kendra (KVK) &amp; Agricultural Support</h2>
+              <p>Locate verified KVK farm science centres, district diagnostic labs, and 24/7 government agronomists.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Primary Direct Navigation Cards with Google Maps -->
+        <div class="help-primary-grid">
+          <!-- Card 1: One-Click KVK on Google Maps -->
+          <div class="card help-action-card gmaps-card">
+            <div class="help-card-ico">🗺️</div>
+            <h3>Nearest Krishi Vigyan Kendra</h3>
+            <p>Locate the nearest ICAR Krishi Vigyan Kendra farm science centre on Google Maps with turn-by-turn driving directions.</p>
+            <a href="https://www.google.com/maps/search/Krishi+Vigyan+Kendra+near+me/" target="_blank" rel="noopener" class="gmaps-btn-primary">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Open KVK Near Me on Google Maps ↗</span>
+            </a>
+          </div>
+
+          <!-- Card 2: Soil Testing Lab on Google Maps -->
+          <div class="card help-action-card soil-card">
+            <div class="help-card-ico">🧪</div>
+            <h3>Soil &amp; Pathology Testing Lab</h3>
+            <p>Find accredited soil testing laboratories and plant diagnostic clinics near your district for leaf tissue analysis.</p>
+            <a href="https://www.google.com/maps/search/Soil+Testing+Laboratory+near+me/" target="_blank" rel="noopener" class="gmaps-btn-secondary">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Find Soil Testing Labs on Map ↗</span>
+            </a>
+          </div>
+
+          <!-- Card 3: 24/7 Kisan Call Centre Helpline -->
+          <div class="card help-action-card kisan-card">
+            <div class="help-card-ico">📞</div>
+            <h3>24/7 Kisan Call Centre</h3>
+            <p>Speak directly to a government agricultural officer in your native language (Hindi, Punjabi, Marathi, Telugu, etc.).</p>
+            <a href="tel:18001801551" class="kisan-dial-btn">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>Call Toll-Free: 1800-180-1551</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Verified Center Directory with Direct Navigation -->
+        <section class="card kvk-directory-card">
+          <div class="card-head">
+            <h3><span class="ic">🏢</span>Verified Agricultural Extension Stations in Your Zone</h3>
+            <span class="badge-zone">Zone 4 (North Indo-Gangetic Plains)</span>
+          </div>
+
+          <div class="kvk-stations-list">
+            <div class="kvk-station-item">
+              <div class="station-ico-box">🏛️</div>
+              <div class="station-info">
+                <b>Krishi Vigyan Kendra (ICAR-NDRI)</b>
+                <p>Specialization: Crop pathology, fungal disease advisory, certified seed distribution.</p>
+                <small class="station-meta">📍 GT Road, Karnal · 2.5 km away · Open Mon-Sat 09:00 - 17:00</small>
+              </div>
+              <div class="station-actions">
+                <a href="https://www.google.com/maps/search/Krishi+Vigyan+Kendra+Karnal/" target="_blank" rel="noopener" class="station-map-pill">
+                  <span>📍 Directions</span>
+                </a>
+                <a href="tel:01842259023" class="station-call-pill">
+                  <span>📞 Call</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="kvk-station-item">
+              <div class="station-ico-box">🔬</div>
+              <div class="station-info">
+                <b>State Agricultural University Extension Wing (CCSHAU)</b>
+                <p>Specialization: Leaf chemical burn triage, soil micro-nutrient analysis, spray calibration.</p>
+                <small class="station-meta">📍 Kunjpura Road, Regional Station · 4.8 km away · Open Mon-Fri 09:30 - 17:30</small>
+              </div>
+              <div class="station-actions">
+                <a href="https://www.google.com/maps/search/Agricultural+University+Extension+near+me/" target="_blank" rel="noopener" class="station-map-pill">
+                  <span>📍 Directions</span>
+                </a>
+                <a href="tel:01842252150" class="station-call-pill">
+                  <span>📞 Call</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="kvk-station-item">
+              <div class="station-ico-box">🏪</div>
+              <div class="station-info">
+                <b>Certified IFFCO Kisan Seva Kendra &amp; Agro-Input Center</b>
+                <p>Specialization: Registered copper fungicides, biostimulants, PPE spray equipment.</p>
+                <small class="station-meta">📍 Grain Market Road · 1.8 km away · Open Daily 08:00 - 19:00</small>
+              </div>
+              <div class="station-actions">
+                <a href="https://www.google.com/maps/search/Kisan+Seva+Kendra+near+me/" target="_blank" rel="noopener" class="station-map-pill">
+                  <span>📍 Directions</span>
+                </a>
+                <a href="tel:18001031967" class="station-call-pill">
+                  <span>📞 Call</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Groq API Key Setup Modal -->
+  <div class="modal-overlay" id="groqModal" style="display:none">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h4>⚡ Configure Groq AI Model</h4>
+        <button class="modal-close-btn" id="closeGroqModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <p>Connect your free Groq API key to power CropGuard AI with <b>Llama 3.3 70B</b> for sub-second agricultural chemistry &amp; agronomy answers.</p>
+        <label class="modal-input-label">Groq API Key (starts with <code>gsk_...</code>):</label>
+        <input type="password" id="groqApiKeyInput" class="modal-text-input" placeholder="gsk_...">
+        <small class="modal-hint">Don't have a key? Get one free at <a href="https://console.groq.com/keys" target="_blank" rel="noopener">console.groq.com</a>. (Even without a key, the built-in clinical chemistry engine answers instantly!)</small>
+      </div>
+      <div class="modal-foot">
+        <button class="btn-secondary" id="clearGroqKeyBtn">Clear Key</button>
+        <button class="btn-primary" id="saveGroqKeyBtn">Save &amp; Connect</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="hist" hidden></div>
+
+  <!-- Footer -->
+  <footer class="foot">
+    <span class="fb">🌿 <b>CropGuard</b> <small>AI Crop Disease Assistant</small></span>
+    <span class="fl">
+      <span>Healthy Crops</span><i>|</i>
+      <span>Prosperous Farmers</span><i>|</i>
+      <span>Sustainable Agriculture</span>
+    </span>
+    <span>Empowering farmers with AI for a healthier tomorrow</span>
+  </footer>
+
+  <!-- Scripts in Numeric Dependency Order (versioned to avoid stale browser cache) -->
+  <script src="js/00-i18n.js?v=20261101_v12"></script>
+  <script src="js/01-core.js?v=20261101_v12"></script>
+  <script src="js/02-scanner.js?v=20261101_v11"></script>
+  <script src="js/03-pipeline-graph.js?v=20261101_v11"></script>
+  <script src="js/04-dashboard.js?v=20261101_v11"></script>
+  <script src="js/05-theme-camera-panels.js?v=20261101_v12"></script>
+  <script src="js/06-calm-visuals.js?v=20261101_v11"></script>
+  <script src="js/07-layout.js?v=20261101_v11"></script>
+  <script src="js/08-api.js?v=20261101_v11"></script>
+</body>
+</html>

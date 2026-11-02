@@ -1,0 +1,76 @@
+{
+  "id": "Tomato_Spider_mites_Two_spotted_spider_mite",
+  "crop": {
+    "en": "Tomato",
+    "hi": "टमाटर"
+  },
+  "disease": {
+    "en": "Spider Mites",
+    "hi": "मकड़ी माइट (लाल मकड़ी)"
+  },
+  "scientific_name": "Tetranychus urticae",
+  "type": "pest",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Fine yellow or white stippling on leaves",
+      "Thin webbing on the underside of leaves",
+      "Leaves turn bronze, dry and drop in hot, dry weather"
+    ],
+    "hi": [
+      "पत्तियों पर बारीक पीले या सफेद बिंदु",
+      "पत्तियों के नीचे पतला जाला",
+      "गर्म, सूखे मौसम में पत्तियाँ काँस्य रंग की होकर सूखकर गिरती हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Check leaf undersides and spray a strong stream of water to dislodge mites",
+      "Remove heavily infested leaves and keep plants well watered",
+      "If needed, ask your agricultural officer about a registered miticide, soap or oil product and follow its label"
+    ],
+    "hi": [
+      "पत्तियों के नीचे जाँचें और माइट हटाने के लिए तेज़ धार से पानी डालें",
+      "बहुत प्रभावित पत्तियाँ हटाएँ और पौधों को पर्याप्त पानी दें",
+      "ज़रूरत हो तो कृषि अधिकारी से पंजीकृत माइटनाशक, साबुन या तेल आधारित उत्पाद के बारे में पूछें और लेबल का पालन करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [
+      "Do not rely on repeated broad-spectrum insecticides; they kill natural enemies and mites can become resistant"
+    ],
+    "hi": [
+      "बार-बार व्यापक कीटनाशक पर निर्भर न रहें; ये प्राकृतिक शत्रुओं को मारते हैं और माइट प्रतिरोधी हो सकते हैं"
+    ]
+  },
+  "prevent": {
+    "en": [
+      "Check leaf undersides every week, especially in hot, dry spells",
+      "Avoid drought stress and dusty conditions around plants",
+      "Protect natural predators by avoiding unnecessary broad-spectrum sprays"
+    ],
+    "hi": [
+      "हर हफ्ते पत्तियों के नीचे जाँचें, खासकर गर्म और सूखे मौसम में",
+      "पौधों को सूखे के तनाव और धूल से बचाएँ",
+      "अनावश्यक व्यापक कीटनाशकों से बचकर प्राकृतिक शत्रु कीटों की रक्षा करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM Pest Management Guidelines",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "Cornell Vegetable MD Online",
+      "url": "https://vegetablemdonline.ppath.cornell.edu/"
+    },
+    {
+      "name": "Penn State Extension",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Generated draft from general extension guidance. A native Hindi speaker and your local agriculture officer must review before the demo; attach exact source pages."
+  }
+}

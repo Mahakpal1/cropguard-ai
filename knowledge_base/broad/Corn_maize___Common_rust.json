@@ -1,0 +1,68 @@
+{
+  "id": "Corn_maize___Common_rust",
+  "crop": {
+    "en": "Maize",
+    "hi": "मक्का"
+  },
+  "disease": {
+    "en": "Common Rust",
+    "hi": "सामान्य रतुआ (रस्ट)"
+  },
+  "scientific_name": "Puccinia sorghi",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Golden-brown to cinnamon-brown pustules scattered on both leaf surfaces",
+      "Pustules erupt through the leaf surface releasing powdery spores",
+      "Pustules turn brownish-black later in the growing season"
+    ],
+    "hi": [
+      "पत्ती की दोनों सतहों पर सुनहरे-भूरे रंग के फफोले (पस्ट्यूल)",
+      "फफोले फटकर चूर्ण जैसे बीजाणु बिखेरते हैं",
+      "मौसम के अंत में फफोले काले-भूरे रंग के हो जाते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Inspect upper leaves prior to silking to assess rust intensity",
+      "Maintain optimal plant nutrition to support crop vigour",
+      "If rust progresses aggressively, apply an approved fungicide strictly following product label and expert guidance"
+    ],
+    "hi": [
+      "जांचें कि क्या बालियां निकलने से पहले ऊपरी पत्तियों पर रस्ट के धब्बे हैं",
+      "तनाव से निपटने के लिए संतुलित पोषण दें",
+      "यदि रोग तेजी से फैले तो पंजीकृत फफूंदनाशक का प्रयोग लेबल और अधिकारी की सलाह पर करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Plant rust-tolerant hybrid corn varieties with resistance genes",
+      "Time sowing early in the planting window to escape spore migration",
+      "Destroy volunteer maize plants that harbor overwintering rust spores"
+    ],
+    "hi": [
+      "रस्ट-सहनशील मक्के की किस्मों का प्रयोग करें",
+      "समय पर बुवाई करें ताकि बीजाणुओं के फैलाव से बचा जा सके",
+      "खेत के आसपास उग आए आवारा मक्के के पौधों को नष्ट करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "University of Illinois Extension - Corn Rust",
+      "url": "https://extension.illinois.edu/"
+    },
+    {
+      "name": "Iowa State University Extension",
+      "url": "https://crops.extension.iastate.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Common Rust of Maize."
+  }
+}

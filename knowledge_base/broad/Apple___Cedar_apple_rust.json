@@ -1,0 +1,68 @@
+{
+  "id": "Apple___Cedar_apple_rust",
+  "crop": {
+    "en": "Apple",
+    "hi": "सेब"
+  },
+  "disease": {
+    "en": "Cedar Apple Rust",
+    "hi": "सीडर एप्पल रस्ट"
+  },
+  "scientific_name": "Gymnosporangium juniperi-virginianae",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Bright yellow-orange or reddish spots on upper leaf surfaces",
+      "Tiny black fruiting bodies form inside the orange lesions",
+      "Tubular fungal projections develop underneath infected leaves"
+    ],
+    "hi": [
+      "पत्ती की ऊपरी सतह पर चमकीले पीले-नारंगी या लाल धब्बे",
+      "नारंगी धब्बों के अंदर छोटे काले बिंदु दिखाई देते हैं",
+      "पत्ती की निचली सतह पर नलिकाकार कवक संरचनाएं बनती हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Remove nearby juniper or red cedar galls within proximity if feasible",
+      "Pick off isolated infected leaves during early disease detection",
+      "Apply an approved rust fungicide strictly according to product label guidelines and agricultural officer advice"
+    ],
+    "hi": [
+      "यदि संभव हो तो आसपास लगे जुनिपर या देवदार की गांठों को हटाएँ",
+      "शुरुआती लक्षण दिखने पर संक्रमित पत्तियों को तोड़ लें",
+      "अनुमोदित रस्ट फफूंदनाशक का छिड़काव लेबल और कृषि अधिकारी के निर्देशानुसार करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Plant rust-immune or resistant apple cultivars",
+      "Avoid planting apple trees adjacent to ornamental juniper trees",
+      "Monitor orchard foliage closely from early bud break onward"
+    ],
+    "hi": [
+      "रस्ट-प्रतिरोधी सेब की किस्मों को प्राथमिकता दें",
+      "जुनिपर के पेड़ों के एकदम पास सेब के पेड़ न लगाएँ",
+      "कलियाँ खिलने के समय पेड़ों पर विशेष ध्यान दें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "University of Minnesota Extension - Cedar Apple Rust",
+      "url": "https://extension.umn.edu/"
+    },
+    {
+      "name": "Penn State Extension",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Cedar Apple Rust."
+  }
+}

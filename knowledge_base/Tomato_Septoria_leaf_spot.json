@@ -1,0 +1,72 @@
+{
+  "id": "Tomato_Septoria_leaf_spot",
+  "crop": {
+    "en": "Tomato",
+    "hi": "टमाटर"
+  },
+  "disease": {
+    "en": "Septoria Leaf Spot",
+    "hi": "सेप्टोरिया पत्ती धब्बा"
+  },
+  "scientific_name": "Septoria lycopersici",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Many small round spots with dark edges and grey-white centres",
+      "Tiny black dots inside the spots",
+      "Starts on lower leaves and moves upward"
+    ],
+    "hi": [
+      "छोटे गोल धब्बे जिनके किनारे गहरे और बीच का हिस्सा धूसर-सफेद होता है",
+      "धब्बों के अंदर छोटे काले बिंदु",
+      "निचली पत्तियों से शुरू होकर ऊपर की ओर बढ़ता है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Remove infected lower leaves and keep them out of the field",
+      "Mulch the soil and water at the base to stop splash",
+      "If needed, use a registered fungicide as per label and local advice"
+    ],
+    "hi": [
+      "संक्रमित निचली पत्तियाँ हटाकर खेत से बाहर रखें",
+      "मिट्टी पर मल्च बिछाएँ और छींटे रोकने के लिए जड़ के पास पानी दें",
+      "ज़रूरत हो तो पंजीकृत फफूंदनाशक लेबल और स्थानीय सलाह के अनुसार इस्तेमाल करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Rotate crops and keep tomato out of the same plot for at least one to two years",
+      "Stake plants for air flow and remove debris after harvest",
+      "Avoid overhead irrigation and handling wet plants"
+    ],
+    "hi": [
+      "फसल चक्र अपनाएँ और कम से कम एक से दो साल उसी खेत में टमाटर न लगाएँ",
+      "हवा के लिए पौधों को सहारा दें और कटाई के बाद अवशेष हटाएँ",
+      "ऊपर से सिंचाई और गीले पौधों को छूने से बचें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM Pest Management Guidelines",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "Cornell Vegetable MD Online",
+      "url": "https://vegetablemdonline.ppath.cornell.edu/"
+    },
+    {
+      "name": "Penn State Extension",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Generated draft from general extension guidance. A native Hindi speaker and your local agriculture officer must review before the demo; attach exact source pages."
+  }
+}

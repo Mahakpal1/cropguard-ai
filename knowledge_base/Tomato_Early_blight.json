@@ -1,0 +1,72 @@
+{
+  "id": "Tomato_Early_blight",
+  "crop": {
+    "en": "Tomato",
+    "hi": "टमाटर"
+  },
+  "disease": {
+    "en": "Early Blight",
+    "hi": "अगेती झुलसा"
+  },
+  "scientific_name": "Alternaria solani",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Dark brown spots with concentric, target-like rings",
+      "Yellow tissue around the spots",
+      "Usually starts on the oldest, lowest leaves"
+    ],
+    "hi": [
+      "गहरे भूरे धब्बे जिनमें गोल छल्लों जैसे निशान होते हैं",
+      "धब्बों के चारों ओर पीला घेरा",
+      "आमतौर पर सबसे पुरानी, निचली पत्तियों से शुरू होता है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Remove and destroy the most infected lower leaves",
+      "Water at the base and improve air flow between plants",
+      "If needed, use a registered fungicide exactly as per its label and your local agricultural officer's advice"
+    ],
+    "hi": [
+      "सबसे ज़्यादा संक्रमित निचली पत्तियाँ तोड़कर नष्ट करें",
+      "जड़ के पास पानी दें और पौधों के बीच हवा का आवागमन बढ़ाएँ",
+      "ज़रूरत हो तो पंजीकृत फफूंदनाशक केवल लेबल और स्थानीय कृषि अधिकारी की सलाह के अनुसार इस्तेमाल करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Rotate crops; do not plant tomato or potato in the same plot every year",
+      "Keep proper plant spacing and remove infected debris after harvest",
+      "Use mulch and base watering to reduce soil splash"
+    ],
+    "hi": [
+      "फसल चक्र अपनाएँ; हर साल एक ही खेत में टमाटर या आलू न लगाएँ",
+      "पौधों के बीच उचित दूरी रखें और कटाई के बाद संक्रमित अवशेष हटा दें",
+      "मल्च और जड़ के पास सिंचाई से मिट्टी के छींटे कम करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM Pest Management Guidelines",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "Cornell Vegetable MD Online",
+      "url": "https://vegetablemdonline.ppath.cornell.edu/"
+    },
+    {
+      "name": "Penn State Extension",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Generated draft from general extension guidance. A native Hindi speaker and your local agriculture officer must review before the demo; attach exact source pages."
+  }
+}

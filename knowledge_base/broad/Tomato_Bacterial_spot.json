@@ -1,0 +1,76 @@
+{
+  "id": "Tomato_Bacterial_spot",
+  "crop": {
+    "en": "Tomato",
+    "hi": "टमाटर"
+  },
+  "disease": {
+    "en": "Bacterial Spot",
+    "hi": "जीवाणु धब्बा रोग"
+  },
+  "scientific_name": "Xanthomonas spp.",
+  "type": "bacterial",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Small, dark, water-soaked spots on leaves",
+      "Spots may have a yellow halo and a rough or scabby texture",
+      "Badly affected leaves turn yellow and drop"
+    ],
+    "hi": [
+      "पत्तियों पर छोटे, गहरे, पानी जैसे धब्बे",
+      "धब्बों के चारों ओर पीला घेरा और खुरदरी सतह हो सकती है",
+      "अधिक प्रभावित पत्तियाँ पीली होकर गिर जाती हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Remove badly infected leaves and bag them",
+      "Switch to drip or base watering and keep foliage dry",
+      "Ask your agricultural officer whether a registered copper-based product is suitable, and follow its label"
+    ],
+    "hi": [
+      "बहुत संक्रमित पत्तियाँ तोड़कर थैले में बंद करें",
+      "ड्रिप या जड़ के पास सिंचाई करें और पत्तियों को सूखा रखें",
+      "कृषि अधिकारी से पूछें कि कोई पंजीकृत कॉपर-आधारित उत्पाद उपयुक्त है या नहीं, और लेबल का पालन करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [
+      "Do not handle plants or walk through the field when they are wet"
+    ],
+    "hi": [
+      "पौधे गीले हों तब खेत में काम न करें"
+    ]
+  },
+  "prevent": {
+    "en": [
+      "Start with certified disease-free seed and healthy seedlings",
+      "Rotate with non-host crops such as cereals for two to three years",
+      "Clean tools and avoid working among wet plants"
+    ],
+    "hi": [
+      "प्रमाणित रोगमुक्त बीज और स्वस्थ पौध से शुरुआत करें",
+      "दो से तीन साल अनाज जैसी गैर-मेज़बान फसलों के साथ फसल चक्र अपनाएँ",
+      "औज़ार साफ़ रखें और गीले पौधों के बीच काम करने से बचें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM Pest Management Guidelines",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "Cornell Vegetable MD Online",
+      "url": "https://vegetablemdonline.ppath.cornell.edu/"
+    },
+    {
+      "name": "Penn State Extension",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Generated draft from general extension guidance. A native Hindi speaker and your local agriculture officer must review before the demo; attach exact source pages."
+  }
+}

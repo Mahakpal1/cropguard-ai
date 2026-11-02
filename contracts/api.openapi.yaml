@@ -1,0 +1,91 @@
+openapi: 3.1.0
+info:
+  title: CropGuard API
+  version: 0.1.0
+  description: >
+    The contract between frontend, backend and ML. Change it only by team agreement (PR with review from every folder owner).
+    Advice is read from the curated knowledge base; it is never generated at request time.
+paths:
+  /api/v1/health:
+    get:
+      summary: Service status and which model is loaded (simulated or real)
+      responses: {"200": {description: OK}}
+  /api/v1/classes:
+    get:
+      summary: The 15 supported classes with English and Hindi names
+      responses: {"200": {description: OK}}
+  /api/v1/knowledge/{class_id}:
+    get:
+      summary: Full curated knowledge entry for one class
+      parameters: [{name: class_id, in: path, required: true, schema: {type: string}}]
+      responses: {"200": {description: OK}, "404": {description: Unknown class id}}
+  /api/v1/predict:
+    post:
+      summary: Diagnose a leaf photo
+      description: multipart/form-data with an image `file`. Optional query `explain` (default true) returns the heatmap overlay.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema: {type: object, required: [file], properties: {file: {type: string, format: binary}}}
+      responses:
+        "200": {description: Diagnosis, content: {application/json: {schema: {$ref: '#/components/schemas/PredictResponse'}}}}
+        "400": {description: File is not a readable image}
+        "413": {description: Image too large}
+        "415": {description: Not an image content type}
+  /api/v1/history:
+    get:
+      summary: Most recent scans stored by the server
+      responses: {"200": {description: OK}}
+    delete:
+      summary: Delete all stored scans
+      responses: {"200": {description: OK}}
+  /api/v1/feedback:
+    get:
+      summary: Recent field feedback submissions
+      responses: {"200": {description: OK}}
+    post:
+      summary: Submit user or expert feedback for active learning
+      responses: {"200": {description: OK}}
+  /api/v1/feedback/stats:
+    get:
+      summary: Summary statistics of user and expert feedback
+      responses: {"200": {description: OK}}
+  /api/v1/models:
+    get:
+      summary: List available model folders and which one is currently active
+      responses: {"200": {description: OK}}
+  /api/v1/models/switch:
+    post:
+      summary: Hot-swap the active model without restarting the server
+      parameters: [{name: model_name, in: query, required: true, schema: {type: string}}]
+      responses:
+        "200": {description: Switched OK}
+        "400": {description: Unknown model name}
+components:
+  schemas:
+    I18n: {type: object, required: [en, hi], properties: {en: {type: string}, hi: {type: string}}}
+    PredictResponse:
+      type: object
+      required: [status, confidence, top3, severity, advice, model, timings_ms]
+      properties:
+        id: {type: [integer, "null"]}
+        status:
+          type: string
+          enum: [ok, low_confidence, unsupported_crop, no_leaf]
+          description: "ok = confident diagnosis; low_confidence = ask for a retake; unsupported_crop = a crop outside tomato/potato/pepper; no_leaf = no clear leaf found"
+        class_id: {type: [string, "null"]}
+        scientific_name: {type: [string, "null"]}
+        display: {oneOf: [{$ref: '#/components/schemas/I18n'}, {type: "null"}]}
+        confidence: {type: number, minimum: 0, maximum: 1, description: Calibrated probability of the top class}
+        top3: {type: array, items: {type: object, properties: {class_id: {type: string}, display: {$ref: '#/components/schemas/I18n'}, p: {type: number}}}}
+        severity:
+          type: object
+          description: Image-based ESTIMATE (lesion area / leaf area). Label it as an estimate in the UI.
+          properties: {level: {enum: [Mild, Moderate, Severe]}, affected_pct: {type: number}, leaf_fraction: {type: number}, method: {type: string}}
+        heatmap: {type: [object, "null"], description: "RGBA PNG overlay (base64); method is occlusion-sensitivity or lesion-proxy (simulated)"}
+        advice: {type: object, description: "Both languages: {en|hi: {symptoms, do_now, avoid, prevent, disclaimer}}"}
+        scores: {type: object, description: "{max_prob, margin, energy}: the numbers behind the uncertainty gates; energy is null in simulated mode or without a model"}
+        crop_id: {type: [object, "null"], description: "{name, p} when the optional crop-identification stage is installed"}
+        advice_tier: {type: string, enum: [reviewed, draft, none], description: "reviewed = expert signed off; draft = written, awaiting review; none = generic advice only (no entry for this class)"}
+        model: {type: object, description: "{name, simulated, temperature, threshold}; simulated=true means no trained model is loaded"}

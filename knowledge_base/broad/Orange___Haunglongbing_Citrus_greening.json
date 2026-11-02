@@ -1,0 +1,68 @@
+{
+  "id": "Orange___Haunglongbing_Citrus_greening",
+  "crop": {
+    "en": "Orange",
+    "hi": "संतरा"
+  },
+  "disease": {
+    "en": "Citrus Greening (Huanglongbing)",
+    "hi": "सिट्रस ग्रीनिंग (हुआंगलोंगबिंग)"
+  },
+  "scientific_name": "Candidatus Liberibacter asiaticus",
+  "type": "bacterial",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Asymmetric, blotchy yellow mottling across the leaf blade",
+      "Thickened, corky, or raised leaf veins on infected shoots",
+      "Small, lopsided fruit that remain green at the stylar end and taste bitter"
+    ],
+    "hi": [
+      "पत्ती पर असमान पीले धब्बे (धब्बेदार पीलापन)",
+      "संक्रमित टहनियों पर पत्तियों की नसें मोटी और उभरी हुई हो जाती हैं",
+      "छोटे, टेढ़े-मेढ़े फल जो नीचे से हरे रहते हैं और कड़वे स्वाद के होते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Inspect citrus trees for the presence of Asian citrus psyllid vectors",
+      "Report suspected greening infections immediately to local agriculture authorities",
+      "Safely rogue and eradicate severely infected trees to protect surrounding orchards"
+    ],
+    "hi": [
+      "सिट्रस साइला कीट की उपस्थिति के लिए पेड़ों की जांच करें",
+      "संक्रमण का संदेह होने पर तुरंत स्थानीय कृषि अधिकारी को सूचित करें",
+      "आसपास के पेड़ों को बचाने के लिए अत्यधिक संक्रमित पेड़ को उखाड़कर नष्ट करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Plant only certified pathogen-tested citrus trees from approved nurseries",
+      "Implement integrated psyllid vector monitoring and management programs",
+      "Never transport uncertified citrus budwood or seedlings between districts"
+    ],
+    "hi": [
+      "केवल प्रमाणित और रोगमुक्त नर्सरी पौधों का ही रोपण करें",
+      "वाहक कीट साइला की रोकथाम के लिए अनुशंसित उपाय अपनाएं",
+      "बिना प्रमाणन के एक जिले से दूसरे जिले में पौध सामग्री न ले जाएं"
+    ]
+  },
+  "sources": [
+    {
+      "name": "USDA APHIS - Citrus Greening",
+      "url": "https://www.aphis.usda.gov/"
+    },
+    {
+      "name": "UC IPM - Citrus Greening and Asian Citrus Psyllid",
+      "url": "https://ipm.ucanr.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Citrus Greening (Huanglongbing)."
+  }
+}

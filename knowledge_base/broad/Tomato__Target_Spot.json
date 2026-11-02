@@ -1,0 +1,72 @@
+{
+  "id": "Tomato__Target_Spot",
+  "crop": {
+    "en": "Tomato",
+    "hi": "टमाटर"
+  },
+  "disease": {
+    "en": "Target Spot",
+    "hi": "टारगेट स्पॉट (लक्ष्य धब्बा)"
+  },
+  "scientific_name": "Corynespora cassiicola",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Brown spots with concentric rings, often with a yellow halo",
+      "Can look like early blight, so check several leaves",
+      "May also spot stems and fruit in humid weather"
+    ],
+    "hi": [
+      "भूरे धब्बे जिनमें गोल छल्ले होते हैं, अक्सर पीले घेरे के साथ",
+      "अगेती झुलसा जैसा दिख सकता है, इसलिए कई पत्तियाँ जाँचें",
+      "नम मौसम में तनों और फलों पर भी धब्बे आ सकते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Remove infected leaves and improve air flow",
+      "Water at the base and avoid wetting the foliage",
+      "If needed, use a registered fungicide as per label and local advice"
+    ],
+    "hi": [
+      "संक्रमित पत्तियाँ हटाएँ और हवा का आवागमन बढ़ाएँ",
+      "जड़ के पास पानी दें और पत्तियों को गीला करने से बचें",
+      "ज़रूरत हो तो पंजीकृत फफूंदनाशक लेबल और स्थानीय सलाह के अनुसार इस्तेमाल करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Rotate crops and keep proper spacing",
+      "Remove crop debris after harvest",
+      "Prune lower leaves to reduce humidity inside the canopy"
+    ],
+    "hi": [
+      "फसल चक्र अपनाएँ और पौधों के बीच उचित दूरी रखें",
+      "कटाई के बाद फसल अवशेष हटाएँ",
+      "पौधे के भीतर नमी कम करने के लिए निचली पत्तियों की छँटाई करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM Pest Management Guidelines",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "Cornell Vegetable MD Online",
+      "url": "https://vegetablemdonline.ppath.cornell.edu/"
+    },
+    {
+      "name": "Penn State Extension",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Generated draft from general extension guidance. A native Hindi speaker and your local agriculture officer must review before the demo; attach exact source pages."
+  }
+}

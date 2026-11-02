@@ -1,0 +1,68 @@
+{
+  "id": "Apple___Black_rot",
+  "crop": {
+    "en": "Apple",
+    "hi": "सेब"
+  },
+  "disease": {
+    "en": "Black Rot",
+    "hi": "काला सड़न रोग (ब्लैक रॉट)"
+  },
+  "scientific_name": "Botryosphaeria obtusa",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Small purple specks on leaves enlarging into frog-eye spots",
+      "Spots develop tan centres bordered by distinct dark purple margins",
+      "Infected fruit exhibits firm dark rotting concentric rings"
+    ],
+    "hi": [
+      "पत्तियों पर छोटे बैंगनी धब्बे जो बाद में मेंढक की आंख जैसे बन जाते हैं",
+      "धब्बों का केंद्र भूरा-बादामी और किनारा गहरा बैंगनी होता है",
+      "संक्रमित फलों पर सख्त काले सड़न के छल्ले दिखाई देते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Prune out dead wood, twigs, and mummified fruit clusters",
+      "Clear and dispose of infected orchard debris from the ground",
+      "Apply an approved copper fungicide adhering strictly to product label directions and expert advice"
+    ],
+    "hi": [
+      "पेड़ से सूखी लकड़ी, टहनियाँ और सड़े हुए फल काटकर हटाएँ",
+      "बगीचे से संक्रमित अवशेषों को इकट्ठा कर सुरक्षित नष्ट करें",
+      "पंजीकृत तांबा (कॉपर) युक्त फफूंदनाशक लेबल और अधिकारी की सलाह अनुसार डालें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Maintain tree vigour through balanced organic and mineral nutrition",
+      "Treat pruning wounds promptly to prevent pathogen entry",
+      "Inspect tree limbs during dormant periods to remove old cankers"
+    ],
+    "hi": [
+      "संतुलित खाद देकर पेड़ को मजबूत और स्वस्थ रखें",
+      "फंगस के प्रवेश को रोकने के लिए छाल के घावों का तुरंत उपचार करें",
+      "कवक के घावों की जांच के लिए नियमित रूप से पेड़ों का निरीक्षण करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Penn State Extension - Apple Black Rot",
+      "url": "https://extension.psu.edu/"
+    },
+    {
+      "name": "University of Kentucky Plant Pathology",
+      "url": "https://plantpathology.ca.uky.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Apple Black Rot."
+  }
+}

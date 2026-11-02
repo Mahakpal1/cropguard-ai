@@ -1,0 +1,76 @@
+{
+  "id": "Tomato__Tomato_YellowLeaf__Curl_Virus",
+  "crop": {
+    "en": "Tomato",
+    "hi": "टमाटर"
+  },
+  "disease": {
+    "en": "Yellow Leaf Curl Virus",
+    "hi": "पीला पत्ती मोड़क विषाणु"
+  },
+  "scientific_name": "Tomato yellow leaf curl virus (TYLCV)",
+  "type": "viral",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Leaves curl upward and turn yellow, especially at the edges",
+      "Stunted plants with few or no fruit",
+      "Spread by whiteflies; infected plants cannot be cured"
+    ],
+    "hi": [
+      "पत्तियाँ ऊपर की ओर मुड़कर पीली हो जाती हैं, खासकर किनारों पर",
+      "पौधे बौने रह जाते हैं और फल कम या नहीं लगते",
+      "सफेद मक्खी से फैलता है; संक्रमित पौधे ठीक नहीं होते"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Remove and destroy infected plants early, bagging them before pulling them out",
+      "Control whiteflies with yellow sticky traps, reflective mulch and insect-proof nets",
+      "Ask your agricultural officer which registered whitefly products are suitable and follow the label"
+    ],
+    "hi": [
+      "संक्रमित पौधों को जल्दी उखाड़कर नष्ट करें, उखाड़ने से पहले थैले में बंद करें",
+      "पीले चिपचिपे जाल, परावर्तक मल्च और कीट-रोधी जाली से सफेद मक्खी को रोकें",
+      "कृषि अधिकारी से पूछें कि सफेद मक्खी के लिए कौन से पंजीकृत उत्पाद उपयुक्त हैं और लेबल का पालन करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [
+      "Do not expect sprays to cure a virus; they only help against the insect that carries it"
+    ],
+    "hi": [
+      "विषाणु को ठीक करने के लिए छिड़काव पर भरोसा न करें; ये केवल उसे फैलाने वाले कीट पर काम करते हैं"
+    ]
+  },
+  "prevent": {
+    "en": [
+      "Plant virus-resistant or tolerant varieties where available",
+      "Raise seedlings under insect-proof nets",
+      "Control weeds and avoid planting next to old infected crops"
+    ],
+    "hi": [
+      "उपलब्ध होने पर विषाणु-रोधी या सहनशील किस्में लगाएँ",
+      "पौध कीट-रोधी जाली के नीचे तैयार करें",
+      "खरपतवार नियंत्रित करें और पुरानी संक्रमित फसल के पास रोपाई न करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM Pest Management Guidelines",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "Cornell Vegetable MD Online",
+      "url": "https://vegetablemdonline.ppath.cornell.edu/"
+    },
+    {
+      "name": "Penn State Extension",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Generated draft from general extension guidance. A native Hindi speaker and your local agriculture officer must review before the demo; attach exact source pages."
+  }
+}

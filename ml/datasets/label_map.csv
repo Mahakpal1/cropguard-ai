@@ -1,0 +1,29 @@
+source,folder,crop,disease
+plantdoc,Apple Scab Leaf,Apple,Apple_scab
+plantdoc,Apple leaf,Apple,healthy
+plantdoc,Apple rust leaf,Apple,Cedar_apple_rust
+plantdoc,Bell_pepper leaf,Pepper,healthy
+plantdoc,Bell_pepper leaf spot,Pepper,Bacterial_spot
+plantdoc,Blueberry leaf,Blueberry,healthy
+plantdoc,Cherry leaf,Cherry,healthy
+plantdoc,Corn Gray leaf spot,Maize,Cercospora_leaf_spot_Gray_leaf_spot
+plantdoc,Corn leaf blight,Maize,Northern_Leaf_Blight
+plantdoc,Corn rust leaf,Maize,Common_rust
+plantdoc,Peach leaf,Peach,healthy
+plantdoc,Potato leaf early blight,Potato,Early_blight
+plantdoc,Potato leaf late blight,Potato,Late_blight
+plantdoc,Raspberry leaf,Raspberry,healthy
+plantdoc,Soyabean leaf,Soybean,healthy
+plantdoc,Squash Powdery mildew leaf,Squash,Powdery_mildew
+plantdoc,Strawberry leaf,Strawberry,healthy
+plantdoc,Tomato Early blight leaf,Tomato,Early_blight
+plantdoc,Tomato Septoria leaf spot,Tomato,Septoria_leaf_spot
+plantdoc,Tomato leaf,Tomato,healthy
+plantdoc,Tomato leaf bacterial spot,Tomato,Bacterial_spot
+plantdoc,Tomato leaf late blight,Tomato,Late_blight
+plantdoc,Tomato leaf mosaic virus,Tomato,Tomato_mosaic_virus
+plantdoc,Tomato leaf yellow virus,Tomato,Tomato_Yellow_Leaf_Curl_Virus
+plantdoc,Tomato mold leaf,Tomato,Leaf_Mold
+plantdoc,Tomato two spotted spider mites leaf,Tomato,Spider_mites_Two_spotted_spider_mite
+plantdoc,grape leaf,Grape,healthy
+plantdoc,grape leaf black rot,Grape,Black_rot

@@ -1,0 +1,68 @@
+{
+  "id": "Squash___Powdery_mildew",
+  "crop": {
+    "en": "Squash",
+    "hi": "स्क्वैश (कद्दू वर्ग)"
+  },
+  "disease": {
+    "en": "Powdery Mildew",
+    "hi": "चूर्णिल आसिता (पाउडरी मिल्ड्यू)"
+  },
+  "scientific_name": "Podosphaera xanthii",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Circular white powdery fungal patches on both leaf surfaces and stems",
+      "Spots coalesce covering the entire leaf blade with talcum-powder growth",
+      "Infected leaves turn yellow, brown, and wither prematurely"
+    ],
+    "hi": [
+      "पत्तियों और तनों पर सफेद चूर्ण जैसे गोल फफूंद के धब्बे",
+      "धब्बे फैलकर पूरी पत्ती को टेलकम पाउडर जैसी फफूंद से ढक देते हैं",
+      "संक्रमित पत्तियाँ पीली और भूरी होकर समय से पहले सूख जाती हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Pick off and destroy the first few colonized leaves as soon as mildew appears",
+      "Ensure plants have ample space for aeration and direct sunlight",
+      "Apply an approved bio-fungicide strictly adhering to label specifications and extension advice"
+    ],
+    "hi": [
+      "सफेद फफूंद दिखते ही शुरुआती कुछ संक्रमित पत्तियों को तोड़कर नष्ट करें",
+      "पौधों के बीच पर्याप्त धूप और हवा सुनिश्चित करें",
+      "अनुमोदित फफूंदनाशक का प्रयोग उत्पाद लेबल और कृषि विस्तार अधिकारी की सलाह पर करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Plant powdery mildew resistant squash and pumpkin hybrids",
+      "Avoid dense planting and maintain wide row spacing",
+      "Water soil at the base using drip irrigation to avoid wet foliage"
+    ],
+    "hi": [
+      "पाउडरी मिल्ड्यू प्रतिरोधी कद्दूवर्गीय किस्मों की बुवाई करें",
+      "घने रोपण से बचें और पंक्तियों के बीच पर्याप्त दूरी रखें",
+      "पत्तियों को गीला होने से बचाने के लिए ड्रिप सिंचाई का उपयोग करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Cornell Vegetable MD Online - Cucurbit Powdery Mildew",
+      "url": "https://vegetablemdonline.ppath.cornell.edu/"
+    },
+    {
+      "name": "UC IPM - Cucurbits Powdery Mildew",
+      "url": "https://ipm.ucanr.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Squash Powdery Mildew."
+  }
+}

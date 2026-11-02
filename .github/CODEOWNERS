@@ -1,0 +1,9 @@
+# Replace the placeholders with your GitHub usernames. Every PR touching a folder needs its owner's review.
+/ml/            @student-a
+/cv/            @student-b
+/backend/       @student-c
+/tests/         @student-c
+/frontend/      @student-d
+/knowledge_base/ @student-d
+# Contracts affect everybody: all four must approve.
+/contracts/     @student-a @student-b @student-c @student-d

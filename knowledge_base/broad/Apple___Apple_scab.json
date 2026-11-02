@@ -1,0 +1,68 @@
+{
+  "id": "Apple___Apple_scab",
+  "crop": {
+    "en": "Apple",
+    "hi": "सेब"
+  },
+  "disease": {
+    "en": "Apple Scab",
+    "hi": "सेब का स्कैब (पपड़ी रोग)"
+  },
+  "scientific_name": "Venturia inaequalis",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Olive-green or brown velvety spots developing on leaf surfaces",
+      "Spots darken, become scabby and cause leaf distortion",
+      "Infected leaves turn yellow and drop prematurely from the tree"
+    ],
+    "hi": [
+      "पत्ती की सतह पर जैतून जैसे हरे या भूरे मखमली धब्बे",
+      "धब्बे काले होकर पपड़ीदार और विकृत हो जाते हैं",
+      "संक्रमित पत्तियाँ पीली होकर समय से पहले गिर जाती हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Prune and dispose of severely infected leaves and twigs",
+      "Rake and destroy fallen orchard leaves to lower fungal spores",
+      "If necessary, apply a registered protective fungicide strictly per label instructions and local agricultural officer advice"
+    ],
+    "hi": [
+      "गंभीर रूप से संक्रमित पत्तियों और टहनियों को काटकर नष्ट करें",
+      "फंगल बीजाणुओं को कम करने के लिए गिरी हुई पत्तियों को नष्ट करें",
+      "आवश्यकता होने पर पंजीकृत फफूंदनाशक का उपयोग केवल लेबल और कृषि अधिकारी की सलाह पर करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Select scab-resistant apple cultivars for new orchard blocks",
+      "Prune tree canopies annually to allow rapid drying of leaves",
+      "Avoid overhead irrigation that keeps foliage wet for long periods"
+    ],
+    "hi": [
+      "नए रोपण के लिए स्कैब-प्रतिरोधी सेब की किस्मों का चयन करें",
+      "पत्तियों को जल्दी सुखाने के लिए छतरी की उचित छंटाई करें",
+      "ऊपर से पानी देने से बचें जिससे पत्तियाँ लंबे समय तक गीली रहें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Cornell Fruit Resources - Apple Scab",
+      "url": "https://cals.cornell.edu/fruit-resources"
+    },
+    {
+      "name": "Penn State Extension - Apple Diseases",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Apple scab based on extension guidance."
+  }
+}

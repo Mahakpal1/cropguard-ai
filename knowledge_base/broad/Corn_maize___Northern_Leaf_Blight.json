@@ -1,0 +1,68 @@
+{
+  "id": "Corn_maize___Northern_Leaf_Blight",
+  "crop": {
+    "en": "Maize",
+    "hi": "मक्का"
+  },
+  "disease": {
+    "en": "Northern Leaf Blight",
+    "hi": "उत्तरी पत्ती झुलसा"
+  },
+  "scientific_name": "Exserohilum turcicum",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Long, elliptical grayish-green or tan lesions shaped like cigars",
+      "Lesions can reach several inches long and coalesce across the leaf",
+      "Dark fuzzy spores appear in lesion centres during humid weather"
+    ],
+    "hi": [
+      "सिगार के आकार के लंबे, अंडाकार धूसर-हरे या बादामी घाव",
+      "धब्बे कई इंच लंबे होकर आपस में मिल जाते हैं",
+      "आर्द्र मौसम में धब्बों के बीच में गहरे रंग के बीजाणु दिखते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Assess whether leaf lesions have reached the ear leaves during tasseling",
+      "Avoid late afternoon overhead watering to minimize leaf wetness",
+      "Apply an approved foliar fungicide strictly following product label and local agronomic guidelines"
+    ],
+    "hi": [
+      "नर मंजरी आने के समय देखें कि क्या रोग कान की पत्ती के ऊपर पहुंच गया है",
+      "पत्तियों को रात में गीला रहने से बचाने के लिए सिंचाई का समय सुधारें",
+      "अनुमोदित फफूंदनाशक का उपयोग उत्पाद लेबल और कृषि निर्देशों के अनुसार करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Select maize hybrids possessing multi-gene resistance to northern leaf blight",
+      "Practice two-year crop rotation out of continuous corn",
+      "Till diseased corn stubble into the ground after harvest to speed breakdown"
+    ],
+    "hi": [
+      "उत्तरी पत्ती झुलसा प्रतिरोधी संकर किस्मों का चयन करें",
+      "लगातार मक्का बोने के बजाय दो साल का फसल चक्र अपनाएँ",
+      "कटाई के बाद अवशेषों की गहरी जुताई करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Purdue Extension - Northern Corn Leaf Blight",
+      "url": "https://extension.purdue.edu/"
+    },
+    {
+      "name": "University of Minnesota Extension",
+      "url": "https://extension.umn.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Northern Corn Leaf Blight."
+  }
+}

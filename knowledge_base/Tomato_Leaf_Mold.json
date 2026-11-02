@@ -1,0 +1,72 @@
+{
+  "id": "Tomato_Leaf_Mold",
+  "crop": {
+    "en": "Tomato",
+    "hi": "टमाटर"
+  },
+  "disease": {
+    "en": "Leaf Mold",
+    "hi": "पर्ण फफूंद (लीफ मोल्ड)"
+  },
+  "scientific_name": "Passalora fulva",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Pale green or yellow spots on the upper leaf surface",
+      "Olive-green to grey velvety mould under the spots",
+      "Common in humid, poorly ventilated conditions"
+    ],
+    "hi": [
+      "पत्ती की ऊपरी सतह पर हल्के हरे या पीले धब्बे",
+      "धब्बों के नीचे जैतूनी-हरी से धूसर मखमली फफूंद",
+      "नमी वाली और कम हवादार जगहों में आम"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Increase ventilation and lower humidity, especially in tunnels or greenhouses",
+      "Remove infected leaves and avoid wetting the foliage",
+      "If needed, use a registered fungicide as per label and local advice"
+    ],
+    "hi": [
+      "हवा का आवागमन बढ़ाएँ और नमी कम करें, खासकर पॉलीहाउस या ग्रीनहाउस में",
+      "संक्रमित पत्तियाँ हटाएँ और पत्तियों को गीला करने से बचें",
+      "ज़रूरत हो तो पंजीकृत फफूंदनाशक लेबल और स्थानीय सलाह के अनुसार इस्तेमाल करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Give plants space and prune lower leaves for air flow",
+      "Choose resistant varieties when available",
+      "Remove plant debris at the end of the season"
+    ],
+    "hi": [
+      "पौधों में दूरी रखें और हवा के लिए निचली पत्तियों की छँटाई करें",
+      "उपलब्ध होने पर रोग-रोधी किस्में चुनें",
+      "मौसम के अंत में पौधों के अवशेष हटा दें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "UC IPM Pest Management Guidelines",
+      "url": "https://ipm.ucanr.edu/"
+    },
+    {
+      "name": "Cornell Vegetable MD Online",
+      "url": "https://vegetablemdonline.ppath.cornell.edu/"
+    },
+    {
+      "name": "Penn State Extension",
+      "url": "https://extension.psu.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Generated draft from general extension guidance. A native Hindi speaker and your local agriculture officer must review before the demo; attach exact source pages."
+  }
+}

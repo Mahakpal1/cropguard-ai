@@ -1,0 +1,68 @@
+{
+  "id": "Peach___Bacterial_spot",
+  "crop": {
+    "en": "Peach",
+    "hi": "आड़ू"
+  },
+  "disease": {
+    "en": "Bacterial Spot",
+    "hi": "जीवाणु धब्बा रोग"
+  },
+  "scientific_name": "Xanthomonas arboricola pv. pruni",
+  "type": "bacterial",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Small, water-soaked, angular purple or brown spots on leaves",
+      "Centres of spots dry up and drop out leaving a shot-hole appearance",
+      "Infected leaves turn yellow at the tips and drop prematurely"
+    ],
+    "hi": [
+      "पत्तियों पर छोटे, पानीदार, कोणीय बैंगनी या भूरे धब्बे",
+      "धब्बों का केंद्र सूखकर गिर जाता है जिससे छलनी जैसे छेद बन जाते हैं",
+      "संक्रमित पत्तियाँ सिरों से पीली होकर समय से पहले गिर जाती हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Prune diseased twigs displaying spring cankers to eliminate overwintering bacteria",
+      "Avoid orchard operations when foliage is wet from rain or dew",
+      "Apply a registered copper bactericide strictly in accordance with product label guidelines and agricultural officer advice"
+    ],
+    "hi": [
+      "बैक्टीरिया को खत्म करने के लिए घाव वाली टहनियों को काटकर हटाएँ",
+      "पत्तियों के गीले होने पर बगीचे में काम करने से बचें",
+      "पंजीकृत कॉपर जीवाणुनाशक का उपयोग केवल लेबल और कृषि अधिकारी के निर्देशानुसार करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Select peach varieties known to have resistance or tolerance to bacterial spot",
+      "Establish windbreaks around sandy sites to decrease wind-driven sand abrasion",
+      "Maintain balanced tree nutrition and avoid excessive spring nitrogen"
+    ],
+    "hi": [
+      "जीवाणु धब्बा प्रतिरोधी आड़ू की किस्मों का चयन करें",
+      "हवा से रगड़ को कम करने के लिए खेत के चारों ओर वायु-अवरोधक पेड़ लगाएँ",
+      "संतुलित पोषण दें और वसंत में अत्यधिक नाइट्रोजन से बचें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "Penn State Extension - Peach Bacterial Spot",
+      "url": "https://extension.psu.edu/"
+    },
+    {
+      "name": "Clemson Cooperative Extension",
+      "url": "https://hgic.clemson.edu/"
+    }
+  ],
+  "review": {
+    "status": "draft",
+    "note": "Draft entry for Peach Bacterial Spot."
+  }
+}
