@@ -384,7 +384,8 @@ apiHealth();
 
 /* ── Model catalogue & live switcher ─────────────────────────────────────── */
 const ALL_MODELS = [
-  { id: 'cropguard38_384',      label: 'ViT-384 Focal (Best)' },
+  { id: 'dinov2_hierarchical',  label: 'DINOv2 Hierarchical (Research)' },
+  { id: 'cropguard38_384',      label: 'ViT-384 Focal (Best ONNX)' },
   { id: 'cropguard38_combined', label: 'Combined 224px (Fast)' },
   { id: 'cropguard38_vit',      label: 'Base ViT 224px' },
   { id: 'cropguard38',          label: 'MobileNet/ResNet' },

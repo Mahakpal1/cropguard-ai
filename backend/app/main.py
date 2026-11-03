@@ -52,6 +52,10 @@ def _active_model(s: Settings) -> str | None:
         return "cropguard38_384"
     try:
         cfg = json.loads(top.read_text(encoding="utf-8"))
+        if cfg.get("model_folder") and cfg["model_folder"] in MODEL_ORDER:
+            return cfg["model_folder"]
+        if cfg.get("model_type") == "dinov2_hierarchical" or "dinov2" in cfg.get("name", "").lower():
+            return "dinov2_hierarchical"
         onnx = cfg.get("onnx", "")
         parts = onnx.split("/")
         if len(parts) > 1 and parts[0] in MODEL_ORDER:
@@ -91,6 +95,7 @@ def _switch_model(s: Settings, name: str) -> dict:
         for key in ("labels_file", "classes_file"):
             if key in cfg:
                 cfg[key] = f"{name}/{cfg[key]}"
+    cfg["model_folder"] = name
     md.mkdir(parents=True, exist_ok=True)
     (md / "model_config.json").write_text(json.dumps(cfg, indent=2), encoding="utf-8")
     return cfg

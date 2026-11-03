@@ -28,6 +28,7 @@ def activate(models_dir, name):
     for key in ("labels_file", "classes_file"):
         if key in cfg:
             cfg[key] = f"{name}/{cfg[key]}"
+    cfg["model_folder"] = name
     json.dump(cfg, open(models_dir / "model_config.json", "w", encoding="utf-8"), indent=2)
     return cfg
 
@@ -38,12 +39,18 @@ def main(argv):
     if argv[0] == "--list":
         print("available:", available() or "none yet")
         top = MODELS / "model_config.json"
-        print("active:", json.load(open(top))["onnx"] if top.exists() else "none (simulated mode)")
+        if top.exists():
+            top_cfg = json.load(open(top, encoding="utf-8"))
+            act = top_cfg.get("model_folder") or top_cfg.get("onnx") or top_cfg.get("name")
+            print("active:", act)
+        else:
+            print("active: none (simulated mode)")
         return
     if argv[0] not in available():
         sys.exit(f"'{argv[0]}' not found in ml/models. Available: {available() or 'none'}")
     cfg = activate(MODELS, argv[0])
-    print(f"Active model: {cfg['name']}  ({cfg['onnx']}). Restart the server.")
+    target = cfg.get("onnx") or cfg.get("checkpoint") or cfg.get("name")
+    print(f"Active model: {cfg['name']}  ({target}). Restart the server.")
 
 
 if __name__ == "__main__":
