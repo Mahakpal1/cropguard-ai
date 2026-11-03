@@ -2732,6 +2732,32 @@ h4.kh {
   flex-shrink: 0;
 }
 
+.check-circle-warn {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #d97706;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.check-circle-bad {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
 /* ── Widget 2: Regional Alerts ── */
 .alert-count-pill {
   font-size: 11px;
@@ -3382,6 +3408,14 @@ h4.kh {
 
 .stress-low {
   color: #10b981 !important;
+}
+
+.stress-mid {
+  color: #f59e0b !important;
+}
+
+.stress-high {
+  color: #ef4444 !important;
 }
 
 /* ── Regional Alerts & Live Weather ── */

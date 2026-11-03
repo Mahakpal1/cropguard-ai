@@ -568,38 +568,40 @@
                   <text x="32" y="84" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="end">0.6</text>
                   <text x="32" y="113" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="end">0.4</text>
 
-                  <!-- Gradient Filled Area -->
-                  <path class="wave-area" d="M 45 92 Q 85 75, 125 78 T 205 48 T 265 65 T 320 38 L 320 110 L 45 110 Z" fill="url(#analyticGrad)"/>
-
-                  <!-- Animated Spline Curve -->
-                  <path class="wave-line animated-scan-line" d="M 45 92 Q 85 75, 125 78 T 205 48 T 265 65 T 320 38" fill="none" stroke="url(#strokeGrad)" stroke-width="3" stroke-linecap="round" filter="url(#glowWave)"/>
+                  <!-- Dynamic Spline & Area -->
+                  <path class="wave-area" id="healthWaveArea" d="M 45 92 Q 85 75, 125 78 T 205 48 T 265 65 T 320 38 L 320 110 L 45 110 Z" fill="url(#analyticGrad)"/>
+                  <path class="wave-line animated-scan-line" id="healthWaveLine" d="M 45 92 Q 85 75, 125 78 T 205 48 T 265 65 T 320 38" fill="none" stroke="url(#strokeGrad)" stroke-width="3" stroke-linecap="round" filter="url(#glowWave)"/>
 
                   <!-- Data Node Points -->
-                  <circle cx="45" cy="92" r="3.5" fill="#059669" stroke="#ffffff" stroke-width="1.5"/>
-                  <circle cx="125" cy="78" r="3.5" fill="#10b981" stroke="#ffffff" stroke-width="1.5"/>
-                  <circle cx="205" cy="48" r="4" fill="#10b981" stroke="#ffffff" stroke-width="1.5"/>
-                  <circle cx="265" cy="65" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>
+                  <g id="healthNodesGroup">
+                    <circle cx="45" cy="92" r="3.5" fill="#059669" stroke="#ffffff" stroke-width="1.5"/>
+                    <circle cx="125" cy="78" r="3.5" fill="#10b981" stroke="#ffffff" stroke-width="1.5"/>
+                    <circle cx="205" cy="48" r="4" fill="#10b981" stroke="#ffffff" stroke-width="1.5"/>
+                    <circle cx="265" cy="65" r="3.5" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>
+                  </g>
 
                   <!-- Live Pulsating Telemetry Point on Today -->
-                  <g transform="translate(320, 38)">
+                  <g transform="translate(320, 38)" id="healthTodayGroup">
                     <circle cx="0" cy="0" r="10" fill="#10b981" opacity="0.35" class="pulse-beacon-circle"/>
                     <circle cx="0" cy="0" r="4.5" fill="#10b981" stroke="#ffffff" stroke-width="2"/>
                   </g>
 
                   <!-- Floating Telemetry Tag -->
-                  <g transform="translate(185, 20)">
+                  <g transform="translate(185, 20)" id="healthNdviTagGroup">
                     <rect width="78" height="20" rx="10" fill="#065f46" opacity="0.95"/>
-                    <text x="39" y="14" fill="#a7f3d0" font-size="10" font-weight="700" text-anchor="middle">NDVI: 0.84</text>
+                    <text x="39" y="14" fill="#a7f3d0" font-size="10" font-weight="700" text-anchor="middle" id="ndviTag">NDVI: 0.84</text>
                   </g>
 
                   <!-- X-Axis Timeline Labels -->
-                  <text x="45" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Mon</text>
-                  <text x="90" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Tue</text>
-                  <text x="135" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Wed</text>
-                  <text x="180" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Thu</text>
-                  <text x="225" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Fri</text>
-                  <text x="270" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Sat</text>
-                  <text x="320" y="126" fill="#10b981" font-size="9.5" font-weight="800" text-anchor="middle">Today</text>
+                  <g id="healthTimelineLabels">
+                    <text x="45" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Mon</text>
+                    <text x="90" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Tue</text>
+                    <text x="135" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Wed</text>
+                    <text x="180" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Thu</text>
+                    <text x="225" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Fri</text>
+                    <text x="270" y="126" fill="#94a3b8" font-size="9" font-weight="600" text-anchor="middle">Sat</text>
+                    <text x="320" y="126" fill="#10b981" font-size="9.5" font-weight="800" text-anchor="middle">Today</text>
+                  </g>
                 </svg>
               </div>
 
@@ -607,25 +609,25 @@
               <div class="health-metrics-grid">
                 <div class="h-metric-item">
                   <small>Canopy Cover</small>
-                  <b>92.4%</b>
+                  <b id="metCanopy">92.4%</b>
                 </div>
                 <div class="h-metric-item">
                   <small>Leaf Moisture</small>
-                  <b>76%</b>
+                  <b id="metMoisture">76%</b>
                 </div>
                 <div class="h-metric-item">
                   <small>Chlorophyll</small>
-                  <b>48.2 SPAD</b>
+                  <b id="metChlorophyll">48.2 SPAD</b>
                 </div>
                 <div class="h-metric-item">
                   <small>Stress Index</small>
-                  <b class="stress-low">Low (6%)</b>
+                  <b class="stress-low" id="metStress">Low (6%)</b>
                 </div>
               </div>
 
-              <div class="health-footer-msg">
-                <span class="check-circle-green">✔</span>
-                <span><b>Crop Status: Optimal</b> · Normal transpiration &amp; vigorous biomass.</span>
+              <div class="health-footer-msg" id="healthFooterMsg">
+                <span class="check-circle-green" id="healthStatusIcon">✔</span>
+                <span id="healthStatusText"><b>Crop Status: Optimal</b> · Normal transpiration &amp; vigorous biomass.</span>
               </div>
             </div>
           </section>

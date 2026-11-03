@@ -136,6 +136,9 @@ async function apiPredict() {
       if (cp) cp.hidden = true;
       if (fb) fb.hidden = true;
     }
+    if (typeof updateCropHealthAnalytics === 'function') {
+      try { updateCropHealthAnalytics(); } catch (_) {}
+    }
   };
 }
 

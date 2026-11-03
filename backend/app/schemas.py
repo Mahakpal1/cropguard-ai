@@ -52,6 +52,14 @@ class Scores(BaseModel):
     energy: Optional[float] = None
 
 
+class LeafAnalytics(BaseModel):
+    ndvi: float
+    canopy_cover_pct: float
+    leaf_moisture_pct: float
+    chlorophyll_spad: float
+    stress_index_pct: float
+
+
 class CropGuess(BaseModel):
     name: str
     p: float
@@ -76,6 +84,7 @@ class PredictResponse(BaseModel):
     crop_id: Optional[CropGuess] = None
     advice_tier: Literal["reviewed", "draft", "none"] = "none"
     hierarchical_meta: Optional[dict] = None
+    leaf_analytics: Optional[LeafAnalytics] = None
     timings_ms: dict[str, float]
 
 
