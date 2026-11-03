@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>CropGuard – AI Crop Disease Detection</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="css/style.css?v=20261101_v12">
+  <link rel="stylesheet" href="css/style.css?v=20261101_v13">
   <link rel="stylesheet" href="css/settings-page.css?v=20261101_v2">
   <link rel="stylesheet" href="css/pipeline-page.css?v=20261101_v4">
 </head>
@@ -241,6 +241,26 @@
                     <span class="crop-pill" id="cropPill" hidden></span>
                     <span class="gate-pill" id="gate" style="display:none"></span>
                   </div>
+
+                  <!-- Phase 6: Separated Crop / Disease Confidence Breakdown -->
+                  <div class="diag-confidence-breakdown" id="confidenceBreakdown" style="display:none">
+                    <div class="conf-row">
+                      <span class="conf-label">Crop</span>
+                      <div class="conf-bar-wrap"><div class="conf-bar conf-crop" id="cropConfBar"></div></div>
+                      <b id="cropConfVal">—</b>
+                    </div>
+                    <div class="conf-row">
+                      <span class="conf-label">Disease</span>
+                      <div class="conf-bar-wrap"><div class="conf-bar conf-disease" id="diseaseConfBar"></div></div>
+                      <b id="diseaseConfVal">—</b>
+                    </div>
+                  </div>
+
+                  <!-- Phase 6: Leaf Overlap / Grounding Quality Badge -->
+                  <div class="grounding-badge" id="groundingBadge" style="display:none"></div>
+
+                  <!-- Phase 6: Top-2 Alternative (shown when status is UNCERTAIN_CROP) -->
+                  <div class="top2-alt" id="top2Alt" style="display:none"></div>
                 </div>
 
                 <!-- Right Side Botanical Illustration (adapts per crop) -->
@@ -1371,6 +1391,6 @@
   <script src="js/05-theme-camera-panels.js?v=20261101_v12"></script>
   <script src="js/06-calm-visuals.js?v=20261101_v11"></script>
   <script src="js/07-layout.js?v=20261101_v11"></script>
-  <script src="js/08-api.js?v=20261101_v11"></script>
+  <script src="js/08-api.js?v=20261101_v13"></script>
 </body>
 </html>

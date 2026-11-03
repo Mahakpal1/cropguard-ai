@@ -19,7 +19,7 @@ from .advisory import Advisory
 from .class_mapping import load_classes
 from .classifier import Classifier
 from .crop_id import CropID
-from .explain import lesion_proxy_png, occlusion_png
+from .explain import dinov2_gradcam_png, lesion_proxy_png, occlusion_png
 from .hierarchical_router import HierarchicalRouter
 
 PAD = (128, 128, 128)   # neutral grey: low saturation, so segmentation ignores it and the model sees ~mean colour
@@ -111,6 +111,11 @@ class Pipeline:
         base = {"id": None, "class_id": None, "scientific_name": None, "crop": None, "disease": None, "display": None,
                 "confidence": 0.0, "top3": [], "severity": sev, "heatmap": None, "sources": [], "model": self.info(),
                 "scores": {"max_prob": 0.0, "margin": 0.0, "energy": None}, "crop_id": None, "advice_tier": "none",
+                # Phase 6: DINOv2 separated confidence + leaf-overlap grounding
+                "crop_confidence": None, "disease_confidence": None,
+                "leaf_overlap_score": None, "is_grounded": None,
+                "explainability_note": None,
+                "top2_crop": None, "top2_disease": None, "top2_confidence": None,
                 "timings_ms": t}
 
         if sev["leaf_fraction"] < self.s.min_leaf_fraction * 0.75:   # padding takes up to 25 % of the frame
@@ -195,7 +200,18 @@ class Pipeline:
             if self.clf.simulated or x is None or r["target_index"] is None:
                 base["heatmap"] = lesion_proxy_png(lesion)
             else:
-                base["heatmap"] = occlusion_png(self.clf, x, r["target_index"], self.s.occlusion_grid)
+                # Phase 6: prefer DINOv2 Grad-CAM++ over occlusion sensitivity
+                try:
+                    gcam_out = dinov2_gradcam_png(img, leaf_mask=leaf,
+                                                   target_class_idx=r["target_index"])
+                    # Extract grounding metadata from result (if present)
+                    base["leaf_overlap_score"] = gcam_out.pop("leaf_overlap_score", None)
+                    base["is_grounded"] = gcam_out.pop("is_grounded", None)
+                    base["explainability_note"] = gcam_out.pop("explainability_note", None)
+                    base["heatmap"] = gcam_out
+                except Exception:
+                    # Fall back to occlusion sensitivity if Grad-CAM++ fails
+                    base["heatmap"] = occlusion_png(self.clf, x, r["target_index"], self.s.occlusion_grid)
             t["explain"] = (time.perf_counter() - t0) * 1000
         return self._finish(base, img, leaf_mask=leaf)
 

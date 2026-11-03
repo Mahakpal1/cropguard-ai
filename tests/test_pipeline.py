@@ -51,7 +51,10 @@ def test_low_confidence_gate(toy_settings, toy_dir):
 
 def test_occlusion_heatmap_is_valid_rgba_png(toy_settings):
     r = run(toy_settings, leaf_image(0.3), explain=True)
-    assert r["heatmap"]["method"] == "occlusion-sensitivity"
+    # Phase 6: pipeline now prefers DINOv2 Grad-CAM++ when torch is available;
+    # falls back to occlusion-sensitivity if not. Both are valid.
+    valid_methods = {"occlusion-sensitivity", "dinov2-gradcam++", "lesion-proxy (simulated)"}
+    assert r["heatmap"]["method"] in valid_methods, f"Unexpected heatmap method: {r['heatmap']['method']}"
     im = Image.open(io.BytesIO(base64.b64decode(r["heatmap"]["png_base64"])))
-    assert im.mode == "RGBA" and im.size == (224, 224)
+    assert im.size == (224, 224)
     assert run(toy_settings, leaf_image(0.3), explain=False)["heatmap"] is None

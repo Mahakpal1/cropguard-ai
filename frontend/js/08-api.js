@@ -218,6 +218,53 @@ async function apiPredict() {
       if (cp) cp.hidden = true;
       if (fb) fb.hidden = true;
     }
+
+    /* Phase 6: Separated crop / disease confidence bars */
+    const breakdown = $('confidenceBreakdown');
+    if (breakdown) {
+      if (apiRes && apiRes.crop_confidence != null && apiRes.disease_confidence != null) {
+        breakdown.style.display = '';
+        const cp2 = Math.round(apiRes.crop_confidence * 100);
+        const dp  = Math.round(apiRes.disease_confidence * 100);
+        const cb = $('cropConfBar'),    cv = $('cropConfVal');
+        const db = $('diseaseConfBar'), dv = $('diseaseConfVal');
+        if (cb) cb.style.width = cp2 + '%';
+        if (cv) cv.textContent = cp2 + '%';
+        if (db) db.style.width = dp + '%';
+        if (dv) dv.textContent = dp + '%';
+      } else {
+        breakdown.style.display = 'none';
+      }
+    }
+
+    /* Phase 6: Leaf-overlap grounding badge */
+    const gBadge = $('groundingBadge');
+    if (gBadge) {
+      if (apiRes && apiRes.leaf_overlap_score != null) {
+        gBadge.style.display = '';
+        const pct      = Math.round(apiRes.leaf_overlap_score * 100);
+        const grounded = apiRes.is_grounded;
+        gBadge.className = 'grounding-badge ' + (grounded ? 'grounded' : 'drifted');
+        gBadge.textContent = (grounded ? '\uD83C\uDF3F Grounded' : '\u26A0 Background Drift')
+                             + ' \u00b7 Attention on leaf: ' + pct + '%';
+        gBadge.title = apiRes.explainability_note || '';
+      } else {
+        gBadge.style.display = 'none';
+      }
+    }
+
+    /* Phase 6: Top-2 alternative (shown when UNCERTAIN_CROP or low_confidence) */
+    const top2el = $('top2Alt');
+    if (top2el) {
+      if (apiRes && apiRes.top2_crop) {
+        top2el.style.display = '';
+        top2el.textContent = 'Alt: ' + apiRes.top2_crop + ' \u00b7 ' + (apiRes.top2_disease || '')
+                             + ' (' + Math.round((apiRes.top2_confidence || 0) * 100) + '%)';
+      } else {
+        top2el.style.display = 'none';
+      }
+    }
+
     if (typeof updateCropHealthAnalytics === 'function') {
       try { updateCropHealthAnalytics(); } catch (_) {}
     }

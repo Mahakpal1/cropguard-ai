@@ -85,6 +85,15 @@ class PredictResponse(BaseModel):
     advice_tier: Literal["reviewed", "draft", "none"] = "none"
     hierarchical_meta: Optional[dict] = None
     leaf_analytics: Optional[LeafAnalytics] = None
+    # Phase 6: DINOv2 separated confidence + leaf-overlap grounding fields
+    crop_confidence: Optional[float] = None
+    disease_confidence: Optional[float] = None
+    leaf_overlap_score: Optional[float] = None
+    is_grounded: Optional[bool] = None
+    explainability_note: Optional[str] = None
+    top2_crop: Optional[str] = None
+    top2_disease: Optional[str] = None
+    top2_confidence: Optional[float] = None
     timings_ms: dict[str, float]
 
 

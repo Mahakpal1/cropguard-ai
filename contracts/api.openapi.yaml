@@ -89,3 +89,11 @@ components:
         crop_id: {type: [object, "null"], description: "{name, p} when the optional crop-identification stage is installed"}
         advice_tier: {type: string, enum: [reviewed, draft, none], description: "reviewed = expert signed off; draft = written, awaiting review; none = generic advice only (no entry for this class)"}
         model: {type: object, description: "{name, simulated, temperature, threshold}; simulated=true means no trained model is loaded"}
+        crop_confidence: {type: [number, "null"], description: "Phase 6: DINOv2 crop head P(crop) probability; null when not using hierarchical DINOv2 pipeline"}
+        disease_confidence: {type: [number, "null"], description: "Phase 6: DINOv2 disease head P(disease|crop) probability; null when not using hierarchical DINOv2 pipeline"}
+        leaf_overlap_score: {type: [number, "null"], description: "Phase 6: Fraction of Grad-CAM++ attention heat inside the leaf mask [0,1]; null if explainability was not run"}
+        is_grounded: {type: ["boolean", "null"], description: "Phase 6: True when leaf_overlap_score >= 0.65 (attention is on the leaf not background)"}
+        explainability_note: {type: [string, "null"], description: "Phase 6: Human-readable grounding quality note from LeafOverlapVerifier"}
+        top2_crop: {type: [string, "null"], description: "Phase 6: Second-best crop name when diagnosis status is UNCERTAIN_CROP"}
+        top2_disease: {type: [string, "null"], description: "Phase 6: Disease for the second-best crop"}
+        top2_confidence: {type: [number, "null"], description: "Phase 6: Joint confidence for the top-2 alternative"}
