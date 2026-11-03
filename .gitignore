@@ -20,6 +20,10 @@ ml/notebooks/work/
 ml/notebooks/my_photos/
 ml/notebooks/my_test_photos/
 data/raw/
+data/processed/*
+!data/processed/.gitkeep
+data/cached_features/*
+!data/cached_features/.gitkeep
 data/union/
 data/PlantVillage/
 data/disease_dataset/
