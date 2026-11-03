@@ -26,4 +26,5 @@ data/disease_dataset/
 kaggle.json
 data/kaggle.json
 .pytest_tmp/
+.pytest_temp_run/
 ml/datasets/unmapped_*.csv

@@ -29,7 +29,7 @@ const I18N = {
   en: {
     announcement: "Smart Farming. A Healthier Tomorrow.",
     liveVit: "Live ViT-384 Model",
-    hello: "Hello,",
+    hello: "Hello",
     navDash: "Dashboard",
     navScan: "Scan Crop",
     navFarm: "My Farm",
@@ -124,7 +124,7 @@ const I18N = {
   hi: {
     announcement: "स्मार्ट खेती। एक स्वस्थ कल।",
     liveVit: "लाइव ViT-384 मॉडल",
-    hello: "नमस्ते,",
+    hello: "नमस्ते",
     navDash: "डैशबोर्ड",
     navScan: "फसल स्कैन",
     navFarm: "मेरा खेत",
@@ -219,7 +219,7 @@ const I18N = {
   pa: {
     announcement: "ਸਮਾਰਟ ਖੇਤੀ। ਖੁਸ਼ਹਾਲ ਭਲਕ।",
     liveVit: "ਲਾਈਵ ViT-384 ਮਾਡਲ",
-    hello: "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ,",
+    hello: "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ",
     navDash: "ਡੈਸ਼ਬੋਰਡ",
     navScan: "ਫਸਲ ਸਕੈਨ",
     navFarm: "ਮੇਰਾ ਖੇਤ",
@@ -314,7 +314,7 @@ const I18N = {
   mr: {
     announcement: "स्मार्ट शेती. निरोगी उद्या.",
     liveVit: "थेट ViT-384 मॉडेल",
-    hello: "नमस्कार,",
+    hello: "नमस्कार",
     navDash: "डॅशबोर्ड",
     navScan: "पीक स्कॅन करा",
     navFarm: "माझे शेत",
@@ -409,7 +409,7 @@ const I18N = {
   te: {
     announcement: "స్మార్ట్ వ్యవసాయం. ఆరోగ్యకరమైన రేపు.",
     liveVit: "లైవ్ ViT-384 మోడల్",
-    hello: "నమస్కారం,",
+    hello: "నమస్కారం",
     navDash: "డాష్‌బోర్డ్",
     navScan: "పంట స్కాన్",
     navFarm: "నా పొలం",
@@ -504,7 +504,7 @@ const I18N = {
   ta: {
     announcement: "ஸ்மார்ட் விவசாயம். ஆரோக்கியமான நாளை.",
     liveVit: "நேரலை ViT-384 மாதிரி",
-    hello: "வணக்கம்,",
+    hello: "வணக்கம்",
     navDash: "டாஷ்போர்டு",
     navScan: "பயிரை ஸ்கேன் செய்க",
     navFarm: "என் பண்ணை",
@@ -599,7 +599,7 @@ const I18N = {
   gu: {
     announcement: "સ્માર્ટ ખેતી. એક સ્વસ્થ આવતીકાલ.",
     liveVit: "લાઇવ ViT-384 મોડેલ",
-    hello: "નમસ્તે,",
+    hello: "નમસ્તે",
     navDash: "ડેશબોર્ડ",
     navScan: "પાક સ્કેન કરો",
     navFarm: "મારું ખેતર",
@@ -694,7 +694,7 @@ const I18N = {
   kn: {
     announcement: "ಸ್ಮಾರ್ಟ್ ಕೃಷಿ. ಆರೋಗ್ಯಕರ ನಾಳೆ.",
     liveVit: "ಲೈವ್ ViT-384 ಮಾದರಿ",
-    hello: "ನಮಸ್ಕಾರ,",
+    hello: "ನಮಸ್ಕಾರ",
     navDash: "ಡ್ಯಾಶ್‌ಬೋರ್ಡ್",
     navScan: "ಬೆಳೆ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ",
     navFarm: "ನನ್ನ ಕೃಷಿ",
@@ -789,7 +789,7 @@ const I18N = {
   bn: {
     announcement: "স্মার্ট কৃষি। স্বাস্থ্যকর আগামী।",
     liveVit: "লাইভ ViT-384 মডেল",
-    hello: "নমস্কার,",
+    hello: "নমস্কার",
     navDash: "ড্যাশবোর্ড",
     navScan: "ফসল স্ক্যান",
     navFarm: "আমার খামার",
@@ -1112,9 +1112,9 @@ function applyLanguage(selectedLang) {
     demoChip.innerHTML = `<i class="led-dot">●</i> ${t.liveVit}`;
   }
 
-  const uNameBox = document.querySelector('.user-name-box span');
+  const uNameBox = document.getElementById('userNameGreeting') || document.querySelector('.user-name-box span');
   if (uNameBox) {
-    uNameBox.innerHTML = `${t.hello} <b>Ramesh Ji</b>`;
+    uNameBox.textContent = t.hello || "Hello";
   }
 
   // 2. Sidebar Navigation
