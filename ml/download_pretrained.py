@@ -46,7 +46,7 @@ def main():
         import shutil
         shutil.copyfile(std38, OUT / "class_names.json")
     cfg = {"name": "efficientnetv2s-plantvillage38 (community)", "onnx": FILES[0], "labels": labels,
-           "classes_file": "class_names.json",
+           "classes_file": "class_names.json", "soft_fallback": True,
            "input_size": 224, "mean": [0.485, 0.456, 0.406], "std": [0.229, 0.224, 0.225],
            "temperature": 1.0, "confidence_threshold": 0.6}
     json.dump(cfg, open(OUT / "model_config.json", "w", encoding="utf-8"), indent=2)

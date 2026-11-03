@@ -1155,11 +1155,15 @@ function applyLanguage(selectedLang) {
   }
 
   // 4. Recent Diagnosis Card
-  const diagPill = document.querySelector('.diag-status-pill span:last-child');
+  const diagPill = document.getElementById('diagCompleteTxt') || document.querySelector('.diag-status-pill span:last-child');
   if (diagPill) diagPill.textContent = t.diagComplete;
+  const chkIco = document.querySelector('.diag-status-pill .chk-ico');
+  if (chkIco) chkIco.textContent = '✔';
 
-  const repBtn = document.querySelector('#rep span:last-child');
+  const repBtn = document.getElementById('repBtnTxt') || document.querySelector('#rep span:last-child');
   if (repBtn) repBtn.textContent = t.viewReport;
+  const repIco = document.querySelector('#rep .rep-ico');
+  if (repIco) repIco.textContent = '📖';
 
   const sayBtn = document.querySelector('#say span:last-child');
   if (sayBtn) sayBtn.textContent = t.readAloud;

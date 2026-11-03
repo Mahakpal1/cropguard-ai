@@ -24,3 +24,4 @@ class Settings:
     min_leaf_fraction: float = float(os.environ.get("MIN_LEAF_FRACTION", 0.08))
     sev_bins: tuple = tuple(float(x) for x in os.environ.get("SEVERITY_BINS", "10,35").split(","))
     default_threshold: float = float(os.environ.get("CONFIDENCE_THRESHOLD", 0.6))
+    crop_soft_fallback: bool = _b("CROP_SOFT_FALLBACK", False)

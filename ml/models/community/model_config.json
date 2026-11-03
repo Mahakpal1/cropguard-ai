@@ -2,6 +2,7 @@
   "name": "efficientnetv2s-plantvillage38 (community)",
   "onnx": "efficientnet_v2_s_best.onnx",
   "classes_file": "class_names.json",
+  "soft_fallback": true,
   "labels": [
     "Apple___Apple_scab",
     "Apple___Black_rot",
