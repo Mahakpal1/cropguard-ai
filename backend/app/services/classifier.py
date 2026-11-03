@@ -32,11 +32,12 @@ class Classifier:
         self.size, self.mean, self.std = 224, [0.485, 0.456, 0.406], [0.229, 0.224, 0.225]
         self.tta, self.energy_threshold, self.margin_threshold = True, None, None
         self.missing = []
+        self.dinov2_engine = None
         self._load(Path(model_dir))
 
     @property
     def simulated(self):
-        return self.sess is None
+        return self.sess is None and getattr(self, "dinov2_engine", None) is None
 
     def _load(self, d):
         cfgp = d / "model_config.json"
@@ -112,6 +113,22 @@ class Classifier:
 
         self.sess, self.name = sess, cfg.get("name", Path(cfg.get("onnx", "model")).stem)
 
+        # Check for DINOv2 Hierarchical PyTorch checkpoint
+        self.dinov2_engine = None
+        ckpt_pt = d / "hierarchical_heads.pt"
+        if ckpt_pt.exists() or cfg.get("model_type") == "dinov2_hierarchical":
+            try:
+                from src.infer import CropGuardInferenceEngine
+                self.dinov2_engine = CropGuardInferenceEngine.from_checkpoint(
+                    ckpt_pt,
+                    model_name=cfg.get("backbone", "dinov2_vits14"),
+                )
+                self.name = cfg.get("name", "cropguard-dinov2-hierarchical")
+                if "energy_threshold" in cfg:
+                    self.energy_threshold = cfg["energy_threshold"]
+            except Exception:
+                pass
+
     def preprocess(self, img):
         im = img.convert("RGB").resize((self.size, self.size), Image.BILINEAR)
         a = (np.asarray(im, np.float32) / 255.0 - np.array(self.mean, np.float32)) / np.array(self.std, np.float32)
@@ -133,7 +150,52 @@ class Classifier:
     def probs_all(self, x):
         return softmax(self.infer(x) / self.temperature)
 
-    def predict(self, x=None, hint_pct=0.0, views=None):
+    def predict(self, x=None, hint_pct=0.0, views=None, pil_img=None):
+        if self.dinov2_engine is not None and self.sess is None:
+            # DINOv2 Hierarchical PyTorch path
+            img = pil_img
+            if img is None:
+                if isinstance(views, Image.Image):
+                    img = views
+                elif isinstance(x, Image.Image):
+                    img = x
+                elif x is not None and isinstance(x, np.ndarray):
+                    try:
+                        arr = ((x[0].transpose(1, 2, 0) * np.array(self.std) + np.array(self.mean)) * 255.0).clip(0, 255).astype(np.uint8)
+                        img = Image.fromarray(arr)
+                    except Exception:
+                        pass
+
+            if img is not None:
+                feat = self.dinov2_engine.extractor.extract_image(img)
+                if self.energy_threshold is not None:
+                    self.dinov2_engine.classifier.energy_threshold = self.energy_threshold
+                hp = self.dinov2_engine.classifier.predict(feat)
+                canonical = hp.canonical_key
+                matched_id = map_label(canonical, self.lookup) or canonical
+                top3 = [(matched_id, hp.confidence)]
+                if hp.top2_crop and hp.top2_disease:
+                    top2_key = f"{hp.top2_crop}___{hp.top2_disease}"
+                    top3.append((map_label(top2_key, self.lookup) or top2_key, hp.top2_confidence or 0.0))
+                return {
+                    "class_id": matched_id,
+                    "confidence": hp.confidence,
+                    "top3": top3,
+                    "oos_prob": 0.0 if hp.is_supported else 1.0,
+                    "target_index": 0,
+                    "probs": {matched_id: hp.confidence},
+                    "scores": {
+                        "max_prob": hp.confidence,
+                        "margin": hp.confidence - (hp.top2_confidence or 0.0),
+                        "energy": hp.energy_score,
+                    },
+                    "crop_confidence": hp.crop_confidence,
+                    "disease_confidence": hp.disease_confidence,
+                    "top2_crop": hp.top2_crop,
+                    "top2_disease": hp.top2_disease,
+                    "top2_confidence": hp.top2_confidence,
+                }
+
         if self.simulated:
             return self._mock(hint_pct)
         logits = self.infer(views if views is not None else x).mean(0)       # average the logits of all views

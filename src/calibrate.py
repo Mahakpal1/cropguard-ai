@@ -118,8 +118,10 @@ class SystemCalibrator:
         Prefers field validation samples (is_lab == False) when available.
         """
         classifier.eval()
+        device = next(classifier.parameters()).device
         feats = val_cache_data["features"]
         crop_labels = val_cache_data["crop_labels"]
+        disease_labels = val_cache_data["disease_labels"]
         is_lab = val_cache_data.get("is_lab", np.zeros(len(feats), dtype=bool))
 
         # 1. Prioritize field samples if sufficient
@@ -127,13 +129,15 @@ class SystemCalibrator:
         if field_mask.sum() >= 20:
             eval_feats = feats[field_mask]
             eval_crop_labels = crop_labels[field_mask]
+            eval_disease_labels = disease_labels[field_mask]
         else:
             eval_feats = feats
             eval_crop_labels = crop_labels
+            eval_disease_labels = disease_labels
 
         # 2. Calibrate Crop Head Temperature
         with torch.no_grad():
-            x_t = torch.from_numpy(eval_feats).float()
+            x_t = torch.from_numpy(eval_feats).float().to(device)
             raw_crop_logits = classifier.crop_head.net(x_t).cpu().numpy()
 
         best_t_crop, ece_b, ece_a = TemperatureCalibrator.fit_temperature(
@@ -166,7 +170,7 @@ class SystemCalibrator:
 
             crop_diseases = crop_disease_map.get(crop_name, [])
             dis_to_local = {d: i for i, d in enumerate(crop_diseases)}
-            sub_dis_global = disease_labels[mask]
+            sub_dis_global = eval_disease_labels[mask]
             sub_dis_local = np.array([
                 dis_to_local.get(
                     [k for k, v in disease_to_idx.items() if v == g][0], 0
@@ -175,7 +179,7 @@ class SystemCalibrator:
             ], dtype=np.int64)
 
             with torch.no_grad():
-                sub_x = torch.from_numpy(sub_feats).float()
+                sub_x = torch.from_numpy(sub_feats).float().to(device)
                 raw_dis_logits = head.net(sub_x).cpu().numpy()
 
             best_t_dis, _, _ = TemperatureCalibrator.fit_temperature(raw_dis_logits, sub_dis_local)

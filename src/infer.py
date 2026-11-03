@@ -74,6 +74,30 @@ class CropGuardInferenceEngine:
             T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
         ])
 
+    @classmethod
+    def from_checkpoint(
+        cls,
+        checkpoint_path: Union[str, Path],
+        model_name: str = "dinov2_vits14",
+        grounding_threshold: float = 0.65,
+        device: Optional[str] = None,
+    ) -> CropGuardInferenceEngine:
+        """Instantiate CropGuardInferenceEngine directly from a saved checkpoint file."""
+        ckpt = torch.load(checkpoint_path, map_location=device or "cpu")
+        classifier = HierarchicalClassifier(
+            in_features=ckpt["in_features"],
+            crop_names=ckpt["crop_names"],
+            crop_disease_map=ckpt["crop_disease_map"],
+            energy_threshold=ckpt.get("energy_threshold", -2.5),
+        )
+        classifier.load_state_dict(ckpt["model_state"])
+        return cls(
+            classifier=classifier,
+            model_name=model_name,
+            grounding_threshold=grounding_threshold,
+            device=device,
+        )
+
     def diagnose(
         self,
         image_input: Union[Image.Image, bytes, np.ndarray],

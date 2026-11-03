@@ -1,0 +1,28 @@
+{
+  "dataset_name": "Test Split",
+  "total_samples": 187,
+  "evaluated_samples": 178,
+  "rejected_samples": 9,
+  "rejection_rate": 0.0481,
+  "crop_accuracy": 0.9494,
+  "disease_accuracy": 0.716,
+  "joint_accuracy": 0.6798,
+  "macro_f1": 0.6968,
+  "per_crop_accuracy": {
+    "Pepper": 1.0,
+    "Potato": 0.8947,
+    "Tomato": 0.9444,
+    "Apple": 0.8571,
+    "Blueberry": 1.0,
+    "Cherry": 1.0,
+    "Maize": 1.0,
+    "Grape": 0.9,
+    "Peach": 1.0,
+    "Raspberry": 1.0,
+    "Soybean": 1.0,
+    "Squash": 1.0,
+    "Strawberry": 1.0
+  },
+  "mean_leaf_overlap": null,
+  "grounded_ratio": null
+}

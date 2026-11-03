@@ -1,0 +1,75 @@
+{
+  "crops": [
+    "Apple",
+    "Blueberry",
+    "Cherry",
+    "Grape",
+    "Maize",
+    "Peach",
+    "Pepper",
+    "Potato",
+    "Raspberry",
+    "Soybean",
+    "Squash",
+    "Strawberry",
+    "Tomato"
+  ],
+  "taxonomy": {
+    "Pepper": [
+      "Bacterial_Spot",
+      "Healthy"
+    ],
+    "Potato": [
+      "Early_Blight",
+      "Healthy",
+      "Late_Blight"
+    ],
+    "Tomato": [
+      "Bacterial_Spot",
+      "Early_Blight",
+      "Healthy",
+      "Late_Blight",
+      "Leaf_Mold",
+      "Mosaic_Virus",
+      "Septoria_Leaf_Spot",
+      "Spider_Mites",
+      "Target_Spot",
+      "Yellow_Leaf_Curl_Virus"
+    ],
+    "Apple": [
+      "Apple_Scab",
+      "Cedar_Apple_Rust",
+      "Healthy"
+    ],
+    "Blueberry": [
+      "Healthy"
+    ],
+    "Cherry": [
+      "Healthy"
+    ],
+    "Maize": [
+      "Common_Rust",
+      "Gray_Leaf_Spot",
+      "Northern_Leaf_Blight"
+    ],
+    "Grape": [
+      "Black_Rot",
+      "Healthy"
+    ],
+    "Peach": [
+      "Healthy"
+    ],
+    "Raspberry": [
+      "Healthy"
+    ],
+    "Soybean": [
+      "Healthy"
+    ],
+    "Squash": [
+      "Powdery_Mildew"
+    ],
+    "Strawberry": [
+      "Healthy"
+    ]
+  }
+}

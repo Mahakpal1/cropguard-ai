@@ -56,6 +56,23 @@ class EvaluationReport:
 
         return "\n".join(lines)
 
+    def to_dict(self) -> Dict[str, Union[str, int, float, dict]]:
+        """Return as a dictionary."""
+        return {
+            "dataset_name": self.dataset_name,
+            "total_samples": self.total_samples,
+            "evaluated_samples": self.evaluated_samples,
+            "rejected_samples": self.rejected_samples,
+            "rejection_rate": round(self.rejection_rate, 4),
+            "crop_accuracy": round(self.crop_accuracy, 4),
+            "disease_accuracy": round(self.disease_accuracy, 4),
+            "joint_accuracy": round(self.joint_accuracy, 4),
+            "macro_f1": round(self.macro_f1, 4),
+            "per_crop_accuracy": {k: round(v, 4) for k, v in self.per_crop_accuracy.items()},
+            "mean_leaf_overlap": round(self.mean_leaf_overlap, 4) if self.mean_leaf_overlap is not None else None,
+            "grounded_ratio": round(self.grounded_ratio, 4) if self.grounded_ratio is not None else None,
+        }
+
 
 class PerformanceEvaluator:
     """Computes multidimensional classification and explainability metrics."""
@@ -175,4 +192,44 @@ class PerformanceEvaluator:
             per_crop_accuracy=per_crop_acc,
             mean_leaf_overlap=mean_overlap,
             grounded_ratio=grounded_ratio,
+        )
+
+    @classmethod
+    def evaluate(
+        cls,
+        classifier: any,
+        cache_data: Dict[str, Union[np.ndarray, dict]],
+        dataset_name: str = "Test Split",
+    ) -> EvaluationReport:
+        """Evaluate a HierarchicalClassifier on cached features dictionary."""
+        feats = cache_data["features"]
+        crop_labels = cache_data["crop_labels"]
+        disease_labels = cache_data["disease_labels"]
+        crop_to_idx = cache_data["crop_to_idx"]
+        disease_to_idx = cache_data["disease_to_idx"]
+
+        idx_to_crop = {v: k for k, v in crop_to_idx.items()}
+        idx_to_disease = {v: k for k, v in disease_to_idx.items()}
+
+        y_true_crops = [idx_to_crop.get(c, "unknown") for c in crop_labels]
+        y_true_diseases = [idx_to_disease.get(d, "unknown") for d in disease_labels]
+
+        y_pred_crops: List[str] = []
+        y_pred_diseases: List[str] = []
+        is_supported_flags: List[bool] = []
+
+        classifier.eval()
+        for i in range(len(feats)):
+            pred = classifier.predict(feats[i])
+            y_pred_crops.append(pred.crop)
+            y_pred_diseases.append(pred.disease)
+            is_supported_flags.append(pred.is_supported)
+
+        return cls.evaluate_predictions(
+            y_true_crops=y_true_crops,
+            y_pred_crops=y_pred_crops,
+            y_true_diseases=y_true_diseases,
+            y_pred_diseases=y_pred_diseases,
+            is_supported_flags=is_supported_flags,
+            dataset_name=dataset_name,
         )

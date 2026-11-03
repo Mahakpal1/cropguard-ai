@@ -1,0 +1,85 @@
+{
+  "name": "cropguard_dinov2_vits14_hierarchical",
+  "model_type": "dinov2_hierarchical",
+  "backbone": "dinov2_vits14",
+  "checkpoint": "hierarchical_heads.pt",
+  "input_size": 224,
+  "feature_dim": 384,
+  "energy_threshold": -3.0930724143981934,
+  "confidence_threshold": 0.6,
+  "margin_threshold": 0.1,
+  "num_crops": 13,
+  "crops": [
+    "Apple",
+    "Blueberry",
+    "Cherry",
+    "Grape",
+    "Maize",
+    "Peach",
+    "Pepper",
+    "Potato",
+    "Raspberry",
+    "Soybean",
+    "Squash",
+    "Strawberry",
+    "Tomato"
+  ],
+  "crop_disease_map": {
+    "Pepper": [
+      "Bacterial_Spot",
+      "Healthy"
+    ],
+    "Potato": [
+      "Early_Blight",
+      "Healthy",
+      "Late_Blight"
+    ],
+    "Tomato": [
+      "Bacterial_Spot",
+      "Early_Blight",
+      "Healthy",
+      "Late_Blight",
+      "Leaf_Mold",
+      "Mosaic_Virus",
+      "Septoria_Leaf_Spot",
+      "Spider_Mites",
+      "Target_Spot",
+      "Yellow_Leaf_Curl_Virus"
+    ],
+    "Apple": [
+      "Apple_Scab",
+      "Cedar_Apple_Rust",
+      "Healthy"
+    ],
+    "Blueberry": [
+      "Healthy"
+    ],
+    "Cherry": [
+      "Healthy"
+    ],
+    "Maize": [
+      "Common_Rust",
+      "Gray_Leaf_Spot",
+      "Northern_Leaf_Blight"
+    ],
+    "Grape": [
+      "Black_Rot",
+      "Healthy"
+    ],
+    "Peach": [
+      "Healthy"
+    ],
+    "Raspberry": [
+      "Healthy"
+    ],
+    "Soybean": [
+      "Healthy"
+    ],
+    "Squash": [
+      "Powdery_Mildew"
+    ],
+    "Strawberry": [
+      "Healthy"
+    ]
+  }
+}

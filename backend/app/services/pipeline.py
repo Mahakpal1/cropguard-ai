@@ -133,7 +133,7 @@ class Pipeline:
         x, views = self.clf.prepare(img) if not self.clf.simulated else (None, None)
         t["preprocess"] = (time.perf_counter() - t0) * 1000
         t0 = time.perf_counter()
-        r = self.clf.predict(x, hint_pct=sev["affected_pct"], views=views)
+        r = self.clf.predict(x, hint_pct=sev["affected_pct"], views=views, pil_img=img)
         t["inference"] = (time.perf_counter() - t0) * 1000
         probs = r["probs"]
 
@@ -186,6 +186,9 @@ class Pipeline:
         status = "low_confidence" if unsure else "ok"
         base.update(status=status, class_id=cid, crop=c["crop"], disease=c["disease"], display=self._display(cid),
                     confidence=round(r["confidence"], 4), top3=top3)
+        for k in ("crop_confidence", "disease_confidence", "top2_crop", "top2_disease", "top2_confidence"):
+            if k in r and r[k] is not None:
+                base[k] = r[k]
         if status == "ok":
             base["advice"] = self.adv.advice(cid)
             base["advice_tier"] = self.adv.tier(cid)

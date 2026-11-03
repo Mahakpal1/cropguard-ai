@@ -204,6 +204,7 @@ class HeadTrainer:
                 "crop_disease_map": crop_disease_map,
                 "crop_to_idx": crop_to_idx,
                 "disease_to_idx": disease_to_idx,
+                "energy_threshold": classifier.energy_threshold,
             }, p)
             logger.info(f"Saved trained hierarchical model to {out_checkpoint_path}")
 

@@ -8,6 +8,7 @@ from src.train import HeadTrainer
 from src.calibrate import TemperatureCalibrator, EnergyOODCalibrator, SystemCalibrator
 from src.gradcam import vit_reshape_transform, LeafOverlapVerifier, DINOv2GradCAM, ExplainabilityResult
 from src.infer import CropGuardInferenceEngine, EndToEndDiagnosis
+from src.build_and_train import PipelineBuilder
 
 __all__ = [
     "LeafLocalizer",
@@ -34,4 +35,5 @@ __all__ = [
     "ExplainabilityResult",
     "CropGuardInferenceEngine",
     "EndToEndDiagnosis",
+    "PipelineBuilder",
 ]
