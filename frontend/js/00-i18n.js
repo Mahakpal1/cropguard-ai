@@ -1155,10 +1155,10 @@ function applyLanguage(selectedLang) {
   }
 
   // 4. Recent Diagnosis Card
-  const diagPill = document.querySelector('.diag-status-pill span');
+  const diagPill = document.querySelector('.diag-status-pill span:last-child');
   if (diagPill) diagPill.textContent = t.diagComplete;
 
-  const repBtn = document.querySelector('#rep span');
+  const repBtn = document.querySelector('#rep span:last-child');
   if (repBtn) repBtn.textContent = t.viewReport;
 
   const sayBtn = document.querySelector('#say span:last-child');

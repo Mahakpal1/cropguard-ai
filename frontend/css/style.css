@@ -2286,8 +2286,22 @@ h4.kh {
   flex-shrink: 0;
 }
 
-.crop-tomatoes-svg {
-  filter: drop-shadow(0 6px 12px rgba(239,68,68,0.18));
+.crop-tomatoes-svg,
+.crop-potato-svg,
+.crop-pepper-svg,
+.crop-corn-svg,
+.crop-apple-svg,
+.crop-grape-svg,
+.crop-orange-svg,
+.crop-strawberry-svg,
+.crop-cherry-svg,
+.crop-peach-svg,
+.crop-blueberry-svg,
+.crop-raspberry-svg,
+.crop-squash-svg,
+.crop-soybean-svg,
+.crop-unknown-leaf-svg {
+  filter: drop-shadow(0 6px 12px rgba(16,185,129,0.18));
   animation: tomFloatAnim 4s ease-in-out infinite;
 }
 

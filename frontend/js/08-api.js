@@ -80,6 +80,7 @@ async function apiPredict() {
       }
       KB.low.n = title;
       KB.low.do = [adv.en.do_now, adv.hi.do_now]; KB.low.av = [adv.en.avoid, adv.hi.avoid]; KB.low.pr = [adv.en.prevent, adv.hi.prevent];
+      KB.low.sci = '';
       SY.low = note;
       return { k: 'low', c: j.confidence, t3: t3.length ? t3 : [['\u2013', 0]] };
     }

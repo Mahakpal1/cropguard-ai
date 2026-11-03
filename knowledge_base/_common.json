@@ -30,8 +30,8 @@
     ]
   },
   "unsupported_crop": {
-    "en": "This demo covers tomato, potato and pepper leaves only.",
-    "hi": "यह डेमो केवल टमाटर, आलू और शिमला मिर्च की पत्तियों के लिए है।"
+    "en": "This plant species is not currently in the diagnostic catalogue. Supported crops include Tomato, Potato, Pepper, Corn, Apple, Grape, Orange, Strawberry, etc.",
+    "hi": "यह फसल प्रजाति वर्तमान में डायग्नोस्टिक कैटलॉग में नहीं है। समर्थित फसलों में टमाटर, आलू, मिर्च, मक्का, सेब, अंगूर, संतरा, स्ट्रॉबेरी आदि शामिल हैं।"
   },
   "low_confidence": {
     "en": "The model is not sure about this photo. Please retake it.",

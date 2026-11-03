@@ -222,7 +222,7 @@ hist = function () { side(); };
       $('sevpill').textContent = pl[0];
     }
     if ($('sci')) {
-      $('sci').textContent = KB[k] && KB[k].sci !== undefined ? KB[k].sci : (k === 'ok' ? '(No disease detected)' : '(Alternaria solani)');
+      updateScientificName(k);
     }
 
     // Update thumbnail
@@ -650,68 +650,116 @@ if (vad) {
   };
 }
 
+// ── Scientific Name Provider ───────────────────────────────────────────────
+function updateScientificName(k) {
+  const el = $('sci');
+  if (!el) return;
+  if (typeof apiRes !== 'undefined' && apiRes) {
+    if (apiRes.status === 'ok') {
+      if (apiRes.scientific_name) {
+        el.textContent = `(${apiRes.scientific_name})`;
+        el.style.display = '';
+        return;
+      }
+      const entry = (typeof KB !== 'undefined' && KB[k]) ? KB[k] : null;
+      if (entry && entry.sci) {
+        el.textContent = entry.sci;
+        el.style.display = '';
+        return;
+      }
+      if (typeof isOk === 'function' && isOk(k)) {
+        el.textContent = '(No disease detected)';
+        el.style.display = '';
+        return;
+      }
+    } else if (apiRes.status === 'unsupported_crop') {
+      el.textContent = (apiRes.crop_id && apiRes.crop_id.name) ? `(Detected: ${apiRes.crop_id.name})` : '(Uncatalogued Species)';
+      el.style.display = '';
+      return;
+    } else if (apiRes.status === 'low_confidence') {
+      el.textContent = '(Low confidence match)';
+      el.style.display = '';
+      return;
+    } else if (apiRes.status === 'no_leaf') {
+      el.textContent = '(No clear leaf pattern)';
+      el.style.display = '';
+      return;
+    }
+  }
+
+  // Fallback for demo / simulated / static modes
+  const entry = (typeof KB !== 'undefined' && KB[k]) ? KB[k] : null;
+  if (entry && entry.sci) {
+    el.textContent = entry.sci;
+    el.style.display = '';
+  } else if (typeof isOk === 'function' && isOk(k)) {
+    el.textContent = '(No disease detected)';
+    el.style.display = '';
+  } else {
+    el.textContent = '';
+    el.style.display = 'none';
+  }
+}
+
 // ── Crop Botanical Illustration Generator ─────────────────────────────────
+function resolveAnalyzedCrop(cropKey) {
+  if (typeof apiRes !== 'undefined' && apiRes) {
+    if (apiRes.status === 'unsupported_crop' || apiRes.status === 'no_leaf') {
+      return 'unsupported';
+    }
+    if (apiRes.crop && apiRes.crop.en) {
+      return apiRes.crop.en.toLowerCase();
+    }
+    if (apiRes.crop_id && apiRes.crop_id.name) {
+      return apiRes.crop_id.name.toLowerCase();
+    }
+    if (apiRes.class_id) {
+      return apiRes.class_id.toLowerCase();
+    }
+    if (apiRes.top3 && apiRes.top3[0] && apiRes.top3[0].class_id) {
+      return apiRes.top3[0].class_id.toLowerCase();
+    }
+  }
+  const c = (cropKey || '').toLowerCase();
+  if (c.includes('unsupported') || c.includes('unsure') || c === 'low' || c.includes('no clear leaf') || c.includes('no_leaf')) {
+    return 'unsupported';
+  }
+  const entry = (typeof KB !== 'undefined' && KB[cropKey]) ? KB[cropKey] : null;
+  if (entry && entry.n && entry.n[0]) {
+    return entry.n[0].toLowerCase();
+  }
+  return c;
+}
+
 function updateCropIllustration(cropKey) {
   const wrap = $('diagIllusWrap');
   if (!wrap) return;
-  const c = (cropKey || '').toLowerCase();
-  if (c.includes('corn') || c.includes('maize')) {
-    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-corn-svg">
+  const c = resolveAnalyzedCrop(cropKey);
+
+  // 1. Pepper / Bell Pepper
+  if (c.includes('pepper') || c.includes('capsicum') || c.includes('bell')) {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-pepper-svg">
       <defs>
-        <linearGradient id="cornGrad" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stop-color="#fef08a"/>
-          <stop offset="50%" stop-color="#eab308"/>
-          <stop offset="100%" stop-color="#ca8a04"/>
+        <radialGradient id="pepGrad" cx="35%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#4ade80"/>
+          <stop offset="45%" stop-color="#16a34a"/>
+          <stop offset="100%" stop-color="#14532d"/>
+        </radialGradient>
+        <linearGradient id="pepStem" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#86efac"/>
+          <stop offset="100%" stop-color="#166534"/>
         </linearGradient>
       </defs>
-      <!-- Corn ear body -->
-      <path d="M70 28 C95 28 100 80 85 130 C75 140 65 140 55 130 C40 80 45 28 70 28 Z" fill="url(#cornGrad)"/>
-      <!-- Kernels pattern -->
-      <ellipse cx="68" cy="45" rx="5" ry="3.5" fill="#facc15"/><ellipse cx="78" cy="48" rx="5" ry="3.5" fill="#fef08a"/>
-      <ellipse cx="60" cy="58" rx="5" ry="3.5" fill="#eab308"/><ellipse cx="72" cy="60" rx="5.5" ry="4" fill="#facc15"/><ellipse cx="84" cy="62" rx="5" ry="3.5" fill="#fef08a"/>
-      <ellipse cx="58" cy="74" rx="5" ry="3.5" fill="#eab308"/><ellipse cx="72" cy="76" rx="5.5" ry="4" fill="#facc15"/><ellipse cx="86" cy="76" rx="5" ry="3.5" fill="#fef08a"/>
-      <ellipse cx="62" cy="92" rx="5" ry="3.5" fill="#facc15"/><ellipse cx="74" cy="94" rx="5.5" ry="4" fill="#eab308"/><ellipse cx="84" cy="92" rx="5" ry="3.5" fill="#facc15"/>
-      <ellipse cx="66" cy="110" rx="4.5" ry="3" fill="#ca8a04"/><ellipse cx="76" cy="112" rx="4.5" ry="3" fill="#eab308"/>
-      <!-- Green husk leaves left -->
-      <path d="M45 130 C20 100 30 50 65 35 C45 65 40 105 55 135 Z" fill="#22c55e"/>
-      <path d="M45 130 C25 90 40 60 62 42 C48 72 45 105 52 132 Z" fill="#16a34a" opacity="0.6"/>
-      <!-- Green husk leaves right -->
-      <path d="M85 135 C115 100 110 50 78 35 C100 65 105 105 80 135 Z" fill="#16a34a"/>
-      <path d="M82 132 C105 95 95 65 80 42 C92 70 95 102 78 130 Z" fill="#22c55e" opacity="0.6"/>
-      <!-- Stem -->
-      <path d="M66 132 L66 150 L76 150 L76 132 Z" fill="#15803d"/>
+      <path d="M80 32 C78 16 92 12 102 10 C96 20 88 26 82 35 Z" fill="url(#pepStem)"/>
+      <ellipse cx="80" cy="36" rx="14" ry="6" fill="#15803d"/>
+      <path d="M52 42 C32 50 28 88 38 116 C45 136 60 142 70 136 C64 112 60 76 52 42 Z" fill="url(#pepGrad)"/>
+      <path d="M108 42 C128 50 132 88 122 116 C115 136 100 142 90 136 C96 112 100 76 108 42 Z" fill="url(#pepGrad)"/>
+      <path d="M50 40 C62 36 98 36 110 40 C116 70 114 118 100 140 C88 146 72 146 60 140 C46 118 44 70 50 40 Z" fill="url(#pepGrad)"/>
+      <ellipse cx="64" cy="62" rx="7" ry="18" transform="rotate(-15 64 62)" fill="#ffffff" opacity="0.35"/>
     </svg>`;
-  } else if (c.includes('apple')) {
-    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-apple-svg">
-      <defs>
-        <radialGradient id="appGrad" cx="35%" cy="30%" r="70%">
-          <stop offset="0%" stop-color="#f87171"/>
-          <stop offset="50%" stop-color="#dc2626"/>
-          <stop offset="100%" stop-color="#7f1d1d"/>
-        </radialGradient>
-      </defs>
-      <path d="M80 48 C65 25 30 35 30 75 C30 115 65 138 80 138 C95 138 130 115 130 75 C130 35 95 25 80 48 Z" fill="url(#appGrad)"/>
-      <ellipse cx="62" cy="62" rx="12" ry="7" transform="rotate(-30 62 62)" fill="#ffffff" opacity="0.45"/>
-      <path d="M80 50 Q82 25 94 18" fill="none" stroke="#78350f" stroke-width="4.5" stroke-linecap="round"/>
-      <path d="M85 30 C105 20 120 28 115 42 C98 48 90 35 85 30 Z" fill="#22c55e"/>
-    </svg>`;
-  } else if (c.includes('grape')) {
-    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-grape-svg">
-      <defs>
-        <radialGradient id="grpGrad" cx="35%" cy="35%" r="65%">
-          <stop offset="0%" stop-color="#c084fc"/>
-          <stop offset="50%" stop-color="#7e22ce"/>
-          <stop offset="100%" stop-color="#3b0764"/>
-        </radialGradient>
-      </defs>
-      <path d="M80 20 Q90 10 105 16" fill="none" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
-      <path d="M60 22 C45 8 28 20 38 36 C42 42 55 35 60 22 Z" fill="#22c55e"/>
-      <circle cx="62" cy="46" r="14" fill="url(#grpGrad)"/><circle cx="86" cy="44" r="14" fill="url(#grpGrad)"/><circle cx="108" cy="48" r="13" fill="url(#grpGrad)"/>
-      <circle cx="50" cy="70" r="14" fill="url(#grpGrad)"/><circle cx="74" cy="68" r="15" fill="url(#grpGrad)"/><circle cx="98" cy="70" r="14" fill="url(#grpGrad)"/>
-      <circle cx="62" cy="94" r="14" fill="url(#grpGrad)"/><circle cx="86" cy="94" r="14" fill="url(#grpGrad)"/>
-      <circle cx="74" cy="116" r="13" fill="url(#grpGrad)"/>
-    </svg>`;
-  } else if (c.includes('potato')) {
+  }
+  // 2. Potato
+  else if (c.includes('potato')) {
     wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-potato-svg">
       <defs>
         <radialGradient id="potGrad" cx="35%" cy="35%" r="65%">
@@ -727,8 +775,9 @@ function updateCropIllustration(cropKey) {
       <ellipse cx="60" cy="105" rx="26" ry="18" transform="rotate(-15 60 105)" fill="url(#potGrad)"/>
       <ellipse cx="102" cy="112" rx="28" ry="20" transform="rotate(20 102 112)" fill="url(#potGrad)"/>
     </svg>`;
-  } else {
-    // Default Tomato cluster
+  }
+  // 3. Tomato
+  else if (c.includes('tomato')) {
     wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-tomatoes-svg">
       <defs>
         <radialGradient id="tomGrad1" cx="35%" cy="35%" r="65%">
@@ -742,6 +791,223 @@ function updateCropIllustration(cropKey) {
       <circle cx="106" cy="94" r="38" fill="url(#tomGrad1)"/>
       <ellipse cx="94" cy="76" rx="10" ry="6" transform="rotate(-30 94 76)" fill="#ffffff" opacity="0.45"/>
       <path d="M106 56 L101 65 L90 62 L98 70 L88 78 L100 76 L106 86 L112 76 L124 78 L114 70 L122 62 L111 65 Z" fill="#16a34a"/>
+    </svg>`;
+  }
+  // 4. Corn / Maize
+  else if (c.includes('corn') || c.includes('maize')) {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-corn-svg">
+      <defs>
+        <linearGradient id="cornGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#fef08a"/>
+          <stop offset="50%" stop-color="#eab308"/>
+          <stop offset="100%" stop-color="#ca8a04"/>
+        </linearGradient>
+      </defs>
+      <path d="M70 28 C95 28 100 80 85 130 C75 140 65 140 55 130 C40 80 45 28 70 28 Z" fill="url(#cornGrad)"/>
+      <ellipse cx="68" cy="45" rx="5" ry="3.5" fill="#facc15"/><ellipse cx="78" cy="48" rx="5" ry="3.5" fill="#fef08a"/>
+      <ellipse cx="60" cy="58" rx="5" ry="3.5" fill="#eab308"/><ellipse cx="72" cy="60" rx="5.5" ry="4" fill="#facc15"/><ellipse cx="84" cy="62" rx="5" ry="3.5" fill="#fef08a"/>
+      <ellipse cx="58" cy="74" rx="5" ry="3.5" fill="#eab308"/><ellipse cx="72" cy="76" rx="5.5" ry="4" fill="#facc15"/><ellipse cx="86" cy="76" rx="5" ry="3.5" fill="#fef08a"/>
+      <ellipse cx="62" cy="92" rx="5" ry="3.5" fill="#facc15"/><ellipse cx="74" cy="94" rx="5.5" ry="4" fill="#eab308"/><ellipse cx="84" cy="92" rx="5" ry="3.5" fill="#facc15"/>
+      <ellipse cx="66" cy="110" rx="4.5" ry="3" fill="#ca8a04"/><ellipse cx="76" cy="112" rx="4.5" ry="3" fill="#eab308"/>
+      <path d="M45 130 C20 100 30 50 65 35 C45 65 40 105 55 135 Z" fill="#22c55e"/>
+      <path d="M85 135 C115 100 110 50 78 35 C100 65 105 105 80 135 Z" fill="#16a34a"/>
+      <path d="M66 132 L66 150 L76 150 L76 132 Z" fill="#15803d"/>
+    </svg>`;
+  }
+  // 5. Apple
+  else if (c.includes('apple')) {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-apple-svg">
+      <defs>
+        <radialGradient id="appGrad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#f87171"/>
+          <stop offset="50%" stop-color="#dc2626"/>
+          <stop offset="100%" stop-color="#7f1d1d"/>
+        </radialGradient>
+      </defs>
+      <path d="M80 48 C65 25 30 35 30 75 C30 115 65 138 80 138 C95 138 130 115 130 75 C130 35 95 25 80 48 Z" fill="url(#appGrad)"/>
+      <ellipse cx="62" cy="62" rx="12" ry="7" transform="rotate(-30 62 62)" fill="#ffffff" opacity="0.45"/>
+      <path d="M80 50 Q82 25 94 18" fill="none" stroke="#78350f" stroke-width="4.5" stroke-linecap="round"/>
+      <path d="M85 30 C105 20 120 28 115 42 C98 48 90 35 85 30 Z" fill="#22c55e"/>
+    </svg>`;
+  }
+  // 6. Grape
+  else if (c.includes('grape')) {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-grape-svg">
+      <defs>
+        <radialGradient id="grpGrad" cx="35%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#c084fc"/>
+          <stop offset="50%" stop-color="#7e22ce"/>
+          <stop offset="100%" stop-color="#3b0764"/>
+        </radialGradient>
+      </defs>
+      <path d="M80 20 Q90 10 105 16" fill="none" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M60 22 C45 8 28 20 38 36 C42 42 55 35 60 22 Z" fill="#22c55e"/>
+      <circle cx="62" cy="46" r="14" fill="url(#grpGrad)"/><circle cx="86" cy="44" r="14" fill="url(#grpGrad)"/><circle cx="108" cy="48" r="13" fill="url(#grpGrad)"/>
+      <circle cx="50" cy="70" r="14" fill="url(#grpGrad)"/><circle cx="74" cy="68" r="15" fill="url(#grpGrad)"/><circle cx="98" cy="70" r="14" fill="url(#grpGrad)"/>
+      <circle cx="62" cy="94" r="14" fill="url(#grpGrad)"/><circle cx="86" cy="94" r="14" fill="url(#grpGrad)"/>
+      <circle cx="74" cy="116" r="13" fill="url(#grpGrad)"/>
+    </svg>`;
+  }
+  // 7. Orange / Citrus
+  else if (c.includes('orange') || c.includes('citrus')) {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-orange-svg">
+      <defs>
+        <radialGradient id="orGrad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#fdba74"/>
+          <stop offset="45%" stop-color="#f97316"/>
+          <stop offset="100%" stop-color="#c2410c"/>
+        </radialGradient>
+      </defs>
+      <path d="M80 34 Q84 14 96 10" fill="none" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+      <path d="M84 26 C106 18 122 24 118 38 C100 44 90 32 84 26 Z" fill="#22c55e"/>
+      <circle cx="80" cy="92" r="48" fill="url(#orGrad)"/>
+      <ellipse cx="62" cy="74" rx="10" ry="5" transform="rotate(-30 62 74)" fill="#ffffff" opacity="0.4"/>
+      <circle cx="80" cy="46" r="3" fill="#65a30d"/>
+    </svg>`;
+  }
+  // 8. Strawberry
+  else if (c.includes('strawberry')) {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-strawberry-svg">
+      <defs>
+        <radialGradient id="sbGrad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#f87171"/>
+          <stop offset="50%" stop-color="#ef4444"/>
+          <stop offset="100%" stop-color="#991b1b"/>
+        </radialGradient>
+      </defs>
+      <path d="M80 18 Q82 6 90 4" fill="none" stroke="#15803d" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M80 44 C50 44 38 78 54 112 C64 132 76 144 80 146 C84 144 96 132 106 112 C122 78 110 44 80 44 Z" fill="url(#sbGrad)"/>
+      <path d="M80 44 L60 30 L68 46 L46 48 L64 58 L72 52 L80 44 L88 52 L96 58 L114 48 L92 46 L100 30 Z" fill="#22c55e"/>
+      <ellipse cx="68" cy="74" rx="2" ry="3" fill="#fef08a"/>
+      <ellipse cx="80" cy="80" rx="2" ry="3" fill="#fef08a"/>
+      <ellipse cx="92" cy="74" rx="2" ry="3" fill="#fef08a"/>
+      <ellipse cx="62" cy="96" rx="2" ry="3" fill="#fef08a"/>
+      <ellipse cx="76" cy="104" rx="2" ry="3" fill="#fef08a"/>
+      <ellipse cx="90" cy="100" rx="2" ry="3" fill="#fef08a"/>
+      <ellipse cx="80" cy="124" rx="2" ry="2.5" fill="#fef08a"/>
+    </svg>`;
+  }
+  // 9. Cherry
+  else if (c.includes('cherry')) {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-cherry-svg">
+      <defs>
+        <radialGradient id="chGrad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#f87171"/>
+          <stop offset="50%" stop-color="#dc2626"/>
+          <stop offset="100%" stop-color="#581c87"/>
+        </radialGradient>
+      </defs>
+      <path d="M86 16 C86 45 56 65 52 90" fill="none" stroke="#65a30d" stroke-width="3" stroke-linecap="round"/>
+      <path d="M86 16 C92 45 110 65 112 96" fill="none" stroke="#65a30d" stroke-width="3" stroke-linecap="round"/>
+      <path d="M86 16 C98 12 110 16 112 24 C100 28 92 22 86 16 Z" fill="#22c55e"/>
+      <circle cx="52" cy="106" r="26" fill="url(#chGrad)"/>
+      <circle cx="112" cy="112" r="24" fill="url(#chGrad)"/>
+      <ellipse cx="44" cy="98" rx="6" ry="3" transform="rotate(-30 44 98)" fill="#ffffff" opacity="0.45"/>
+      <ellipse cx="104" cy="104" rx="5" ry="3" transform="rotate(-30 104 104)" fill="#ffffff" opacity="0.45"/>
+    </svg>`;
+  }
+  // 10. Peach
+  else if (c.includes('peach')) {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-peach-svg">
+      <defs>
+        <radialGradient id="pchGrad" cx="40%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#fef08a"/>
+          <stop offset="40%" stop-color="#fb923c"/>
+          <stop offset="100%" stop-color="#e11d48"/>
+        </radialGradient>
+      </defs>
+      <path d="M80 34 Q82 18 90 12" fill="none" stroke="#78350f" stroke-width="3.5" stroke-linecap="round"/>
+      <path d="M82 24 C104 14 122 22 116 38 C98 42 90 32 82 24 Z" fill="#22c55e"/>
+      <path d="M80 44 C62 34 34 48 34 82 C34 118 64 142 80 144 C96 142 126 118 126 82 C126 48 98 34 80 44 Z" fill="url(#pchGrad)"/>
+      <ellipse cx="58" cy="68" rx="9" ry="5" transform="rotate(-25 58 68)" fill="#ffffff" opacity="0.35"/>
+    </svg>`;
+  }
+  // 11. Blueberry
+  else if (c.includes('blueberry')) {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-blueberry-svg">
+      <defs>
+        <radialGradient id="bbGrad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#93c5fd"/>
+          <stop offset="45%" stop-color="#2563eb"/>
+          <stop offset="100%" stop-color="#1e1b4b"/>
+        </radialGradient>
+      </defs>
+      <path d="M52 38 C35 22 24 38 36 54 C42 60 54 50 52 38 Z" fill="#22c55e"/>
+      <circle cx="56" cy="80" r="25" fill="url(#bbGrad)"/>
+      <circle cx="104" cy="82" r="27" fill="url(#bbGrad)"/>
+      <circle cx="80" cy="112" r="26" fill="url(#bbGrad)"/>
+      <ellipse cx="48" cy="72" rx="6" ry="3" transform="rotate(-30 48 72)" fill="#ffffff" opacity="0.35"/>
+      <ellipse cx="96" cy="74" rx="6" ry="3" transform="rotate(-30 96 74)" fill="#ffffff" opacity="0.35"/>
+    </svg>`;
+  }
+  // 12. Raspberry / Berry
+  else if (c.includes('raspberry') || c.includes('berry')) {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-raspberry-svg">
+      <defs>
+        <radialGradient id="rbGrad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#fda4af"/>
+          <stop offset="45%" stop-color="#e11d48"/>
+          <stop offset="100%" stop-color="#881337"/>
+        </radialGradient>
+      </defs>
+      <path d="M80 34 L72 24 L80 20 L88 24 Z" fill="#22c55e"/>
+      <circle cx="64" cy="56" r="14" fill="url(#rbGrad)"/><circle cx="96" cy="56" r="14" fill="url(#rbGrad)"/>
+      <circle cx="52" cy="78" r="14" fill="url(#rbGrad)"/><circle cx="80" cy="76" r="15" fill="url(#rbGrad)"/><circle cx="108" cy="78" r="14" fill="url(#rbGrad)"/>
+      <circle cx="62" cy="100" r="14" fill="url(#rbGrad)"/><circle cx="98" cy="100" r="14" fill="url(#rbGrad)"/>
+      <circle cx="80" cy="118" r="13" fill="url(#rbGrad)"/>
+    </svg>`;
+  }
+  // 13. Squash / Pumpkin
+  else if (c.includes('squash') || c.includes('pumpkin')) {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-squash-svg">
+      <defs>
+        <radialGradient id="sqGrad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#fef08a"/>
+          <stop offset="45%" stop-color="#f59e0b"/>
+          <stop offset="100%" stop-color="#b45309"/>
+        </radialGradient>
+      </defs>
+      <path d="M80 30 Q74 16 68 12" fill="none" stroke="#15803d" stroke-width="4" stroke-linecap="round"/>
+      <path d="M50 85 C50 50 110 50 110 85 C110 125 50 125 50 85 Z" fill="url(#sqGrad)"/>
+      <path d="M66 85 C66 58 94 58 94 85 C94 120 66 120 66 85 Z" fill="#d97706" opacity="0.35"/>
+      <ellipse cx="64" cy="72" rx="8" ry="4" transform="rotate(-30 64 72)" fill="#ffffff" opacity="0.35"/>
+    </svg>`;
+  }
+  // 14. Soybean
+  else if (c.includes('soybean') || c.includes('soy')) {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-soybean-svg">
+      <defs>
+        <radialGradient id="sbpGrad" cx="35%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#bef264"/>
+          <stop offset="45%" stop-color="#65a30d"/>
+          <stop offset="100%" stop-color="#365314"/>
+        </radialGradient>
+      </defs>
+      <path d="M36 120 C42 80 70 44 126 34 C120 74 92 110 36 120 Z" fill="url(#sbpGrad)"/>
+      <circle cx="62" cy="94" r="10" fill="#a3e635" opacity="0.4"/>
+      <circle cx="84" cy="74" r="10" fill="#a3e635" opacity="0.4"/>
+      <circle cx="106" cy="54" r="9" fill="#a3e635" opacity="0.4"/>
+      <path d="M36 120 Q32 126 28 132" fill="none" stroke="#15803d" stroke-width="3" stroke-linecap="round"/>
+    </svg>`;
+  }
+  // 15. Unsupported Crop / Non-target Leaf / Generic Specimen (NEVER TOMATO)
+  else {
+    wrap.innerHTML = `<svg viewBox="0 0 160 160" width="130" height="130" class="crop-unknown-leaf-svg">
+      <defs>
+        <radialGradient id="leafGrad" cx="35%" cy="35%" r="65%">
+          <stop offset="0%" stop-color="#86efac"/>
+          <stop offset="50%" stop-color="#22c55e"/>
+          <stop offset="100%" stop-color="#14532d"/>
+        </radialGradient>
+      </defs>
+      <circle cx="80" cy="80" r="66" fill="none" stroke="#22c55e" stroke-width="1.8" stroke-dasharray="8 6" opacity="0.45"/>
+      <circle cx="80" cy="80" r="54" fill="#22c55e" fill-opacity="0.05"/>
+      <path d="M40 125 C45 90 60 45 115 28 C115 75 95 118 40 125 Z" fill="url(#leafGrad)"/>
+      <path d="M40 125 Q70 85 115 28" fill="none" stroke="#86efac" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M56 104 Q70 100 80 105" fill="none" stroke="#86efac" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
+      <path d="M68 88 Q85 82 98 87" fill="none" stroke="#86efac" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
+      <path d="M82 70 Q98 64 108 67" fill="none" stroke="#86efac" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
+      <path d="M35 128 C28 108 40 92 56 86 C54 102 46 118 35 128 Z" fill="#15803d" opacity="0.8"/>
     </svg>`;
   }
 }
@@ -911,7 +1177,8 @@ function getTailoredAdvisory(k, diseaseName, svIndex, li) {
       }
       if ($('dn')) $('dn').textContent = diseaseName;
 
-      // Update botanical illustration matching the crop
+      // Update scientific name & botanical illustration matching the crop
+      updateScientificName(k);
       updateCropIllustration(k);
 
       // Severity calculation
