@@ -195,8 +195,28 @@ def create_app(settings=None):
 
     @app.post("/api/v1/feedback", response_model=FeedbackResponse, tags=["active_learning"])
     def submit_feedback(fb: FeedbackCreate):
-        if fb.corrected_class_id and fb.corrected_class_id not in app.state.pipe.by_id:
-            raise HTTPException(400, f"Unknown corrected_class_id '{fb.corrected_class_id}'")
+        if fb.corrected_class_id:
+            valid_ids = set(app.state.pipe.by_id.keys())
+            # Check labels from model config
+            for cfg_path in [
+                getattr(app.state.pipe.s, "model_dir", Path("ml/models")) / "model_config.json",
+                Path("ml/models/model_config.json"),
+            ]:
+                if cfg_path.exists():
+                    try:
+                        cfg_data = json.loads(cfg_path.read_text(encoding="utf-8"))
+                        if "labels" in cfg_data:
+                            valid_ids.update(cfg_data["labels"])
+                    except Exception:
+                        pass
+            # Also allow canonical classes from classifier
+            if hasattr(app.state.pipe, "clf") and hasattr(app.state.pipe.clf, "classes") and app.state.pipe.clf.classes:
+                valid_ids.update(c["id"] if isinstance(c, dict) else str(c) for c in app.state.pipe.clf.classes)
+            # Normalize casing and formatting
+            corr_norm = fb.corrected_class_id.strip()
+            is_valid = corr_norm in valid_ids or any(k.lower() == corr_norm.lower() for k in valid_ids)
+            if not is_valid:
+                raise HTTPException(400, f"Unknown corrected_class_id '{fb.corrected_class_id}'")
         fid = app.state.history.add_feedback(fb.model_dump())
         items = app.state.history.list_feedback(limit=1)
         if not items:

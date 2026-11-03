@@ -1,28 +1,180 @@
 {
-  "dataset_name": "Test Split",
-  "total_samples": 187,
-  "evaluated_samples": 178,
-  "rejected_samples": 9,
-  "rejection_rate": 0.0481,
-  "crop_accuracy": 0.9494,
-  "disease_accuracy": 0.716,
-  "joint_accuracy": 0.6798,
-  "macro_f1": 0.6968,
-  "per_crop_accuracy": {
-    "Pepper": 1.0,
-    "Potato": 0.8947,
-    "Tomato": 0.9444,
-    "Apple": 0.8571,
-    "Blueberry": 1.0,
-    "Cherry": 1.0,
-    "Maize": 1.0,
-    "Grape": 0.9,
-    "Peach": 1.0,
-    "Raspberry": 1.0,
-    "Soybean": 1.0,
-    "Squash": 1.0,
-    "Strawberry": 1.0
+  "test_evaluation": {
+    "dataset_name": "Test Split",
+    "total_samples": 1224,
+    "evaluated_samples": 1186,
+    "rejected_samples": 38,
+    "rejection_rate": 0.031,
+    "crop_accuracy": 0.9772,
+    "disease_accuracy": 0.9068,
+    "joint_accuracy": 0.8862,
+    "macro_f1": 0.9003,
+    "per_crop_accuracy": {
+      "Cotton": 1.0,
+      "__non_crop__": 1.0,
+      "Rice": 0.9894,
+      "Sugarcane": 1.0,
+      "Wheat": 1.0,
+      "Apple": 1.0,
+      "Pepper": 1.0,
+      "Blueberry": 1.0,
+      "Cherry": 1.0,
+      "Maize": 0.9574,
+      "Grape": 1.0,
+      "Peach": 1.0,
+      "Potato": 0.9339,
+      "Raspberry": 1.0,
+      "Soybean": 0.875,
+      "Squash": 0.8824,
+      "Strawberry": 1.0,
+      "Tomato": 0.9696,
+      "Mango": 1.0
+    },
+    "mean_leaf_overlap": null,
+    "grounded_ratio": null
   },
-  "mean_leaf_overlap": null,
-  "grounded_ratio": null
+  "lodo_evaluation": {
+    "cotton_field": {
+      "dataset_name": "LODO_Holdout_cotton_field",
+      "total_samples": 37,
+      "evaluated_samples": 36,
+      "rejected_samples": 1,
+      "rejection_rate": 0.027,
+      "crop_accuracy": 0.0,
+      "disease_accuracy": 0.0,
+      "joint_accuracy": 0.0,
+      "macro_f1": 0.0,
+      "per_crop_accuracy": {
+        "Cotton": 0.0
+      },
+      "mean_leaf_overlap": null,
+      "grounded_ratio": null
+    },
+    "generic_negative": {
+      "dataset_name": "LODO_Holdout_generic_negative",
+      "total_samples": 20,
+      "evaluated_samples": 1,
+      "rejected_samples": 19,
+      "rejection_rate": 0.95,
+      "crop_accuracy": 0.0,
+      "disease_accuracy": 0.0,
+      "joint_accuracy": 0.0,
+      "macro_f1": 0.0,
+      "per_crop_accuracy": {
+        "__non_crop__": 0.0
+      },
+      "mean_leaf_overlap": null,
+      "grounded_ratio": null
+    },
+    "mangoleafbd": {
+      "dataset_name": "LODO_Holdout_mangoleafbd",
+      "total_samples": 128,
+      "evaluated_samples": 72,
+      "rejected_samples": 56,
+      "rejection_rate": 0.4375,
+      "crop_accuracy": 0.0,
+      "disease_accuracy": 0.0,
+      "joint_accuracy": 0.0,
+      "macro_f1": 0.0,
+      "per_crop_accuracy": {
+        "Mango": 0.0
+      },
+      "mean_leaf_overlap": null,
+      "grounded_ratio": null
+    },
+    "plantdoc": {
+      "dataset_name": "LODO_Holdout_plantdoc",
+      "total_samples": 356,
+      "evaluated_samples": 336,
+      "rejected_samples": 20,
+      "rejection_rate": 0.0562,
+      "crop_accuracy": 0.3601,
+      "disease_accuracy": 0.3554,
+      "joint_accuracy": 0.128,
+      "macro_f1": 0.063,
+      "per_crop_accuracy": {
+        "Apple": 0.0,
+        "Pepper": 0.8889,
+        "Blueberry": 0.0,
+        "Cherry": 0.0,
+        "Maize": 0.0,
+        "Grape": 0.0,
+        "Peach": 0.0,
+        "Potato": 0.6452,
+        "Raspberry": 0.0,
+        "Soybean": 0.0,
+        "Squash": 0.0,
+        "Strawberry": 0.0,
+        "Tomato": 0.9043
+      },
+      "mean_leaf_overlap": null,
+      "grounded_ratio": null
+    },
+    "plantvillage": {
+      "dataset_name": "LODO_Holdout_plantvillage",
+      "total_samples": 488,
+      "evaluated_samples": 426,
+      "rejected_samples": 62,
+      "rejection_rate": 0.127,
+      "crop_accuracy": 0.7394,
+      "disease_accuracy": 0.2762,
+      "joint_accuracy": 0.2042,
+      "macro_f1": 0.0914,
+      "per_crop_accuracy": {
+        "Tomato": 0.6701,
+        "Potato": 0.881,
+        "Pepper": 0.8889
+      },
+      "mean_leaf_overlap": null,
+      "grounded_ratio": null
+    },
+    "rice_dslr": {
+      "dataset_name": "LODO_Holdout_rice_dslr",
+      "total_samples": 94,
+      "evaluated_samples": 79,
+      "rejected_samples": 15,
+      "rejection_rate": 0.1596,
+      "crop_accuracy": 0.0,
+      "disease_accuracy": 0.0,
+      "joint_accuracy": 0.0,
+      "macro_f1": 0.0,
+      "per_crop_accuracy": {
+        "Rice": 0.0
+      },
+      "mean_leaf_overlap": null,
+      "grounded_ratio": null
+    },
+    "sugarcane_field": {
+      "dataset_name": "LODO_Holdout_sugarcane_field",
+      "total_samples": 45,
+      "evaluated_samples": 45,
+      "rejected_samples": 0,
+      "rejection_rate": 0.0,
+      "crop_accuracy": 0.0,
+      "disease_accuracy": 0.0,
+      "joint_accuracy": 0.0,
+      "macro_f1": 0.0,
+      "per_crop_accuracy": {
+        "Sugarcane": 0.0
+      },
+      "mean_leaf_overlap": null,
+      "grounded_ratio": null
+    },
+    "wheat_field": {
+      "dataset_name": "LODO_Holdout_wheat_field",
+      "total_samples": 56,
+      "evaluated_samples": 48,
+      "rejected_samples": 8,
+      "rejection_rate": 0.1429,
+      "crop_accuracy": 0.0,
+      "disease_accuracy": 0.0,
+      "joint_accuracy": 0.0,
+      "macro_f1": 0.0,
+      "per_crop_accuracy": {
+        "Wheat": 0.0
+      },
+      "mean_leaf_overlap": null,
+      "grounded_ratio": null
+    }
+  }
 }

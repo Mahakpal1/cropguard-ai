@@ -89,15 +89,26 @@ class PipelineBuilder:
                 logger.warning(f"Root path not found: {root_p}")
                 continue
 
-            for folder in root_p.iterdir():
-                if not folder.is_dir():
-                    continue
+            # Find all directories that contain image files directly (supports both flat and 2-level layouts)
+            candidate_dirs = [
+                d for d in root_p.glob("**/*")
+                if d.is_dir() and any(f.suffix.lower() in valid_exts for f in d.iterdir() if f.is_file())
+            ]
+            # Also check root_p itself if images are placed directly in it
+            if any(f.suffix.lower() in valid_exts for f in root_p.iterdir() if f.is_file()):
+                candidate_dirs.append(root_p)
 
+            for folder in candidate_dirs:
                 folder_name = folder.name
-                # Try matching folder name directly or against taxonomy
-                info = self.registry.get_info(source="auto", raw_folder=folder_name)
+                source_candidate = folder.parent.name.lower()
+
+                # 1. Try matching with parent directory as source
+                info = self.registry.get_info(source=source_candidate, raw_folder=folder_name)
+                # 2. Try matching with root as source
                 if not info:
-                    # Try matching folder parts e.g. Tomato___Early_blight
+                    info = self.registry.get_info(source=root_p.name.lower(), raw_folder=folder_name)
+                # 3. Fallback: match by raw folder name across taxonomy
+                if not info:
                     for key, val in self.registry.mappings.items():
                         if key[1].lower() == folder_name.lower():
                             info = val
@@ -114,7 +125,7 @@ class PipelineBuilder:
                     ph = self.deduplicator.compute_phash(img_path)
                     sample = DatasetSample(
                         image_path=str(img_path),
-                        source=info.get("source", folder.parent.name.lower()),
+                        source=info.get("source", source_candidate),
                         canonical_crop=info["canonical_crop"],
                         canonical_disease=info["canonical_disease"],
                         canonical_key=info["canonical_key"],

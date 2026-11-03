@@ -118,3 +118,5 @@ generic_negative,soil_and_dirt,__non_crop__,__not_a_leaf__,__non_crop_____not_a_
 generic_negative,weeds_and_grass,__non_crop__,__not_a_leaf__,__non_crop_____not_a_leaf__,None,false,CC0
 generic_negative,human_hands_and_tools,__non_crop__,__not_a_leaf__,__non_crop_____not_a_leaf__,None,false,CC0
 generic_negative,sky_and_background,__non_crop__,__not_a_leaf__,__non_crop_____not_a_leaf__,None,false,CC0
+rice_dslr,Tungro,Rice,Tungro,Rice___Tungro,Rice tungro bacilliform virus,false,CC0
+sugarcane_field,Bacterial_Blight,Sugarcane,Bacterial_Blight,Sugarcane___Bacterial_Blight,Acidovorax avenae subsp. avenae,false,CC0

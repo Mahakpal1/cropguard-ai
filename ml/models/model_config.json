@@ -1,7 +1,181 @@
 {
-  "name": "cropguard-vit-384-focal",
-  "onnx": "cropguard38_384/model.onnx",
+  "name": "cropguard_dinov2_vitb14_hierarchical",
+  "model_type": "dinov2_hierarchical",
+  "backbone": "dinov2_vitb14",
+  "checkpoint": "dinov2_hierarchical/hierarchical_heads.pt",
+  "input_size": 224,
+  "feature_dim": 768,
+  "energy_threshold": -5.012153148651123,
+  "confidence_threshold": 0.6,
+  "margin_threshold": 0.1,
+  "num_crops": 19,
+  "crops": [
+    "Apple",
+    "Blueberry",
+    "Cherry",
+    "Cotton",
+    "Grape",
+    "Maize",
+    "Mango",
+    "Peach",
+    "Pepper",
+    "Potato",
+    "Raspberry",
+    "Rice",
+    "Soybean",
+    "Squash",
+    "Strawberry",
+    "Sugarcane",
+    "Tomato",
+    "Wheat",
+    "__non_crop__"
+  ],
+  "crop_disease_map": {
+    "Cotton": [
+      "Bacterial_Blight",
+      "Healthy"
+    ],
+    "__non_crop__": [
+      "__not_a_leaf__"
+    ],
+    "Rice": [
+      "Bacterial_Blight",
+      "Blast",
+      "Brown_Spot",
+      "Healthy",
+      "Tungro"
+    ],
+    "Sugarcane": [
+      "Bacterial_Blight",
+      "Healthy",
+      "Red_Rot"
+    ],
+    "Wheat": [
+      "Brown_Rust",
+      "Healthy",
+      "Stem_Rust"
+    ],
+    "Apple": [
+      "Apple_Scab",
+      "Cedar_Apple_Rust",
+      "Healthy"
+    ],
+    "Pepper": [
+      "Bacterial_Spot",
+      "Healthy"
+    ],
+    "Blueberry": [
+      "Healthy"
+    ],
+    "Cherry": [
+      "Healthy"
+    ],
+    "Maize": [
+      "Common_Rust",
+      "Gray_Leaf_Spot",
+      "Northern_Leaf_Blight"
+    ],
+    "Grape": [
+      "Black_Rot",
+      "Healthy"
+    ],
+    "Peach": [
+      "Healthy"
+    ],
+    "Potato": [
+      "Early_Blight",
+      "Healthy",
+      "Late_Blight"
+    ],
+    "Raspberry": [
+      "Healthy"
+    ],
+    "Soybean": [
+      "Healthy"
+    ],
+    "Squash": [
+      "Powdery_Mildew"
+    ],
+    "Strawberry": [
+      "Healthy"
+    ],
+    "Tomato": [
+      "Bacterial_Spot",
+      "Early_Blight",
+      "Healthy",
+      "Late_Blight",
+      "Leaf_Mold",
+      "Mosaic_Virus",
+      "Septoria_Leaf_Spot",
+      "Spider_Mites",
+      "Target_Spot",
+      "Yellow_Leaf_Curl_Virus"
+    ],
+    "Mango": [
+      "Anthracnose",
+      "Bacterial_Canker",
+      "Cutting_Weevil",
+      "Die_Back",
+      "Gall_Midge",
+      "Healthy",
+      "Powdery_Mildew",
+      "Sooty_Mould"
+    ]
+  },
+  "model_folder": "dinov2_hierarchical",
   "labels": [
+    "Cotton___Bacterial_Blight",
+    "Cotton___Healthy",
+    "__non_crop_______not_a_leaf__",
+    "Rice___Bacterial_Blight",
+    "Rice___Blast",
+    "Rice___Brown_Spot",
+    "Rice___Healthy",
+    "Rice___Tungro",
+    "Sugarcane___Bacterial_Blight",
+    "Sugarcane___Healthy",
+    "Sugarcane___Red_Rot",
+    "Wheat___Brown_Rust",
+    "Wheat___Healthy",
+    "Wheat___Stem_Rust",
+    "Apple___Apple_Scab",
+    "Apple___Cedar_Apple_Rust",
+    "Apple___Healthy",
+    "Pepper___Bacterial_Spot",
+    "Pepper___Healthy",
+    "Blueberry___Healthy",
+    "Cherry___Healthy",
+    "Maize___Common_Rust",
+    "Maize___Gray_Leaf_Spot",
+    "Maize___Northern_Leaf_Blight",
+    "Grape___Black_Rot",
+    "Grape___Healthy",
+    "Peach___Healthy",
+    "Potato___Early_Blight",
+    "Potato___Healthy",
+    "Potato___Late_Blight",
+    "Raspberry___Healthy",
+    "Soybean___Healthy",
+    "Squash___Powdery_Mildew",
+    "Strawberry___Healthy",
+    "Tomato___Bacterial_Spot",
+    "Tomato___Early_Blight",
+    "Tomato___Healthy",
+    "Tomato___Late_Blight",
+    "Tomato___Leaf_Mold",
+    "Tomato___Mosaic_Virus",
+    "Tomato___Septoria_Leaf_Spot",
+    "Tomato___Spider_Mites",
+    "Tomato___Target_Spot",
+    "Tomato___Yellow_Leaf_Curl_Virus",
+    "Mango___Anthracnose",
+    "Mango___Bacterial_Canker",
+    "Mango___Cutting_Weevil",
+    "Mango___Die_Back",
+    "Mango___Gall_Midge",
+    "Mango___Healthy",
+    "Mango___Powdery_Mildew",
+    "Mango___Sooty_Mould",
     "Apple___Apple_scab",
     "Apple___Black_rot",
     "Apple___Cedar_apple_rust",
@@ -33,37 +207,10 @@
     "Tomato___Bacterial_spot",
     "Tomato___Early_blight",
     "Tomato___Late_blight",
-    "Tomato___Leaf_Mold",
     "Tomato___Septoria_leaf_spot",
     "Tomato___Spider_mites_Two_spotted_spider_mite",
-    "Tomato___Target_Spot",
     "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
     "Tomato___Tomato_mosaic_virus",
     "Tomato___healthy"
-  ],
-  "classes_file": "cropguard38_384/class_names.json",
-  "input_size": 384,
-  "mean": [
-    0.5,
-    0.5,
-    0.5
-  ],
-  "std": [
-    0.5,
-    0.5,
-    0.5
-  ],
-  "temperature": 1.0,
-  "confidence_threshold": 0.4,
-  "energy_threshold": -4.8,
-  "tta": true,
-  "healthy_only_crops": [
-    "Blueberry",
-    "Raspberry",
-    "Soybean"
-  ],
-  "field_test_accuracy": 0.7924,
-  "soft_fallback": true,
-  "fallback_on_crop_rejection": true,
-  "crop_fusion_weight": 0.15
+  ]
 }

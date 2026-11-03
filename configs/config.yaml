@@ -1,0 +1,71 @@
+# CropGuard Hierarchical Crop & Disease Identifier Configuration
+# System Architecture: Leaf Localizer -> Frozen Foundation (DINOv2) -> Hierarchical Heads -> OOD Reject -> GradCAM
+
+seed: 42
+
+# Backbone specification
+backbone:
+  name: "dinov2_vitb14"           # ViT-B/14 (768-d embedding) or dinov2_vits14 (384-d)
+  input_size: 224
+  frozen: true                    # Frozen foundation backbone, no fine-tuning
+  device: "cuda"                  # auto-fallback to cpu if cuda unavailable
+
+# Data configuration
+data:
+  taxonomy: "data/taxonomy.csv"
+  cap_lab_ratio: 0.50             # Cap lab data so field-style dominates (max 50% lab per crop)
+  phash_threshold: 4              # Perceptual hash Hamming distance for leaf grouping
+  val_split: 0.15
+  test_split: 0.15
+  data_dirs:
+    - "data/raw"
+    - "data/PlantVillage"
+    - "work/plantdoc/train"
+    - "data/disease_dataset/train"
+  cache_dir: "data/cached_features"
+
+# Augmentation & Field-gap closing
+augmentation:
+  photometric:
+    color_jitter: 0.4
+    gaussian_blur_prob: 0.3
+    jpeg_compression_prob: 0.3
+  background_randomization:
+    enabled: true
+    ratio: 0.50                   # Apply synthetic field backgrounds to ~50% lab images
+
+# Classification Heads
+heads:
+  crop_head:
+    hidden_dim: 256
+    dropout: 0.3
+    include_rejection_class: true # "unsupported / not a leaf"
+  disease_heads:
+    hidden_dim: 128
+    dropout: 0.2
+    per_crop: true
+
+# Training hyperparameters
+training:
+  epochs: 25
+  batch_size: 64
+  lr: 0.001
+  weight_decay: 0.0001
+  class_balanced_loss: true
+
+# Calibration & OOD Rejection
+calibration:
+  temperature_scaling: true
+  energy_based_rejection: true
+  target_tpr: 0.95
+  confidence_threshold: 0.60
+  top2_margin_threshold: 0.10
+
+# Explainability & Verification
+explainability:
+  gradcam_target_layer: -1        # Last ViT block norm
+  reshape_tokens: true            # ViT token-to-grid spatial reshape
+  leaf_overlap_threshold: 0.40    # Flag if heatmap attention falls outside segmented leaf
+
+# Artifact storage
+output_dir: "ml/models/dinov2_hierarchical"

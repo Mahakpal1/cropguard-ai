@@ -118,7 +118,7 @@ def test_vit_field_accuracy_above_30pct():
     for _, row in sample.iterrows():
         try:
             result = pipe.predict(Path(row["path"]).read_bytes(), explain=False)
-            if result["class_id"] == classes[row["y"]]:
+            if cg._nk(result.get("class_id", "")) == cg._nk(classes[row["y"]]):
                 correct += 1
             total += 1
         except Exception:

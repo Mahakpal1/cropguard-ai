@@ -3,42 +3,55 @@
     "Apple",
     "Blueberry",
     "Cherry",
+    "Cotton",
     "Grape",
     "Maize",
+    "Mango",
     "Peach",
     "Pepper",
     "Potato",
     "Raspberry",
+    "Rice",
     "Soybean",
     "Squash",
     "Strawberry",
-    "Tomato"
+    "Sugarcane",
+    "Tomato",
+    "Wheat",
+    "__non_crop__"
   ],
   "taxonomy": {
-    "Pepper": [
-      "Bacterial_Spot",
+    "Cotton": [
+      "Bacterial_Blight",
       "Healthy"
     ],
-    "Potato": [
-      "Early_Blight",
-      "Healthy",
-      "Late_Blight"
+    "__non_crop__": [
+      "__not_a_leaf__"
     ],
-    "Tomato": [
-      "Bacterial_Spot",
-      "Early_Blight",
+    "Rice": [
+      "Bacterial_Blight",
+      "Blast",
+      "Brown_Spot",
       "Healthy",
-      "Late_Blight",
-      "Leaf_Mold",
-      "Mosaic_Virus",
-      "Septoria_Leaf_Spot",
-      "Spider_Mites",
-      "Target_Spot",
-      "Yellow_Leaf_Curl_Virus"
+      "Tungro"
+    ],
+    "Sugarcane": [
+      "Bacterial_Blight",
+      "Healthy",
+      "Red_Rot"
+    ],
+    "Wheat": [
+      "Brown_Rust",
+      "Healthy",
+      "Stem_Rust"
     ],
     "Apple": [
       "Apple_Scab",
       "Cedar_Apple_Rust",
+      "Healthy"
+    ],
+    "Pepper": [
+      "Bacterial_Spot",
       "Healthy"
     ],
     "Blueberry": [
@@ -59,6 +72,11 @@
     "Peach": [
       "Healthy"
     ],
+    "Potato": [
+      "Early_Blight",
+      "Healthy",
+      "Late_Blight"
+    ],
     "Raspberry": [
       "Healthy"
     ],
@@ -70,6 +88,28 @@
     ],
     "Strawberry": [
       "Healthy"
+    ],
+    "Tomato": [
+      "Bacterial_Spot",
+      "Early_Blight",
+      "Healthy",
+      "Late_Blight",
+      "Leaf_Mold",
+      "Mosaic_Virus",
+      "Septoria_Leaf_Spot",
+      "Spider_Mites",
+      "Target_Spot",
+      "Yellow_Leaf_Curl_Virus"
+    ],
+    "Mango": [
+      "Anthracnose",
+      "Bacterial_Canker",
+      "Cutting_Weevil",
+      "Die_Back",
+      "Gall_Midge",
+      "Healthy",
+      "Powdery_Mildew",
+      "Sooty_Mould"
     ]
   }
 }
