@@ -72,8 +72,11 @@ class Pipeline:
         return settings.classes_path
 
     def _display(self, cid):
-        c = self.by_id[cid]
-        return {l: f"{c['crop'][l]} · {c['disease'][l]}" for l in ("en", "hi")}
+        c = self.by_id.get(cid)
+        if c is not None:
+            return {l: f"{c['crop'][l]} · {c['disease'][l]}" for l in ("en", "hi")}
+        parts = cid.replace("___", " · ").replace("__", " · ").replace("_", " ")
+        return {"en": parts, "hi": parts}
 
     @staticmethod
     def decode(data):
@@ -138,7 +141,8 @@ class Pipeline:
         probs = r["probs"]
 
         # ---- Stage 1 & Stage 2 Hierarchical Bayesian Evidence Fusion ----
-        if crop is not None:
+        # (Only needed for legacy ONNX flat models where crop detector was separate)
+        if crop is not None and getattr(self.clf, "dinov2_engine", None) is None:
             soft_fb = getattr(self.s, "crop_soft_fallback", False) or getattr(self.clf, "soft_fallback", False)
             fusion_w = getattr(self.clf, "crop_fusion_weight", 0.15)
             route_out = self.router.route(
@@ -181,7 +185,16 @@ class Pipeline:
             return self._finish(base, img, leaf_mask=leaf)
 
         cid = r["class_id"]
-        c = self.by_id[cid]
+        c = self.by_id.get(cid)
+        if c is None:
+            # Parse crop and disease from canonical key if outside legacy 15 classes
+            parts = cid.split("___") if "___" in cid else cid.split("__")
+            crop_name = parts[0].replace("_", " ").strip()
+            disease_name = parts[1].replace("_", " ").strip() if len(parts) > 1 else "Unknown"
+            c = {
+                "crop": {"en": crop_name, "hi": crop_name},
+                "disease": {"en": disease_name, "hi": disease_name},
+            }
         unsure = r["confidence"] < self.clf.threshold or (self.clf.margin_threshold is not None and sc["margin"] < self.clf.margin_threshold)
         status = "low_confidence" if unsure else "ok"
         base.update(status=status, class_id=cid, crop=c["crop"], disease=c["disease"], display=self._display(cid),

@@ -21,7 +21,10 @@ def available(models_dir=MODELS):
 def activate(models_dir, name):
     models_dir = Path(models_dir)
     cfg = json.load(open(models_dir / name / "model_config.json", encoding="utf-8"))
-    cfg["onnx"] = f"{name}/{cfg['onnx']}"
+    if "onnx" in cfg:
+        cfg["onnx"] = f"{name}/{cfg['onnx']}"
+    if "checkpoint" in cfg:
+        cfg["checkpoint"] = f"{name}/{cfg['checkpoint']}"
     for key in ("labels_file", "classes_file"):
         if key in cfg:
             cfg[key] = f"{name}/{cfg[key]}"

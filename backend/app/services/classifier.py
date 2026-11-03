@@ -59,10 +59,28 @@ class Classifier:
         if isinstance(labels, dict):
             labels = labels.get("classes") or labels.get("labels")
 
+        # Check for DINOv2 Hierarchical PyTorch checkpoint first
+        self.dinov2_engine = None
+        ckpt_pt = d / "hierarchical_heads.pt"
+        if not ckpt_pt.exists() and "checkpoint" in cfg:
+            ckpt_pt = d / cfg["checkpoint"]
+        if (ckpt_pt.exists() or cfg.get("model_type") == "dinov2_hierarchical") and ckpt_pt.exists():
+            try:
+                from src.infer import CropGuardInferenceEngine
+                self.dinov2_engine = CropGuardInferenceEngine.from_checkpoint(
+                    ckpt_pt,
+                    model_name=cfg.get("backbone", "dinov2_vits14"),
+                )
+                self.name = cfg.get("name", "cropguard-dinov2-hierarchical")
+                if "energy_threshold" in cfg:
+                    self.energy_threshold = cfg["energy_threshold"]
+            except Exception:
+                pass
+
         onnx_rel = cfg.get("onnx", "model.onnx")
         primary_onnx = d / onnx_rel
         candidates = [primary_onnx]
-        if d.parent.exists():
+        if self.dinov2_engine is None and d.parent.exists():
             candidates.append(d.parent / "community" / "efficientnet_v2_s_best.onnx")
             for sub in d.parent.iterdir():
                 if sub.is_dir() and sub != d:
@@ -112,22 +130,8 @@ class Classifier:
             self.missing = []
 
         self.sess, self.name = sess, cfg.get("name", Path(cfg.get("onnx", "model")).stem)
-
-        # Check for DINOv2 Hierarchical PyTorch checkpoint
-        self.dinov2_engine = None
-        ckpt_pt = d / "hierarchical_heads.pt"
-        if ckpt_pt.exists() or cfg.get("model_type") == "dinov2_hierarchical":
-            try:
-                from src.infer import CropGuardInferenceEngine
-                self.dinov2_engine = CropGuardInferenceEngine.from_checkpoint(
-                    ckpt_pt,
-                    model_name=cfg.get("backbone", "dinov2_vits14"),
-                )
-                self.name = cfg.get("name", "cropguard-dinov2-hierarchical")
-                if "energy_threshold" in cfg:
-                    self.energy_threshold = cfg["energy_threshold"]
-            except Exception:
-                pass
+        if self.dinov2_engine is not None:
+            self.name = cfg.get("name", "cropguard-dinov2-hierarchical")
 
     def preprocess(self, img):
         im = img.convert("RGB").resize((self.size, self.size), Image.BILINEAR)

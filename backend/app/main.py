@@ -16,6 +16,7 @@ from .services.pipeline import Pipeline
 import json
 
 MODEL_ORDER = [
+    "dinov2_hierarchical",
     "cropguard38_384",
     "cropguard38_combined",
     "cropguard38_vit",
@@ -83,7 +84,10 @@ def _switch_model(s: Settings, name: str) -> dict:
         }
     else:
         cfg = json.loads(src_cfg_path.read_text(encoding="utf-8"))
-        cfg["onnx"] = f"{name}/{cfg['onnx']}"
+        if "onnx" in cfg:
+            cfg["onnx"] = f"{name}/{cfg['onnx']}"
+        if "checkpoint" in cfg:
+            cfg["checkpoint"] = f"{name}/{cfg['checkpoint']}"
         for key in ("labels_file", "classes_file"):
             if key in cfg:
                 cfg[key] = f"{name}/{cfg[key]}"

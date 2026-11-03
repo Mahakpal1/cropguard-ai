@@ -54,6 +54,7 @@ class TaxonomyRegistry:
             source = str(row["source"]).strip().lower()
             raw_folder = str(row["raw_folder_name"]).strip()
             self.mappings[(source, raw_folder)] = {
+                "source": source,
                 "canonical_crop": str(row["canonical_crop"]).strip(),
                 "canonical_disease": str(row["canonical_disease"]).strip(),
                 "canonical_key": str(row["canonical_key"]).strip(),

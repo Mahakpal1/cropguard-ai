@@ -93,7 +93,15 @@ def dinov2_gradcam_png(pil_image, leaf_mask=None, target_class_idx=0):
         head = nn.Linear(feat_dim, max(target_class_idx + 1, 2), bias=False)
         head.eval()
 
-        gcam = DINOv2GradCAM(backbone, head, device="cpu")
+        # Build mask if none supplied
+        if leaf_mask is None:
+            mask_np = np.ones((224, 224), dtype=np.uint8) * 255
+        else:
+            mask_np = np.asarray(leaf_mask, dtype=np.uint8)
+            if mask_np.max() <= 1:
+                mask_np = (mask_np * 255).astype(np.uint8)
+
+        gcam = DINOv2GradCAM(backbone, device="cpu")
 
         # Preprocess
         from torchvision import transforms  # noqa: PLC0415
@@ -104,22 +112,19 @@ def dinov2_gradcam_png(pil_image, leaf_mask=None, target_class_idx=0):
         ])
         tensor = tf(pil_image.convert("RGB")).unsqueeze(0)
 
-        result = gcam.generate(tensor, target_class_idx=target_class_idx)
+        result = gcam.generate_cam(
+            head=head,
+            input_tensor=tensor,
+            raw_rgb=pil_image,
+            leaf_mask=mask_np,
+            target_class_idx=target_class_idx,
+        )
 
-        # Leaf-overlap grounding check
-        grounding = {}
-        if leaf_mask is not None:
-            try:
-                import numpy as _np  # noqa: PLC0415
-                verifier = LeafOverlapVerifier(overlap_threshold=0.65)
-                vr = verifier.verify(result.cam, leaf_mask)
-                grounding = {
-                    "leaf_overlap_score": round(float(vr.overlap_score), 4),
-                    "is_grounded": bool(vr.is_grounded),
-                    "explainability_note": vr.status_note,
-                }
-            except Exception:
-                pass
+        grounding = {
+            "leaf_overlap_score": round(float(result.leaf_overlap_score), 4),
+            "is_grounded": bool(result.is_grounded),
+            "explainability_note": result.status_note,
+        }
 
         png_bytes = DINOv2GradCAM.overlay_to_png_bytes(result.overlay_rgb)
         png_b64 = base64.b64encode(png_bytes).decode()

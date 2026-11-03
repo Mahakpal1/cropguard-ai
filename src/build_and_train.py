@@ -18,7 +18,7 @@ import logging
 import os
 import sys
 from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Union
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import numpy as np
 import pandas as pd
@@ -114,7 +114,7 @@ class PipelineBuilder:
                     ph = self.deduplicator.compute_phash(img_path)
                     sample = DatasetSample(
                         image_path=str(img_path),
-                        source=info.get("license", "dataset"),
+                        source=info.get("source", folder.parent.name.lower()),
                         canonical_crop=info["canonical_crop"],
                         canonical_disease=info["canonical_disease"],
                         canonical_key=info["canonical_key"],
@@ -277,8 +277,9 @@ class PipelineBuilder:
         self,
         classifier: HierarchicalClassifier,
         test_cache_path: Union[str, Path],
-    ) -> Dict[str, float]:
-        """Evaluate trained hierarchical classifier on test cache features."""
+        run_lodo: bool = True,
+    ) -> Dict[str, Any]:
+        """Evaluate trained hierarchical classifier on test cache features + optional LODO."""
         test_data = self.cache_engine.load_cache(test_cache_path)
         evaluator = PerformanceEvaluator()
         report = evaluator.evaluate(classifier, test_data)
@@ -292,12 +293,29 @@ class PipelineBuilder:
             f"  - Rejection Rate:   {report.rejection_rate:.2%}"
         )
 
+        out_summary: Dict[str, Any] = {
+            "test_evaluation": report.to_dict(),
+        }
+
+        # Optional Leave-One-Dataset-Out (LODO) cross-domain check
+        if run_lodo:
+            try:
+                from eval.leave_one_dataset_out import LODOEvaluator
+                lodo = LODOEvaluator(trainer=self.trainer)
+                lodo_res = lodo.run_lodo(test_data, min_samples_per_source=10, out_report_path=None)
+                out_summary["lodo_evaluation"] = {
+                    src: rep.to_dict() for src, rep in lodo_res.items()
+                }
+                logger.info(f"LODO completed across {len(lodo_res)} sources.")
+            except Exception as e:
+                logger.warning(f"LODO evaluation skipped or encountered error: {e}")
+
         # Save evaluation report to output directory
         rep_path = self.output_dir / "evaluation_report.json"
         with open(rep_path, "w", encoding="utf-8") as f:
-            json.dump(report.to_dict(), f, indent=2)
+            json.dump(out_summary, f, indent=2)
 
-        return report.to_dict()
+        return out_summary
 
 
 def main():
