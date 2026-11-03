@@ -40,7 +40,13 @@ def main():
         fetch(f)
     classes = json.load(open(OUT / "classes.json", encoding="utf-8"))
     labels = classes["classes"] if isinstance(classes, dict) else classes
+    # Copy 38-class metadata so community model supports all 14 crops
+    std38 = OUT.parent / "cropguard38_384" / "class_names.json"
+    if std38.exists():
+        import shutil
+        shutil.copyfile(std38, OUT / "class_names.json")
     cfg = {"name": "efficientnetv2s-plantvillage38 (community)", "onnx": FILES[0], "labels": labels,
+           "classes_file": "class_names.json",
            "input_size": 224, "mean": [0.485, 0.456, 0.406], "std": [0.229, 0.224, 0.225],
            "temperature": 1.0, "confidence_threshold": 0.6}
     json.dump(cfg, open(OUT / "model_config.json", "w", encoding="utf-8"), indent=2)

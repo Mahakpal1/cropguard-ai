@@ -2,53 +2,109 @@
    When the API is reachable, its result replaces the in-browser simulated classifier (segmentation/severity still animate as before).
    If the API is missing or fails, the page falls back to demo mode and says so in the header chip.
    API base URL: ?api=http://host:8000/api/v1 in the page address, or window.CROPGUARD_API, or same-origin /api/v1. */
-const API = (new URLSearchParams(location.search).get('api') || window.CROPGUARD_API || '/api/v1').replace(/\/$/, '');
+let API = (new URLSearchParams(location.search).get('api') || window.CROPGUARD_API || localStorage.getItem('cropguard_api_url') || '/api/v1').replace(/\/$/, '');
 let apiInfo = null, apiRes = null, apiHeat = null, pendingFile = null, origFile = null;
+
+function getApiCandidates() {
+  const fromParam = new URLSearchParams(location.search).get('api');
+  const fromWindow = window.CROPGUARD_API;
+  const fromStorage = localStorage.getItem('cropguard_api_url');
+  const candidates = [fromParam, fromWindow, fromStorage, API, '/api/v1', 'http://127.0.0.1:8000/api/v1', 'http://localhost:8000/api/v1'];
+  return candidates.filter(Boolean).map(u => String(u).replace(/\/$/, ''));
+}
+
+async function probeApi() {
+  const list = getApiCandidates();
+  const seen = new Set();
+  for (const url of list) {
+    if (seen.has(url)) continue;
+    seen.add(url);
+    try {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 2000);
+      const r = await fetch(url + '/health', { cache: 'no-store', signal: ctrl.signal });
+      clearTimeout(timer);
+      if (r.ok) {
+        API = url;
+        try { localStorage.setItem('cropguard_api_url', url); } catch (_) {}
+        apiInfo = await r.json();
+        paintBackend();
+        return url;
+      }
+    } catch (_) {}
+  }
+  return null;
+}
+
 /* keep the ORIGINAL photo (not the 224-px preview) for the server; capture phase runs before the page's own handlers */
 document.addEventListener('change', e => { if (e.target.matches && e.target.matches('#file, #file2')) pendingFile = e.target.files[0] || null; }, true);
 document.addEventListener('drop', e => { const f = e.dataTransfer && e.dataTransfer.files; if (f && f[0] && e.target.closest && e.target.closest('#drop')) pendingFile = f[0]; }, true);
 { const _ld = loaded; loaded = function () { origFile = pendingFile; pendingFile = null; _ld(); }; }
 
 function paintBackend() {
-  const chip = document.querySelector('.demo');
+  const chip = document.querySelector('.demo') || $('demoChip');
+  const dot = $('modelDot');
+  if (dot) dot.className = 'model-status-dot online';
   if (!apiInfo || !chip) return;
   const m = apiInfo.model;
   GATE = m.threshold;
   const gv = $('gateVal'); if (gv) gv.textContent = Math.round(GATE * 100) + '%';
   if (m.simulated) {
-    chip.innerHTML = '<i>●</i> Backend connected · classifier simulated';
+    chip.innerHTML = '<i style="color:#f59e0b">●</i> Backend connected · simulated';
   } else {
-    chip.innerHTML = '<i style="color:var(--acc)">●</i> Live model · ' + m.name;
+    chip.innerHTML = '<i style="color:#22c55e">●</i> Live AI model · ' + m.name;
     [3, 4].forEach(i => { const t = document.querySelector('#n' + i + ' .tg'); if (t) { t.className = 'tg live'; t.textContent = 'LIVE'; } });
     const b = document.querySelector('#n4 b'); if (b) b.textContent = 'Occlusion map';
   }
 }
 
 async function apiHealth() {
-  if (location.protocol === 'file:' && !new URLSearchParams(location.search).get('api') && !window.CROPGUARD_API) return;  // opened from disk: demo mode
-  try {
-    const r = await fetch(API + '/health', { cache: 'no-store' });
-    if (!r.ok) throw new Error(r.status);
-    apiInfo = await r.json();
-    paintBackend();
-  } catch (_) { apiInfo = null; }
+  const found = await probeApi();
+  if (!found) {
+    apiInfo = null;
+    const chip = document.querySelector('.demo') || $('demoChip');
+    const dot = $('modelDot');
+    if (dot) dot.className = 'model-status-dot offline';
+    if (chip) chip.innerHTML = '<i style="color:#ef4444">●</i> AI Server Offline (Run backend on port 8000)';
+  }
 }
 
 async function apiPredict() {
+  if (!apiInfo) await probeApi();
   const blob = origFile || await new Promise(r => src.toBlob(r, 'image/jpeg', 0.92));
   const fd = new FormData(); fd.append('file', blob, origFile ? origFile.name : 'leaf.jpg');
-  const r = await fetch(API + '/predict?explain=false', { method: 'POST', body: fd });
-  if (!r.ok) throw new Error('predict ' + r.status);
-  const j = await r.json();
-  apiHeat = null;
-  if (j.heatmap) {
-    const im = new Image();
-    await new Promise((ok, no) => { im.onload = ok; im.onerror = no; im.src = 'data:image/png;base64,' + j.heatmap.png_base64; });
-    const c = document.createElement('canvas'); c.width = c.height = W;
-    c.getContext('2d').drawImage(im, 0, 0, W, W);
-    apiHeat = c;
+
+  const list = getApiCandidates();
+  const seen = new Set();
+  let lastErr = null;
+
+  for (const ep of list) {
+    if (seen.has(ep)) continue;
+    seen.add(ep);
+    try {
+      const r = await fetch(ep + '/predict?explain=false', { method: 'POST', body: fd });
+      if (r.ok) {
+        API = ep;
+        try { localStorage.setItem('cropguard_api_url', ep); } catch (_) {}
+        const j = await r.json();
+        apiHeat = null;
+        if (j.heatmap) {
+          const im = new Image();
+          await new Promise((ok, no) => { im.onload = ok; im.onerror = no; im.src = 'data:image/png;base64,' + j.heatmap.png_base64; });
+          const c = document.createElement('canvas'); c.width = c.height = W;
+          c.getContext('2d').drawImage(im, 0, 0, W, W);
+          apiHeat = c;
+        }
+        apiRes = j;
+        apiInfo = { model: j.model };
+        paintBackend();
+        return j;
+      }
+    } catch (err) {
+      lastErr = err;
+    }
   }
-  return j;
+  throw lastErr || new Error('No backend reached');
 }
 
 /* heatmap from the server replaces the local proxy */
@@ -64,7 +120,33 @@ async function apiPredict() {
   };
   classify = function (a) {
     const j = apiRes;
-    if (!j) return _cl(a);
+    if (!j) {
+      KB.offline = {
+        n: ['AI Server Offline · Reconnect Backend', 'एआई सर्वर ऑफलाइन · बैकएंड कनेक्ट करें'],
+        do: [
+          ['Start the backend: run "uvicorn backend.app.main:app --port 8000" in project folder', 'Ensure your Python environment is active with dependencies installed', 'Once running, re-click Analyse Leaf to scan with AI'],
+          ['प्रोजेक्ट फोल्डर में कमांड चलाएं: uvicorn backend.app.main:app --port 8000', 'जाँचें कि पोर्ट 8000 पर सर्वर चल रहा है', 'सर्वर शुरू होने के बाद दोबारा जांच करें']
+        ],
+        av: [
+          ['Do not use offline mock for actual agricultural treatment decisions'],
+          ['ऑफलाइन डेमो पर वास्तविक रासायनिक छिड़काव का निर्णय न लें']
+        ],
+        pr: [
+          ['Connect backend to enable full 38-class leaf AI scanning across 14 crops'],
+          ['वास्तविक एआई जांच के लिए बैकएंड कनेक्ट होना अनिवार्य है']
+        ],
+        sci: ''
+      };
+      SY.offline = [
+        ['AI model server is not responding at http://127.0.0.1:8000 or /api/v1', 'Live AI classification across 38 crop disease classes requires the backend server'],
+        ['बैकएंड एपीआई सर्वर से कनेक्शन नहीं बन पा रहा है', 'सटीक 38-क्लास एआई जांच के लिए बैकएंड चालू होना आवश्यक है']
+      ];
+      return {
+        k: 'offline',
+        c: 0.0,
+        t3: [['AI Server Offline (Connect :8000)', 0.0]]
+      };
+    }
     a.pct = j.severity.affected_pct;
     const t3 = j.top3.map(x => [x.display.en, x.p]);
     const adv = j.advice;
@@ -216,11 +298,11 @@ loadClassesForFeedback();
     // If image not ready, load sample first
     if (!ready) { sample(); await sl(200); }
 
-    // Fire API predict in the background (non-blocking)
-    const p = apiInfo ? apiPredict().catch(e => {
-      console.warn('Backend predict failed, fallback to local:', e);
+    // Fire API predict in parallel (ALWAYS try backend even if initial probe was pending)
+    const p = apiPredict().catch(e => {
+      console.warn('Backend predict unreachable:', e);
       return null;
-    }) : Promise.resolve(null);
+    });
 
     // Run the full 8-stage visual animation pipeline
     const animRunner = typeof _prev === 'function' ? _prev : (typeof window.runPipeline === 'function' ? window.runPipeline : null);

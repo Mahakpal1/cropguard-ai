@@ -654,6 +654,11 @@ if (vad) {
 function updateScientificName(k) {
   const el = $('sci');
   if (!el) return;
+  if (k === 'offline') {
+    el.textContent = '(AI Server Offline · Connect port 8000)';
+    el.style.display = '';
+    return;
+  }
   if (typeof apiRes !== 'undefined' && apiRes) {
     if (apiRes.status === 'ok') {
       if (apiRes.scientific_name) {
@@ -721,7 +726,7 @@ function resolveAnalyzedCrop(cropKey) {
     }
   }
   const c = (cropKey || '').toLowerCase();
-  if (c.includes('unsupported') || c.includes('unsure') || c === 'low' || c.includes('no clear leaf') || c.includes('no_leaf')) {
+  if (c.includes('offline') || c.includes('unsupported') || c.includes('unsure') || c === 'low' || c.includes('no clear leaf') || c.includes('no_leaf')) {
     return 'unsupported';
   }
   const entry = (typeof KB !== 'undefined' && KB[cropKey]) ? KB[cropKey] : null;
@@ -1172,6 +1177,9 @@ function getTailoredAdvisory(k, diseaseName, svIndex, li) {
       const li = (typeof lang !== 'undefined' && lang !== 'en') ? 1 : 0;
       const entry = (typeof KB !== 'undefined' && KB[k]) ? KB[k] : null;
       let diseaseName = (entry && entry.n && (entry.n[li] || entry.n[0])) || (k === 'low' ? 'Unsure' : (isOk(k) ? 'Healthy' : k));
+      if (k === 'offline') {
+        diseaseName = (li === 1) ? 'एआई सर्वर ऑफलाइन (पोर्ट 8000)' : 'AI Server Offline (Connect :8000)';
+      }
       if (typeof translateDiagnosisName === 'function') {
         diseaseName = translateDiagnosisName(diseaseName, lang);
       }
@@ -1185,7 +1193,11 @@ function getTailoredAdvisory(k, diseaseName, svIndex, li) {
       const pct = (typeof A !== 'undefined' && A && A.pct !== undefined) ? A.pct : 18;
       const svIndex = (typeof sevI === 'function') ? sevI(pct) : 1;
       const svLabels = (typeof L !== 'undefined' && L[lang] && L[lang].s) ? L[lang].s : ['Mild', 'Moderate', 'Severe'];
-      const currentSevLabel = isOk(k) ? (L[lang] ? L[lang].s[0] : 'Healthy') : (k === 'low' ? 'Unsure' : svLabels[svIndex]);
+      const currentSevLabel = (k === 'offline')
+        ? 'Offline'
+        : isOk(k)
+        ? (L[lang] ? L[lang].s[0] : 'Healthy')
+        : (k === 'low' ? 'Unsure' : svLabels[svIndex]);
 
       // Dynamic Action Advisory Generation
       const advData = getTailoredAdvisory(k, diseaseName, svIndex, li);
@@ -1232,12 +1244,12 @@ function getTailoredAdvisory(k, diseaseName, svIndex, li) {
 
       // Update Affected Leaf Area & Severity Gauge
       const apEl = $('ap');
-      if (apEl) apEl.textContent = (k === 'low' ? '—' : Math.round(pct) + '%');
+      if (apEl) apEl.textContent = (k === 'low' || k === 'offline' ? '—' : Math.round(pct) + '%');
 
       const svEl = $('sv');
       if (svEl) {
         svEl.textContent = currentSevLabel;
-        svEl.className = 'sev-grade-badge ' + (isOk(k) ? 'ok' : ['ok', 'mid', 'hi'][svIndex]);
+        svEl.className = 'sev-grade-badge ' + (k === 'offline' ? 'low' : (isOk(k) ? 'ok' : ['ok', 'mid', 'hi'][svIndex]));
       }
 
       const mkEl = $('mk');
@@ -1255,11 +1267,12 @@ function getTailoredAdvisory(k, diseaseName, svIndex, li) {
 
     // Update circular ring gauge from backend confidence
     const ringFg = $('ringFg');
-    if (ringFg && typeof A !== 'undefined' && A) {
-      const pct = Math.round((A.pct || 0) * 100);
-      ringFg.setAttribute('stroke-dasharray', `${pct}, 100`);
+    if (ringFg) {
+      const isOff = (typeof R !== 'undefined' && R && R.k === 'offline');
+      const confVal = isOff ? 0 : (typeof R !== 'undefined' && R && R.c !== undefined ? Math.round(R.c * 100) : (typeof A !== 'undefined' && A ? Math.round((A.pct || 0) * 100) : 0));
+      ringFg.setAttribute('stroke-dasharray', `${confVal}, 100`);
       const cfEl = $('cf');
-      if (cfEl) cfEl.textContent = pct + '%';
+      if (cfEl) cfEl.textContent = confVal + '%';
     }
 
     // Show "Analyzed with AI" badge on viewport

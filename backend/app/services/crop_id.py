@@ -14,9 +14,17 @@ from .classifier import softmax
 
 class CropID:
     def __init__(self, model_dir):
-        d = Path(model_dir) / "crop_id"
         self.sess = None
-        if not (d / "config.json").exists():
+        candidates = [
+            Path(model_dir) / "crop_id",
+            Path(model_dir).parent / "crop_id",
+        ]
+        d = None
+        for cand in candidates:
+            if (cand / "config.json").exists():
+                d = cand
+                break
+        if d is None:
             return
         try:
             cfg = json.load(open(d / "config.json", encoding="utf-8"))

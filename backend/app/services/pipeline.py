@@ -50,11 +50,25 @@ class Pipeline:
     @staticmethod
     def _classes_path(settings):
         """A model folder can ship its own class list (model_config.json: "classes_file"); env CLASSES_PATH overrides it."""
-        cfgp = Path(settings.model_dir) / "model_config.json"
-        if cfgp.exists() and not os.environ.get("CLASSES_PATH"):
-            f = json.load(open(cfgp, encoding="utf-8")).get("classes_file")
-            if f and (Path(settings.model_dir) / f).exists():
-                return Path(settings.model_dir) / f
+        if os.environ.get("CLASSES_PATH"):
+            return Path(os.environ["CLASSES_PATH"])
+        md = Path(settings.model_dir)
+        cfgp = md / "model_config.json"
+        if cfgp.exists():
+            try:
+                f = json.load(open(cfgp, encoding="utf-8")).get("classes_file")
+                if f and (md / f).exists():
+                    return md / f
+            except Exception:
+                pass
+        if (md / "class_names.json").exists():
+            return md / "class_names.json"
+        if settings.classes_path and Path(settings.classes_path).exists():
+            return settings.classes_path
+        # Standard 38-class definition across all 14 crops
+        for parent_cand in [md.parent / "cropguard38_384" / "class_names.json", md.parent / "cropguard38" / "class_names.json"]:
+            if parent_cand.exists():
+                return parent_cand
         return settings.classes_path
 
     def _display(self, cid):

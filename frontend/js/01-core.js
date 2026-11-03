@@ -78,9 +78,13 @@ mask:lay(i=>leaf[i]?[60,220,110,90]:[0,0,0,170]),
 heat:lay(i=>{const v=mx?f[i]/mx:0;return[255*Math.min(1,v*2),255*Math.max(0,1-Math.abs(v-.5)*2),255*Math.max(0,1-v*2),v>.08?170*Math.min(1,v*1.5):0]}),
 les:lay(i=>les[i]?[255,60,80,190]:[0,0,0,0]),
 fl:[conv(gr,[-1,0,1,-2,0,2,-1,0,1],4),conv(gr,[-1,-2,-1,0,0,0,1,2,1],4),conv(gr,[0,1,0,1,-4,1,0,1,0],4),conv(gr,[1,2,1,2,4,2,1,2,1],16)]}}
-function classify(a){if(a.leafFrac<.08)return{k:'low',c:.41,t3:[['Unsure',.41],['Tomato Early Blight',.27],['Tomato Healthy',.18]]};
-if(a.pct<4)return{k:'ok',c:.97,t3:[['Tomato Healthy',.97],['Tomato Early Blight',.02],['Tomato Late Blight',.01]]};
-return{k:'eb',c:.94,t3:[['Tomato Early Blight',.94],['Tomato Late Blight',.04],['Tomato Healthy',.02]]}}
+function classify(a){
+  return {
+    k: 'offline',
+    c: 0.0,
+    t3: [['AI Server Offline · Connect port 8000', 0.0]]
+  };
+}
 const sevI=p=>p<10?0:p<35?1:2,wait=(ms,fn)=>new Promise(r=>{const t0=performance.now();(function f(now){const t=Math.min(1,(now-t0)/ms);fn&&fn(t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2);t<1?requestAnimationFrame(f):r()})(t0)}),sl=ms=>new Promise(r=>setTimeout(r,ms));
 /* stage() and hud() and brackets() are defined in 02-scanner.js which loads after this file */
 const P=id=>{const c=$(id),x=c.getContext('2d');x.clearRect(0,0,240,96);x.font='10px monospace';return x},mu='#7f9a8b';
