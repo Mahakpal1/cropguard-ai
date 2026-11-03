@@ -6,6 +6,8 @@ from src.extract_features import DINOv2FeatureExtractor, FeatureCacheEngine
 from src.heads import CropClassifierHead, PerCropDiseaseHead, HierarchicalClassifier, HierarchicalPrediction
 from src.train import HeadTrainer
 from src.calibrate import TemperatureCalibrator, EnergyOODCalibrator, SystemCalibrator
+from src.gradcam import vit_reshape_transform, LeafOverlapVerifier, DINOv2GradCAM, ExplainabilityResult
+from src.infer import CropGuardInferenceEngine, EndToEndDiagnosis
 
 __all__ = [
     "LeafLocalizer",
@@ -26,4 +28,10 @@ __all__ = [
     "TemperatureCalibrator",
     "EnergyOODCalibrator",
     "SystemCalibrator",
+    "vit_reshape_transform",
+    "LeafOverlapVerifier",
+    "DINOv2GradCAM",
+    "ExplainabilityResult",
+    "CropGuardInferenceEngine",
+    "EndToEndDiagnosis",
 ]

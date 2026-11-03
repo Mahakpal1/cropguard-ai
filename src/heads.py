@@ -138,12 +138,13 @@ class HierarchicalClassifier(nn.Module):
         Execute calibrated hierarchical inference.
         """
         self.eval()
+        device = next(self.parameters()).device
         if isinstance(feature_vector, np.ndarray):
-            x = torch.from_numpy(feature_vector).float()
+            x = torch.from_numpy(feature_vector).float().to(device)
             if x.ndim == 1:
                 x = x.unsqueeze(0)
         else:
-            x = feature_vector.float()
+            x = feature_vector.float().to(device)
             if x.ndim == 1:
                 x = x.unsqueeze(0)
 
