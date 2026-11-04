@@ -128,7 +128,7 @@ class FeatureCacheEngine:
         self.extractor = extractor or DINOv2FeatureExtractor()
         self.localizer = localizer or LeafLocalizer()
         self.augmenter = augmenter or PhotometricFieldAugmenter()
-        self.randomizer = randomizer or BackgroundRandomizer()
+        self.randomizer = randomizer or BackgroundRandomizer(background_dir="data/raw/generic_negative")
 
     def process_and_cache(
         self,

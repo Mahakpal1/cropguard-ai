@@ -32,7 +32,7 @@ class BackgroundRandomizer:
             from pathlib import Path
             p = Path(background_dir)
             if p.exists():
-                self._bg_paths = [str(f) for f in p.glob("*.*") if f.suffix.lower() in (".jpg", ".jpeg", ".png")]
+                self._bg_paths = [str(f) for f in p.rglob("*.*") if f.suffix.lower() in (".jpg", ".jpeg", ".png")]
 
     @staticmethod
     def generate_procedural_field_background(shape: Tuple[int, int]) -> np.ndarray:
@@ -158,6 +158,22 @@ class PhotometricFieldAugmenter:
             out[y:y + ph, x:x + pw] = [random.randint(15, 45)] * 3
         return out
 
+    @staticmethod
+    def apply_random_crop_and_rotation(pil_img: Image.Image) -> Image.Image:
+        """Random rotation (-30 to +30 deg or 90 deg steps) and slight zoom/crop (0.85 - 1.0)."""
+        w, h = pil_img.size
+        if random.random() < 0.7:
+            angle = random.uniform(-30, 30) if random.random() < 0.7 else float(random.choice([0, 90, 180, 270]))
+            if angle != 0:
+                pil_img = pil_img.rotate(angle, resample=Image.BILINEAR, expand=False)
+        if random.random() < 0.5:
+            scale = random.uniform(0.85, 0.98)
+            cw, ch = int(w * scale), int(h * scale)
+            x1 = random.randint(0, w - cw)
+            y1 = random.randint(0, h - ch)
+            pil_img = pil_img.crop((x1, y1, x1 + cw, y1 + ch)).resize((w, h), Image.BILINEAR)
+        return pil_img
+
     def augment(
         self,
         image: Union[Image.Image, np.ndarray],
@@ -180,11 +196,12 @@ class PhotometricFieldAugmenter:
             bgr = randomizer.composite(bgr, leaf_mask)
             pil_img = Image.fromarray(cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB))
 
-        # 2. Geometric Flips & Rotations
+        # 2. Geometric Flips, Crops & Rotations
         if random.random() < 0.5:
             pil_img = pil_img.transpose(Image.FLIP_LEFT_RIGHT)
         if random.random() < 0.2:
             pil_img = pil_img.transpose(Image.FLIP_TOP_BOTTOM)
+        pil_img = self.apply_random_crop_and_rotation(pil_img)
 
         # 3. Photometric Jitter
         pil_img = self.apply_color_jitter(pil_img)
