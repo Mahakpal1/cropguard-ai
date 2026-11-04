@@ -1,7 +1,8 @@
 """DINOv2 Frozen Feature Extractor and Dataset Feature Caching Engine.
 
-Extracts normalized 384-d (ViT-S/14) or 768-d (ViT-B/14) self-supervised features
-from leaf images, applying optional field-adaptation augmentations.
+Extracts normalized 384-d (ViT-S/14), 768-d (ViT-B/14), or 1024-d (ViT-L/14)
+self-supervised features from leaf images at high resolutions (518×518px or higher),
+applying optional field-adaptation augmentations and optional SigLIP-Large late fusion.
 Caches features directly to disk as compressed .npz archives, enabling
 instant laptop training of downstream heads in minutes.
 """
@@ -27,22 +28,27 @@ logger = logging.getLogger("cropguard.features")
 
 
 class DINOv2FeatureExtractor:
-    """Extracts high-level semantic embeddings from a frozen DINOv2 Vision Transformer."""
+    """Extracts high-level semantic embeddings from a frozen DINOv2 Vision Transformer,
+    with support for high resolutions (518px, 560px, 644px) and optional late fusion (SigLIP-Large).
+    """
 
     def __init__(
         self,
-        model_name: str = "dinov2_vits14",
+        model_name: str = "dinov2_vitl14",
         device: Optional[str] = None,
-        img_size: int = 224,
+        img_size: int = 518,
+        late_fusion_backbone: Optional[str] = None,
     ):
         """
         Args:
-            model_name: 'dinov2_vits14' (384-d, fast) or 'dinov2_vitb14' (768-d, base).
+            model_name: 'dinov2_vits14' (384-d), 'dinov2_vitb14' (768-d), or 'dinov2_vitl14' (1024-d).
             device: 'cuda', 'cpu', or None (auto-detect).
-            img_size: Input spatial resolution (default 224, multiple of 14).
+            img_size: Input spatial resolution (default 518, multiple of 14).
+            late_fusion_backbone: Optional second backbone (e.g. 'siglip_large' for late fusion).
         """
         self.model_name = model_name
         self.img_size = img_size
+        self.late_fusion_backbone = late_fusion_backbone
 
         if device is None:
             self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -60,11 +66,32 @@ class DINOv2FeatureExtractor:
             T.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
         ])
 
-        # Feature dimension
-        self.feature_dim = 384 if "vits14" in model_name else 768
+        # Primary feature dimension
+        if "vitl14" in model_name or "large" in model_name:
+            self.dino_dim = 1024
+        elif "vits14" in model_name or "small" in model_name:
+            self.dino_dim = 384
+        else:
+            self.dino_dim = 768
+
+        # Optional second backbone for late fusion
+        self.fusion_model = None
+        self.fusion_transform = None
+        self.fusion_dim = 0
+        if late_fusion_backbone:
+            self.fusion_model, self.fusion_transform, self.fusion_dim = self._load_fusion_backbone()
+
+        self.feature_dim = self.dino_dim + self.fusion_dim
 
     def _load_model(self) -> torch.nn.Module:
-        """Load frozen DINOv2 model with torch.hub or timm fallback."""
+        """Load frozen DINOv2 model via HuggingFace, torch.hub, or timm fallback."""
+        if "vitl14" in self.model_name or "large" in self.model_name:
+            try:
+                from transformers import AutoModel
+                logger.info("Loading facebook/dinov2-large via transformers...")
+                return AutoModel.from_pretrained("facebook/dinov2-large")
+            except Exception as e:
+                logger.warning(f"transformers load failed: {e}. Trying torch.hub...")
         try:
             logger.info(f"Loading {self.model_name} via torch.hub...")
             model = torch.hub.load("facebookresearch/dinov2", self.model_name, trust_repo=True)
@@ -72,8 +99,47 @@ class DINOv2FeatureExtractor:
         except Exception as e:
             logger.warning(f"torch.hub failed: {e}. Falling back to timm...")
             import timm
-            timm_name = "vit_small_patch14_dinov2" if "vits14" in self.model_name else "vit_base_patch14_dinov2"
+            if "vitl14" in self.model_name or "large" in self.model_name:
+                timm_name = "vit_large_patch14_dinov2"
+            elif "vits14" in self.model_name or "small" in self.model_name:
+                timm_name = "vit_small_patch14_dinov2"
+            else:
+                timm_name = "vit_base_patch14_dinov2"
             return timm.create_model(timm_name, pretrained=True, num_classes=0, img_size=self.img_size)
+
+    def _load_fusion_backbone(self) -> Tuple[torch.nn.Module, Any, int]:
+        """Load SigLIP-Large vision model for late fusion."""
+        from transformers import AutoModel
+        logger.info(f"Loading late fusion backbone: {self.late_fusion_backbone}...")
+        siglip_name = "google/siglip-large-patch16-384"
+        siglip = AutoModel.from_pretrained(siglip_name).to(self.device).eval()
+        fusion_tf = T.Compose([
+            T.Resize((384, 384), interpolation=T.InterpolationMode.BICUBIC),
+            T.ToTensor(),
+            T.Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5]),
+        ])
+        return siglip, fusion_tf, 1024
+
+    def _forward_dino(self, tensors: torch.Tensor) -> torch.Tensor:
+        """Extract L2-normalized feature representation from DINOv2."""
+        out = self.model(tensors)
+        if hasattr(out, "last_hidden_state"):
+            feat = out.last_hidden_state[:, 0]
+        elif isinstance(out, torch.Tensor):
+            feat = out
+        else:
+            feat = out[0]
+        return torch.nn.functional.normalize(feat, dim=-1)
+
+    def _forward_fusion(self, tensors: torch.Tensor) -> torch.Tensor:
+        """Extract L2-normalized feature representation from SigLIP."""
+        if hasattr(self.fusion_model, "vision_model"):
+            out = self.fusion_model.vision_model(tensors)
+            feat = out.pooler_output
+        else:
+            out = self.fusion_model(tensors)
+            feat = out.pooler_output if hasattr(out, "pooler_output") else out[0]
+        return torch.nn.functional.normalize(feat, dim=-1)
 
     @torch.no_grad()
     def extract_image(self, image: Union[Image.Image, np.ndarray, bytes]) -> np.ndarray:
@@ -89,14 +155,18 @@ class DINOv2FeatureExtractor:
 
         image = image.convert("RGB")
         tensor = self.transform(image).unsqueeze(0).to(self.device)
-        feat = self.model(tensor)
-        
-        # L2 normalization for cosine similarity compatibility
-        feat = torch.nn.functional.normalize(feat, dim=-1)
+        feat = self._forward_dino(tensor)
+
+        if self.fusion_model is not None and self.fusion_transform is not None:
+            f_tensor = self.fusion_transform(image).unsqueeze(0).to(self.device)
+            f_feat = self._forward_fusion(f_tensor)
+            feat = torch.cat([feat, f_feat], dim=-1)
+            feat = torch.nn.functional.normalize(feat, dim=-1)
+
         return feat.cpu().squeeze(0).numpy().astype(np.float32)
 
     @torch.no_grad()
-    def extract_batch(self, images: List[Image.Image], batch_size: int = 32) -> np.ndarray:
+    def extract_batch(self, images: List[Image.Image], batch_size: int = 16) -> np.ndarray:
         """
         Extract feature vectors for a list of PIL Images in batches.
         Returns:
@@ -106,8 +176,14 @@ class DINOv2FeatureExtractor:
         for i in range(0, len(images), batch_size):
             batch = images[i:i + batch_size]
             tensors = torch.stack([self.transform(img.convert("RGB")) for img in batch]).to(self.device)
-            feats = self.model(tensors)
-            feats = torch.nn.functional.normalize(feats, dim=-1)
+            feats = self._forward_dino(tensors)
+
+            if self.fusion_model is not None and self.fusion_transform is not None:
+                f_tensors = torch.stack([self.fusion_transform(img.convert("RGB")) for img in batch]).to(self.device)
+                f_feats = self._forward_fusion(f_tensors)
+                feats = torch.cat([feats, f_feats], dim=-1)
+                feats = torch.nn.functional.normalize(feats, dim=-1)
+
             all_feats.append(feats.cpu().numpy())
 
         if not all_feats:

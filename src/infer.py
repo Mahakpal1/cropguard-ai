@@ -86,7 +86,12 @@ class CropGuardInferenceEngine:
         ckpt = torch.load(checkpoint_path, map_location=device or "cpu")
         in_feat = ckpt["in_features"]
         if model_name is None:
-            model_name = "dinov2_vitb14" if in_feat == 768 else "dinov2_vits14"
+            if in_feat == 1024:
+                model_name = "dinov2_vitl14"
+            elif in_feat == 768:
+                model_name = "dinov2_vitb14"
+            else:
+                model_name = "dinov2_vits14"
         classifier = HierarchicalClassifier(
             in_features=in_feat,
             crop_names=ckpt["crop_names"],

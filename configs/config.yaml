@@ -5,8 +5,8 @@ seed: 42
 
 # Backbone specification
 backbone:
-  name: "dinov2_vitb14"           # ViT-B/14 (768-d embedding) or dinov2_vits14 (384-d)
-  input_size: 224
+  name: "dinov2_vitl14"           # ViT-L/14 (1024-d embedding); dinov2_vitb14 (768-d), dinov2_vits14 (384-d)
+  input_size: 518                 # Native ViT-L/14 patch-grid resolution (518 / 14 = 37 patches)
   frozen: true                    # Frozen foundation backbone, no fine-tuning
   device: "cuda"                  # auto-fallback to cpu if cuda unavailable
 

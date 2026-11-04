@@ -46,13 +46,17 @@ class PipelineBuilder:
     def __init__(
         self,
         taxonomy_path: str = "data/taxonomy.csv",
-        model_name: str = "dinov2_vits14",
+        model_name: str = "dinov2_vitl14",
+        img_size: int = 518,
+        late_fusion: Optional[str] = None,
         cache_dir: str = "data/cached_features",
         output_dir: str = "ml/models/dinov2_hierarchical",
         device: Optional[str] = None,
     ):
         self.taxonomy_path = Path(taxonomy_path)
         self.model_name = model_name
+        self.img_size = img_size
+        self.late_fusion = late_fusion
         self.cache_dir = Path(cache_dir)
         self.output_dir = Path(output_dir)
         self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
@@ -60,7 +64,12 @@ class PipelineBuilder:
         self.registry = TaxonomyRegistry(str(self.taxonomy_path))
         self.deduplicator = Deduplicator(hamming_distance_threshold=4)
         self.splitter = HonestSplitter(train_ratio=0.70, val_ratio=0.15, test_ratio=0.15)
-        self.extractor = DINOv2FeatureExtractor(model_name=self.model_name, device=self.device)
+        self.extractor = DINOv2FeatureExtractor(
+            model_name=self.model_name,
+            img_size=self.img_size,
+            late_fusion_backbone=self.late_fusion,
+            device=self.device,
+        )
         self.cache_engine = FeatureCacheEngine(extractor=self.extractor)
         self.trainer = HeadTrainer(device=self.device)
 
@@ -258,7 +267,7 @@ class PipelineBuilder:
             "model_type": "dinov2_hierarchical",
             "backbone": self.model_name,
             "checkpoint": "hierarchical_heads.pt",
-            "input_size": 224,
+            "input_size": self.img_size,
             "feature_dim": train_data["features"].shape[1],
             "energy_threshold": float(classifier.energy_threshold),
             "confidence_threshold": 0.60,
@@ -336,7 +345,9 @@ def main():
     parser.add_argument("--taxonomy", default="data/taxonomy.csv", help="Path to taxonomy.csv")
     parser.add_argument("--output-dir", default="ml/models/dinov2_hierarchical", help="Output model directory")
     parser.add_argument("--cache-dir", default="data/cached_features", help="Directory for cached .npz features")
-    parser.add_argument("--model-name", default="dinov2_vits14", choices=["dinov2_vits14", "dinov2_vitb14"], help="DINOv2 backbone")
+    parser.add_argument("--model-name", default="dinov2_vitl14", choices=["dinov2_vits14", "dinov2_vitb14", "dinov2_vitl14"], help="DINOv2 backbone")
+    parser.add_argument("--img-size", type=int, default=518, help="Input image resolution (must be multiple of 14; e.g. 518, 560, 644)")
+    parser.add_argument("--late-fusion", default=None, choices=["siglip_large"], help="Optional late-fusion backbone (adds to DINOv2 features)")
     parser.add_argument("--epochs", type=int, default=15, help="Training epochs for MLP heads")
     parser.add_argument("--batch-size", type=int, default=64, help="Batch size for training")
     parser.add_argument("--lr", type=float, default=1e-3, help="Learning rate")
@@ -349,6 +360,8 @@ def main():
     builder = PipelineBuilder(
         taxonomy_path=args.taxonomy,
         model_name=args.model_name,
+        img_size=args.img_size,
+        late_fusion=args.late_fusion,
         cache_dir=args.cache_dir,
         output_dir=args.output_dir,
         device=args.device,
