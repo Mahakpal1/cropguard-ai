@@ -61,15 +61,22 @@ class Classifier:
 
         # Check for DINOv2 Hierarchical PyTorch checkpoint first
         self.dinov2_engine = None
-        ckpt_pt = d / "hierarchical_heads.pt"
-        if not ckpt_pt.exists() and "checkpoint" in cfg:
-            ckpt_pt = d / cfg["checkpoint"]
-        if (ckpt_pt.exists() or cfg.get("model_type") == "dinov2_hierarchical") and ckpt_pt.exists():
+        model_sub = cfg.get("model_folder") or ("dinov2_hierarchical" if cfg.get("model_type") == "dinov2_hierarchical" else "")
+        candidates_pt = [
+            d / "hierarchical_heads.pt",
+            (d / model_sub / "hierarchical_heads.pt") if model_sub else None,
+            d / "dinov2_hierarchical" / "hierarchical_heads.pt",
+            (d / cfg.get("checkpoint", "")) if cfg.get("checkpoint") else None,
+            (d / model_sub / cfg.get("checkpoint", "")) if (model_sub and cfg.get("checkpoint")) else None,
+        ]
+        ckpt_pt = next((p for p in candidates_pt if p is not None and p.is_file()), None)
+
+        if ckpt_pt is not None:
             try:
                 from src.infer import CropGuardInferenceEngine
                 self.dinov2_engine = CropGuardInferenceEngine.from_checkpoint(
                     ckpt_pt,
-                    model_name=cfg.get("backbone", "dinov2_vits14"),
+                    model_name=cfg.get("backbone", "dinov2_vitb14"),
                 )
                 self.name = cfg.get("name", "cropguard-dinov2-hierarchical")
                 if "energy_threshold" in cfg:
@@ -88,13 +95,14 @@ class Classifier:
                         candidates.append(f)
 
         sess = None
-        for cand in candidates:
-            if cand.exists() and cand.stat().st_size > 0:
-                try:
-                    sess = ort.InferenceSession(str(cand), providers=["CPUExecutionProvider"])
-                    break
-                except Exception:
-                    continue
+        if self.dinov2_engine is None:
+            for cand in candidates:
+                if cand.exists() and cand.stat().st_size > 0:
+                    try:
+                        sess = ort.InferenceSession(str(cand), providers=["CPUExecutionProvider"])
+                        break
+                    except Exception:
+                        continue
 
         if sess is not None:
             shape = sess.get_inputs()[0].shape
@@ -155,7 +163,7 @@ class Classifier:
         return softmax(self.infer(x) / self.temperature)
 
     def predict(self, x=None, hint_pct=0.0, views=None, pil_img=None):
-        if self.dinov2_engine is not None and self.sess is None:
+        if self.dinov2_engine is not None:
             # DINOv2 Hierarchical PyTorch path
             img = pil_img
             if img is None:

@@ -10,12 +10,13 @@ This document catalogues all training, validation, and benchmarking datasets int
 |-----------|-----------------|------------------|-------------|--------------|---------|--------------|
 | `rice_dslr` | Rice (*Oryza sativa*) | Bacterial Leaf Blight, Brown Spot, Leaf Blast, Tungro, Healthy | 7,901 | Field (DSLR & field survey) | CC0 / Public Domain | [HuggingFace amdmqd](https://huggingface.co/datasets/amdmqd/rice_leaf_disease_dataset) & AveyBD |
 | `mangoleafbd` | Mango (*Mangifera indica*) | Anthracnose, Bacterial Canker, Cutting Weevil, Die Back, Gall Midge, Powdery Mildew, Sooty Mould, Healthy | 4,000 | Lab / On-leaf field | CC BY 4.0 | [MangoLeafBD / pypi-ahmad](https://github.com/pypi-ahmad/Mango-Leaf-Disease-Prediction) |
-| `wheat_field` | Wheat (*Triticum aestivum*) | Brown Rust (Leaf Rust), Stem Rust, Healthy | 876 | Field | CC0 / Research | [WheatDiseaseDataset / mubashar1030](https://github.com/mubashar1030/WheatDiseaseDataset) |
+| `wheat_field` | Wheat (*Triticum aestivum*) | Yellow Rust (Stripe Rust), Brown Rust (Leaf Rust), Stem Rust, Healthy | 5,876 | Field | CDLA-Permissive / CC0 | [shantkumar/yellowrust-2223-dataset](https://www.kaggle.com/datasets/shantkumar/yellowrust-2223-dataset) & mubashar1030 |
+| `groundnut_field` | Groundnut (*Arachis hypogaea*) | Early Leaf Spot, Late Leaf Spot, Rust, Rosette, Healthy | 1,720 | Field | CC0 / Public Domain | [nishabharathis/groundnut-disease-dataset](https://www.kaggle.com/datasets/nishabharathis/groundnut-disease-dataset) |
 | `cotton_field` | Cotton (*Gossypium hirsutum*) | Bacterial Blight, Healthy | 766 | Field | CC BY 4.0 / Open | [CottonDiseasePrediction / Farmaan10](https://github.com/Farmaan10/CottonDiseasePrediction) |
-| `sugarcane_field` | Sugarcane (*Saccharum officinarum*) | Bacterial Blight, Red Rot, Healthy | 300 | Field | CC BY 4.0 | [Sugarcane-Disease-Dataset / sabidarrow](https://github.com/sabidarrow/Sugarcane-Disease-Dataset) |
+| `sugarcane_field` | Sugarcane (*Saccharum officinarum*) | Bacterial Blight, Red Rot, Yellow Leaf Disease, Rust, Mosaic, Healthy | 2,821 | Field | CC0 / CC BY 4.0 | [nirmalsankalana/sugarcane-leaf-disease-dataset](https://www.kaggle.com/datasets/nirmalsankalana/sugarcane-leaf-disease-dataset) & sabidarrow |
 | `generic_negative` | Non-Crop / Not-a-Leaf | Soil & dirt, Weeds & grass, Human hands & tools, Sky & background | 128 | Real Scenes (OOD Negatives) | CC0 / Public Domain | Ultralytics COCO / Field Negatives |
 
-**Total Raw Indian Field Images:** 13,971 images
+**Total Raw Indian Field Images:** 23,212 images
 
 ---
 

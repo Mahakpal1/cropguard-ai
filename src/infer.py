@@ -78,14 +78,17 @@ class CropGuardInferenceEngine:
     def from_checkpoint(
         cls,
         checkpoint_path: Union[str, Path],
-        model_name: str = "dinov2_vits14",
+        model_name: Optional[str] = None,
         grounding_threshold: float = 0.65,
         device: Optional[str] = None,
     ) -> CropGuardInferenceEngine:
         """Instantiate CropGuardInferenceEngine directly from a saved checkpoint file."""
         ckpt = torch.load(checkpoint_path, map_location=device or "cpu")
+        in_feat = ckpt["in_features"]
+        if model_name is None:
+            model_name = "dinov2_vitb14" if in_feat == 768 else "dinov2_vits14"
         classifier = HierarchicalClassifier(
-            in_features=ckpt["in_features"],
+            in_features=in_feat,
             crop_names=ckpt["crop_names"],
             crop_disease_map=ckpt["crop_disease_map"],
             energy_threshold=ckpt.get("energy_threshold", -2.5),

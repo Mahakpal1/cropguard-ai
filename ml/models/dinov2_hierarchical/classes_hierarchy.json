@@ -5,6 +5,7 @@
     "Cherry",
     "Cotton",
     "Grape",
+    "Groundnut",
     "Maize",
     "Mango",
     "Peach",
@@ -28,6 +29,13 @@
     "__non_crop__": [
       "__not_a_leaf__"
     ],
+    "Groundnut": [
+      "Early_Leaf_Spot",
+      "Healthy",
+      "Late_Leaf_Spot",
+      "Rosette",
+      "Rust"
+    ],
     "Rice": [
       "Bacterial_Blight",
       "Blast",
@@ -38,12 +46,16 @@
     "Sugarcane": [
       "Bacterial_Blight",
       "Healthy",
-      "Red_Rot"
+      "Mosaic",
+      "Red_Rot",
+      "Rust",
+      "Yellow_Leaf"
     ],
     "Wheat": [
       "Brown_Rust",
       "Healthy",
-      "Stem_Rust"
+      "Stem_Rust",
+      "Yellow_Rust"
     ],
     "Apple": [
       "Apple_Scab",
