@@ -211,10 +211,12 @@ class FeatureCacheEngine:
         samples_df: pd.DataFrame,
         out_npz_path: str,
         apply_augmentation: bool = True,
+        save_subsets: bool = False,
         batch_size: int = 32,
     ) -> Dict[str, Union[int, str]]:
         """
         Process images: localize -> optional augment -> extract DINOv2 features -> cache to .npz.
+        If save_subsets is True, also saves clean and augmented slices separately.
         """
         out_path = Path(out_npz_path)
         out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -321,22 +323,65 @@ class FeatureCacheEngine:
         else:
             all_feats = np.empty((0, self.extractor.feature_dim), dtype=np.float32)
 
+        crop_labels_arr = np.array(crop_labels, dtype=np.int64)
+        disease_labels_arr = np.array(disease_labels, dtype=np.int64)
+        canonical_keys_arr = np.array(canonical_keys, dtype=object)
+        is_lab_arr = np.array(is_lab_list, dtype=bool)
+        source_ids_arr = np.array(source_ids, dtype=object)
+        leaf_group_ids_arr = np.array(leaf_group_ids, dtype=object)
+
         # Save to compressed .npz archive
         np.savez_compressed(
             out_path,
             features=all_feats,
-            crop_labels=np.array(crop_labels, dtype=np.int64),
-            disease_labels=np.array(disease_labels, dtype=np.int64),
-            canonical_keys=np.array(canonical_keys, dtype=object),
-            is_lab=np.array(is_lab_list, dtype=bool),
-            source_ids=np.array(source_ids, dtype=object),
-            leaf_group_ids=np.array(leaf_group_ids, dtype=object),
+            crop_labels=crop_labels_arr,
+            disease_labels=disease_labels_arr,
+            canonical_keys=canonical_keys_arr,
+            is_lab=is_lab_arr,
+            source_ids=source_ids_arr,
+            leaf_group_ids=leaf_group_ids_arr,
             crop_to_idx_json=json.dumps(crop_to_idx),
             disease_to_idx_json=json.dumps(disease_to_idx),
             crop_disease_map_json=json.dumps(crop_disease_map),
         )
 
         logger.info(f"Successfully cached {len(all_feats)} feature vectors to {out_path}")
+
+        # Also save explicit clean and augmented subsets if requested
+        if save_subsets and len(all_feats) > 0:
+            is_aug = np.array([str(s).endswith("_aug") for s in source_ids_arr], dtype=bool)
+            clean_path = out_path.with_name(f"{out_path.stem}_clean{out_path.suffix}")
+            aug_path = out_path.with_name(f"{out_path.stem}_aug{out_path.suffix}")
+
+            # Save clean subset
+            np.savez_compressed(
+                clean_path,
+                features=all_feats[~is_aug],
+                crop_labels=crop_labels_arr[~is_aug],
+                disease_labels=disease_labels_arr[~is_aug],
+                canonical_keys=canonical_keys_arr[~is_aug],
+                is_lab=is_lab_arr[~is_aug],
+                source_ids=source_ids_arr[~is_aug],
+                leaf_group_ids=leaf_group_ids_arr[~is_aug],
+                crop_to_idx_json=json.dumps(crop_to_idx),
+                disease_to_idx_json=json.dumps(disease_to_idx),
+                crop_disease_map_json=json.dumps(crop_disease_map),
+            )
+            # Save augmented subset
+            np.savez_compressed(
+                aug_path,
+                features=all_feats[is_aug],
+                crop_labels=crop_labels_arr[is_aug],
+                disease_labels=disease_labels_arr[is_aug],
+                canonical_keys=canonical_keys_arr[is_aug],
+                is_lab=is_lab_arr[is_aug],
+                source_ids=source_ids_arr[is_aug],
+                leaf_group_ids=leaf_group_ids_arr[is_aug],
+                crop_to_idx_json=json.dumps(crop_to_idx),
+                disease_to_idx_json=json.dumps(disease_to_idx),
+                crop_disease_map_json=json.dumps(crop_disease_map),
+            )
+            logger.info(f"Saved subset caches: {clean_path.name} (N={(~is_aug).sum()}) and {aug_path.name} (N={is_aug.sum()})")
 
         return {
             "cached_samples": int(len(all_feats)),
@@ -362,3 +407,63 @@ class FeatureCacheEngine:
             "disease_to_idx": json.loads(str(data["disease_to_idx_json"])),
             "crop_disease_map": json.loads(str(data["crop_disease_map_json"])),
         }
+
+    @classmethod
+    def split_clean_and_augmented(
+        cls,
+        cache_data: Dict[str, Union[np.ndarray, dict]],
+    ) -> Tuple[Dict[str, Union[np.ndarray, dict]], Dict[str, Union[np.ndarray, dict]]]:
+        """
+        Partition cached feature dictionary into clean (unaugmented) and augmented subsets.
+        Augmented samples are identified by '_aug' in source_ids.
+        """
+        source_ids = cache_data["source_ids"]
+        is_aug = np.array([str(s).endswith("_aug") for s in source_ids], dtype=bool)
+
+        def _slice(mask):
+            return {
+                "features": cache_data["features"][mask],
+                "crop_labels": cache_data["crop_labels"][mask],
+                "disease_labels": cache_data["disease_labels"][mask],
+                "canonical_keys": cache_data["canonical_keys"][mask],
+                "is_lab": cache_data["is_lab"][mask],
+                "source_ids": cache_data["source_ids"][mask],
+                "leaf_group_ids": cache_data["leaf_group_ids"][mask],
+                "crop_to_idx": cache_data["crop_to_idx"],
+                "disease_to_idx": cache_data["disease_to_idx"],
+                "crop_disease_map": cache_data["crop_disease_map"],
+            }
+
+        return _slice(~is_aug), _slice(is_aug)
+
+    @classmethod
+    def get_unaugmented_subset(
+        cls,
+        cache_data: Dict[str, Union[np.ndarray, dict]],
+    ) -> Dict[str, Union[np.ndarray, dict]]:
+        """Return subset containing only clean unaugmented samples."""
+        clean, _ = cls.split_clean_and_augmented(cache_data)
+        return clean
+
+    @classmethod
+    def get_augmented_subset(
+        cls,
+        cache_data: Dict[str, Union[np.ndarray, dict]],
+    ) -> Dict[str, Union[np.ndarray, dict]]:
+        """Return subset containing only augmented samples."""
+        _, aug = cls.split_clean_and_augmented(cache_data)
+        return aug
+
+    @classmethod
+    def filter_cache(
+        cls,
+        cache_data: Dict[str, Union[np.ndarray, dict]],
+        mode: str = "both",
+    ) -> Dict[str, Union[np.ndarray, dict]]:
+        """Filter cache by mode: 'both', 'clean', or 'augmented'."""
+        mode = mode.lower()
+        if mode == "clean":
+            return cls.get_unaugmented_subset(cache_data)
+        elif mode == "augmented":
+            return cls.get_augmented_subset(cache_data)
+        return cache_data

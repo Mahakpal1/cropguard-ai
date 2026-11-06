@@ -112,10 +112,12 @@ class SystemCalibrator:
         classifier: HierarchicalClassifier,
         val_cache_data: Dict[str, Union[np.ndarray, dict]],
         target_tpr: float = 0.95,
+        field_only: bool = True,
     ) -> HierarchicalClassifier:
         """
         Calibrate crop head, disease heads, and energy threshold using validation data.
-        Prefers field validation samples (is_lab == False) when available.
+        When field_only=True, calibration is strictly fitted on field images (is_lab == False),
+        preventing artificially narrow temperatures fitted on pristine lab backgrounds.
         """
         classifier.eval()
         device = next(classifier.parameters()).device
@@ -124,18 +126,32 @@ class SystemCalibrator:
         disease_labels = val_cache_data["disease_labels"]
         is_lab = val_cache_data.get("is_lab", np.zeros(len(feats), dtype=bool))
 
-        # 1. Prioritize field samples if sufficient
+        # 1. Select calibration split (strictly field-only if requested)
         field_mask = (~is_lab)
-        if field_mask.sum() >= 20:
-            eval_feats = feats[field_mask]
-            eval_crop_labels = crop_labels[field_mask]
-            eval_disease_labels = disease_labels[field_mask]
+        if field_only:
+            if field_mask.sum() >= 10:
+                logger.info(
+                    f"[CALIBRATION] Calibrating strictly on field-only validation split "
+                    f"(N={field_mask.sum()} field samples, 0 lab samples excluded)."
+                )
+                eval_feats = feats[field_mask]
+                eval_crop_labels = crop_labels[field_mask]
+                eval_disease_labels = disease_labels[field_mask]
+            else:
+                logger.warning(
+                    f"[CALIBRATION] Insufficient field samples in validation split ({field_mask.sum()}); "
+                    "falling back to mixed validation split."
+                )
+                eval_feats = feats
+                eval_crop_labels = crop_labels
+                eval_disease_labels = disease_labels
         else:
+            logger.info(f"[CALIBRATION] Calibrating on full mixed validation split (N={len(feats)}).")
             eval_feats = feats
             eval_crop_labels = crop_labels
             eval_disease_labels = disease_labels
 
-        # 2. Calibrate Crop Head Temperature
+        # 2. Calibrate Crop Head Temperature on field split
         with torch.no_grad():
             x_t = torch.from_numpy(eval_feats).float().to(device)
             raw_crop_logits = classifier.crop_head.net(x_t).cpu().numpy()
@@ -145,7 +161,7 @@ class SystemCalibrator:
         )
         classifier.crop_head.temperature.data.fill_(best_t_crop)
 
-        # 3. Calibrate Energy Threshold on Crop Head
+        # 3. Calibrate Energy Reject Threshold on field split at target TPR (e.g. 95%)
         with torch.no_grad():
             crop_logits_scaled = classifier.crop_head(x_t)
             energies = classifier.crop_head.compute_energy(crop_logits_scaled).cpu().numpy()
@@ -153,11 +169,10 @@ class SystemCalibrator:
         energy_thresh = EnergyOODCalibrator.fit_threshold_at_tpr(energies, target_tpr=target_tpr)
         classifier.energy_threshold = energy_thresh
 
-        # 4. Calibrate Per-Crop Disease Heads
+        # 4. Calibrate Per-Crop Disease Heads on field split
         crop_to_idx = val_cache_data["crop_to_idx"]
         disease_to_idx = val_cache_data["disease_to_idx"]
         crop_disease_map = val_cache_data["crop_disease_map"]
-        disease_labels = val_cache_data["disease_labels"]
 
         for crop_name, head in classifier.disease_heads.items():
             if crop_name not in crop_to_idx:
@@ -165,7 +180,7 @@ class SystemCalibrator:
             c_idx = crop_to_idx[crop_name]
             mask = (eval_crop_labels == c_idx)
             sub_feats = eval_feats[mask]
-            if len(sub_feats) < 10 or head.num_diseases <= 1:
+            if len(sub_feats) < 5 or head.num_diseases <= 1:
                 continue
 
             crop_diseases = crop_disease_map.get(crop_name, [])
@@ -184,5 +199,15 @@ class SystemCalibrator:
 
             best_t_dis, _, _ = TemperatureCalibrator.fit_temperature(raw_dis_logits, sub_dis_local)
             head.temperature.data.fill_(best_t_dis)
+
+        classifier.calibration_metadata = {
+            "field_only": field_only,
+            "calibrated_samples": len(eval_feats),
+            "target_tpr": target_tpr,
+            "energy_threshold": energy_thresh,
+            "crop_temperature": best_t_crop,
+            "crop_ece_before": ece_b,
+            "crop_ece_after": ece_a,
+        }
 
         return classifier
