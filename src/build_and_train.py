@@ -297,6 +297,7 @@ class PipelineBuilder:
         self,
         classifier: HierarchicalClassifier,
         test_cache_path: Union[str, Path],
+        train_cache_path: Optional[Union[str, Path]] = None,
         run_lodo: bool = True,
     ) -> Dict[str, Any]:
         """Evaluate trained hierarchical classifier on test cache features + optional LODO."""
@@ -318,11 +319,13 @@ class PipelineBuilder:
         }
 
         # Optional Leave-One-Dataset-Out (LODO) cross-domain check
+        # Run on the train cache (larger, all sources) so each LODO fold has enough samples.
         if run_lodo:
             try:
                 from eval.leave_one_dataset_out import LODOEvaluator
+                lodo_data = self.cache_engine.load_cache(train_cache_path) if train_cache_path else test_data
                 lodo = LODOEvaluator(trainer=self.trainer)
-                lodo_res = lodo.run_lodo(test_data, min_samples_per_source=10, out_report_path=None)
+                lodo_res = lodo.run_lodo(lodo_data, min_samples_per_source=10, out_report_path=None)
                 out_summary["lodo_evaluation"] = {
                     src: rep.to_dict() for src, rep in lodo_res.items()
                 }
@@ -394,7 +397,7 @@ def main():
     )
 
     logger.info("Step 4: Evaluating on held-out test split...")
-    builder.evaluate(classifier, test_cache)
+    builder.evaluate(classifier, test_cache, train_cache_path=train_cache)
 
     logger.info(f"Complete! Deployable model saved to: {args.output_dir}")
 

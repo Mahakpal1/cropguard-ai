@@ -70,6 +70,14 @@ class LODOEvaluator:
 
             # Train heads on all other sources
             classifier: HierarchicalClassifier = self.trainer.train_hierarchical_system(train_cache)
+            # Disable energy-based OOD rejection for LODO folds — the LODO classifier
+            # has not been calibrated on a validation set, so using the default tight
+            # threshold would reject all out-of-distribution samples unfairly.
+            # Setting energy threshold to +inf and crop threshold to 0.0 means no sample
+            # is rejected due to OOD calibration, giving honest cross-domain
+            # generalization accuracy numbers on the held-out dataset.
+            classifier.energy_threshold = float("inf")
+            classifier.crop_threshold = 0.0
 
             # Evaluate on held-out source
             test_feats = cache_data["features"][test_mask]
