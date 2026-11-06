@@ -1,5 +1,5 @@
 {
-  "name": "cropguard_dinov2_vitl14_hierarchical",
+  "name": "My Custom Model: DINOv2 ViT-L/14 Hierarchical",
   "model_type": "dinov2_hierarchical",
   "backbone": "dinov2_vitl14",
   "checkpoint": "hierarchical_heads.pt",
@@ -232,5 +232,8 @@
     "Mango___Healthy",
     "Mango___Powdery_Mildew",
     "Mango___Sooty_Mould"
-  ]
+  ],
+  "display_name": "\u2b50 My Model: DINOv2 ViT-L/14 (Hierarchical 518px)",
+  "is_user_model": true,
+  "tag": "MY MODEL"
 }

@@ -1,5 +1,5 @@
 {
-  "name": "efficientnetv2s-plantvillage38 (community)",
+  "name": "[Community] EfficientNet-V2-S",
   "onnx": "efficientnet_v2_s_best.onnx",
   "classes_file": "class_names.json",
   "soft_fallback": true,
@@ -55,5 +55,8 @@
     0.225
   ],
   "temperature": 1.0,
-  "confidence_threshold": 0.6
+  "confidence_threshold": 0.6,
+  "display_name": "[Community] EfficientNet-V2-S",
+  "is_user_model": false,
+  "tag": "COMMUNITY"
 }

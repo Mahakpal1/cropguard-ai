@@ -389,13 +389,13 @@ apiHealth();
 
 /* ── Model catalogue & live switcher ─────────────────────────────────────── */
 const ALL_MODELS = [
-  { id: 'dinov2_hierarchical',  label: 'DINOv2 Hierarchical (Research)' },
-  { id: 'cropguard38_384',      label: 'ViT-384 Focal (Best ONNX)' },
-  { id: 'cropguard38_combined', label: 'Combined 224px (Fast)' },
-  { id: 'cropguard38_vit',      label: 'Base ViT 224px' },
-  { id: 'cropguard38',          label: 'MobileNet/ResNet' },
-  { id: 'cropguard38_recovered',label: 'Recovered ViT' },
-  { id: 'community',            label: 'Community Pretrained' },
+  { id: 'dinov2_hierarchical',  label: '⭐ My Model: DINOv2 ViT-L/14 (Hierarchical 518px)', is_mine: true },
+  { id: 'cropguard38_384',      label: '[Baseline] ViT-384 Focal (Pretrained)', is_mine: false },
+  { id: 'cropguard38_combined', label: '[Baseline] ViT-224 Combined (Fast)', is_mine: false },
+  { id: 'cropguard38_vit',      label: '[Baseline] ViT-Base 224px (Field Adapted)', is_mine: false },
+  { id: 'cropguard38',          label: '[Baseline] ConvNeXt-Tiny (Pretrained)', is_mine: false },
+  { id: 'cropguard38_recovered',label: '[Baseline] Recovered ViT', is_mine: false },
+  { id: 'community',            label: '[Community] EfficientNet-V2-S (PlantVillage)', is_mine: false },
 ];
 
 async function loadModelList() {
@@ -403,7 +403,7 @@ async function loadModelList() {
   const dot = $('modelDot');
   if (!sel) return;
 
-  let activeModel = sel.value || 'cropguard38_384';
+  let activeModel = sel.value || 'dinov2_hierarchical';
   let availableList = ALL_MODELS.map(m => m.id);
 
   if (location.protocol !== 'file:' || new URLSearchParams(location.search).get('api') || window.CROPGUARD_API) {
@@ -426,7 +426,9 @@ async function loadModelList() {
         const chip = $('demoChip');
         if (chip && j.active_info) {
           const m = j.active_info;
-          chip.innerHTML = `<i style="color:#22c55e">●</i> ${m.name}`;
+          const isMine = m.name && (m.name.includes('My Custom') || m.name.includes('dinov2'));
+          chip.innerHTML = `<i style="color:${isMine ? '#22c55e' : '#f59e0b'}">●</i> ${m.name}`;
+          chip.title = isMine ? 'Running your custom-trained DINOv2 model' : 'Running baseline benchmark model';
         }
       }
     } catch (err) {
@@ -438,7 +440,7 @@ async function loadModelList() {
     const known = ALL_MODELS.find(m => m.id === name);
     const label = known ? known.label : name;
     const active = name === activeModel;
-    return `<option value="${name}"${active ? ' selected' : ''}>${label}${active ? ' ✓' : ''}</option>`;
+    return `<option value="${name}"${active ? ' selected' : ''}>${label}${active ? ' ✓ (Active)' : ''}</option>`;
   }).join('');
   sel.value = activeModel;
 

@@ -1,5 +1,5 @@
 {
-  "name": "cropguard-vit-384-focal",
+  "name": "[Baseline] ViT-384 Focal",
   "onnx": "model.onnx",
   "labels": [
     "Apple___Apple_scab",
@@ -65,5 +65,8 @@
   "field_test_accuracy": 0.7924,
   "soft_fallback": true,
   "fallback_on_crop_rejection": true,
-  "crop_fusion_weight": 0.15
+  "crop_fusion_weight": 0.15,
+  "display_name": "[Baseline] ViT-384 Focal",
+  "is_user_model": false,
+  "tag": "BASELINE"
 }

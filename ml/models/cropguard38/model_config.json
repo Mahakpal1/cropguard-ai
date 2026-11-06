@@ -1,5 +1,5 @@
 {
-  "name": "cropguard-convnext_tiny-38class",
+  "name": "[Baseline] ConvNeXt-Tiny",
   "onnx": "model.onnx",
   "labels": [
     "Apple___Apple_scab",
@@ -61,5 +61,8 @@
     "Blueberry",
     "Raspberry",
     "Soybean"
-  ]
+  ],
+  "display_name": "[Baseline] ConvNeXt-Tiny",
+  "is_user_model": false,
+  "tag": "BASELINE"
 }

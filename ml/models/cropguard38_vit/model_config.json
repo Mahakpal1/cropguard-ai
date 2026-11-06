@@ -1,5 +1,5 @@
 {
-  "name": "cropguard-vit-base-field-adapted",
+  "name": "[Baseline] ViT-Base Field-Adapted",
   "onnx": "model.onnx",
   "labels": [
     "Apple___Apple_scab",
@@ -62,5 +62,8 @@
     "Raspberry",
     "Soybean"
   ],
-  "field_test_accuracy": 0.6525
+  "field_test_accuracy": 0.6525,
+  "display_name": "[Baseline] ViT-Base Field-Adapted",
+  "is_user_model": false,
+  "tag": "BASELINE"
 }

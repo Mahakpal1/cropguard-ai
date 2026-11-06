@@ -1,5 +1,5 @@
 {
-  "name": "cropguard-vit-combined",
+  "name": "[Baseline] ViT-224 Combined",
   "onnx": "model.onnx",
   "labels": [
     "Apple___Apple_scab",
@@ -62,5 +62,8 @@
     "Raspberry",
     "Soybean"
   ],
-  "field_test_accuracy": 0.7458
+  "field_test_accuracy": 0.7458,
+  "display_name": "[Baseline] ViT-224 Combined",
+  "is_user_model": false,
+  "tag": "BASELINE"
 }

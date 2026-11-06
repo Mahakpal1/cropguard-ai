@@ -124,10 +124,38 @@ def create_app(settings=None):
         available = _list_models(s)
         active = _active_model(s)
         pipe = app.state.pipe
+        md = _models_dir(s)
+
+        models_meta = []
+        for m in available:
+            m_cfg_path = md / m / "model_config.json"
+            display_name = m
+            tag = "BASELINE"
+            is_mine = False
+            if m == "dinov2_hierarchical":
+                display_name = "⭐ My Model: DINOv2 ViT-L/14 (Hierarchical 518px)"
+                tag = "MY MODEL"
+                is_mine = True
+            elif m_cfg_path.exists():
+                try:
+                    c = json.loads(m_cfg_path.read_text(encoding="utf-8"))
+                    display_name = c.get("display_name") or c.get("name", m)
+                    tag = c.get("tag", "BASELINE")
+                    is_mine = bool(c.get("is_user_model", False))
+                except Exception:
+                    pass
+            models_meta.append({
+                "id": m,
+                "label": display_name,
+                "tag": tag,
+                "is_mine": is_mine,
+            })
+
         return {
             "available": available,
             "active": active,
             "active_info": pipe.info(),
+            "models": models_meta,
         }
 
     @app.post("/api/v1/models/switch", tags=["system"])

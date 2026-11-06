@@ -282,7 +282,10 @@ class PipelineBuilder:
 
         # Export model_config.json
         cfg = {
-            "name": f"cropguard_{self.model_name}_hierarchical",
+            "name": "My Custom Model: DINOv2 ViT-L/14 Hierarchical",
+            "display_name": "⭐ My Model: DINOv2 ViT-L/14 (Hierarchical 518px)",
+            "is_user_model": True,
+            "tag": "MY MODEL",
             "model_type": "dinov2_hierarchical",
             "backbone": self.model_name,
             "checkpoint": "hierarchical_heads.pt",
