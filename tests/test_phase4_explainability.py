@@ -133,3 +133,77 @@ def test_end_to_end_inference_engine():
     blank_diag = engine.diagnose(blank, explain=False)
     assert blank_diag.status == "REJECTED"
     assert blank_diag.is_supported is False
+
+
+# ── 5. Layer 5 Multi-Resolution and Rollout Tests ────────────────────────────
+
+def test_vit_reshape_transform_dynamic_resolutions():
+    """Verify vit_reshape_transform dynamically reshapes 224px (16x16) and 518px (37x37)."""
+    batch = 2
+    dim = 1024
+
+    # 1. 224px input: 1 [CLS] + 256 tokens = 257 tokens -> 16x16
+    tokens_224 = torch.randn(batch, 257, dim)
+    map_224 = vit_reshape_transform(tokens_224)
+    assert map_224.shape == (batch, dim, 16, 16)
+
+    # 2. 518px input: 1 [CLS] + 1369 tokens = 1370 tokens -> 37x37
+    tokens_518 = torch.randn(batch, 1370, dim)
+    map_518 = vit_reshape_transform(tokens_518)
+    assert map_518.shape == (batch, dim, 37, 37)
+
+    # 3. 560px input: 1 [CLS] + 1600 tokens = 1601 tokens -> 40x40
+    tokens_560 = torch.randn(batch, 1601, dim)
+    map_560 = vit_reshape_transform(tokens_560)
+    assert map_560.shape == (batch, dim, 40, 40)
+
+
+def test_attention_rollout_synthesis():
+    """Verify ViTAttentionRollout produces normalized 2D attention maps."""
+    from src.gradcam import ViTAttentionRollout
+
+    class MockAttnBlock(nn.Module):
+        def forward(self, x, output_attentions=False):
+            # Mock self-attention tensor: (B, H, N, N)
+            b = x.size(0)
+            n = 257
+            # Attention concentrated in center tokens
+            attn = torch.softmax(torch.randn(b, 4, n, n), dim=-1)
+            if output_attentions:
+                from dataclasses import dataclass
+                @dataclass
+                class Out:
+                    attentions = [attn, attn]
+                return Out()
+            return x
+
+    model = MockAttnBlock()
+    rollout = ViTAttentionRollout(model, device="cpu")
+    dummy_x = torch.randn(1, 3, 224, 224)
+
+    rollout_map = rollout.compute_rollout(dummy_x, target_size=(224, 224))
+    assert rollout_map.shape == (224, 224)
+    assert 0.0 <= rollout_map.min() <= rollout_map.max() <= 1.0
+
+
+def test_physiological_grounding_flags_unreliable():
+    """Verify that predictions with attention drifted onto background are flagged as unreliable."""
+    verifier = LeafOverlapVerifier(grounding_threshold=0.60)
+    h, w = 120, 120
+
+    # Leaf in the center third
+    leaf_mask = np.zeros((h, w), dtype=np.uint8)
+    leaf_mask[40:80, 40:80] = 255
+
+    # Simulated drifted heatmap: 95% heat in the corners (soil / table background)
+    drifted_heatmap = np.zeros((h, w), dtype=np.float32)
+    drifted_heatmap[0:20, 0:20] = 5.0
+    drifted_heatmap[100:120, 100:120] = 5.0
+    drifted_heatmap[55:65, 55:65] = 0.5
+
+    score, is_grounded, note = verifier.evaluate(drifted_heatmap, leaf_mask)
+    assert is_grounded is False
+    assert score < 0.20
+    assert "Unreliable" in note
+    assert "arXiv:2609.20290" in note
+

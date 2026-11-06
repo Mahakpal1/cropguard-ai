@@ -52,23 +52,24 @@ def lesion_proxy_png(lesion, size=224):
     return {"method": "lesion-proxy (simulated)", "png_base64": _colorize(a)}
 
 
-def dinov2_gradcam_png(pil_image, leaf_mask=None, target_class_idx=0):
-    """Phase 6: Generate a full-colour Grad-CAM++ overlay using the frozen DINOv2 backbone.
+def dinov2_gradcam_png(pil_image, leaf_mask=None, target_class_idx=0, dinov2_engine=None):
+    """Phase 6: Generate a full-colour Grad-CAM++ overlay and Attention Rollout using DINOv2.
 
     Imports from ``src.gradcam`` lazily so the backend does not fail when PyTorch is absent
     (e.g. in a lightweight production container). Falls back to ``lesion_proxy_png`` on any error.
 
     Parameters
     ----------
-    pil_image : PIL.Image  — the leaf photo (any size; will be resized to 224 internally)
+    pil_image : PIL.Image  — the leaf photo (any size)
     leaf_mask  : np.ndarray | None — boolean/float 2-D mask from the severity estimator
     target_class_idx : int — class index to explain (default 0, i.e. the top predicted class)
+    dinov2_engine : CropGuardInferenceEngine | None — active engine to reuse loaded backbone
 
     Returns
     -------
-    dict with keys ``method`` (str) and ``png_base64`` (str, no data-URI prefix),
-    plus optional keys ``leaf_overlap_score`` (float), ``is_grounded`` (bool),
-    ``explainability_note`` (str).
+    dict with keys ``method`` (str), ``png_base64`` (str, no data-URI prefix),
+    ``rollout_png_base64`` (optional str), ``leaf_overlap_score`` (float),
+    ``is_grounded`` (bool), ``is_reliable`` (bool), ``explainability_note`` (str).
     """
     try:
         import sys
@@ -80,17 +81,22 @@ def dinov2_gradcam_png(pil_image, leaf_mask=None, target_class_idx=0):
 
         from src.gradcam import DINOv2GradCAM, LeafOverlapVerifier  # noqa: PLC0415
         import torch  # noqa: PLC0415
-
-        # Build a minimal model wrapper: frozen DINOv2 + a 1-layer linear crop head
-        # (used only for visualisation — the actual classification is already done by pipeline.py)
         import torch.nn as nn  # noqa: PLC0415
 
-        backbone = torch.hub.load("facebookresearch/dinov2", "dinov2_vits14", trust_repo=True)
-        backbone.eval()
-        feat_dim = 384  # ViT-S/14
+        if dinov2_engine is not None and hasattr(dinov2_engine, "extractor"):
+            backbone = dinov2_engine.extractor.model
+            device = dinov2_engine.device
+            feat_dim = dinov2_engine.extractor.dino_dim
+            gcam = dinov2_engine.gradcam_engine
+        else:
+            backbone = torch.hub.load("facebookresearch/dinov2", "dinov2_vits14", trust_repo=True)
+            backbone.eval()
+            device = "cpu"
+            feat_dim = 384
+            gcam = DINOv2GradCAM(backbone, device="cpu")
 
-        # Thin linear probe head (no trained weights needed for Grad-CAM attention)
-        head = nn.Linear(feat_dim, max(target_class_idx + 1, 2), bias=False)
+        # Thin probe head if not passing full classifier head
+        head = nn.Linear(feat_dim, max(target_class_idx + 1, 2), bias=False).to(device)
         head.eval()
 
         # Build mask if none supplied
@@ -101,16 +107,15 @@ def dinov2_gradcam_png(pil_image, leaf_mask=None, target_class_idx=0):
             if mask_np.max() <= 1:
                 mask_np = (mask_np * 255).astype(np.uint8)
 
-        gcam = DINOv2GradCAM(backbone, device="cpu")
-
         # Preprocess
         from torchvision import transforms  # noqa: PLC0415
+        img_size = getattr(dinov2_engine.extractor, "img_size", 224) if dinov2_engine else 224
         tf = transforms.Compose([
-            transforms.Resize((224, 224)),
+            transforms.Resize((img_size, img_size)),
             transforms.ToTensor(),
             transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225]),
         ])
-        tensor = tf(pil_image.convert("RGB")).unsqueeze(0)
+        tensor = tf(pil_image.convert("RGB")).unsqueeze(0).to(device)
 
         result = gcam.generate_cam(
             head=head,
@@ -118,17 +123,27 @@ def dinov2_gradcam_png(pil_image, leaf_mask=None, target_class_idx=0):
             raw_rgb=pil_image,
             leaf_mask=mask_np,
             target_class_idx=target_class_idx,
+            compute_rollout=True,
         )
 
         grounding = {
             "leaf_overlap_score": round(float(result.leaf_overlap_score), 4),
             "is_grounded": bool(result.is_grounded),
+            "is_reliable": bool(result.is_reliable),
             "explainability_note": result.status_note,
         }
 
         png_bytes = DINOv2GradCAM.overlay_to_png_bytes(result.overlay_rgb)
         png_b64 = base64.b64encode(png_bytes).decode()
-        return {"method": "dinov2-gradcam++", "png_base64": png_b64, **grounding}
+        out = {"method": "dinov2-gradcam++", "png_base64": png_b64, **grounding}
+
+        if result.rollout_overlay_rgb is not None:
+            rollout_bytes = DINOv2GradCAM.overlay_to_png_bytes(result.rollout_overlay_rgb)
+            out["rollout_png_base64"] = base64.b64encode(rollout_bytes).decode()
+            if result.rollout_overlap_score is not None:
+                out["rollout_overlap_score"] = round(float(result.rollout_overlap_score), 4)
+
+        return out
 
     except Exception as exc:  # noqa: BLE001
         # Graceful fallback — lesion_proxy_png requires a mask array

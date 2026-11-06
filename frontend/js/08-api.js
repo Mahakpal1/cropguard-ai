@@ -201,7 +201,12 @@ async function apiPredict() {
         $('fbDone').hidden = true;
       }
     } else if (apiRes) {
-      $('gate').textContent = { low_confidence: 'result not reliable enough: below the confidence or margin gate', unsupported_crop: 'crop not recognised or not supported', no_leaf: 'no clear leaf found' }[apiRes.status];
+      $('gate').textContent = {
+        low_confidence: 'result not reliable enough: below the confidence or margin gate',
+        unsupported_crop: 'crop not recognised or not supported',
+        no_leaf: 'no clear leaf found',
+        unreliable_drift: 'attention drifted off leaf onto background (unreliable diagnosis - retake photo closer to leaf)',
+      }[apiRes.status] || 'prediction uncertain';
       if (tb) tb.hidden = true;
       if (cp && apiRes.crop_id) {
         cp.hidden = false;

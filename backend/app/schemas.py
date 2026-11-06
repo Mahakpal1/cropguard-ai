@@ -88,6 +88,7 @@ class PredictResponse(BaseModel):
     # Phase 6: DINOv2 separated confidence + leaf-overlap grounding fields
     crop_confidence: Optional[float] = None
     disease_confidence: Optional[float] = None
+    is_reliable: Optional[bool] = True
     leaf_overlap_score: Optional[float] = None
     is_grounded: Optional[bool] = None
     explainability_note: Optional[str] = None

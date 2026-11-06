@@ -116,6 +116,7 @@ class Pipeline:
                 "scores": {"max_prob": 0.0, "margin": 0.0, "energy": None}, "crop_id": None, "advice_tier": "none",
                 # Phase 6: DINOv2 separated confidence + leaf-overlap grounding
                 "crop_confidence": None, "disease_confidence": None,
+                "is_reliable": True,
                 "leaf_overlap_score": None, "is_grounded": None,
                 "explainability_note": None,
                 "top2_crop": None, "top2_disease": None, "top2_confidence": None,
@@ -218,13 +219,29 @@ class Pipeline:
             else:
                 # Phase 6: prefer DINOv2 Grad-CAM++ over occlusion sensitivity
                 try:
-                    gcam_out = dinov2_gradcam_png(img, leaf_mask=leaf,
-                                                   target_class_idx=r["target_index"])
+                    engine = getattr(self.clf, "dinov2_engine", None)
+                    gcam_out = dinov2_gradcam_png(
+                        img,
+                        leaf_mask=leaf,
+                        target_class_idx=r["target_index"],
+                        dinov2_engine=engine,
+                    )
                     # Extract grounding metadata from result (if present)
                     base["leaf_overlap_score"] = gcam_out.pop("leaf_overlap_score", None)
                     base["is_grounded"] = gcam_out.pop("is_grounded", None)
+                    base["is_reliable"] = gcam_out.pop("is_reliable", True)
                     base["explainability_note"] = gcam_out.pop("explainability_note", None)
                     base["heatmap"] = gcam_out
+
+                    # Physiological grounding quality check (PlantVillage-to-PlantDoc collapse prevention)
+                    if base["is_grounded"] is False:
+                        base["is_reliable"] = False
+                        if base["status"] == "ok":
+                            base["status"] = "unreliable_drift"
+                        base["advice"] = (
+                            "⚠️ Warning: Model attention has drifted off the leaf onto background context. "
+                            "This diagnosis is ungrounded and unreliable. Please retake the photo closely centered on the affected leaf."
+                        )
                 except Exception:
                     # Fall back to occlusion sensitivity if Grad-CAM++ fails
                     base["heatmap"] = occlusion_png(self.clf, x, r["target_index"], self.s.occlusion_grid)

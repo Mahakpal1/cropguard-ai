@@ -37,10 +37,12 @@ class EndToEndDiagnosis:
     status: str                        # 'CONFIDENT', 'UNCERTAIN_CROP', 'UNGROUNDED_ATTENTION', 'REJECTED'
     is_supported: bool
     energy_score: float
+    is_reliable: bool = True           # False if leaf-overlap quality check fails (background drift)
     leaf_overlap_score: Optional[float] = None
     is_grounded: Optional[bool] = None
     explainability_note: Optional[str] = None
     heatmap_data_uri: Optional[str] = None
+    rollout_data_uri: Optional[str] = None
     top2_crop: Optional[str] = None
     top2_disease: Optional[str] = None
     top2_confidence: Optional[float] = None
@@ -179,10 +181,21 @@ class CropGuardInferenceEngine:
             is_grounded = cam_res.is_grounded
             note = cam_res.status_note
             heatmap_uri = DINOv2GradCAM.overlay_to_base64_data_uri(cam_res.overlay_rgb)
+            rollout_uri = (
+                DINOv2GradCAM.overlay_to_base64_data_uri(cam_res.rollout_overlay_rgb)
+                if cam_res.rollout_overlay_rgb is not None
+                else None
+            )
 
-            # If attention is not grounded on the leaf, downgrade status
+            # If attention is not grounded on the leaf, flag prediction as unreliable
             if not is_grounded:
                 status = "UNGROUNDED_ATTENTION"
+                is_reliable = False
+            else:
+                is_reliable = True
+        else:
+            is_reliable = True
+            rollout_uri = None
 
         return EndToEndDiagnosis(
             crop=pred.crop,
@@ -194,10 +207,12 @@ class CropGuardInferenceEngine:
             status=status,
             is_supported=True,
             energy_score=pred.energy_score,
+            is_reliable=is_reliable,
             leaf_overlap_score=overlap_score,
             is_grounded=is_grounded,
             explainability_note=note,
             heatmap_data_uri=heatmap_uri,
+            rollout_data_uri=rollout_uri,
             top2_crop=pred.top2_crop,
             top2_disease=pred.top2_disease,
             top2_confidence=pred.top2_confidence,
