@@ -1,0 +1,64 @@
+{
+  "id": "Rice___Healthy",
+  "crop": {
+    "en": "Rice",
+    "hi": "धान"
+  },
+  "disease": {
+    "en": "Healthy",
+    "hi": "स्वस्थ"
+  },
+  "scientific_name": "Oryza sativa",
+  "type": "healthy",
+  "healthy": true,
+  "symptoms": {
+    "en": [
+      "Lush green erect leaves with uniform coloration and spotless leaf sheaths",
+      "Robust tillering with strong crowns and healthy white root development",
+      "Vigorous panicle emergence free of discoloured florets or early lodging"
+    ],
+    "hi": [
+      "हरी-भरी और तनावरहित सीधी पत्तियां जिन पर किसी प्रकार के धब्बे नहीं हैं",
+      "मजबूत कल्लों का विकास और स्वस्थ सफेद जड़ों का फैलाव",
+      "स्वस्थ बालियों का निकलना और समान रूप से दानों का भराव"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Maintain recommended alternating wetting and drying water regime according to crop growth stage",
+      "Inspect leaf sheaths weekly during early tillering and panicle initiation for early pest signs",
+      "Provide split top-dressing of nitrogen and potassium based on leaf colour chart recommendations"
+    ],
+    "hi": [
+      "फसल की वृद्धि के अनुसार खेत में पानी का उचित प्रबंधन बनाए रखें",
+      "समय-समय पर फसल का निरीक्षण करें ताकि कीट या रोग की तुरंत पहचान हो सके",
+      "पत्ती रंग चार्ट (एलसीसी) के अनुसार उर्वरकों की संतुलित खुराक दें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Continue standard integrated nutrient and water management practices",
+      "Preserve natural beneficial predators like dragonflies and spiders in the paddy ecosystem",
+      "Maintain field bunds clean and clear of invasive weed hosts"
+    ],
+    "hi": [
+      "संतुलित पोषण और सिंचाई के उन्नत तरीके जारी रखें",
+      "मित्र कीटों जैसे मकड़ियों और ड्रैगनफ्लाई का संरक्षण करें",
+      "खेत की मेड़ों को खरपतवार मुक्त रखें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-NRRI Paddy Management",
+      "url": "https://crri.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Healthy paddy baseline"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "id": "Wheat___Brown_Rust",
+  "crop": {
+    "en": "Wheat",
+    "hi": "गेहूं"
+  },
+  "disease": {
+    "en": "Brown Rust",
+    "hi": "भूरा रतुआ (लीफ रस्ट)"
+  },
+  "scientific_name": "Puccinia triticina",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Small round to oval orange-brown powdery pustules scattered randomly across upper leaf surfaces",
+      "Unlike yellow rust, pustules do not form stripes but appear as isolated dots across the blade",
+      "Pustules turn dark brown to black towards maturity as teliospores form underneath epidermis"
+    ],
+    "hi": [
+      "पत्तियों की ऊपरी सतह पर गोल से अंडाकार नारंगी-भूरे रंग के फफोले बिखरे हुए दिखते हैं",
+      "पीले रतुआ की तरह धारियां नहीं बनतीं बल्कि धब्बे अलग-अलग बिखरे रहते हैं",
+      "मौसम गर्म होने पर फफोले काले-भूरे रंग में बदल जाते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Inspect the flag leaf and top two canopy leaves when spring temperatures begin rising",
+      "If brown pustules appear on flag leaves, apply an approved protective fungicide strictly adhering to product label",
+      "Avoid unnecessary waterlogging in irrigation furrows"
+    ],
+    "hi": [
+      "तापमान बढ़ने पर झंडा पत्ती (फ्लैग लीफ) और ऊपरी पत्तियों की नियमित जांच करें",
+      "फ्लैग लीफ पर धब्बे दिखते ही उत्पाद लेबल के अनुसार अनुशंसित फफूंदनाशक का छिड़काव करें",
+      "खेत में पानी का भराव न होने दें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Plant certified resistant wheat cultivars proven against prevailing pathotypes",
+      "Complete timely sowing within the recommended November planting window",
+      "Follow balanced integrated nutrient management combining zinc with recommended fertilizer doses"
+    ],
+    "hi": [
+      "प्रमाणित रोग रोधी किस्मों की ही बुवाई करें",
+      "नवंबर के महीने में समय पर बुवाई संपन्न करें",
+      "संतुलित खाद और जिंक का उचित प्रयोग करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-IIWBR Karnal",
+      "url": "https://iiwbr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified wheat brown rust protocol"
+  }
+}

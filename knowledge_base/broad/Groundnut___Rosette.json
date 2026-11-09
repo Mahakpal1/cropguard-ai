@@ -1,0 +1,64 @@
+{
+  "id": "Groundnut___Rosette",
+  "crop": {
+    "en": "Groundnut",
+    "hi": "मूंगफली"
+  },
+  "disease": {
+    "en": "Rosette Disease",
+    "hi": "रोज़ेट (गुच्छा) रोग"
+  },
+  "scientific_name": "Groundnut rosette virus",
+  "type": "viral",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Extreme stunting with severely shortened internodes producing a dense rosette cushion of foliage",
+      "Leaves show chlorotic yellowing, mottling, or dark green mosaic curling",
+      "Plants fail to flower or produce small, distorted pods resulting in near total yield loss"
+    ],
+    "hi": [
+      "पौधे अत्यधिक बौने रह जाते हैं और पत्तियां एक जगह गुच्छे की तरह सिमट जाती हैं",
+      "पत्तियों का रंग पीला पड़ जाता है या वे मुड़कर विकृत हो जाती हैं",
+      "पौधों में फूल नहीं आते और फलियां नहीं बनतीं जिससे भारी नुकसान होता है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Uproot and destroy stunted rosette-affected plants early before aphid vector colonisation",
+      "Spray an approved aphicide strictly adhering to product label directions to suppress vector insects",
+      "Ensure dense plant population to minimize bare ground patches that attract aphids"
+    ],
+    "hi": [
+      "संक्रमित गुच्छेदार पौधों को तुरंत उखाड़कर नष्ट करें",
+      "माहू (एफिड) कीट के नियंत्रण हेतु उत्पाद लेबल के अनुसार कीटनाशक का छिड़काव करें",
+      "पौधों की उचित संख्या बनाए रखें ताकि खाली जमीन न दिखे जो कीटों को आकर्षित करती है"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Plant certified rosette-resistant seed varieties recommended for your region",
+      "Sow early with the onset of monsoon at optimum plant density to achieve rapid ground cover",
+      "Preserve natural aphid predators such as coccinellid beetles and hoverfly larvae"
+    ],
+    "hi": [
+      "रोग रोधी प्रमाणित किस्मों का ही उपयोग करें",
+      "मानसून आते ही समय पर घनी बुवाई करें ताकि जमीन जल्दी ढक जाए",
+      "माहू खाने वाले मित्र कीटों का संरक्षण करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICRISAT Groundnut Information Guide",
+      "url": "https://www.icrisat.org"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "ICRISAT groundnut rosette guide"
+  }
+}

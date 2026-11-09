@@ -1,0 +1,64 @@
+{
+  "id": "Rice___Brown_Spot",
+  "crop": {
+    "en": "Rice",
+    "hi": "धान"
+  },
+  "disease": {
+    "en": "Brown Spot",
+    "hi": "भूरा धब्बा रोग"
+  },
+  "scientific_name": "Bipolaris oryzae",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Small circular to oval dark brown spots scattered across leaves and glumes",
+      "Spots enlarge with a light brown centre and a prominent yellow halo around edges",
+      "Severe spotting leads to premature leaf drying and discoloured, shrivelled grain formation"
+    ],
+    "hi": [
+      "पत्तियों और बालियों पर छोटे गोल से अंडाकार गहरे भूरे धब्बे",
+      "धब्बों के बीच हल्का भूरा केंद्र और चारों ओर स्पष्ट पीला घेरा दिखाई देता है",
+      "पत्तियां समय से पहले सूख जाती हैं और दाने बदरंग व सिकुड़ जाते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Ensure balanced soil moisture and avoid chronic moisture stress in the root zone",
+      "Apply an approved protective fungicide strictly following product label and local officer instructions",
+      "Top-dress recommended potassium and zinc micronutrients to correct underlying soil deficiency"
+    ],
+    "hi": [
+      "खेत में नमी का उचित स्तर बनाए रखें और सूखे का तनाव न आने दें",
+      "उत्पाद लेबल के अनुसार अनुशंसित फफूंदनाशक का छिड़काव करें",
+      "पोटाश और जिंक जैसे पोषक तत्वों की कमी को दूर करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Conduct regular soil tests and provide balanced NPK along with required micronutrients",
+      "Sow certified disease-free paddy seeds obtained from reliable agricultural research centres",
+      "Follow field sanitation and deep summer ploughing to eradicate resting fungal resting structures"
+    ],
+    "hi": [
+      "नियमित मिट्टी परीक्षण कराएं और संतुलित खाद व सूक्ष्म पोषक तत्व दें",
+      "प्रमाणित रोगमुक्त बीजों का ही उपयोग करें",
+      "गर्मियों में गहरी जुताई करें ताकि फफूंद के अवशेष नष्ट हो जाएं"
+    ]
+  },
+  "sources": [
+    {
+      "name": "IRRI Rice Knowledge Bank",
+      "url": "http://www.knowledgebank.irri.org"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Reviewed by agricultural guidelines"
+  }
+}

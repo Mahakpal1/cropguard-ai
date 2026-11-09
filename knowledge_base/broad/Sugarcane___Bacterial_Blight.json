@@ -1,0 +1,64 @@
+{
+  "id": "Sugarcane___Bacterial_Blight",
+  "crop": {
+    "en": "Sugarcane",
+    "hi": "गन्ना"
+  },
+  "disease": {
+    "en": "Bacterial Blight",
+    "hi": "जीवाणु झुलसा"
+  },
+  "scientific_name": "Acidovorax avenae",
+  "type": "bacterial",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Narrow water-soaked red-brown stripes running parallel to leaf veins across the blade",
+      "Lesions coalesce to form extensive ragged necrotic areas that tear easily under wind",
+      "Terminal bud and spindle tissues may rot resulting in stunted growth and shoot decay"
+    ],
+    "hi": [
+      "पत्तियों की नसों के समानांतर लाल-भूरे रंग की लंबी धारियां बनती हैं",
+      "पत्तियां कट-फट जाती हैं और हवा चलने पर बिखरने लगती हैं",
+      "पौधे का ऊपरी सिरा (गोभ) सड़ने लगता है और बढ़वार रुक जाती है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Prune and destroy severely infected leaf spindles to arrest horizontal bacteria spread",
+      "Apply an approved copper bactericide formulation strictly according to product label recommendations",
+      "Avoid overhead sprinkler irrigation that splashes bacterial droplets onto healthy adjacent canopies"
+    ],
+    "hi": [
+      "संक्रमित पत्तियों को काटकर नष्ट करें ताकि जीवाणु आगे न बढ़ें",
+      "उत्पाद लेबल के निर्देशानुसार अनुशंसित कॉपर युक्त जीवाणुनाशक का छिड़काव करें",
+      "फव्वारा सिंचाई से बचें ताकि बूंदों से जीवाणु न फैलें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Use healthy disease-free seed setts from certified disease surveillance cane nurseries",
+      "Practice proper field drainage to avoid prolonged standing water following heavy monsoon rains",
+      "Disinfect cane cutting knives between stools using household antiseptic or flame"
+    ],
+    "hi": [
+      "प्रमाणित नर्सरी से रोगमुक्त सेट्स का उपयोग करें",
+      "खेत में जल निकासी की उचित व्यवस्था रखें ताकि बारिश का पानी न भरे",
+      "गन्ना काटने वाले औजारों को नियमित रूप से कीटाणुरहित करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-IISR Lucknow",
+      "url": "https://iisr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Sugarcane pathology guidelines"
+  }
+}

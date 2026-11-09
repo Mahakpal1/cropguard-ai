@@ -1,0 +1,64 @@
+{
+  "id": "Mango___Bacterial_Canker",
+  "crop": {
+    "en": "Mango",
+    "hi": "आम"
+  },
+  "disease": {
+    "en": "Bacterial Canker",
+    "hi": "जीवाणु कैंकर"
+  },
+  "scientific_name": "Xanthomonas campestris pv. mangiferaeindicae",
+  "type": "bacterial",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Water-soaked angular dark brown to black raised lesions on leaves surrounded by yellow halos",
+      "Cankerous cracked lesions on branches with dark gummy exudates running down the bark",
+      "Stelliform star-shaped deep cracks with gum oozing on green developing mango fruits"
+    ],
+    "hi": [
+      "पत्तियों पर काले-भूरे उभरे हुए कोणीय धब्बे जिनके चारों ओर पीला घेरा होता है",
+      "टहनियों पर दरारें और कत्थई रंग का गोंद जैसा रिसाव निकलता दिखाई देता है",
+      "फलों पर तारे के आकार की गहरी दरारें बनती हैं और चिपचिपा गोंद निकलता है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Prune infected twigs and cankered branches cleanly and seal cut ends with approved paste",
+      "Apply an approved copper bactericide formulation strictly following product label recommendations",
+      "Collect and burn all infected fallen leaves and dropped fruits from orchard floor"
+    ],
+    "hi": [
+      "संक्रमित टहनियों को काटकर हटा दें और कटे हुए भाग पर सुरक्षात्मक लेप लगाएं",
+      "उत्पाद लेबल के अनुसार अनुशंसित कॉपर युक्त जीवाणुनाशक का छिड़काव करें",
+      "जमीन पर गिरे रोगग्रस्त पत्तों और फलों को इकट्ठा करके नष्ट करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Establish tall windbreak trees around orchard borders to minimize wind-induced leaf abrasion wounds",
+      "Plant certified disease-free grafted saplings obtained from accredited horticultural nurseries",
+      "Disinfect pruning secateurs and saws between tree treatments using antiseptic solution"
+    ],
+    "hi": [
+      "बाग के चारों ओर वायुरोधी पेड़ लगाएं ताकि तेज हवा से पत्तियों पर चोट न लगे",
+      "प्रमाणित नर्सरी से रोगमुक्त कलमी पौधे ही लगाएं",
+      "छंटाई के औजारों को नियमित रूप से कीटाणुरहित रखें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-CISH Lucknow",
+      "url": "https://cish.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified mango bacterial canker protocol"
+  }
+}

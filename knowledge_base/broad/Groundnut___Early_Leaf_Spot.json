@@ -1,0 +1,64 @@
+{
+  "id": "Groundnut___Early_Leaf_Spot",
+  "crop": {
+    "en": "Groundnut",
+    "hi": "मूंगफली"
+  },
+  "disease": {
+    "en": "Early Leaf Spot (Tikka)",
+    "hi": "अगेती टिक्का रोग"
+  },
+  "scientific_name": "Cercospora arachidicola",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Circular reddish-brown to dark brown leaf spots appearing on the upper leaf surface early in the season",
+      "Characteristic bright yellow chlorotic halo prominent around every necrotic spot",
+      "Severe spotting induces premature leaf yellowing and heavy defoliation of lower canopy"
+    ],
+    "hi": [
+      "पत्तियों की ऊपरी सतह पर गोल लाल-भूरे से गहरे कत्थई रंग के धब्बे",
+      "धब्बों के चारों ओर स्पष्ट पीला घेरा (हेलो) दिखाई देता है",
+      "पत्तियां पीली पड़कर तेजी से गिरने लगती हैं जिससे पौधे गंजे दिखने लगते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Remove and bury heavily infected fallen leaves to restrict air-borne conidial dispersal",
+      "Apply an approved protective or systemic fungicide strictly according to product label recommendations",
+      "Ensure proper field drainage to avoid prolonged high humidity within the crop canopy"
+    ],
+    "hi": [
+      "रोगग्रस्त गिरी हुई पत्तियों को इकट्ठा करके मिट्टी में दबा दें",
+      "उत्पाद लेबल के निर्देशानुसार अनुशंसित फफूंदनाशक का छिड़काव करें",
+      "खेत में पानी का भराव न होने दें ताकि नमी नियंत्रित रहे"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Sow certified Tikka-tolerant groundnut varieties recommended by your regional research station",
+      "Treat seed kernels with approved biocontrol formulation or protectants prior to sowing",
+      "Rotate groundnut with non-host graminaceous crops such as pearl millet or sorghum"
+    ],
+    "hi": [
+      "टिक्का रोग रोधी प्रमाणित बीजों का ही चयन करें",
+      "बुवाई से पहले बीजों का उपयुक्त फफूंदनाशक से उपचार करें",
+      "बाजरा या ज्वार जैसी फसलों के साथ फसल चक्र अपनाएं"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-Directorate of Groundnut Research",
+      "url": "https://dgr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified ICAR-DGR groundnut protocol"
+  }
+}

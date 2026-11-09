@@ -1,122 +1,134 @@
 source,raw_folder_name,canonical_crop,canonical_disease,canonical_key,scientific_name,is_lab,license
-plantvillage,Apple___Apple_scab,Apple,Apple_Scab,Apple___Apple_Scab,Venturia inaequalis,true,CC-BY-4.0
-plantvillage,Apple___Black_rot,Apple,Black_Rot,Apple___Black_Rot,Botryosphaeria obtusa,true,CC-BY-4.0
-plantvillage,Apple___Cedar_apple_rust,Apple,Cedar_Apple_Rust,Apple___Cedar_Apple_Rust,Gymnosporangium juniperi-virginianae,true,CC-BY-4.0
-plantvillage,Apple___healthy,Apple,Healthy,Apple___Healthy,,true,CC-BY-4.0
-plantvillage,Blueberry___healthy,Blueberry,Healthy,Blueberry___Healthy,,true,CC-BY-4.0
-plantvillage,Cherry_(including_sour)___Powdery_mildew,Cherry,Powdery_Mildew,Cherry___Powdery_Mildew,Podosphaera clandestina,true,CC-BY-4.0
-plantvillage,Cherry_(including_sour)___healthy,Cherry,Healthy,Cherry___Healthy,,true,CC-BY-4.0
-plantvillage,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,Maize,Gray_Leaf_Spot,Maize___Gray_Leaf_Spot,Cercospora zeae-maydis,true,CC-BY-4.0
-plantvillage,Corn_(maize)___Common_rust_,Maize,Common_Rust,Maize___Common_Rust,Puccinia sorghi,true,CC-BY-4.0
-plantvillage,Corn_(maize)___Northern_Leaf_Blight,Maize,Northern_Leaf_Blight,Maize___Northern_Leaf_Blight,Exserohilum turcicum,true,CC-BY-4.0
-plantvillage,Corn_(maize)___healthy,Maize,Healthy,Maize___Healthy,,true,CC-BY-4.0
-plantvillage,Grape___Black_rot,Grape,Black_Rot,Grape___Black_Rot,Guignardia bidwellii,true,CC-BY-4.0
-plantvillage,Grape___Esca_(Black_Measles),Grape,Esca_Black_Measles,Grape___Esca_Black_Measles,Phaeomoniella chlamydospora,true,CC-BY-4.0
-plantvillage,Grape___Leaf_blight_(Isariopsis_Leaf_Spot),Grape,Leaf_Blight,Grape___Leaf_Blight,Pseudocercospora cladosporioides,true,CC-BY-4.0
-plantvillage,Grape___healthy,Grape,Healthy,Grape___Healthy,,true,CC-BY-4.0
-plantvillage,Orange___Haunglongbing_(Citrus_greening),Orange,Citrus_Greening,Orange___Citrus_Greening,Candidatus Liberibacter asiaticus,true,CC-BY-4.0
-plantvillage,Peach___Bacterial_spot,Peach,Bacterial_Spot,Peach___Bacterial_Spot,Xanthomonas campestris pv. pruni,true,CC-BY-4.0
-plantvillage,Peach___healthy,Peach,Healthy,Peach___Healthy,,true,CC-BY-4.0
-plantvillage,Pepper__bell___Bacterial_spot,Pepper,Bacterial_Spot,Pepper___Bacterial_Spot,Xanthomonas campestris,true,CC-BY-4.0
-plantvillage,Pepper__bell___healthy,Pepper,Healthy,Pepper___Healthy,,true,CC-BY-4.0
-plantvillage,Potato___Early_blight,Potato,Early_Blight,Potato___Early_Blight,Alternaria solani,true,CC-BY-4.0
-plantvillage,Potato___Late_blight,Potato,Late_Blight,Potato___Late_Blight,Phytophthora infestans,true,CC-BY-4.0
-plantvillage,Potato___healthy,Potato,Healthy,Potato___Healthy,,true,CC-BY-4.0
-plantvillage,Raspberry___healthy,Raspberry,Healthy,Raspberry___Healthy,,true,CC-BY-4.0
-plantvillage,Soybean___healthy,Soybean,Healthy,Soybean___Healthy,,true,CC-BY-4.0
-plantvillage,Squash___Powdery_mildew,Squash,Powdery_Mildew,Squash___Powdery_Mildew,Podosphaera xanthii,true,CC-BY-4.0
-plantvillage,Strawberry___Leaf_scorch,Strawberry,Leaf_Scorch,Strawberry___Leaf_Scorch,Diplocarpon earlianum,true,CC-BY-4.0
-plantvillage,Strawberry___healthy,Strawberry,Healthy,Strawberry___Healthy,,true,CC-BY-4.0
-plantvillage,Tomato_Bacterial_spot,Tomato,Bacterial_Spot,Tomato___Bacterial_Spot,Xanthomonas perforans,true,CC-BY-4.0
-plantvillage,Tomato_Early_blight,Tomato,Early_Blight,Tomato___Early_Blight,Alternaria solani,true,CC-BY-4.0
-plantvillage,Tomato_Late_blight,Tomato,Late_Blight,Tomato___Late_Blight,Phytophthora infestans,true,CC-BY-4.0
-plantvillage,Tomato_Leaf_Mold,Tomato,Leaf_Mold,Tomato___Leaf_Mold,Passalora fulva,true,CC-BY-4.0
-plantvillage,Tomato_Septoria_leaf_spot,Tomato,Septoria_Leaf_Spot,Tomato___Septoria_Leaf_Spot,Septoria lycopersici,true,CC-BY-4.0
-plantvillage,Tomato_Spider_mites_Two_spotted_spider_mite,Tomato,Spider_Mites,Tomato___Spider_Mites,Tetranychus urticae,true,CC-BY-4.0
-plantvillage,Tomato__Target_Spot,Tomato,Target_Spot,Tomato___Target_Spot,Corynespora cassiicola,true,CC-BY-4.0
-plantvillage,Tomato__Tomato_YellowLeaf__Curl_Virus,Tomato,Yellow_Leaf_Curl_Virus,Tomato___Yellow_Leaf_Curl_Virus,Begomovirus,true,CC-BY-4.0
-plantvillage,Tomato__Tomato_mosaic_virus,Tomato,Mosaic_Virus,Tomato___Mosaic_Virus,Tobamovirus,true,CC-BY-4.0
-plantvillage,Tomato_healthy,Tomato,Healthy,Tomato___Healthy,,true,CC-BY-4.0
-plantdoc,Apple leaf,Apple,Healthy,Apple___Healthy,,false,MIT
-plantdoc,Apple rust leaf,Apple,Cedar_Apple_Rust,Apple___Cedar_Apple_Rust,Gymnosporangium juniperi-virginianae,false,MIT
-plantdoc,Apple Scab Leaf,Apple,Apple_Scab,Apple___Apple_Scab,Venturia inaequalis,false,MIT
-plantdoc,Bell_pepper leaf,Pepper,Healthy,Pepper___Healthy,,false,MIT
-plantdoc,Bell_pepper leaf spot,Pepper,Bacterial_Spot,Pepper___Bacterial_Spot,Xanthomonas campestris,false,MIT
-plantdoc,Blueberry leaf,Blueberry,Healthy,Blueberry___Healthy,,false,MIT
-plantdoc,Cherry leaf,Cherry,Healthy,Cherry___Healthy,,false,MIT
-plantdoc,Corn Gray leaf spot,Maize,Gray_Leaf_Spot,Maize___Gray_Leaf_Spot,Cercospora zeae-maydis,false,MIT
-plantdoc,Corn leaf blight,Maize,Northern_Leaf_Blight,Maize___Northern_Leaf_Blight,Exserohilum turcicum,false,MIT
-plantdoc,Corn rust leaf,Maize,Common_Rust,Maize___Common_Rust,Puccinia sorghi,false,MIT
-plantdoc,grape leaf,Grape,Healthy,Grape___Healthy,,false,MIT
-plantdoc,grape leaf black rot,Grape,Black_Rot,Grape___Black_Rot,Guignardia bidwellii,false,MIT
-plantdoc,Peach leaf,Peach,Healthy,Peach___Healthy,,false,MIT
-plantdoc,Potato leaf early blight,Potato,Early_Blight,Potato___Early_Blight,Alternaria solani,false,MIT
-plantdoc,Potato leaf late blight,Potato,Late_Blight,Potato___Late_Blight,Phytophthora infestans,false,MIT
-plantdoc,Potato leaf,Potato,Healthy,Potato___Healthy,,false,MIT
-plantdoc,Raspberry leaf,Raspberry,Healthy,Raspberry___Healthy,,false,MIT
-plantdoc,Soyabean leaf,Soybean,Healthy,Soybean___Healthy,,false,MIT
-plantdoc,Squash Powdery mildew leaf,Squash,Powdery_Mildew,Squash___Powdery_Mildew,Podosphaera xanthii,false,MIT
-plantdoc,Strawberry leaf,Strawberry,Healthy,Strawberry___Healthy,,false,MIT
-plantdoc,Tomato Early blight leaf,Tomato,Early_Blight,Tomato___Early_Blight,Alternaria solani,false,MIT
-plantdoc,Tomato Septoria leaf spot,Tomato,Septoria_Leaf_Spot,Tomato___Septoria_Leaf_Spot,Septoria lycopersici,false,MIT
-plantdoc,Tomato leaf bacterial spot,Tomato,Bacterial_Spot,Tomato___Bacterial_Spot,Xanthomonas perforans,false,MIT
-plantdoc,Tomato leaf late blight,Tomato,Late_Blight,Tomato___Late_Blight,Phytophthora infestans,false,MIT
-plantdoc,Tomato leaf mosaic virus,Tomato,Mosaic_Virus,Tomato___Mosaic_Virus,Tobamovirus,false,MIT
-plantdoc,Tomato leaf yellow virus,Tomato,Yellow_Leaf_Curl_Virus,Tomato___Yellow_Leaf_Curl_Virus,Begomovirus,false,MIT
-plantdoc,Tomato leaf,Tomato,Healthy,Tomato___Healthy,,false,MIT
-plantdoc,Tomato mold leaf,Tomato,Leaf_Mold,Tomato___Leaf_Mold,Passalora fulva,false,MIT
-plantdoc,Tomato two spotted spider mites leaf,Tomato,Spider_Mites,Tomato___Spider_Mites,Tetranychus urticae,false,MIT
-rice_dslr,Bacterial_leaf_blight,Rice,Bacterial_Blight,Rice___Bacterial_Blight,Xanthomonas oryzae pv. oryzae,false,CC0
-rice_dslr,Brown_spot,Rice,Brown_Spot,Rice___Brown_Spot,Bipolaris oryzae,false,CC0
-rice_dslr,Leaf_blast,Rice,Blast,Rice___Blast,Magnaporthe oryzae,false,CC0
-rice_dslr,Leaf_scald,Rice,Leaf_Scald,Rice___Leaf_Scald,Microdochium oryzae,false,CC0
-rice_dslr,Sheath_blight,Rice,Sheath_Blight,Rice___Sheath_Blight,Rhizoctonia solani,false,CC0
-rice_dslr,healthy,Rice,Healthy,Rice___Healthy,,false,CC0
-rice_dhan_shomadhan,Tungro,Rice,Tungro,Rice___Tungro,Rice tungro bacilliform virus,false,CC0
-rice_dhan_shomadhan,Hispa,Rice,Hispa,Rice___Hispa,Dicladispa armigera,false,CC0
-wheat_field,Yellow_Rust,Wheat,Yellow_Rust,Wheat___Yellow_Rust,Puccinia striiformis,false,CC0
-wheat_field,Brown_Rust,Wheat,Brown_Rust,Wheat___Brown_Rust,Puccinia triticina,false,CC0
-wheat_field,Stem_Rust,Wheat,Stem_Rust,Wheat___Stem_Rust,Puccinia graminis,false,CC0
-wheat_field,Powdery_Mildew,Wheat,Powdery_Mildew,Wheat___Powdery_Mildew,Blumeria graminis,false,CC0
-wheat_field,Septoria,Wheat,Septoria_Leaf_Blotch,Wheat___Septoria_Leaf_Blotch,Zymoseptoria tritici,false,CC0
-wheat_field,Healthy,Wheat,Healthy,Wheat___Healthy,,false,CC0
-sugarcane_field,Red_Rot,Sugarcane,Red_Rot,Sugarcane___Red_Rot,Colletotrichum falcatum,false,CC0
-sugarcane_field,Yellow_Leaf_Disease,Sugarcane,Yellow_Leaf,Sugarcane___Yellow_Leaf,Sugarcane yellow leaf virus,false,CC0
-sugarcane_field,Pokkah_Boeng,Sugarcane,Pokkah_Boeng,Sugarcane___Pokkah_Boeng,Fusarium verticillioides,false,CC0
-sugarcane_field,Smut,Sugarcane,Smut,Sugarcane___Smut,Sporisorium scitamineum,false,CC0
-sugarcane_field,Rust,Sugarcane,Rust,Sugarcane___Rust,Puccinia melanocephala,false,CC0
-sugarcane_field,Mosaic,Sugarcane,Mosaic,Sugarcane___Mosaic,Sugarcane mosaic virus,false,CC0
-sugarcane_field,Healthy,Sugarcane,Healthy,Sugarcane___Healthy,,false,CC0
-groundnut_field,Early_Leaf_Spot,Groundnut,Early_Leaf_Spot,Groundnut___Early_Leaf_Spot,Cercospora arachidicola,false,CC-BY-4.0
-groundnut_field,Late_Leaf_Spot,Groundnut,Late_Leaf_Spot,Groundnut___Late_Leaf_Spot,Phaeoisariopsis personata,false,CC-BY-4.0
-groundnut_field,Rust,Groundnut,Rust,Groundnut___Rust,Puccinia arachidis,false,CC-BY-4.0
-groundnut_field,Bud_Necrosis,Groundnut,Bud_Necrosis,Groundnut___Bud_Necrosis,Groundnut bud necrosis virus,false,CC-BY-4.0
-groundnut_field,Rosette,Groundnut,Rosette,Groundnut___Rosette,Groundnut rosette virus,false,CC-BY-4.0
-groundnut_field,Healthy,Groundnut,Healthy,Groundnut___Healthy,,false,CC-BY-4.0
-cotton_field,Bacterial_Blight,Cotton,Bacterial_Blight,Cotton___Bacterial_Blight,Xanthomonas citri pv. malvacearum,false,CC-BY-4.0
-cotton_field,Curl_Virus,Cotton,Leaf_Curl_Virus,Cotton___Leaf_Curl_Virus,Cotton leaf curl virus,false,CC-BY-4.0
-cotton_field,Fusarium_Wilt,Cotton,Fusarium_Wilt,Cotton___Fusarium_Wilt,Fusarium oxysporum f. sp. vasinfectum,false,CC-BY-4.0
-cotton_field,Healthy,Cotton,Healthy,Cotton___Healthy,,false,CC-BY-4.0
-mangoleafbd,Anthracnose,Mango,Anthracnose,Mango___Anthracnose,Colletotrichum gloeosporioides,true,CC-BY-4.0
-mangoleafbd,Bacterial_Canker,Mango,Bacterial_Canker,Mango___Bacterial_Canker,Xanthomonas campestris pv. mangiferaeindicae,true,CC-BY-4.0
-mangoleafbd,Cutting_Weevil,Mango,Cutting_Weevil,Mango___Cutting_Weevil,Deporaus marginatus,true,CC-BY-4.0
-mangoleafbd,Die_Back,Mango,Die_Back,Mango___Die_Back,Lasiodiplodia theobromae,true,CC-BY-4.0
-mangoleafbd,Gall_Midge,Mango,Gall_Midge,Mango___Gall_Midge,Procontarinia matteiana,true,CC-BY-4.0
-mangoleafbd,Powdery_Mildew,Mango,Powdery_Mildew,Mango___Powdery_Mildew,Oidium mangiferae,true,CC-BY-4.0
-mangoleafbd,Sooty_Mould,Mango,Sooty_Mould,Mango___Sooty_Mould,Meliola mangiferae,true,CC-BY-4.0
-mangoleafbd,Healthy,Mango,Healthy,Mango___Healthy,,true,CC-BY-4.0
-tamilnadu_field,Banana_Sigatoka,Banana,Sigatoka,Banana___Sigatoka,Pseudocercospora musae,false,CC-BY-4.0
-tamilnadu_field,Banana_Healthy,Banana,Healthy,Banana___Healthy,,false,CC-BY-4.0
-tamilnadu_field,Chilli_Leaf_Curl,Chilli,Leaf_Curl,Chilli___Leaf_Curl,Chilli leaf curl virus,false,CC-BY-4.0
-tamilnadu_field,Chilli_Anthracnose,Chilli,Anthracnose,Chilli___Anthracnose,Colletotrichum capsici,false,CC-BY-4.0
-tamilnadu_field,Chilli_Healthy,Chilli,Healthy,Chilli___Healthy,,false,CC-BY-4.0
-tamilnadu_field,Radish_White_Rust,Radish,White_Rust,Radish___White_Rust,Albugo candida,false,CC-BY-4.0
-tamilnadu_field,Radish_Healthy,Radish,Healthy,Radish___Healthy,,false,CC-BY-4.0
-tamilnadu_field,Cauliflower_Downy_Mildew,Cauliflower,Downy_Mildew,Cauliflower___Downy_Mildew,Hyaloperonospora brassicae,false,CC-BY-4.0
-tamilnadu_field,Cauliflower_Healthy,Cauliflower,Healthy,Cauliflower___Healthy,,false,CC-BY-4.0
-generic_negative,soil_and_dirt,__non_crop__,__not_a_leaf__,__non_crop_____not_a_leaf__,None,false,CC0
-generic_negative,weeds_and_grass,__non_crop__,__not_a_leaf__,__non_crop_____not_a_leaf__,None,false,CC0
-generic_negative,human_hands_and_tools,__non_crop__,__not_a_leaf__,__non_crop_____not_a_leaf__,None,false,CC0
-generic_negative,sky_and_background,__non_crop__,__not_a_leaf__,__non_crop_____not_a_leaf__,None,false,CC0
-rice_dslr,Tungro,Rice,Tungro,Rice___Tungro,Rice tungro bacilliform virus,false,CC0
-sugarcane_field,Bacterial_Blight,Sugarcane,Bacterial_Blight,Sugarcane___Bacterial_Blight,Acidovorax avenae subsp. avenae,false,CC0
+plantvillage,Apple___Apple_scab,Apple,Apple_Scab,Apple___Apple_Scab,Venturia inaequalis,True,CC-BY-4.0
+plantvillage,Apple___Black_rot,Apple,Black_Rot,Apple___Black_Rot,Botryosphaeria obtusa,True,CC-BY-4.0
+plantvillage,Apple___Cedar_apple_rust,Apple,Cedar_Apple_Rust,Apple___Cedar_Apple_Rust,Gymnosporangium juniperi-virginianae,True,CC-BY-4.0
+plantvillage,Apple___healthy,Apple,Healthy,Apple___Healthy,,True,CC-BY-4.0
+plantvillage,Blueberry___healthy,Blueberry,Healthy,Blueberry___Healthy,,True,CC-BY-4.0
+plantvillage,Cherry_(including_sour)___Powdery_mildew,Cherry,Powdery_Mildew,Cherry___Powdery_Mildew,Podosphaera clandestina,True,CC-BY-4.0
+plantvillage,Cherry_(including_sour)___healthy,Cherry,Healthy,Cherry___Healthy,,True,CC-BY-4.0
+plantvillage,Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot,Maize,Gray_Leaf_Spot,Maize___Gray_Leaf_Spot,Cercospora zeae-maydis,True,CC-BY-4.0
+plantvillage,Corn_(maize)___Common_rust_,Maize,Common_Rust,Maize___Common_Rust,Puccinia sorghi,True,CC-BY-4.0
+plantvillage,Corn_(maize)___Northern_Leaf_Blight,Maize,Northern_Leaf_Blight,Maize___Northern_Leaf_Blight,Exserohilum turcicum,True,CC-BY-4.0
+plantvillage,Corn_(maize)___healthy,Maize,Healthy,Maize___Healthy,,True,CC-BY-4.0
+plantvillage,Grape___Black_rot,Grape,Black_Rot,Grape___Black_Rot,Guignardia bidwellii,True,CC-BY-4.0
+plantvillage,Grape___Esca_(Black_Measles),Grape,Esca_Black_Measles,Grape___Esca_Black_Measles,Phaeomoniella chlamydospora,True,CC-BY-4.0
+plantvillage,Grape___Leaf_blight_(Isariopsis_Leaf_Spot),Grape,Leaf_Blight,Grape___Leaf_Blight,Pseudocercospora cladosporioides,True,CC-BY-4.0
+plantvillage,Grape___healthy,Grape,Healthy,Grape___Healthy,,True,CC-BY-4.0
+plantvillage,Orange___Haunglongbing_(Citrus_greening),Orange,Citrus_Greening,Orange___Citrus_Greening,Candidatus Liberibacter asiaticus,True,CC-BY-4.0
+plantvillage,Peach___Bacterial_spot,Peach,Bacterial_Spot,Peach___Bacterial_Spot,Xanthomonas campestris pv. pruni,True,CC-BY-4.0
+plantvillage,Peach___healthy,Peach,Healthy,Peach___Healthy,,True,CC-BY-4.0
+plantvillage,Pepper__bell___Bacterial_spot,Pepper,Bacterial_Spot,Pepper___Bacterial_Spot,Xanthomonas campestris,True,CC-BY-4.0
+plantvillage,Pepper__bell___healthy,Pepper,Healthy,Pepper___Healthy,,True,CC-BY-4.0
+plantvillage,Potato___Early_blight,Potato,Early_Blight,Potato___Early_Blight,Alternaria solani,True,CC-BY-4.0
+plantvillage,Potato___Late_blight,Potato,Late_Blight,Potato___Late_Blight,Phytophthora infestans,True,CC-BY-4.0
+plantvillage,Potato___healthy,Potato,Healthy,Potato___Healthy,,True,CC-BY-4.0
+plantvillage,Raspberry___healthy,Raspberry,Healthy,Raspberry___Healthy,,True,CC-BY-4.0
+plantvillage,Soybean___healthy,Soybean,Healthy,Soybean___Healthy,,True,CC-BY-4.0
+plantvillage,Squash___Powdery_mildew,Squash,Powdery_Mildew,Squash___Powdery_Mildew,Podosphaera xanthii,True,CC-BY-4.0
+plantvillage,Strawberry___Leaf_scorch,Strawberry,Leaf_Scorch,Strawberry___Leaf_Scorch,Diplocarpon earlianum,True,CC-BY-4.0
+plantvillage,Strawberry___healthy,Strawberry,Healthy,Strawberry___Healthy,,True,CC-BY-4.0
+plantvillage,Tomato_Bacterial_spot,Tomato,Bacterial_Spot,Tomato___Bacterial_Spot,Xanthomonas perforans,True,CC-BY-4.0
+plantvillage,Tomato_Early_blight,Tomato,Early_Blight,Tomato___Early_Blight,Alternaria solani,True,CC-BY-4.0
+plantvillage,Tomato_Late_blight,Tomato,Late_Blight,Tomato___Late_Blight,Phytophthora infestans,True,CC-BY-4.0
+plantvillage,Tomato_Leaf_Mold,Tomato,Leaf_Mold,Tomato___Leaf_Mold,Passalora fulva,True,CC-BY-4.0
+plantvillage,Tomato_Septoria_leaf_spot,Tomato,Septoria_Leaf_Spot,Tomato___Septoria_Leaf_Spot,Septoria lycopersici,True,CC-BY-4.0
+plantvillage,Tomato_Spider_mites_Two_spotted_spider_mite,Tomato,Spider_Mites,Tomato___Spider_Mites,Tetranychus urticae,True,CC-BY-4.0
+plantvillage,Tomato__Target_Spot,Tomato,Target_Spot,Tomato___Target_Spot,Corynespora cassiicola,True,CC-BY-4.0
+plantvillage,Tomato__Tomato_YellowLeaf__Curl_Virus,Tomato,Yellow_Leaf_Curl_Virus,Tomato___Yellow_Leaf_Curl_Virus,Begomovirus,True,CC-BY-4.0
+plantvillage,Tomato__Tomato_mosaic_virus,Tomato,Mosaic_Virus,Tomato___Mosaic_Virus,Tobamovirus,True,CC-BY-4.0
+plantvillage,Tomato_healthy,Tomato,Healthy,Tomato___Healthy,,True,CC-BY-4.0
+plantdoc,Apple leaf,Apple,Healthy,Apple___Healthy,,False,MIT
+plantdoc,Apple rust leaf,Apple,Cedar_Apple_Rust,Apple___Cedar_Apple_Rust,Gymnosporangium juniperi-virginianae,False,MIT
+plantdoc,Apple Scab Leaf,Apple,Apple_Scab,Apple___Apple_Scab,Venturia inaequalis,False,MIT
+plantdoc,Bell_pepper leaf,Pepper,Healthy,Pepper___Healthy,,False,MIT
+plantdoc,Bell_pepper leaf spot,Pepper,Bacterial_Spot,Pepper___Bacterial_Spot,Xanthomonas campestris,False,MIT
+plantdoc,Blueberry leaf,Blueberry,Healthy,Blueberry___Healthy,,False,MIT
+plantdoc,Cherry leaf,Cherry,Healthy,Cherry___Healthy,,False,MIT
+plantdoc,Corn Gray leaf spot,Maize,Gray_Leaf_Spot,Maize___Gray_Leaf_Spot,Cercospora zeae-maydis,False,MIT
+plantdoc,Corn leaf blight,Maize,Northern_Leaf_Blight,Maize___Northern_Leaf_Blight,Exserohilum turcicum,False,MIT
+plantdoc,Corn rust leaf,Maize,Common_Rust,Maize___Common_Rust,Puccinia sorghi,False,MIT
+plantdoc,grape leaf,Grape,Healthy,Grape___Healthy,,False,MIT
+plantdoc,grape leaf black rot,Grape,Black_Rot,Grape___Black_Rot,Guignardia bidwellii,False,MIT
+plantdoc,Peach leaf,Peach,Healthy,Peach___Healthy,,False,MIT
+plantdoc,Potato leaf early blight,Potato,Early_Blight,Potato___Early_Blight,Alternaria solani,False,MIT
+plantdoc,Potato leaf late blight,Potato,Late_Blight,Potato___Late_Blight,Phytophthora infestans,False,MIT
+plantdoc,Potato leaf,Potato,Healthy,Potato___Healthy,,False,MIT
+plantdoc,Raspberry leaf,Raspberry,Healthy,Raspberry___Healthy,,False,MIT
+plantdoc,Soyabean leaf,Soybean,Healthy,Soybean___Healthy,,False,MIT
+plantdoc,Squash Powdery mildew leaf,Squash,Powdery_Mildew,Squash___Powdery_Mildew,Podosphaera xanthii,False,MIT
+plantdoc,Strawberry leaf,Strawberry,Healthy,Strawberry___Healthy,,False,MIT
+plantdoc,Tomato Early blight leaf,Tomato,Early_Blight,Tomato___Early_Blight,Alternaria solani,False,MIT
+plantdoc,Tomato Septoria leaf spot,Tomato,Septoria_Leaf_Spot,Tomato___Septoria_Leaf_Spot,Septoria lycopersici,False,MIT
+plantdoc,Tomato leaf bacterial spot,Tomato,Bacterial_Spot,Tomato___Bacterial_Spot,Xanthomonas perforans,False,MIT
+plantdoc,Tomato leaf late blight,Tomato,Late_Blight,Tomato___Late_Blight,Phytophthora infestans,False,MIT
+plantdoc,Tomato leaf mosaic virus,Tomato,Mosaic_Virus,Tomato___Mosaic_Virus,Tobamovirus,False,MIT
+plantdoc,Tomato leaf yellow virus,Tomato,Yellow_Leaf_Curl_Virus,Tomato___Yellow_Leaf_Curl_Virus,Begomovirus,False,MIT
+plantdoc,Tomato leaf,Tomato,Healthy,Tomato___Healthy,,False,MIT
+plantdoc,Tomato mold leaf,Tomato,Leaf_Mold,Tomato___Leaf_Mold,Passalora fulva,False,MIT
+plantdoc,Tomato two spotted spider mites leaf,Tomato,Spider_Mites,Tomato___Spider_Mites,Tetranychus urticae,False,MIT
+rice_dslr,Bacterial_leaf_blight,Rice,Bacterial_Blight,Rice___Bacterial_Blight,Xanthomonas oryzae pv. oryzae,False,CC0
+rice_dslr,Brown_spot,Rice,Brown_Spot,Rice___Brown_Spot,Bipolaris oryzae,False,CC0
+rice_dslr,Leaf_blast,Rice,Blast,Rice___Blast,Magnaporthe oryzae,False,CC0
+rice_dslr,Leaf_scald,Rice,Leaf_Scald,Rice___Leaf_Scald,Microdochium oryzae,False,CC0
+rice_dslr,Sheath_blight,Rice,Sheath_Blight,Rice___Sheath_Blight,Rhizoctonia solani,False,CC0
+rice_dslr,healthy,Rice,Healthy,Rice___Healthy,,False,CC0
+rice_dhan_shomadhan,Tungro,Rice,Tungro,Rice___Tungro,Rice tungro bacilliform virus,False,CC0
+rice_dhan_shomadhan,Hispa,Rice,Hispa,Rice___Hispa,Dicladispa armigera,False,CC0
+wheat_field,Yellow_Rust,Wheat,Yellow_Rust,Wheat___Yellow_Rust,Puccinia striiformis,False,CC0
+wheat_field,Brown_Rust,Wheat,Brown_Rust,Wheat___Brown_Rust,Puccinia triticina,False,CC0
+wheat_field,Stem_Rust,Wheat,Stem_Rust,Wheat___Stem_Rust,Puccinia graminis,False,CC0
+wheat_field,Powdery_Mildew,Wheat,Powdery_Mildew,Wheat___Powdery_Mildew,Blumeria graminis,False,CC0
+wheat_field,Septoria,Wheat,Septoria_Leaf_Blotch,Wheat___Septoria_Leaf_Blotch,Zymoseptoria tritici,False,CC0
+wheat_field,Healthy,Wheat,Healthy,Wheat___Healthy,,False,CC0
+sugarcane_field,Red_Rot,Sugarcane,Red_Rot,Sugarcane___Red_Rot,Colletotrichum falcatum,False,CC0
+sugarcane_field,Yellow_Leaf_Disease,Sugarcane,Yellow_Leaf,Sugarcane___Yellow_Leaf,Sugarcane yellow leaf virus,False,CC0
+sugarcane_field,Pokkah_Boeng,Sugarcane,Pokkah_Boeng,Sugarcane___Pokkah_Boeng,Fusarium verticillioides,False,CC0
+sugarcane_field,Smut,Sugarcane,Smut,Sugarcane___Smut,Sporisorium scitamineum,False,CC0
+sugarcane_field,Rust,Sugarcane,Rust,Sugarcane___Rust,Puccinia melanocephala,False,CC0
+sugarcane_field,Mosaic,Sugarcane,Mosaic,Sugarcane___Mosaic,Sugarcane mosaic virus,False,CC0
+sugarcane_field,Healthy,Sugarcane,Healthy,Sugarcane___Healthy,,False,CC0
+groundnut_field,Early_Leaf_Spot,Groundnut,Early_Leaf_Spot,Groundnut___Early_Leaf_Spot,Cercospora arachidicola,False,CC-BY-4.0
+groundnut_field,Late_Leaf_Spot,Groundnut,Late_Leaf_Spot,Groundnut___Late_Leaf_Spot,Phaeoisariopsis personata,False,CC-BY-4.0
+groundnut_field,Rust,Groundnut,Rust,Groundnut___Rust,Puccinia arachidis,False,CC-BY-4.0
+groundnut_field,Bud_Necrosis,Groundnut,Bud_Necrosis,Groundnut___Bud_Necrosis,Groundnut bud necrosis virus,False,CC-BY-4.0
+groundnut_field,Rosette,Groundnut,Rosette,Groundnut___Rosette,Groundnut rosette virus,False,CC-BY-4.0
+groundnut_field,Healthy,Groundnut,Healthy,Groundnut___Healthy,,False,CC-BY-4.0
+cotton_field,Bacterial_Blight,Cotton,Bacterial_Blight,Cotton___Bacterial_Blight,Xanthomonas citri pv. malvacearum,False,CC-BY-4.0
+cotton_field,Curl_Virus,Cotton,Leaf_Curl_Virus,Cotton___Leaf_Curl_Virus,Cotton leaf curl virus,False,CC-BY-4.0
+cotton_field,Fusarium_Wilt,Cotton,Fusarium_Wilt,Cotton___Fusarium_Wilt,Fusarium oxysporum f. sp. vasinfectum,False,CC-BY-4.0
+cotton_field,Healthy,Cotton,Healthy,Cotton___Healthy,,False,CC-BY-4.0
+mangoleafbd,Anthracnose,Mango,Anthracnose,Mango___Anthracnose,Colletotrichum gloeosporioides,True,CC-BY-4.0
+mangoleafbd,Bacterial_Canker,Mango,Bacterial_Canker,Mango___Bacterial_Canker,Xanthomonas campestris pv. mangiferaeindicae,True,CC-BY-4.0
+mangoleafbd,Cutting_Weevil,Mango,Cutting_Weevil,Mango___Cutting_Weevil,Deporaus marginatus,True,CC-BY-4.0
+mangoleafbd,Die_Back,Mango,Die_Back,Mango___Die_Back,Lasiodiplodia theobromae,True,CC-BY-4.0
+mangoleafbd,Gall_Midge,Mango,Gall_Midge,Mango___Gall_Midge,Procontarinia matteiana,True,CC-BY-4.0
+mangoleafbd,Powdery_Mildew,Mango,Powdery_Mildew,Mango___Powdery_Mildew,Oidium mangiferae,True,CC-BY-4.0
+mangoleafbd,Sooty_Mould,Mango,Sooty_Mould,Mango___Sooty_Mould,Meliola mangiferae,True,CC-BY-4.0
+mangoleafbd,Healthy,Mango,Healthy,Mango___Healthy,,True,CC-BY-4.0
+tamilnadu_field,Banana_Sigatoka,Banana,Sigatoka,Banana___Sigatoka,Pseudocercospora musae,False,CC-BY-4.0
+tamilnadu_field,Banana_Healthy,Banana,Healthy,Banana___Healthy,,False,CC-BY-4.0
+tamilnadu_field,Chilli_Leaf_Curl,Chilli,Leaf_Curl,Chilli___Leaf_Curl,Chilli leaf curl virus,False,CC-BY-4.0
+tamilnadu_field,Chilli_Anthracnose,Chilli,Anthracnose,Chilli___Anthracnose,Colletotrichum capsici,False,CC-BY-4.0
+tamilnadu_field,Chilli_Healthy,Chilli,Healthy,Chilli___Healthy,,False,CC-BY-4.0
+tamilnadu_field,Radish_White_Rust,Radish,White_Rust,Radish___White_Rust,Albugo candida,False,CC-BY-4.0
+tamilnadu_field,Radish_Healthy,Radish,Healthy,Radish___Healthy,,False,CC-BY-4.0
+tamilnadu_field,Cauliflower_Downy_Mildew,Cauliflower,Downy_Mildew,Cauliflower___Downy_Mildew,Hyaloperonospora brassicae,False,CC-BY-4.0
+tamilnadu_field,Cauliflower_Healthy,Cauliflower,Healthy,Cauliflower___Healthy,,False,CC-BY-4.0
+generic_negative,soil_and_dirt,__non_crop__,__not_a_leaf__,__non_crop_____not_a_leaf__,,False,CC0
+generic_negative,weeds_and_grass,__non_crop__,__not_a_leaf__,__non_crop_____not_a_leaf__,,False,CC0
+generic_negative,human_hands_and_tools,__non_crop__,__not_a_leaf__,__non_crop_____not_a_leaf__,,False,CC0
+generic_negative,sky_and_background,__non_crop__,__not_a_leaf__,__non_crop_____not_a_leaf__,,False,CC0
+rice_dslr,Tungro,Rice,Tungro,Rice___Tungro,Rice tungro bacilliform virus,False,CC0
+sugarcane_field,Bacterial_Blight,Sugarcane,Bacterial_Blight,Sugarcane___Bacterial_Blight,Acidovorax avenae subsp. avenae,False,CC0
+plantvillage,"Pepper,_bell___Bacterial_spot",Pepper,Bacterial_Spot,Pepper___Bacterial_Spot,Xanthomonas campestris,True,CC-BY-4.0
+plantvillage,"Pepper,_bell___healthy",Pepper,Healthy,Pepper___Healthy,,True,CC-BY-4.0
+plantvillage,Tomato___Bacterial_spot,Tomato,Bacterial_Spot,Tomato___Bacterial_Spot,Xanthomonas perforans,True,CC-BY-4.0
+plantvillage,Tomato___Early_blight,Tomato,Early_Blight,Tomato___Early_Blight,Alternaria solani,True,CC-BY-4.0
+plantvillage,Tomato___Late_blight,Tomato,Late_Blight,Tomato___Late_Blight,Phytophthora infestans,True,CC-BY-4.0
+plantvillage,Tomato___Leaf_Mold,Tomato,Leaf_Mold,Tomato___Leaf_Mold,Passalora fulva,True,CC-BY-4.0
+plantdoc,Tomato___Septoria_leaf_spot,Tomato,Septoria_Leaf_Spot,Tomato___Septoria_Leaf_Spot,Septoria lycopersici,False,MIT
+plantvillage,Tomato___Spider_mites Two-spotted_spider_mite,Tomato,Spider_Mites,Tomato___Spider_Mites,Tetranychus urticae,True,CC-BY-4.0
+plantvillage,Tomato___Target_Spot,Tomato,Target_Spot,Tomato___Target_Spot,Corynespora cassiicola,True,CC-BY-4.0
+plantvillage,Tomato___Tomato_Yellow_Leaf_Curl_Virus,Tomato,Yellow_Leaf_Curl_Virus,Tomato___Yellow_Leaf_Curl_Virus,Begomovirus,True,CC-BY-4.0
+plantvillage,Tomato___Tomato_mosaic_virus,Tomato,Mosaic_Virus,Tomato___Mosaic_Virus,Tobamovirus,True,CC-BY-4.0
+plantvillage,Tomato___healthy,Tomato,Healthy,Tomato___Healthy,,True,CC-BY-4.0

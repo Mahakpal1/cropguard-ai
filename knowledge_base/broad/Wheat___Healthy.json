@@ -1,0 +1,64 @@
+{
+  "id": "Wheat___Healthy",
+  "crop": {
+    "en": "Wheat",
+    "hi": "गेहूं"
+  },
+  "disease": {
+    "en": "Healthy",
+    "hi": "स्वस्थ"
+  },
+  "scientific_name": "Triticum aestivum",
+  "type": "healthy",
+  "healthy": true,
+  "symptoms": {
+    "en": [
+      "Vibrant erect bluish-green leaves free of stripes, pustules, or powdery spore blankets",
+      "Sturdy uniform tillers with intact crown roots and strong upright lodging resistance",
+      "Fully exerted green spikes with plump healthy florets free from smut or discoloured awns"
+    ],
+    "hi": [
+      "हरी-भरी सीधी पत्तियां जिन पर किसी प्रकार के पीले या भूरे धब्बे नहीं हैं",
+      "मजबूत कल्ले और जड़ों का अच्छा विकास जिससे फसल गिरने से सुरक्षित रहती है",
+      "स्वस्थ हरी बालियां जिनमें दाने अच्छे से भर रहे हों"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Ensure scheduled irrigation at critical crown root initiation, jointing, flowering, and milk stages",
+      "Scout fields periodically for early foliar signs of rust or aphid activity",
+      "Apply timely split nitrogen dose prior to first and second irrigations"
+    ],
+    "hi": [
+      "सीआरआई (ताज जड़), कल्ले फूटने, फूल आने और दाना भरते समय समय पर सिंचाई करें",
+      "रतुआ या माहू की निगरानी के लिए नियमित रूप से खेत का चक्कर लगाएं",
+      "पहली और दूसरी सिंचाई से पहले यूरिया की संतुलित खुराक दें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Follow integrated nutrient management incorporating farmyard manure and biofertilizers",
+      "Maintain optimal seed drill spacing to encourage vigorous upright tillering",
+      "Rotate with leguminous green manure crops to build resilient soil organic matter"
+    ],
+    "hi": [
+      "गोबर की खाद और जैव उर्वरकों का संतुलित प्रयोग करें",
+      "बीज बोते समय कतारों के बीच उचित दूरी रखें ताकि पौधों को पूरी धूप मिले",
+      "दलहनी फसलों के साथ फसल चक्र अपनाकर मिट्टी की सेहत सुधारें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-IIWBR Wheat Production Manual",
+      "url": "https://iiwbr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Healthy wheat baseline"
+  }
+}

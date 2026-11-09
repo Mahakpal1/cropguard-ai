@@ -1,0 +1,64 @@
+{
+  "id": "Mango___Anthracnose",
+  "crop": {
+    "en": "Mango",
+    "hi": "आम"
+  },
+  "disease": {
+    "en": "Anthracnose",
+    "hi": "एंथ्रेक्नोज़ (श्याम वर्ण)"
+  },
+  "scientific_name": "Colletotrichum gloeosporioides",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Dark brown to black angular necrotic spots on young tender leaves that coalesce and drop out",
+      "Black sunken lesions on flower panicles resulting in blossom blight and severe fruit drop",
+      "Tear-stain patterns and sunken rotting spots with pinkish spore crusts on developing fruits"
+    ],
+    "hi": [
+      "नई कोमल पत्तियों पर काले-भूरे धब्बे जो बाद में फटकर छेद बना देते हैं",
+      "बौर (फूलों) पर काले धब्बे जिससे बौर झुलस जाता है और फूल गिर जाते हैं",
+      "फलों पर काले धंसे हुए धब्बे और आंसुओं जैसी धारियां बनती हैं जिससे फल सड़ जाते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Prune dead twigs and dried panicles post-harvest and safely burn them outside the orchard",
+      "Apply an approved copper-based or protective fungicide strictly according to product label directions",
+      "Avoid overhead irrigation during flowering and fruit setting intervals"
+    ],
+    "hi": [
+      "सूखी टहनियों और पुराने बौर को काटकर खेत से बाहर जला दें",
+      "उत्पाद लेबल के निर्देशानुसार अनुशंसित कॉपर युक्त फफूंदनाशक का छिड़काव करें",
+      "बौर और फल आते समय फव्वारा सिंचाई से बचें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Maintain proper canopy pruning after harvest to permit ample sunlight and airflow through trees",
+      "Follow scheduled preventive sprays prior to flower bud opening and after fruit set",
+      "Dip harvested mango fruits in approved hot water bath before packing to prevent latent post-harvest rot"
+    ],
+    "hi": [
+      "कटाई के बाद पेड़ों की छंटाई करें ताकि धूप और हवा अंदर तक पहुंचे",
+      "बौर खिलने से पहले और फल बनने के बाद अनुशंसित सुरक्षात्मक छिड़काव करें",
+      "तुड़ाई के बाद फलों को गर्म पानी के उपचार से सुरक्षित करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-Central Institute for Subtropical Horticulture",
+      "url": "https://cish.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified ICAR-CISH mango protocol"
+  }
+}

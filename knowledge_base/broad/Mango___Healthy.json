@@ -1,0 +1,64 @@
+{
+  "id": "Mango___Healthy",
+  "crop": {
+    "en": "Mango",
+    "hi": "आम"
+  },
+  "disease": {
+    "en": "Healthy",
+    "hi": "स्वस्थ"
+  },
+  "scientific_name": "Mangifera indica",
+  "type": "healthy",
+  "healthy": true,
+  "symptoms": {
+    "en": [
+      "Lustrous deep green leathery mature leaves with clean margins free of blemishes or curling",
+      "Vigorous emerging copper-red flushes developing into healthy spotless dark green canopies",
+      "Strong clean trunk with smooth bark free of gum exudation, borers, or cankerous fissures"
+    ],
+    "hi": [
+      "चमकदार गहरी हरी चमड़े जैसी मजबूत पत्तियां जिन पर कोई धब्बे या कट-फट नहीं है",
+      "नई तांबे जैसी लाल कोपलों का स्वस्थ विकास और गहरा हरा होना",
+      "साफ और मजबूत तना जिस पर किसी गोंद या कीट का निशान नहीं है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Maintain scheduled drip or basin irrigation aligned with crop phenological stage",
+      "Apply recommended organic compost and balanced fertilizers around the tree drip-line perimeter",
+      "Inspect tree crowns weekly during flowering and early fruit development for pest incursions"
+    ],
+    "hi": [
+      "फसल की अवस्था के अनुसार पेड़ के थाले में उचित सिंचाई बनाए रखें",
+      "पेड़ की छाया के घेरे में गोबर की खाद और संतुलित उर्वरक दें",
+      "फूल और फल आते समय बौर व फलों का नियमित निरीक्षण करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Conduct annual post-harvest canopy thinning to allow sun penetration into inner scaffolds",
+      "Paint the main lower trunk with lime-copper wash prior to monsoon to deter bark pathogens",
+      "Maintain clean orchard basin free of wild brush and weed hosts"
+    ],
+    "hi": [
+      "फल तुड़ाई के बाद पेड़ों की हल्की छंटाई करें ताकि अंदर तक धूप पहुंचे",
+      "मानसून से पहले तने पर चूने और कॉपर का लेप लगाएं",
+      "पेड़ों के आसपास खरपतवार न उगने दें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-CISH Mango Cultivation Manual",
+      "url": "https://cish.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Healthy mango baseline"
+  }
+}

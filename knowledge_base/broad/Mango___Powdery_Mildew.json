@@ -1,0 +1,64 @@
+{
+  "id": "Mango___Powdery_Mildew",
+  "crop": {
+    "en": "Mango",
+    "hi": "आम"
+  },
+  "disease": {
+    "en": "Powdery Mildew",
+    "hi": "चूर्णिल आसिता (पाउडरी मिल्ड्यू)"
+  },
+  "scientific_name": "Oidium mangiferae",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "White powdery superficial fungal growth spreading across flower panicles and flower stalks",
+      "Infected blossom petals drop prematurely leaving blackened bare panicle skeletons",
+      "Young leaves curl, distort, and show purplish-brown blotches underneath white powdery patches"
+    ],
+    "hi": [
+      "बौर और फूलों की डंडियों पर सफेद चूर्ण जैसी फफूंद की परत जम जाती है",
+      "फूल समय से पहले झड़ जाते हैं और बौर सूखा व काला दिखने लगता है",
+      "नई पत्तियां मुड़ जाती हैं और सफेद पाउडर के नीचे बैंगनी-भूरे धब्बे बनते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Apply an approved protective or systemic fungicide strictly according to product label directions",
+      "Time spray applications early in the morning when calm air ensures optimal blossom coverage",
+      "Remove heavily blanketed flower clusters to check spore spread across adjacent canopies"
+    ],
+    "hi": [
+      "उत्पाद लेबल के निर्देशानुसार अनुशंसित फफूंदनाशक का तुरंत छिड़काव करें",
+      "सुबह के शांत मौसम में छिड़काव करें ताकि बौर पर दवा अच्छी तरह पहुंचे",
+      "अत्यधिक प्रभावित बौर को हटाकर नष्ट कर दें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Maintain open tree structure with annual post-harvest pruning to discourage humid microclimates",
+      "Initiate scheduled preventive sprays when flower panicles are expanding prior to blossom opening",
+      "Monitor weather forecast during February-March for sudden cloudy spells and cool morning dews"
+    ],
+    "hi": [
+      "कटाई के बाद पेड़ों की कटाई-छंटाई करें ताकि बौर में हवा और धूप बनी रहे",
+      "बौर खिलने से पहले अनुशंसित सुरक्षात्मक छिड़काव करें",
+      "बसंत ऋतु में मौसम में नमी और बादलों पर नजर रखें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-CISH Mango Protection Guide",
+      "url": "https://cish.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified mango powdery mildew protocol"
+  }
+}

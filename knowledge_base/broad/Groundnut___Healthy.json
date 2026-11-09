@@ -1,0 +1,64 @@
+{
+  "id": "Groundnut___Healthy",
+  "crop": {
+    "en": "Groundnut",
+    "hi": "मूंगफली"
+  },
+  "disease": {
+    "en": "Healthy",
+    "hi": "स्वस्थ"
+  },
+  "scientific_name": "Arachis hypogaea",
+  "type": "healthy",
+  "healthy": true,
+  "symptoms": {
+    "en": [
+      "Vibrant green pinnate foliage with smooth clean leaf surfaces free of spots or halos",
+      "Symmetrical compact spreading bush with vigorous flowering and peg penetration into soil",
+      "Healthy root system displaying abundant active pinkish Rhizobium nitrogen-fixing nodules"
+    ],
+    "hi": [
+      "हरी-भरी स्वस्थ पत्तियां जिन पर किसी प्रकार के धब्बे या पीलापन नहीं है",
+      "पौधे का अच्छा फैलाव, प्रचुर मात्रा में फूल और खूंटियों (पेग्स) का जमीन में प्रवेश",
+      "जड़ों में सक्रिय गुलाबी रंग की राइजोबियम ग्रंथियों का उत्तम विकास"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Keep soil loose and weed-free around the pegging zone to facilitate smooth pod penetration",
+      "Maintain adequate moisture during the critical flowering, pegging, and pod filling phases",
+      "Apply recommended dose of gypsum around flowering time to supply essential calcium for pod formation"
+    ],
+    "hi": [
+      "खूंटियां बनते समय खेत को खरपतवार मुक्त और मिट्टी को भुरभुरी रखें",
+      "फूल और फलियां बनते समय खेत में पर्याप्त नमी बनाए रखें",
+      "फलियों के अच्छे भराव के लिए फूल आने पर जिप्सम की आवश्यक मात्रा दें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Follow balanced integrated nutrient practices with required micronutrients like boron and zinc",
+      "Maintain optimal plant spacing to promote uniform aeration through the canopy",
+      "Rotate with cereal crops to sustain soil biological vitality"
+    ],
+    "hi": [
+      "जिंक और बोरॉन जैसे सूक्ष्म पोषक तत्वों का संतुलित प्रयोग करें",
+      "पौधों के बीच उचित दूरी रखें ताकि धूप और हवा मिलती रहे",
+      "अनाज वाली फसलों के साथ नियमित फसल चक्र अपनाएं"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-DGR Groundnut Production Package",
+      "url": "https://dgr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Healthy groundnut baseline"
+  }
+}

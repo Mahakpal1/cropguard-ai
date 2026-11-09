@@ -44,7 +44,11 @@ class Pipeline:
         self.crop = CropID(settings.model_dir)
         self.adv = Advisory(settings.kb_dir)
         self.router = HierarchicalRouter()
-        self.supported_crops = sorted({c["crop"]["en"] for c in self.classes})
+        crops = {c["crop"]["en"] for c in self.classes if isinstance(c, dict) and c.get("crop")}
+        if getattr(self.clf, "dinov2_engine", None) is not None:
+            engine_crops = set(self.clf.dinov2_engine.classifier.crop_names) - {"__non_crop__"}
+            crops.update(engine_crops)
+        self.supported_crops = sorted(crops)
 
     # ---- helpers -------------------------------------------------------
     @staticmethod
@@ -56,13 +60,19 @@ class Pipeline:
         cfgp = md / "model_config.json"
         if cfgp.exists():
             try:
-                f = json.load(open(cfgp, encoding="utf-8")).get("classes_file")
-                if f and (md / f).exists():
-                    return md / f
+                cfg = json.load(open(cfgp, encoding="utf-8"))
+                f = cfg.get("classes_file")
+                model_folder = cfg.get("model_folder") or ("dinov2_hierarchical" if cfg.get("model_type") == "dinov2_hierarchical" else "")
+                if f:
+                    for cand in [md / f, (md / model_folder / f) if model_folder else None, md.parent / f]:
+                        if cand and cand.exists():
+                            return cand
             except Exception:
                 pass
         if (md / "class_names.json").exists():
             return md / "class_names.json"
+        if (md / "dinov2_hierarchical" / "class_names.json").exists():
+            return md / "dinov2_hierarchical" / "class_names.json"
         if settings.classes_path and Path(settings.classes_path).exists():
             return settings.classes_path
         # Standard 38-class definition across all 14 crops
@@ -73,9 +83,14 @@ class Pipeline:
 
     def _display(self, cid):
         c = self.by_id.get(cid)
-        if c is not None:
+        if c is not None and isinstance(c, dict) and "crop" in c and "disease" in c:
             return {l: f"{c['crop'][l]} · {c['disease'][l]}" for l in ("en", "hi")}
-        parts = cid.replace("___", " · ").replace("__", " · ").replace("_", " ")
+        if "___" in cid or "__" in cid:
+            parts = cid.split("___") if "___" in cid else cid.split("__")
+            crop_name = parts[0].replace("_", " ").strip()
+            disease_name = parts[1].replace("_", " ").strip() if len(parts) > 1 else ""
+            return {"en": f"{crop_name} · {disease_name}", "hi": f"{crop_name} · {disease_name}"}
+        parts = cid.replace("_", " ").strip()
         return {"en": parts, "hi": parts}
 
     @staticmethod

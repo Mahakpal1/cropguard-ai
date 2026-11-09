@@ -1,0 +1,64 @@
+{
+  "id": "Sugarcane___Rust",
+  "crop": {
+    "en": "Sugarcane",
+    "hi": "गन्ना"
+  },
+  "disease": {
+    "en": "Rust",
+    "hi": "रतुआ रोग"
+  },
+  "scientific_name": "Puccinia melanocephala",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Tiny elongated yellowish flecks appearing on both surfaces of expanding young leaves",
+      "Flecks expand into reddish-brown to cinnamon pustules running parallel to leaf veins",
+      "Spore masses rupture through the epidermis creating an abrasive powdery coating that causes leaf death"
+    ],
+    "hi": [
+      "पत्तियों पर छोटे पीले रंग के लंबे धब्बे दिखाई देते हैं",
+      "धब्बे बढ़कर लाल-भूरे फफोलों (पस्ट्यूल) में बदल जाते हैं जो नसों के समानांतर होते हैं",
+      "फफोले फटकर भूरे रंग का चूर्ण छोड़ते हैं जिससे पत्तियां सूख जाती हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Strip severely rusted lower senescent leaves and safely bury them outside the crop area",
+      "If rust advances to top leaves, apply an approved protective fungicide strictly adhering to product label directions",
+      "Avoid overhead wetting of foliage during humid morning hours"
+    ],
+    "hi": [
+      "रोगग्रस्त निचली पत्तियों को तोड़कर खेत से दूर दबा दें",
+      "संक्रमण अधिक होने पर उत्पाद लेबल के अनुसार अनुशंसित फफूंदनाशक का छिड़काव करें",
+      "पत्तियों पर अनावश्यक पानी का छिड़काव न होने दें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Plant rust-resistant commercial sugarcane cultivars proven in your geographical zone",
+      "Maintain optimal plant spacing to maximize air circulation and reduce leaf canopy humidity",
+      "Provide balanced soil nutrition avoiding excess nitrogen during early tillering periods"
+    ],
+    "hi": [
+      "रतुआ रोधी प्रमाणित किस्मों का ही चयन करें",
+      "पौधों के बीच पर्याप्त अंतर रखें ताकि हवा का प्रवाह अच्छा रहे",
+      "संतुलित खाद का प्रयोग करें और अत्यधिक नाइट्रोजन देने से बचें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-IISR Cane Pathology",
+      "url": "https://iisr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified sugarcane rust protocol"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "id": "Wheat___Stem_Rust",
+  "crop": {
+    "en": "Wheat",
+    "hi": "गेहूं"
+  },
+  "disease": {
+    "en": "Stem Rust",
+    "hi": "तना रतुआ (ब्लैक रस्ट)"
+  },
+  "scientific_name": "Puccinia graminis",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Large reddish-brown elongated pustules appearing prominently on stems, leaf sheaths, and glumes",
+      "Pustules rupture epidermal tissues giving stems a rough torn appearance",
+      "Stalks become fragile and lodge heavily under wind with severely pinched, lightweight grains"
+    ],
+    "hi": [
+      "तनों, पत्ती के आवरण और बालियों पर बड़े लाल-भूरे रंग के उभरे हुए फफोले",
+      "फफोले फटने से तने की ऊपरी छाल फट जाती है और तना खुरदरा हो जाता है",
+      "पौधे कमजोर होकर गिर जाते हैं और दाने बहुत छोटे व हल्के रह जाते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Spray an approved systemic fungicide strictly according to product label recommendations",
+      "Ensure thorough coverage of both stems and lower leaf sheaths during application",
+      "Provide light irrigation to prevent lodging of mechanically weakened stems"
+    ],
+    "hi": [
+      "उत्पाद लेबल के निर्देशानुसार अनुशंसित फफूंदनाशक का तुरंत छिड़काव करें",
+      "छिड़काव करते समय तनों और पत्तियों को अच्छी तरह से तर करें",
+      "हल्की सिंचाई करें ताकि कमजोर तने गिरने से बच सकें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Grow certified stem rust resistant wheat cultivars recommended for central and southern zones",
+      "Eradicate alternate host barberry bushes where present around cultivation tracts",
+      "Avoid excessive late nitrogen fertilization during grain development stages"
+    ],
+    "hi": [
+      "तना रतुआ रोधी प्रमाणित किस्मों का चयन करें",
+      "खेत के आसपास के वैकल्पिक पौधों को नष्ट करें",
+      "दाना भरते समय अत्यधिक यूरिया देने से बचें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-IIWBR Black Rust Advisory",
+      "url": "https://iiwbr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified stem rust protocol"
+  }
+}

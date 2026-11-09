@@ -233,7 +233,8 @@
     "Mango___Powdery_Mildew",
     "Mango___Sooty_Mould"
   ],
-  "display_name": "\u2b50 My Model: DINOv2 ViT-L/14 (Hierarchical 518px)",
+  "display_name": "⭐ My Model: DINOv2 ViT-L/14 (Hierarchical 518px)",
   "is_user_model": true,
-  "tag": "MY MODEL"
+  "tag": "MY MODEL",
+  "classes_file": "class_names.json"
 }

@@ -1,0 +1,64 @@
+{
+  "id": "Sugarcane___Red_Rot",
+  "crop": {
+    "en": "Sugarcane",
+    "hi": "गन्ना"
+  },
+  "disease": {
+    "en": "Red Rot",
+    "hi": "लाल सड़न रोग"
+  },
+  "scientific_name": "Colletotrichum falcatum",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Discoloration and yellowing of the third and fourth leaves starting from margins and drying downwards",
+      "Internal pith tissues exhibit deep red discoloration interspersed with diagnostic white cross-bands",
+      "Stems emit a distinctive alcoholic or sour fermenting odour when split open longitudinally"
+    ],
+    "hi": [
+      "ऊपर से तीसरी व चौथी पत्ती का पीला पड़ना और किनारों से सूखना",
+      "गन्ने को चीरने पर अंदर का गूदा गहरा लाल दिखाई देता है जिसमें सफेद आड़ी धारियां होती हैं",
+      "गन्ने से सिरके या शराब जैसी खट्टी गंध आती है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Uproot entire affected clumps along with root mass and burn immediately away from the cane field",
+      "If neighbouring stools show early symptoms, drench furrow lines with approved fungicide strictly following label instructions",
+      "Avoid running irrigation runoff from infected cane plots into healthy plots"
+    ],
+    "hi": [
+      "संक्रमित पौधों को जड़ सहित उखाड़कर खेत से बाहर जला दें",
+      "आसपास के पौधों की जड़ों में उत्पाद लेबल के अनुसार अनुशंसित फफूंदनाशक का प्रयोग करें",
+      "प्रभावित खेत का पानी स्वस्थ खेत में न जाने दें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Plant red rot resistant sugarcane cultivars certified by local sugarcane breeding institutes",
+      "Treat seed setts with hot water aerated steam therapy followed by approved fungicide dipping prior to planting",
+      "Follow a three-year crop rotation with green manure or paddy before replanting sugarcane in affected plots"
+    ],
+    "hi": [
+      "लाल सड़न रोधी प्रमाणित किस्मों का ही चयन करें",
+      "बुवाई से पहले गन्ने के टुकड़ों (सेट्स) को गर्म पानी या अनुशंसित फफूंदनाशक से उपचारित करें",
+      "रोग वाले खेतों में फसल चक्र अपनाएं और हरी खाद या धान लगाएं"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-Sugarcane Breeding Institute",
+      "url": "https://sugarcane.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified ICAR-SBI cane protocol"
+  }
+}

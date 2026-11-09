@@ -1,0 +1,64 @@
+{
+  "id": "Cotton___Healthy",
+  "crop": {
+    "en": "Cotton",
+    "hi": "कपास"
+  },
+  "disease": {
+    "en": "Healthy",
+    "hi": "स्वस्थ"
+  },
+  "scientific_name": "Gossypium hirsutum",
+  "type": "healthy",
+  "healthy": true,
+  "symptoms": {
+    "en": [
+      "Broad dark green lobed leaves free of angular spots, puckering, or yellow vein networks",
+      "Erect sturdy main stem with balanced sympodial branch development and vigorous squaring",
+      "Clean green developing bolls with intact bracts free from feeding punctures or water spots"
+    ],
+    "hi": [
+      "गहरी हरी चौड़ी पत्तियां जिन पर किसी प्रकार के कोणीय धब्बे या मरोड़ नहीं हैं",
+      "मजबूत तना और फलों वाली शाखाओं का अच्छा विकास",
+      "स्वस्थ और हरे टिंडे (बॉल्स) जिन पर किसी कीट या सड़न का निशान नहीं है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Maintain scheduled irrigation avoiding excess waterlogging during critical squaring and boll stages",
+      "Scout fields twice weekly using yellow sticky traps and pheromone traps for early sucking pests",
+      "Provide foliar potassium nitrate and magnesium sprays to support high boll retention"
+    ],
+    "hi": [
+      "फूल और टिंडे बनते समय खेत में नमी का उचित स्तर रखें और पानी न भरने दें",
+      "रस चूसक कीटों की निगरानी के लिए ट्रैप लगाएं और नियमित जांच करें",
+      "टिंडों के अच्छे विकास हेतु पोटाश और मैग्नीशियम का संतुलित छिड़काव करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Practice integrated pest and nutrient management to maintain natural agro-ecosystem resilience",
+      "Conserve beneficial generalist predators like green lacewings, ladybird beetles, and predatory spiders",
+      "Maintain weed-free inter-rows and clear field margins of alternate malvaceous weed hosts"
+    ],
+    "hi": [
+      "उन्नत कीट एवं पोषण प्रबंधन का पालन करें",
+      "मित्र कीटों जैसे लेडीबर्ड बीटल और क्राइसोपा का संरक्षण करें",
+      "खेत के आसपास के खरपतवारों को नियमित रूप से हटाएं"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-CICR Cotton Production Guide",
+      "url": "https://cicr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Healthy cotton baseline"
+  }
+}

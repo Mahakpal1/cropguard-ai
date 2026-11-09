@@ -1,0 +1,64 @@
+{
+  "id": "Groundnut___Rust",
+  "crop": {
+    "en": "Groundnut",
+    "hi": "मूंगफली"
+  },
+  "disease": {
+    "en": "Rust",
+    "hi": "रतुआ रोग"
+  },
+  "scientific_name": "Puccinia arachidis",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Pustules appear primarily on lower surface of leaves as round orange-brown powdery blisters",
+      "Pustules rupture discharging masses of reddish-brown urediniospores leaving leaves ragged",
+      "Infected leaves curl, become necrotic and dry out, but often remain attached to the stems"
+    ],
+    "hi": [
+      "पत्तियों की निचली सतह पर नारंगी-भूरे रंग के छोटे-छोटे उभरे हुए फफोले",
+      "फफोले फटकर लाल-भूरे रंग का चूर्ण छोड़ते हैं जिससे पत्तियां खुरदरी हो जाती हैं",
+      "पत्तियां सूखकर मुड़ जाती हैं लेकिन तने से लटकी रहती हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Apply an approved systemic fungicide strictly according to product label recommendations",
+      "Avoid sprinkler irrigation that disperses fungal spores across adjacent healthy rows",
+      "Inspect lower foliage regularly during periods of overcast, humid monsoon weather"
+    ],
+    "hi": [
+      "उत्पाद लेबल के निर्देशानुसार अनुशंसित फफूंदनाशक का छिड़काव करें",
+      "फव्वारा सिंचाई से बचें ताकि बीजाणु अन्य पौधों पर न फैलें",
+      "बादल वाले और नम मौसम में निचली पत्तियों की नियमित जांच करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Grow dual-resistant cultivars that resist both rust and leaf spot complexes",
+      "Intercrop with cereal crops such as pearl millet or maize to act as physical spore barriers",
+      "Eradicate self-sown volunteer groundnut plants that carry rust spores between seasons"
+    ],
+    "hi": [
+      "रतुआ और टिक्का दोनों से सुरक्षित उन्नत किस्में लगाएं",
+      "बाजरा या मक्का के साथ अंतःफसल (इंटरक्रॉपिंग) करें",
+      "खेत के आसपास उगे आवारा मूंगफली के पौधों को नष्ट करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-DGR Junagadh",
+      "url": "https://dgr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Groundnut rust protocol"
+  }
+}

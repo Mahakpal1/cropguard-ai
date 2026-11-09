@@ -1,0 +1,64 @@
+{
+  "id": "Sugarcane___Healthy",
+  "crop": {
+    "en": "Sugarcane",
+    "hi": "गन्ना"
+  },
+  "disease": {
+    "en": "Healthy",
+    "hi": "स्वस्थ"
+  },
+  "scientific_name": "Saccharum officinarum",
+  "type": "healthy",
+  "healthy": true,
+  "symptoms": {
+    "en": [
+      "Deep green erect foliage with robust wide leaf blades free from stripes or pustules",
+      "Stout solid stalks exhibiting uniform internode length and healthy intact leaf sheaths",
+      "Vigorous stool formation with clean moist root crown free of decay or red pith"
+    ],
+    "hi": [
+      "गहरी हरी चौड़ी पत्तियां जिन पर किसी प्रकार के धब्बे या धारियां नहीं हैं",
+      "मजबूत और मोटा तना जिसमें पोरियों की लंबाई एक समान है",
+      "पौधों का स्वस्थ गुच्छा और जड़ों का अच्छा विकास"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Maintain scheduled irrigation cycles based on soil moisture and ambient seasonal requirements",
+      "Perform earthing up around the base of cane clumps to support upright growth and suppress weeds",
+      "Conduct routine crop monitoring for early detection of stem borers or foliar pests"
+    ],
+    "hi": [
+      "मौसम और मिट्टी की आवश्यकतानुसार नियमित सिंचाई करते रहें",
+      "पौधों की जड़ों पर मिट्टी चढ़ाएं ताकि गन्ना गिरे नहीं और खरपतवार दब जाएं",
+      "कीटों और रोगों की निगरानी हेतु नियमित निरीक्षण जारी रखें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Follow balanced integrated nutrient management combining organic manure with recommended fertilizers",
+      "Conserve beneficial predators and parasitoids like Trichogramma for natural pest suppression",
+      "Maintain clean field borders and clear drainage furrows before the onset of monsoon"
+    ],
+    "hi": [
+      "गोबर की खाद और संतुलित उर्वरकों का सही अनुपात में प्रयोग करें",
+      "मित्र कीटों (जैसे ट्राइकोग्रामा) का संरक्षण करें",
+      "खेत की नालियों को साफ रखें ताकि बारिश में जलभराव न हो"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-IISR Sugarcane Production Manual",
+      "url": "https://iisr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Healthy sugarcane baseline"
+  }
+}

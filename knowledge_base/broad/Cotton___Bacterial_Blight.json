@@ -1,0 +1,64 @@
+{
+  "id": "Cotton___Bacterial_Blight",
+  "crop": {
+    "en": "Cotton",
+    "hi": "कपास"
+  },
+  "disease": {
+    "en": "Bacterial Blight",
+    "hi": "जीवाणु झुलसा"
+  },
+  "scientific_name": "Xanthomonas citri pv. malvacearum",
+  "type": "bacterial",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Angular water-soaked leaf lesions constrained by leaf veinlets (angular leaf spot phase)",
+      "Blackish-brown elongated lesions girdling main stems and branches (black arm phase)",
+      "Water-soaked circular dark lesions on developing bolls leading to boll rot and lint staining"
+    ],
+    "hi": [
+      "पत्तियों की नसों के बीच कोणीय (कोनेदार) पानीदार धब्बे बनते हैं",
+      "तने और टहनियों पर काले-भूरे लंबे धब्बे बनते हैं जिसे ब्लैक आर्म कहते हैं",
+      "कपास के टिंडों (बॉल्स) पर काले गोल धब्बे जिससे रुई सड़ जाती है और दागदार हो जाती है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Prune and destroy severely blighted vegetative branches to lower bacterial inoculum",
+      "Spray an approved copper bactericide formulation strictly adhering to product label instructions",
+      "Avoid inter-row movement when crop foliage is wet with morning dew to prevent spread"
+    ],
+    "hi": [
+      "संक्रमित शाखाओं को काटकर नष्ट करें ताकि जीवाणु आगे न फैलें",
+      "उत्पाद लेबल के अनुसार अनुशंसित कॉपर युक्त जीवाणुनाशक का छिड़काव करें",
+      "ओस या गीले पत्तों के समय खेत में काम करने से बचें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Delint and treat certified cotton seeds with approved acid and seed protectants prior to sowing",
+      "Grow bacterial blight resistant cotton hybrids recommended by state agricultural university",
+      "Incorporate crop residues deeply into soil using mouldboard plough after final picking"
+    ],
+    "hi": [
+      "बुवाई से पहले प्रमाणित बीजों का उचित उपचार करें",
+      "जीवाणु झुलसा रोधी संकर कपास की किस्मों का चयन करें",
+      "फसल कटाई के बाद खेत की गहरी जुताई करके अवशेषों को मिट्टी में दबा दें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-Central Institute for Cotton Research",
+      "url": "https://cicr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified ICAR-CICR cotton protocol"
+  }
+}

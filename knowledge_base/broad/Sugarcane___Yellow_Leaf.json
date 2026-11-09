@@ -1,0 +1,64 @@
+{
+  "id": "Sugarcane___Yellow_Leaf",
+  "crop": {
+    "en": "Sugarcane",
+    "hi": "गन्ना"
+  },
+  "disease": {
+    "en": "Yellow Leaf Disease",
+    "hi": "पीली पत्ती रोग"
+  },
+  "scientific_name": "Sugarcane yellow leaf virus",
+  "type": "viral",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Intense yellowing of the midrib on leaves 3 to 6 from the top whorl while leaf blade stays green",
+      "Yellowing eventually diffuses into the lamina followed by apical necrosis and drying",
+      "Significant reduction in cane stalk diameter, shortened internodes, and reduced juice recovery"
+    ],
+    "hi": [
+      "ऊपर से 3 से 6 नंबर की पत्तियों की मुख्य नस (मिडरिब) का गहरा पीला होना",
+      "धीरे-धीरे पूरी पत्ती पीली पड़कर ऊपर से सूखने लगती है",
+      "गन्ने की मोटाई घट जाती है, पोरियां छोटी हो जाती हैं और रस की मात्रा कम हो जाती है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Rogue out visibly symptomatic young stools to curb secondary vector transmission",
+      "Spray approved selective aphicide strictly according to product label instructions to check insect vectors",
+      "Provide foliar potassium and micronutrient supplements to sustain photosynthesis in unaffected stools"
+    ],
+    "hi": [
+      "प्रभावित पौधों को पहचानकर खेत से निकाल दें",
+      "कीटों की रोकथाम हेतु उत्पाद लेबल के अनुसार अनुशंसित कीटनाशक का छिड़काव करें",
+      "पोटाश और सूक्ष्म पोषक तत्वों का छिड़काव करके पौधों को सहारा दें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Procure seed setts exclusively from certified virus-free nurseries utilizing tissue culture plants",
+      "Monitor and suppress aphid colonies actively during post-monsoon seasonal peaks",
+      "Avoid taking ratoon crops from sugarcane fields diagnosed with severe yellow leaf disease"
+    ],
+    "hi": [
+      "टिशू कल्चर से तैयार प्रमाणित रोगमुक्त सेट्स ही लगाएं",
+      "माहू कीटों की सक्रियता पर नियमित नजर रखें",
+      "पीली पत्ती रोग से प्रभावित खेत में पेड़ी (रतून) की फसल न लें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-SBI Coimbatore YLD Guide",
+      "url": "https://sugarcane.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified yellow leaf protocol"
+  }
+}

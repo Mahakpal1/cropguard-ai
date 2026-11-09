@@ -1,0 +1,64 @@
+{
+  "id": "Groundnut___Late_Leaf_Spot",
+  "crop": {
+    "en": "Groundnut",
+    "hi": "मूंगफली"
+  },
+  "disease": {
+    "en": "Late Leaf Spot (Tikka)",
+    "hi": "पछेती टिक्का रोग"
+  },
+  "scientific_name": "Cercosporidium personatum",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Nearly circular small dark brown to black spots developing late in the growing season",
+      "Lower leaf surface displays carbon-black cushions of fungal spore fruiting bodies",
+      "Halo is usually absent or minimal; rapid leaf drop leads to severe yield and haulm reduction"
+    ],
+    "hi": [
+      "फसल पकने के समय पत्तियों पर छोटे काले-भूरे गोल धब्बे बनते हैं",
+      "पत्ती की निचली सतह पर काले रंग के फफूंद के उभार साफ दिखते हैं",
+      "धब्बों के चारों ओर पीला घेरा प्रायः नहीं होता और पत्तियां बहुत तेजी से झड़ती हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Spray an approved broad-spectrum fungicide strictly according to product label instructions",
+      "Avoid overhead sprinkler irrigation during late afternoon hours to keep foliage dry overnight",
+      "Harvest crop promptly once pods reach physiological maturity to avoid pod shedding in soil"
+    ],
+    "hi": [
+      "उत्पाद लेबल के अनुसार अनुशंसित फफूंदनाशक का तत्काल छिड़काव करें",
+      "शाम के समय सिंचाई न करें ताकि रात में पत्ते गीले न रहें",
+      "फसल पकते ही समय पर खुदाई करें ताकि फलियां मिट्टी में न छूटें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Select certified disease-tolerant cultivars developed by state agricultural universities",
+      "Carry out deep summer ploughing to bury fungal overwintering debris into soil depths",
+      "Maintain balanced fertilization with required gypsum top-dressing at flowering"
+    ],
+    "hi": [
+      "रोग-सहनशील प्रमाणित किस्मों की ही बुवाई करें",
+      "गर्मियों में गहरी जुताई करें ताकि फफूंद के अवशेष नष्ट हो जाएं",
+      "फूल आते समय जिप्सम का संतुलित प्रयोग करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-DGR Groundnut Pathology",
+      "url": "https://dgr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified groundnut late leaf spot protocol"
+  }
+}

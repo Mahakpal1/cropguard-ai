@@ -1,0 +1,64 @@
+{
+  "id": "Rice___Bacterial_Blight",
+  "crop": {
+    "en": "Rice",
+    "hi": "धान"
+  },
+  "disease": {
+    "en": "Bacterial Blight",
+    "hi": "जीवाणु झुलसा"
+  },
+  "scientific_name": "Xanthomonas oryzae pv. oryzae",
+  "type": "bacterial",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Water-soaked stripes emerging on leaf blades with wavy margins progressing from leaf tips",
+      "Lesions turn pale yellow to grey-white with milky bacterial ooze droplets visible early morning",
+      "Wilting and rapid desiccation of whole seedlings known as the kresek wilt phase"
+    ],
+    "hi": [
+      "पत्तियों के किनारों से शुरू होकर लहरदार पीली-सफेद धारियां ऊपर से नीचे की ओर फैलती हैं",
+      "पत्तियां सूखकर भूरी हो जाती हैं और सुबह के समय पत्तों पर चिपचिपे बूंदें दिखती हैं",
+      "छोटे पौधों का तेजी से सूखना और मुरझाना (क्रेसेक अवस्था)"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Drain standing irrigation water from infected fields and suspend fresh nitrogen fertilization",
+      "Spray an approved bactericide combined with copper compound strictly according to product label recommendations",
+      "Sterilize farm implements to prevent mechanical transmission to neighbouring plots"
+    ],
+    "hi": [
+      "प्रभावित खेत से पानी निकालें और नाइट्रोजन खाद का छिड़काव तुरंत रोकें",
+      "उत्पाद लेबल के अनुसार अनुशंसित कॉपर युक्त जीवाणुनाशक का छिड़काव करें",
+      "कृषि उपकरणों को साफ रखें ताकि रोग अन्य खेतों में न फैले"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Plant certified resistant varieties recommended by state agricultural university",
+      "Avoid clipping leaf tips of seedlings during transplanting to minimize entry wounds",
+      "Maintain clean irrigation channels free of weed hosts that harbour the bacteria"
+    ],
+    "hi": [
+      "कृषि विश्वविद्यालय द्वारा अनुशंसित रोग-प्रतिरोधी किस्में लगाएं",
+      "रोपाई के समय पौधों की पत्तियों के ऊपरी सिरे न काटें",
+      "सिंचाई की नालियों को खरपतवार मुक्त रखें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-NRRI Cuttack",
+      "url": "https://crri.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Standard ICAR bacterial blight protocol"
+  }
+}

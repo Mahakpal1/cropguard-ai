@@ -1,0 +1,64 @@
+{
+  "id": "Mango___Die_Back",
+  "crop": {
+    "en": "Mango",
+    "hi": "आम"
+  },
+  "disease": {
+    "en": "Die Back",
+    "hi": "डाई बैक (उल्टा सूखा रोग)"
+  },
+  "scientific_name": "Lasiodiplodia theobromae",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Drying and withering of branches starting from the tip downwards giving a scorched appearance",
+      "Leaves turn brown, dry up completely, and remain firmly attached to dead branches for months",
+      "Internal wood displays dark brown discoloration with discoloured vascular streaks when split"
+    ],
+    "hi": [
+      "टहनियों का ऊपरी सिरे से नीचे की ओर सूखना शुरू होना",
+      "पत्तियां भूरी होकर सूख जाती हैं लेकिन सूखी टहनी से चिपकी रहती हैं",
+      "टहनी को काटने पर अंदर की लकड़ी में भूरी या काली धारियां दिखती हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Prune dried branches three inches below the healthy green transition line and safely burn them",
+      "Paint all pruned branch stubs with an approved copper paste formulation strictly according to label",
+      "Spray the entire tree canopy with an approved fungicide following label instructions"
+    ],
+    "hi": [
+      "सूखी टहनी को स्वस्थ भाग से कुछ इंच नीचे से काटें और जला दें",
+      "कटे हुए भाग पर तुरंत उत्पाद लेबल के अनुसार कॉपर युक्त लेप लगाएं",
+      "पेड़ के पूरे घेरे पर लेबल निर्देशानुसार अनुशंसित फफूंदनाशक का छिड़काव करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Manage stem borers and bark-eating caterpillars whose tunnels serve as fungal entry pathways",
+      "Avoid root damage during intercultural ploughing and avoid severe drought stress in summer",
+      "Apply balanced organic manure combined with zinc and copper micronutrient supplements"
+    ],
+    "hi": [
+      "तना छेदक कीटों की रोकथाम करें ताकि फफूंद के प्रवेश के रास्ते न बनें",
+      "जुताई के समय मुख्य जड़ों को कटने से बचाएं और गर्मियों में पानी की कमी न होने दें",
+      "संतुलित खाद के साथ जिंक और कॉपर जैसे सूक्ष्म पोषक तत्व दें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-CISH Lucknow Die Back Advisory",
+      "url": "https://cish.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified die back protocol"
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "id": "Sugarcane___Mosaic",
+  "crop": {
+    "en": "Sugarcane",
+    "hi": "गन्ना"
+  },
+  "disease": {
+    "en": "Mosaic Disease",
+    "hi": "मोज़ेक रोग"
+  },
+  "scientific_name": "Sugarcane mosaic virus",
+  "type": "viral",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Mottled pattern of contrasting dark green and chlorotic yellowish-green patches on young leaves",
+      "Striped symptoms prominent near the base of the newest expanding leaf blades",
+      "Shortened internodes and thin stalks in susceptible cultivars leading to reduced cane yield"
+    ],
+    "hi": [
+      "नई पत्तियों पर हल्के पीले और गहरे हरे रंग के चितकबरे धब्बे",
+      "पत्ती के निचले हिस्से में धारियां अधिक स्पष्ट दिखाई देती हैं",
+      "पौधों की पोरियां छोटी रह जाती हैं और गन्ना पतला हो जाता है"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Rogue out and destroy infected young clumps showing distinct mosaic symptoms immediately",
+      "Manage aphid vector populations using approved botanical or contact sprays strictly according to product label",
+      "Provide balanced micronutrient sprays to alleviate stress in mildly affected surrounding stools"
+    ],
+    "hi": [
+      "रोगग्रस्त पौधों को तुरंत खेत से निकालकर नष्ट करें",
+      "माहू (एफिड) कीट के नियंत्रण हेतु उत्पाद लेबल के अनुसार अनुशंसित छिड़काव करें",
+      "संतुलित पोषण देकर पौधों की रोग प्रतिरोधक क्षमता बढ़ाएं"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Select certified virus-tested seed cane obtained through tissue culture propagation",
+      "Eliminate secondary weed hosts such as wild sorghum and Johnson grass around the perimeter",
+      "Plant mosaic-tolerant cane varieties developed for the endemic agricultural tract"
+    ],
+    "hi": [
+      "टिशू कल्चर या प्रमाणित नर्सरी से प्राप्त सेट्स ही लगाएं",
+      "खेत के आसपास के खरपतवारों (जैसे जंगली ज्वार) को नष्ट करें",
+      "मोज़ेक रोधी उन्नत किस्मों का चयन करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-SBI Coimbatore",
+      "url": "https://sugarcane.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified cane mosaic protocol"
+  }
+}

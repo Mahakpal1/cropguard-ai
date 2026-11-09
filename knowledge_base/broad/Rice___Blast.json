@@ -1,0 +1,64 @@
+{
+  "id": "Rice___Blast",
+  "crop": {
+    "en": "Rice",
+    "hi": "धान"
+  },
+  "disease": {
+    "en": "Blast",
+    "hi": "ब्लास्ट (झोंका रोग)"
+  },
+  "scientific_name": "Magnaporthe oryzae",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Spindle-shaped diamond lesions with grey or whitish centres and dark brown margins on leaves",
+      "Neck rot causing panicles to fall over and turn whitish with unfilled grains",
+      "Brownish-black lesions at nodes causing culm breakage"
+    ],
+    "hi": [
+      "पत्तियों पर नाव या आंख के आकार के धब्बे जिनके बीच का हिस्सा भूरा-सफेद और किनारे गहरे कत्थई होते हैं",
+      "गर्दन तोड़ रोग जिससे बालियां टूटकर लटक जाती हैं और दाने नहीं भरते",
+      "गांठों पर काले-भूरे धब्बे जिससे पौधे बीच से टूट जाते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Drain excess standing water temporarily and avoid high doses of quick-release nitrogen fertilizer",
+      "If blast spreads rapidly, apply an approved systemic fungicide strictly according to product label directions",
+      "Consult local extension officer for recommended region-specific fungal management schedules"
+    ],
+    "hi": [
+      "खेत से अतिरिक्त पानी निकालें और अधिक यूरिया का प्रयोग तुरंत रोकें",
+      "संक्रमण तेज होने पर उत्पाद लेबल के निर्देशानुसार अनुशंसित फफूंदनाशक का छिड़काव करें",
+      "क्षेत्रीय कृषि विशेषज्ञ की सलाह से उपचार कार्यक्रम अपनाएं"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Cultivate blast-resistant certified paddy varieties suited for your agro-climatic zone",
+      "Treat seeds with approved biocontrol agents or protectants before nursery sowing",
+      "Maintain optimal plant spacing to allow adequate aeration through the crop canopy"
+    ],
+    "hi": [
+      "रोग रोधी प्रमाणित धान की किस्मों का ही चयन करें",
+      "नर्सरी में बुवाई से पहले बीजों का उपयुक्त उपचार करें",
+      "रोपाई के समय पौधों के बीच पर्याप्त दूरी रखें ताकि हवा का आवागमन बना रहे"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR - National Rice Research Institute",
+      "url": "https://crri.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified ICAR rice protection guidelines"
+  }
+}

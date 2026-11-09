@@ -1,0 +1,64 @@
+{
+  "id": "Wheat___Yellow_Rust",
+  "crop": {
+    "en": "Wheat",
+    "hi": "गेहूं"
+  },
+  "disease": {
+    "en": "Yellow Rust",
+    "hi": "पीला रतुआ (स्ट्राइप रस्ट)"
+  },
+  "scientific_name": "Puccinia striiformis",
+  "type": "fungal",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Bright lemon-yellow powdery pustules arranged in narrow distinct linear stripes along leaf veins",
+      "Pustules erupt releasing powdery yellow spores that adhere readily to clothing and fingers",
+      "Severe stripe infection causes rapid leaf desiccation, premature drying, and shrivelled grain filling"
+    ],
+    "hi": [
+      "पत्तियों की नसों के समानांतर चमकीले पीले रंग के फफोले लंबी कतारों (धारियों) में दिखाई देते हैं",
+      "फफोले फटकर पीले रंग का चूर्ण छोड़ते हैं जो हाथ या कपड़ों पर हल्दी की तरह लग जाता है",
+      "पत्तियां तेजी से सूख जाती हैं और बालियों में दाने सिकुड़कर बहुत हल्के रह जाते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Scout wheat fields regularly during cool winter mornings for isolated yellow rust focal foci",
+      "On initial focal detection, spray an approved systemic triazole fungicide strictly following label instructions",
+      "Alert regional agricultural extension authorities to track community-level spore movement"
+    ],
+    "hi": [
+      "सर्दियों में सुबह के समय खेत का नियमित निरीक्षण करें और पीले धब्बों की पहचान करें",
+      "शुरुआती लक्षण दिखते ही उत्पाद लेबल के निर्देशानुसार अनुशंसित फफूंदनाशक का छिड़काव करें",
+      "क्षेत्रीय कृषि अधिकारियों को सूचना दें ताकि सामूहिक रोकथाम हो सके"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Sow certified rust-resistant wheat varieties recommended for your specific agro-climatic zone",
+      "Avoid excessively late sowing which exposes the crop to high temperature rust sporulation peaks",
+      "Maintain balanced soil nutrition avoiding excess nitrogen applications that accelerate rust spread"
+    ],
+    "hi": [
+      "अपने क्षेत्र के लिए अनुशंसित रतुआ रोधी प्रमाणित किस्मों की ही बुवाई करें",
+      "देर से बुवाई करने से बचें ताकि फसल रतुआ के प्रकोप से बच सके",
+      "संतुलित खाद दें और अधिक यूरिया डालने से बचें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "ICAR-Indian Institute of Wheat and Barley Research",
+      "url": "https://iiwbr.icar.gov.in"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified ICAR-IIWBR wheat rust protocol"
+  }
+}

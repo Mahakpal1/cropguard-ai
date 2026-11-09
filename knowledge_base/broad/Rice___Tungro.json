@@ -1,0 +1,64 @@
+{
+  "id": "Rice___Tungro",
+  "crop": {
+    "en": "Rice",
+    "hi": "धान"
+  },
+  "disease": {
+    "en": "Tungro Virus",
+    "hi": "टुंग्रो वायरस"
+  },
+  "scientific_name": "Rice tungro bacilliform virus",
+  "type": "viral",
+  "healthy": false,
+  "symptoms": {
+    "en": [
+      "Pronounced plant stunting and marked reduction in tiller count per hill",
+      "Leaf discoloration beginning at the tip and extending downwards as bright yellow-orange hues",
+      "Delayed flowering with partially exerted panicles containing sterile dark grains"
+    ],
+    "hi": [
+      "पौधों का बौना रह जाना और कल्लों (टिलर्स) की संख्या में भारी कमी",
+      "पत्तियों के सिरे से शुरू होकर नीचे तक चमकीला पीला या नारंगी रंग फैलना",
+      "देर से बालियां आना जिनमें अधिकतर दाने खोखले और बदरंग रह जाते हैं"
+    ]
+  },
+  "do_now": {
+    "en": [
+      "Rogue out and bury severely infected stunted plants immediately to remove virus reservoirs",
+      "Monitor green leafhopper populations and apply an approved vector control insecticide strictly adhering to label guidelines",
+      "Apply light irrigation and supplemental foliar nutrition to boost undamaged surviving tillers"
+    ],
+    "hi": [
+      "संक्रमित बौने पौधों को उखाड़कर नष्ट करें ताकि वायरस आगे न फैले",
+      "हरे फुदके (लीफ हॉपर) की रोकथाम हेतु उत्पाद लेबल के अनुसार कीटनाशक का छिड़काव करें",
+      "बचे हुए पौधों को पोषण देकर स्वस्थ रखने का प्रयास करें"
+    ]
+  },
+  "avoid_extra": {
+    "en": [],
+    "hi": []
+  },
+  "prevent": {
+    "en": [
+      "Adopt synchronous community planting across large blocks to break pest transmission cycles",
+      "Select paddy varieties endowed with genetic resistance to both tungro and the leafhopper vector",
+      "Eradicate volunteer rice seedlings and weed grass hosts during the fallow period"
+    ],
+    "hi": [
+      "क्षेत्र में सभी किसान एक साथ बुवाई करें ताकि कीटों का चक्र टूटे",
+      "टुंग्रो और कीट प्रतिरोधी किस्मों का चयन करें",
+      "खेत के आसपास उगे घास-फूस और आवारा पौधों को नष्ट करें"
+    ]
+  },
+  "sources": [
+    {
+      "name": "IRRI Knowledge Bank",
+      "url": "http://www.knowledgebank.irri.org"
+    }
+  ],
+  "review": {
+    "status": "reviewed",
+    "note": "Verified rice virus IPM guidelines"
+  }
+}
