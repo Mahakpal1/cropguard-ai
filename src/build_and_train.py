@@ -179,9 +179,10 @@ class PipelineBuilder:
         train_df: pd.DataFrame,
         val_df: pd.DataFrame,
         test_df: pd.DataFrame,
-        dataset_name: str = "cropguard_dataset",
+        dataset_name: str = "cropguard",
         apply_augmentation: bool = True,
         save_subsets: bool = True,
+        force_reextract: bool = False,
     ) -> Tuple[Path, Path, Path]:
         """Pre-extract frozen DINOv2 features and save to disk, with optional clean and augmented subset caching."""
         self.cache_dir.mkdir(parents=True, exist_ok=True)
@@ -189,7 +190,7 @@ class PipelineBuilder:
         val_cache = self.cache_dir / f"{dataset_name}_val_{self.model_name}.npz"
         test_cache = self.cache_dir / f"{dataset_name}_test_{self.model_name}.npz"
 
-        if train_cache.exists() and val_cache.exists() and test_cache.exists():
+        if not force_reextract and train_cache.exists() and val_cache.exists() and test_cache.exists():
             logger.info(f"Reusing existing cached features at {self.cache_dir}")
             return train_cache, val_cache, test_cache
 
@@ -289,6 +290,7 @@ class PipelineBuilder:
             "model_type": "dinov2_hierarchical",
             "backbone": self.model_name,
             "checkpoint": "hierarchical_heads.pt",
+            "classes_file": "class_names.json",
             "input_size": self.img_size,
             "feature_dim": train_data["features"].shape[1],
             "energy_threshold": float(classifier.energy_threshold),
@@ -301,6 +303,12 @@ class PipelineBuilder:
         with open(self.output_dir / "model_config.json", "w", encoding="utf-8") as f:
             json.dump(cfg, f, indent=2)
 
+        # Update top-level model_config.json so newly trained model becomes active immediately
+        top_cfg = dict(cfg)
+        top_cfg["model_folder"] = "dinov2_hierarchical"
+        with open(self.output_dir.parent / "model_config.json", "w", encoding="utf-8") as f:
+            json.dump(top_cfg, f, indent=2)
+
         # Export classes_hierarchy.json
         hierarchy = {
             "crops": classifier.crop_names,
@@ -308,6 +316,11 @@ class PipelineBuilder:
         }
         with open(self.output_dir / "classes_hierarchy.json", "w", encoding="utf-8") as f:
             json.dump(hierarchy, f, indent=2)
+
+        # Ensure class_names.json exists in output_dir
+        if not (self.output_dir / "class_names.json").exists() and (self.output_dir.parent / "class_names.json").exists():
+            import shutil
+            shutil.copy2(self.output_dir.parent / "class_names.json", self.output_dir / "class_names.json")
 
         logger.info(f"Model bundle exported successfully to {self.output_dir}")
         return classifier, ckpt_path
@@ -365,7 +378,7 @@ class PipelineBuilder:
 
 def main():
     parser = argparse.ArgumentParser(description="CropGuard DINOv2 Hierarchical Model Builder and Trainer")
-    parser.add_argument("--data-dirs", nargs="+", default=["data/PlantVillage", "work/plantdoc/train", "data/disease_dataset/train"],
+    parser.add_argument("--data-dirs", nargs="+", default=["data/PlantVillage", "data/raw", "work/plantdoc/train", "data/disease_dataset/train"],
                         help="List of dataset root directories to scan")
     parser.add_argument("--taxonomy", default="data/taxonomy.csv", help="Path to taxonomy.csv")
     parser.add_argument("--output-dir", default="ml/models/dinov2_hierarchical", help="Output model directory")
@@ -373,15 +386,19 @@ def main():
     parser.add_argument("--model-name", default="dinov2_vitl14", choices=["dinov2_vits14", "dinov2_vitb14", "dinov2_vitl14"], help="DINOv2 backbone")
     parser.add_argument("--img-size", type=int, default=518, help="Input image resolution (must be multiple of 14; e.g. 518, 560, 644)")
     parser.add_argument("--late-fusion", default=None, choices=["siglip_large"], help="Optional late-fusion backbone (adds to DINOv2 features)")
-    parser.add_argument("--epochs", type=int, default=15, help="Training epochs for MLP heads")
+    parser.add_argument("--epochs", type=int, default=25, help="Training epochs for MLP heads")
     parser.add_argument("--batch-size", type=int, default=64, help="Batch size for training")
     parser.add_argument("--lr", type=float, default=1e-3, help="Learning rate")
     parser.add_argument("--cache-mode", default="both", choices=["both", "clean", "augmented"],
                         help="Slice of cached features to train on: 'both', 'clean', or 'augmented'")
+    parser.add_argument("--skip-lodo", action="store_true", default=False,
+                        help="Skip Leave-One-Dataset-Out cross-domain evaluation folds for faster execution")
     parser.add_argument("--field-only-calibration", action="store_true", default=True,
                         help="Calibrate temperatures and reject threshold strictly on field-only validation split")
     parser.add_argument("--lora-benchmark", action="store_true", default=False,
                         help="Run LoRA vs frozen baseline decision rule benchmark")
+    parser.add_argument("--force-reextract", action="store_true", default=False,
+                        help="Force re-extraction of all features even if cache exists")
     parser.add_argument("--max-per-class", type=int, default=None, help="Cap samples per raw folder (for quick training)")
     parser.add_argument("--cap-lab-ratio", type=float, default=0.50, help="Cap lab samples so field dominates")
     parser.add_argument("--device", default=None, help="Torch device ('cuda' or 'cpu')")
@@ -398,24 +415,32 @@ def main():
         device=args.device,
     )
 
-    logger.info("Step 1: Scanning datasets and creating honest splits...")
-    train_df, val_df, test_df = builder.scan_and_prepare_dataset(
-        data_roots=args.data_dirs,
-        max_samples_per_class=args.max_per_class,
-        cap_lab_ratio=args.cap_lab_ratio,
-    )
+    train_cache = builder.cache_dir / f"cropguard_train_{builder.model_name}.npz"
+    val_cache = builder.cache_dir / f"cropguard_val_{builder.model_name}.npz"
+    test_cache = builder.cache_dir / f"cropguard_test_{builder.model_name}.npz"
 
-    if train_df.empty:
-        logger.error("No valid dataset samples found. Check --data-dirs paths.")
-        sys.exit(1)
+    if not args.force_reextract and train_cache.exists() and val_cache.exists() and test_cache.exists():
+        logger.info(f"Reusing existing cached features at {builder.cache_dir} (skipping redundant disk scan). Pass --force-reextract to rebuild.")
+    else:
+        logger.info("Step 1: Scanning datasets and creating honest splits...")
+        train_df, val_df, test_df = builder.scan_and_prepare_dataset(
+            data_roots=args.data_dirs,
+            max_samples_per_class=args.max_per_class,
+            cap_lab_ratio=args.cap_lab_ratio,
+        )
 
-    logger.info("Step 2: Extracting and caching DINOv2 features...")
-    train_cache, val_cache, test_cache = builder.extract_and_cache_all(
-        train_df, val_df, test_df,
-        dataset_name="cropguard",
-        apply_augmentation=True,
-        save_subsets=True,
-    )
+        if train_df.empty:
+            logger.error("No valid dataset samples found. Check --data-dirs paths.")
+            sys.exit(1)
+
+        logger.info("Step 2: Extracting and caching DINOv2 features...")
+        train_cache, val_cache, test_cache = builder.extract_and_cache_all(
+            train_df, val_df, test_df,
+            dataset_name="cropguard",
+            apply_augmentation=True,
+            save_subsets=True,
+            force_reextract=args.force_reextract,
+        )
 
     logger.info("Step 3: Training hierarchical heads and calibrating...")
     classifier, ckpt_path = builder.train_and_calibrate(
@@ -428,7 +453,7 @@ def main():
     )
 
     logger.info("Step 4: Evaluating on held-out test split...")
-    builder.evaluate(classifier, test_cache, train_cache_path=train_cache)
+    builder.evaluate(classifier, test_cache, train_cache_path=train_cache, run_lodo=not args.skip_lodo)
 
     if args.lora_benchmark:
         logger.info("Step 5: Running LoRA vs Frozen Baseline decision benchmark...")

@@ -31,7 +31,7 @@ class HeadTrainer:
         lr: float = 1e-3,
         weight_decay: float = 1e-4,
         batch_size: int = 64,
-        epochs: int = 15,
+        epochs: int = 25,
     ):
         self.device = torch.device(device or ("cuda" if torch.cuda.is_available() else "cpu"))
         self.lr = lr

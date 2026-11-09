@@ -1,11 +1,15 @@
 {
   "name": "My Custom Model: DINOv2 ViT-L/14 Hierarchical",
+  "display_name": "\u2b50 My Model: DINOv2 ViT-L/14 (Hierarchical 518px)",
+  "is_user_model": true,
+  "tag": "MY MODEL",
   "model_type": "dinov2_hierarchical",
   "backbone": "dinov2_vitl14",
   "checkpoint": "hierarchical_heads.pt",
+  "classes_file": "class_names.json",
   "input_size": 518,
   "feature_dim": 1024,
-  "energy_threshold": -6.464267253875732,
+  "energy_threshold": -6.077583312988281,
   "confidence_threshold": 0.6,
   "margin_threshold": 0.1,
   "num_crops": 20,
@@ -133,9 +137,5 @@
       "Powdery_Mildew",
       "Sooty_Mould"
     ]
-  },
-  "display_name": "⭐ My Model: DINOv2 ViT-L/14 (Hierarchical 518px)",
-  "is_user_model": true,
-  "tag": "MY MODEL",
-  "classes_file": "class_names.json"
+  }
 }
