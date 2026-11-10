@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "total_classes": 88,
+  "total_classes": 69,
   "classes": [
     {
       "id": "Apple___Apple_Scab",
@@ -51,58 +51,10 @@
       "healthy": true
     },
     {
-      "id": "Banana___Healthy",
-      "crop": {
-        "en": "Banana",
-        "hi": "केला"
-      },
-      "disease": {
-        "en": "Healthy",
-        "hi": "स्वस्थ"
-      },
-      "healthy": true
-    },
-    {
-      "id": "Banana___Sigatoka",
-      "crop": {
-        "en": "Banana",
-        "hi": "केला"
-      },
-      "disease": {
-        "en": "Sigatoka Leaf Spot",
-        "hi": "सिगाटोका पत्ती धब्बा"
-      },
-      "healthy": false
-    },
-    {
       "id": "Blueberry___Healthy",
       "crop": {
         "en": "Blueberry",
         "hi": "ब्लूबेरी"
-      },
-      "disease": {
-        "en": "Healthy",
-        "hi": "स्वस्थ"
-      },
-      "healthy": true
-    },
-    {
-      "id": "Cauliflower___Downy_Mildew",
-      "crop": {
-        "en": "Cauliflower",
-        "hi": "फूलगोभी"
-      },
-      "disease": {
-        "en": "Downy Mildew",
-        "hi": "मृदु रोमिल आसिता (डाउनी मिल्ड्यू)"
-      },
-      "healthy": false
-    },
-    {
-      "id": "Cauliflower___Healthy",
-      "crop": {
-        "en": "Cauliflower",
-        "hi": "फूलगोभी"
       },
       "disease": {
         "en": "Healthy",
@@ -135,42 +87,6 @@
       "healthy": false
     },
     {
-      "id": "Chilli___Anthracnose",
-      "crop": {
-        "en": "Chilli",
-        "hi": "मिर्च"
-      },
-      "disease": {
-        "en": "Anthracnose",
-        "hi": "एंथ्रेक्नोज़ (श्याम वर्ण)"
-      },
-      "healthy": false
-    },
-    {
-      "id": "Chilli___Healthy",
-      "crop": {
-        "en": "Chilli",
-        "hi": "मिर्च"
-      },
-      "disease": {
-        "en": "Healthy",
-        "hi": "स्वस्थ"
-      },
-      "healthy": true
-    },
-    {
-      "id": "Chilli___Leaf_Curl",
-      "crop": {
-        "en": "Chilli",
-        "hi": "मिर्च"
-      },
-      "disease": {
-        "en": "Leaf Curl",
-        "hi": "पत्ती मरोड़ रोग"
-      },
-      "healthy": false
-    },
-    {
       "id": "Cotton___Bacterial_Blight",
       "crop": {
         "en": "Cotton",
@@ -179,18 +95,6 @@
       "disease": {
         "en": "Bacterial Blight",
         "hi": "जीवाणु झुलसा"
-      },
-      "healthy": false
-    },
-    {
-      "id": "Cotton___Fusarium_Wilt",
-      "crop": {
-        "en": "Cotton",
-        "hi": "कपास"
-      },
-      "disease": {
-        "en": "Fusarium Wilt",
-        "hi": "फ्यूजेरियम उकठा रोग"
       },
       "healthy": false
     },
@@ -205,18 +109,6 @@
         "hi": "स्वस्थ"
       },
       "healthy": true
-    },
-    {
-      "id": "Cotton___Leaf_Curl_Virus",
-      "crop": {
-        "en": "Cotton",
-        "hi": "कपास"
-      },
-      "disease": {
-        "en": "Leaf Curl Virus",
-        "hi": "पत्ती मरोड़ वायरस"
-      },
-      "healthy": false
     },
     {
       "id": "Grape___Black_Rot",
@@ -263,18 +155,6 @@
       "disease": {
         "en": "Leaf Blight",
         "hi": "पत्ती झुलसा"
-      },
-      "healthy": false
-    },
-    {
-      "id": "Groundnut___Bud_Necrosis",
-      "crop": {
-        "en": "Groundnut",
-        "hi": "मूंगफली"
-      },
-      "disease": {
-        "en": "Bud Necrosis",
-        "hi": "कलिका परिगलन रोग"
       },
       "healthy": false
     },
@@ -579,30 +459,6 @@
       "healthy": false
     },
     {
-      "id": "Radish___Healthy",
-      "crop": {
-        "en": "Radish",
-        "hi": "मूली"
-      },
-      "disease": {
-        "en": "Healthy",
-        "hi": "स्वस्थ"
-      },
-      "healthy": true
-    },
-    {
-      "id": "Radish___White_Rust",
-      "crop": {
-        "en": "Radish",
-        "hi": "मूली"
-      },
-      "disease": {
-        "en": "White Rust",
-        "hi": "सफेद रतुआ"
-      },
-      "healthy": false
-    },
-    {
       "id": "Raspberry___Healthy",
       "crop": {
         "en": "Raspberry",
@@ -661,42 +517,6 @@
         "hi": "स्वस्थ"
       },
       "healthy": true
-    },
-    {
-      "id": "Rice___Hispa",
-      "crop": {
-        "en": "Rice",
-        "hi": "धान"
-      },
-      "disease": {
-        "en": "Rice Hispa",
-        "hi": "राइस हिस्पा (कीट)"
-      },
-      "healthy": false
-    },
-    {
-      "id": "Rice___Leaf_Scald",
-      "crop": {
-        "en": "Rice",
-        "hi": "धान"
-      },
-      "disease": {
-        "en": "Leaf Scald",
-        "hi": "पत्ती अंगमारी (स्कैल्ड)"
-      },
-      "healthy": false
-    },
-    {
-      "id": "Rice___Sheath_Blight",
-      "crop": {
-        "en": "Rice",
-        "hi": "धान"
-      },
-      "disease": {
-        "en": "Sheath Blight",
-        "hi": "शीथ ब्लाइट (पर्णच्छद झुलसा)"
-      },
-      "healthy": false
     },
     {
       "id": "Rice___Tungro",
@@ -795,18 +615,6 @@
       "healthy": false
     },
     {
-      "id": "Sugarcane___Pokkah_Boeng",
-      "crop": {
-        "en": "Sugarcane",
-        "hi": "गन्ना"
-      },
-      "disease": {
-        "en": "Pokkah Boeng",
-        "hi": "पोक्का बोइंग रोग"
-      },
-      "healthy": false
-    },
-    {
       "id": "Sugarcane___Red_Rot",
       "crop": {
         "en": "Sugarcane",
@@ -827,18 +635,6 @@
       "disease": {
         "en": "Rust",
         "hi": "रतुआ रोग"
-      },
-      "healthy": false
-    },
-    {
-      "id": "Sugarcane___Smut",
-      "crop": {
-        "en": "Sugarcane",
-        "hi": "गन्ना"
-      },
-      "disease": {
-        "en": "Smut",
-        "hi": "कंडुआ रोग"
       },
       "healthy": false
     },
@@ -997,30 +793,6 @@
         "hi": "स्वस्थ"
       },
       "healthy": true
-    },
-    {
-      "id": "Wheat___Powdery_Mildew",
-      "crop": {
-        "en": "Wheat",
-        "hi": "गेहूं"
-      },
-      "disease": {
-        "en": "Powdery Mildew",
-        "hi": "चूर्णिल आसिता (पाउडरी मिल्ड्यू)"
-      },
-      "healthy": false
-    },
-    {
-      "id": "Wheat___Septoria_Leaf_Blotch",
-      "crop": {
-        "en": "Wheat",
-        "hi": "गेहूं"
-      },
-      "disease": {
-        "en": "Septoria Leaf Blotch",
-        "hi": "सेप्टोरिया पत्ती धब्बा"
-      },
-      "healthy": false
     },
     {
       "id": "Wheat___Stem_Rust",
