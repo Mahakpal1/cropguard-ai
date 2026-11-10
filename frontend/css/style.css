@@ -4070,3 +4070,27 @@ h4.kh {
   color: var(--ink-soft, #64748b);
   font-style: italic;
 }
+
+/* ── Dark Mode: Confidence Breakdown + Top-2 Alt ── */
+:root[data-theme='dark'] .diag-confidence-breakdown {
+  background: rgba(15, 28, 20, 0.7);
+  border-color: #1f342b;
+}
+
+:root[data-theme='dark'] .conf-label {
+  color: #9ca3af;
+}
+
+:root[data-theme='dark'] .conf-bar-wrap {
+  background: #1f342b;
+}
+
+:root[data-theme='dark'] .conf-row b {
+  color: #e5e7eb;
+}
+
+:root[data-theme='dark'] .top2-alt {
+  background: rgba(15, 28, 20, 0.6);
+  border-color: #1f342b;
+  color: #9ca3af;
+}
