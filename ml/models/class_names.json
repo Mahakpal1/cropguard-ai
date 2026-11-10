@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "total_classes": 69,
+  "total_classes": 80,
   "classes": [
     {
       "id": "Apple___Apple_Scab",
@@ -10,7 +10,7 @@
       },
       "disease": {
         "en": "Apple Scab",
-        "hi": "सेब का पपड़ी रोग"
+        "hi": "सेब पपड़ी रोग"
       },
       "healthy": false
     },
@@ -51,6 +51,54 @@
       "healthy": true
     },
     {
+      "id": "Banana___Cordana",
+      "crop": {
+        "en": "Banana",
+        "hi": "केला"
+      },
+      "disease": {
+        "en": "Cordana",
+        "hi": "कोरडाना पत्ती धब्बा"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Banana___Healthy",
+      "crop": {
+        "en": "Banana",
+        "hi": "केला"
+      },
+      "disease": {
+        "en": "Healthy",
+        "hi": "स्वस्थ"
+      },
+      "healthy": true
+    },
+    {
+      "id": "Banana___Pestalotiopsis",
+      "crop": {
+        "en": "Banana",
+        "hi": "केला"
+      },
+      "disease": {
+        "en": "Pestalotiopsis",
+        "hi": "पेस्टालोटियोप्सिस पत्ती झुलसा"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Banana___Sigatoka",
+      "crop": {
+        "en": "Banana",
+        "hi": "केला"
+      },
+      "disease": {
+        "en": "Sigatoka",
+        "hi": "सिगाटोका पत्ती धब्बा"
+      },
+      "healthy": false
+    },
+    {
       "id": "Blueberry___Healthy",
       "crop": {
         "en": "Blueberry",
@@ -61,6 +109,66 @@
         "hi": "स्वस्थ"
       },
       "healthy": true
+    },
+    {
+      "id": "Cauliflower___Alternaria_Leaf_Spot",
+      "crop": {
+        "en": "Cauliflower",
+        "hi": "फूलगोभी"
+      },
+      "disease": {
+        "en": "Alternaria Leaf Spot",
+        "hi": "अल्टरनेरिया पत्ती धब्बा"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Cauliflower___Bacterial_Soft_Rot",
+      "crop": {
+        "en": "Cauliflower",
+        "hi": "फूलगोभी"
+      },
+      "disease": {
+        "en": "Bacterial Soft Rot",
+        "hi": "जीवाणु मृदु सड़न"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Cauliflower___Black_Rot",
+      "crop": {
+        "en": "Cauliflower",
+        "hi": "फूलगोभी"
+      },
+      "disease": {
+        "en": "Black Rot",
+        "hi": "काला सड़न रोग"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Cauliflower___Downy_Mildew",
+      "crop": {
+        "en": "Cauliflower",
+        "hi": "फूलगोभी"
+      },
+      "disease": {
+        "en": "Downy Mildew",
+        "hi": "डाउनी मिल्ड्यू (मृदुरोमिल फफूंद)"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Cauliflower___White_Rust",
+      "crop": {
+        "en": "Cauliflower",
+        "hi": "फूलगोभी"
+      },
+      "disease": {
+        "en": "White Rust",
+        "hi": "सफेद रतुआ"
+      },
+      "healthy": false
     },
     {
       "id": "Cherry___Healthy",
@@ -82,7 +190,31 @@
       },
       "disease": {
         "en": "Powdery Mildew",
-        "hi": "चूर्णिल आसिता (पाउडरी मिल्ड्यू)"
+        "hi": "चूर्णिल आसिता"
+      },
+      "healthy": false
+    },
+    {
+      "id": "Chilli___Healthy",
+      "crop": {
+        "en": "Chilli",
+        "hi": "मिर्च"
+      },
+      "disease": {
+        "en": "Healthy",
+        "hi": "स्वस्थ"
+      },
+      "healthy": true
+    },
+    {
+      "id": "Chilli___Leaf_Curl",
+      "crop": {
+        "en": "Chilli",
+        "hi": "मिर्च"
+      },
+      "disease": {
+        "en": "Leaf Curl",
+        "hi": "पत्ती मरोड़ (पर्ण कुंचन)"
       },
       "healthy": false
     },
@@ -129,8 +261,8 @@
         "hi": "अंगूर"
       },
       "disease": {
-        "en": "Esca (Black Measles)",
-        "hi": "एस्का (काला चेचक)"
+        "en": "Esca Black Measles",
+        "hi": "एस्का (काला खसरा)"
       },
       "healthy": false
     },
@@ -165,8 +297,8 @@
         "hi": "मूंगफली"
       },
       "disease": {
-        "en": "Early Leaf Spot (Tikka)",
-        "hi": "अगेती टिक्का रोग"
+        "en": "Early Leaf Spot",
+        "hi": "Early Leaf Spot"
       },
       "healthy": false
     },
@@ -189,8 +321,8 @@
         "hi": "मूंगफली"
       },
       "disease": {
-        "en": "Late Leaf Spot (Tikka)",
-        "hi": "पछेती टिक्का रोग"
+        "en": "Late Leaf Spot",
+        "hi": "Late Leaf Spot"
       },
       "healthy": false
     },
@@ -201,8 +333,8 @@
         "hi": "मूंगफली"
       },
       "disease": {
-        "en": "Rosette Disease",
-        "hi": "रोज़ेट (गुच्छा) रोग"
+        "en": "Rosette",
+        "hi": "रोज़ेट रोग"
       },
       "healthy": false
     },
@@ -238,7 +370,7 @@
       },
       "disease": {
         "en": "Gray Leaf Spot",
-        "hi": "भूरा पत्ती धब्बा"
+        "hi": "धूसर पत्ती धब्बा"
       },
       "healthy": false
     },
@@ -274,7 +406,7 @@
       },
       "disease": {
         "en": "Anthracnose",
-        "hi": "एंथ्रेक्नोज़ (श्याम वर्ण)"
+        "hi": "एंथ्रेक्नोज़"
       },
       "healthy": false
     },
@@ -297,8 +429,8 @@
         "hi": "आम"
       },
       "disease": {
-        "en": "Shoot / Cutting Weevil",
-        "hi": "शाखा / कली घुन"
+        "en": "Cutting Weevil",
+        "hi": "काटने वाला घुन कीट"
       },
       "healthy": false
     },
@@ -310,7 +442,7 @@
       },
       "disease": {
         "en": "Die Back",
-        "hi": "डाई बैक (उल्टा सूखा रोग)"
+        "hi": "डाई बैक रोग"
       },
       "healthy": false
     },
@@ -322,7 +454,7 @@
       },
       "disease": {
         "en": "Gall Midge",
-        "hi": "गाल मिज कीट"
+        "hi": "गॉल मिज कीट"
       },
       "healthy": false
     },
@@ -346,7 +478,7 @@
       },
       "disease": {
         "en": "Powdery Mildew",
-        "hi": "चूर्णिल आसिता (पाउडरी मिल्ड्यू)"
+        "hi": "चूर्णिल आसिता"
       },
       "healthy": false
     },
@@ -358,7 +490,7 @@
       },
       "disease": {
         "en": "Sooty Mould",
-        "hi": "काली फफूंद (सूटी मोल्ड)"
+        "hi": "काली फफूंद"
       },
       "healthy": false
     },
@@ -370,7 +502,7 @@
       },
       "disease": {
         "en": "Citrus Greening",
-        "hi": "सिट्रस ग्रीनिंग (हौंगलोंगबिंग)"
+        "hi": "सिट्रस ग्रीनिंग"
       },
       "healthy": false
     },
@@ -382,7 +514,7 @@
       },
       "disease": {
         "en": "Bacterial Spot",
-        "hi": "जीवाणु धब्बा रोग"
+        "hi": "जीवाणु धब्बा"
       },
       "healthy": false
     },
@@ -406,7 +538,7 @@
       },
       "disease": {
         "en": "Bacterial Spot",
-        "hi": "जीवाणु धब्बा रोग"
+        "hi": "जीवाणु धब्बा"
       },
       "healthy": false
     },
@@ -490,7 +622,7 @@
       },
       "disease": {
         "en": "Blast",
-        "hi": "ब्लास्ट (झोंका रोग)"
+        "hi": "झोंका रोग (ब्लास्ट)"
       },
       "healthy": false
     },
@@ -502,7 +634,7 @@
       },
       "disease": {
         "en": "Brown Spot",
-        "hi": "भूरा धब्बा रोग"
+        "hi": "भूरा धब्बा"
       },
       "healthy": false
     },
@@ -525,7 +657,7 @@
         "hi": "धान"
       },
       "disease": {
-        "en": "Tungro Virus",
+        "en": "Tungro",
         "hi": "टुंग्रो वायरस"
       },
       "healthy": false
@@ -546,11 +678,11 @@
       "id": "Squash___Powdery_Mildew",
       "crop": {
         "en": "Squash",
-        "hi": "कद्दू / तोरी"
+        "hi": "कद्दू / स्क्वैश"
       },
       "disease": {
         "en": "Powdery Mildew",
-        "hi": "चूर्णिल आसिता (पाउडरी मिल्ड्यू)"
+        "hi": "चूर्णिल आसिता"
       },
       "healthy": false
     },
@@ -609,8 +741,8 @@
         "hi": "गन्ना"
       },
       "disease": {
-        "en": "Mosaic Disease",
-        "hi": "मोज़ेक रोग"
+        "en": "Mosaic",
+        "hi": "मोज़ेक"
       },
       "healthy": false
     },
@@ -622,7 +754,7 @@
       },
       "disease": {
         "en": "Red Rot",
-        "hi": "लाल सड़न रोग"
+        "hi": "लाल सड़न"
       },
       "healthy": false
     },
@@ -645,7 +777,7 @@
         "hi": "गन्ना"
       },
       "disease": {
-        "en": "Yellow Leaf Disease",
+        "en": "Yellow Leaf",
         "hi": "पीली पत्ती रोग"
       },
       "healthy": false
@@ -658,7 +790,7 @@
       },
       "disease": {
         "en": "Bacterial Spot",
-        "hi": "जीवाणु धब्बा रोग"
+        "hi": "जीवाणु धब्बा"
       },
       "healthy": false
     },
@@ -742,7 +874,7 @@
       },
       "disease": {
         "en": "Spider Mites",
-        "hi": "मकड़ी माइट्स"
+        "hi": "लाल मकड़ी कीट"
       },
       "healthy": false
     },
@@ -754,7 +886,7 @@
       },
       "disease": {
         "en": "Target Spot",
-        "hi": "टारगेट स्पॉट (लक्ष्य धब्बा)"
+        "hi": "लक्ष्य धब्बा"
       },
       "healthy": false
     },
@@ -766,7 +898,7 @@
       },
       "disease": {
         "en": "Yellow Leaf Curl Virus",
-        "hi": "पीला पत्ती मरोड़िया वायरस"
+        "hi": "पीली पत्ती मरोड़ वायरस"
       },
       "healthy": false
     },
@@ -778,7 +910,7 @@
       },
       "disease": {
         "en": "Brown Rust",
-        "hi": "भूरा रतुआ (लीफ रस्ट)"
+        "hi": "भूरा रतुआ"
       },
       "healthy": false
     },
@@ -802,7 +934,7 @@
       },
       "disease": {
         "en": "Stem Rust",
-        "hi": "तना रतुआ (ब्लैक रस्ट)"
+        "hi": "तना रतुआ"
       },
       "healthy": false
     },
@@ -814,19 +946,19 @@
       },
       "disease": {
         "en": "Yellow Rust",
-        "hi": "पीला रतुआ (स्ट्राइप रस्ट)"
+        "hi": "पीला रतुआ"
       },
       "healthy": false
     },
     {
-      "id": "__non_crop_____not_a_leaf__",
+      "id": "__non_crop_______not_a_leaf__",
       "crop": {
-        "en": "__non_crop__",
+        "en": "non crop",
         "hi": "गैर-फसल"
       },
       "disease": {
-        "en": "Not a leaf",
-        "hi": "पत्ती नहीं"
+        "en": "not a leaf",
+        "hi": "पत्ती नहीं है"
       },
       "healthy": false
     }

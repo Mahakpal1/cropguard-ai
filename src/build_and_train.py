@@ -18,6 +18,11 @@ import logging
 import os
 import sys
 from pathlib import Path
+
+ROOT = str(Path(__file__).resolve().parent.parent)
+if ROOT not in sys.path:
+    sys.path.insert(0, ROOT)
+
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 import numpy as np

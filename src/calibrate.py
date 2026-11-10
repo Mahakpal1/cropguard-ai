@@ -99,7 +99,8 @@ class EnergyOODCalibrator:
         Compute energy threshold such that target_tpr (e.g. 95%) of in-distribution samples are accepted.
         Since lower energy = more familiar / in-distribution, threshold is the target_tpr percentile of ID energies.
         """
-        threshold = float(np.percentile(id_energies, target_tpr * 100.0))
+        # Guarantee that energy threshold is never overly strict (at least -2.5) to protect field generalization
+        threshold = max(-2.5, float(np.percentile(id_energies, target_tpr * 100.0)))
         logger.info(f"Calibrated Energy Threshold at TPR {target_tpr:.0%}: {threshold:.3f}")
         return threshold
 

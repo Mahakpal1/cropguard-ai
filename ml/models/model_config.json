@@ -5,18 +5,21 @@
   "tag": "MY MODEL",
   "model_type": "dinov2_hierarchical",
   "backbone": "dinov2_vitl14",
-  "checkpoint": "dinov2_hierarchical/hierarchical_heads.pt",
-  "classes_file": "dinov2_hierarchical/class_names.json",
+  "checkpoint": "hierarchical_heads.pt",
+  "classes_file": "class_names.json",
   "input_size": 518,
   "feature_dim": 1024,
   "energy_threshold": -2.5,
   "confidence_threshold": 0.6,
   "margin_threshold": 0.1,
-  "num_crops": 21,
+  "num_crops": 24,
   "crops": [
     "Apple",
+    "Banana",
     "Blueberry",
+    "Cauliflower",
     "Cherry",
+    "Chilli",
     "Cotton",
     "Grape",
     "Groundnut",
@@ -147,6 +150,23 @@
     ],
     "Orange": [
       "Citrus_Greening"
+    ],
+    "Cauliflower": [
+      "Alternaria_Leaf_Spot",
+      "Bacterial_Soft_Rot",
+      "Black_Rot",
+      "Downy_Mildew",
+      "White_Rust"
+    ],
+    "Banana": [
+      "Cordana",
+      "Healthy",
+      "Pestalotiopsis",
+      "Sigatoka"
+    ],
+    "Chilli": [
+      "Healthy",
+      "Leaf_Curl"
     ]
   },
   "model_folder": "dinov2_hierarchical"

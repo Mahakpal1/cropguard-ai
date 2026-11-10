@@ -1,8 +1,11 @@
 {
   "crops": [
     "Apple",
+    "Banana",
     "Blueberry",
+    "Cauliflower",
     "Cherry",
+    "Chilli",
     "Cotton",
     "Grape",
     "Groundnut",
@@ -133,6 +136,23 @@
     ],
     "Orange": [
       "Citrus_Greening"
+    ],
+    "Cauliflower": [
+      "Alternaria_Leaf_Spot",
+      "Bacterial_Soft_Rot",
+      "Black_Rot",
+      "Downy_Mildew",
+      "White_Rust"
+    ],
+    "Banana": [
+      "Cordana",
+      "Healthy",
+      "Pestalotiopsis",
+      "Sigatoka"
+    ],
+    "Chilli": [
+      "Healthy",
+      "Leaf_Curl"
     ]
   }
 }

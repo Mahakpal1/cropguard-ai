@@ -132,3 +132,15 @@ plantvillage,Tomato___Target_Spot,Tomato,Target_Spot,Tomato___Target_Spot,Coryne
 plantvillage,Tomato___Tomato_Yellow_Leaf_Curl_Virus,Tomato,Yellow_Leaf_Curl_Virus,Tomato___Yellow_Leaf_Curl_Virus,Begomovirus,True,CC-BY-4.0
 plantvillage,Tomato___Tomato_mosaic_virus,Tomato,Mosaic_Virus,Tomato___Mosaic_Virus,Tobamovirus,True,CC-BY-4.0
 plantvillage,Tomato___healthy,Tomato,Healthy,Tomato___Healthy,,True,CC-BY-4.0
+
+cauliflower_field,Downy_Mildew,Cauliflower,Downy_Mildew,Cauliflower___Downy_Mildew,Hyaloperonospora brassicae,False,CC-BY-4.0
+cauliflower_field,Alternaria_Leaf_Spot,Cauliflower,Alternaria_Leaf_Spot,Cauliflower___Alternaria_Leaf_Spot,Alternaria brassicae,False,CC-BY-4.0
+cauliflower_field,Black_Rot,Cauliflower,Black_Rot,Cauliflower___Black_Rot,Xanthomonas campestris pv. campestris,False,CC-BY-4.0
+cauliflower_field,Bacterial_Soft_Rot,Cauliflower,Bacterial_Soft_Rot,Cauliflower___Bacterial_Soft_Rot,Pectobacterium carotovorum,False,CC-BY-4.0
+cauliflower_field,White_Rust,Cauliflower,White_Rust,Cauliflower___White_Rust,Albugo candida,False,CC-BY-4.0
+banana_field,Sigatoka,Banana,Sigatoka,Banana___Sigatoka,Pseudocercospora musae,False,CC-BY-4.0
+banana_field,Cordana,Banana,Cordana,Banana___Cordana,Cordana musae,False,CC-BY-4.0
+banana_field,Pestalotiopsis,Banana,Pestalotiopsis,Banana___Pestalotiopsis,Pestalotiopsis microspora,False,CC-BY-4.0
+banana_field,Healthy,Banana,Healthy,Banana___Healthy,,False,CC-BY-4.0
+chilli_field,Leaf_Curl,Chilli,Leaf_Curl,Chilli___Leaf_Curl,Chilli leaf curl virus,False,CC-BY-4.0
+chilli_field,Healthy,Chilli,Healthy,Chilli___Healthy,,False,CC-BY-4.0

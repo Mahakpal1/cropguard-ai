@@ -12,11 +12,14 @@
   "energy_threshold": -2.5,
   "confidence_threshold": 0.6,
   "margin_threshold": 0.1,
-  "num_crops": 21,
+  "num_crops": 24,
   "crops": [
     "Apple",
+    "Banana",
     "Blueberry",
+    "Cauliflower",
     "Cherry",
+    "Chilli",
     "Cotton",
     "Grape",
     "Groundnut",
@@ -147,6 +150,23 @@
     ],
     "Orange": [
       "Citrus_Greening"
+    ],
+    "Cauliflower": [
+      "Alternaria_Leaf_Spot",
+      "Bacterial_Soft_Rot",
+      "Black_Rot",
+      "Downy_Mildew",
+      "White_Rust"
+    ],
+    "Banana": [
+      "Cordana",
+      "Healthy",
+      "Pestalotiopsis",
+      "Sigatoka"
+    ],
+    "Chilli": [
+      "Healthy",
+      "Leaf_Curl"
     ]
   }
 }
