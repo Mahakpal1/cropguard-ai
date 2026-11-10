@@ -9,7 +9,7 @@
   "classes_file": "dinov2_hierarchical/class_names.json",
   "input_size": 518,
   "feature_dim": 1024,
-  "energy_threshold": -8.417974472045898,
+  "energy_threshold": -2.5,
   "confidence_threshold": 0.6,
   "margin_threshold": 0.1,
   "num_crops": 21,
