@@ -12,6 +12,11 @@ node_modules/
 *.h5
 *.zip
 *.npz
+
+# Allow essential deployable lightweight models (< 15 MB) for production
+!ml/models/dinov2_hierarchical/hierarchical_heads.pt
+!ml/models/community/efficientnet_v2_s_best.onnx
+!ml/models/crop_id/crop_encoder.onnx
 _cache/
 _ckpt/
 # notebook scratch space and your private photo sets
