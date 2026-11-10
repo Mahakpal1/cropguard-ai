@@ -8,6 +8,7 @@
     "Groundnut",
     "Maize",
     "Mango",
+    "Orange",
     "Peach",
     "Pepper",
     "Potato",
@@ -59,6 +60,7 @@
     ],
     "Apple": [
       "Apple_Scab",
+      "Black_Rot",
       "Cedar_Apple_Rust",
       "Healthy"
     ],
@@ -70,18 +72,23 @@
       "Healthy"
     ],
     "Cherry": [
-      "Healthy"
+      "Healthy",
+      "Powdery_Mildew"
     ],
     "Maize": [
       "Common_Rust",
       "Gray_Leaf_Spot",
+      "Healthy",
       "Northern_Leaf_Blight"
     ],
     "Grape": [
       "Black_Rot",
-      "Healthy"
+      "Esca_Black_Measles",
+      "Healthy",
+      "Leaf_Blight"
     ],
     "Peach": [
+      "Bacterial_Spot",
       "Healthy"
     ],
     "Potato": [
@@ -99,7 +106,8 @@
       "Powdery_Mildew"
     ],
     "Strawberry": [
-      "Healthy"
+      "Healthy",
+      "Leaf_Scorch"
     ],
     "Tomato": [
       "Bacterial_Spot",
@@ -122,6 +130,9 @@
       "Healthy",
       "Powdery_Mildew",
       "Sooty_Mould"
+    ],
+    "Orange": [
+      "Citrus_Greening"
     ]
   }
 }

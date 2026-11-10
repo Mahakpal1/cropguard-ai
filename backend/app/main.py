@@ -88,13 +88,13 @@ def _switch_model(s: Settings, name: str) -> dict:
         }
     else:
         cfg = json.loads(src_cfg_path.read_text(encoding="utf-8"))
-        if "onnx" in cfg:
-            cfg["onnx"] = f"{name}/{cfg['onnx']}"
-        if "checkpoint" in cfg:
-            cfg["checkpoint"] = f"{name}/{cfg['checkpoint']}"
-        for key in ("labels_file", "classes_file"):
-            if key in cfg:
-                cfg[key] = f"{name}/{cfg[key]}"
+        # Always use just the filename (basename) so we never double-prepend the
+        # folder name when _switch_model is called repeatedly or when the config
+        # already contains a relative path like "dinov2_hierarchical/heads.pt".
+        for key in ("onnx", "checkpoint", "labels_file", "classes_file"):
+            if key in cfg and cfg[key]:
+                val = Path(cfg[key]).name   # strip any existing folder prefix
+                cfg[key] = f"{name}/{val}"
     cfg["model_folder"] = name
     md.mkdir(parents=True, exist_ok=True)
     (md / "model_config.json").write_text(json.dumps(cfg, indent=2), encoding="utf-8")

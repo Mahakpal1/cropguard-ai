@@ -6,12 +6,15 @@
   Every API response says `model.simulated = true` in this mode.
 """
 import json
+import logging
 from pathlib import Path
 
 import numpy as np
 from PIL import Image
 
 from .class_mapping import build_lookup, map_label
+
+_log = logging.getLogger("cropguard.classifier")
 
 
 def softmax(z):
@@ -55,9 +58,17 @@ class Classifier:
             cp = d / cfg["classes_file"]
             if cp.exists():
                 cdata = json.load(open(cp, encoding="utf-8"))
-                labels = [c["id"] for c in cdata] if isinstance(cdata, list) else cdata
+                if isinstance(cdata, list):
+                    # list of strings OR list of class-dicts
+                    labels = [c["id"] if isinstance(c, dict) else c for c in cdata]
+                elif isinstance(cdata, dict):
+                    raw = cdata.get("classes") or cdata.get("labels") or []
+                    labels = [c["id"] if isinstance(c, dict) else c for c in raw]
+                else:
+                    labels = cdata
         if isinstance(labels, dict):
-            labels = labels.get("classes") or labels.get("labels")
+            raw = labels.get("classes") or labels.get("labels") or []
+            labels = [c["id"] if isinstance(c, dict) else c for c in raw]
 
         # Check for DINOv2 Hierarchical PyTorch checkpoint first
         self.dinov2_engine = None
@@ -81,8 +92,12 @@ class Classifier:
                 self.name = cfg.get("name", "cropguard-dinov2-hierarchical")
                 if "energy_threshold" in cfg:
                     self.energy_threshold = cfg["energy_threshold"]
-            except Exception:
-                pass
+                _log.info("DINOv2 engine loaded from %s", ckpt_pt)
+            except Exception as exc:
+                _log.error("DINOv2 checkpoint %s failed to load: %s", ckpt_pt, exc, exc_info=True)
+        else:
+            _log.warning("No DINOv2 checkpoint found. Tried:\n  %s",
+                         "\n  ".join(str(p) for p in candidates_pt if p is not None))
 
         onnx_rel = cfg.get("onnx", "model.onnx")
         primary_onnx = d / onnx_rel

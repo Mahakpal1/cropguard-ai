@@ -5,14 +5,14 @@
   "tag": "MY MODEL",
   "model_type": "dinov2_hierarchical",
   "backbone": "dinov2_vitl14",
-  "checkpoint": "hierarchical_heads.pt",
-  "classes_file": "class_names.json",
+  "checkpoint": "dinov2_hierarchical/hierarchical_heads.pt",
+  "classes_file": "dinov2_hierarchical/class_names.json",
   "input_size": 518,
   "feature_dim": 1024,
-  "energy_threshold": -6.077583312988281,
+  "energy_threshold": -8.417974472045898,
   "confidence_threshold": 0.6,
   "margin_threshold": 0.1,
-  "num_crops": 20,
+  "num_crops": 21,
   "crops": [
     "Apple",
     "Blueberry",
@@ -22,6 +22,7 @@
     "Groundnut",
     "Maize",
     "Mango",
+    "Orange",
     "Peach",
     "Pepper",
     "Potato",
@@ -73,6 +74,7 @@
     ],
     "Apple": [
       "Apple_Scab",
+      "Black_Rot",
       "Cedar_Apple_Rust",
       "Healthy"
     ],
@@ -84,18 +86,23 @@
       "Healthy"
     ],
     "Cherry": [
-      "Healthy"
+      "Healthy",
+      "Powdery_Mildew"
     ],
     "Maize": [
       "Common_Rust",
       "Gray_Leaf_Spot",
+      "Healthy",
       "Northern_Leaf_Blight"
     ],
     "Grape": [
       "Black_Rot",
-      "Healthy"
+      "Esca_Black_Measles",
+      "Healthy",
+      "Leaf_Blight"
     ],
     "Peach": [
+      "Bacterial_Spot",
       "Healthy"
     ],
     "Potato": [
@@ -113,7 +120,8 @@
       "Powdery_Mildew"
     ],
     "Strawberry": [
-      "Healthy"
+      "Healthy",
+      "Leaf_Scorch"
     ],
     "Tomato": [
       "Bacterial_Spot",
@@ -136,6 +144,9 @@
       "Healthy",
       "Powdery_Mildew",
       "Sooty_Mould"
+    ],
+    "Orange": [
+      "Citrus_Greening"
     ]
   },
   "model_folder": "dinov2_hierarchical"
