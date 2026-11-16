@@ -3985,9 +3985,9 @@ h4.kh {
   gap: 6px;
   margin-top: 10px;
   padding: 10px 12px;
-  background: var(--surface, #f8fafc);
+  background: rgba(15, 28, 20, 0.85);
   border-radius: 10px;
-  border: 1px solid var(--line, #e2e8f0);
+  border: 1px solid rgba(34, 197, 94, 0.25);
 }
 
 .conf-row {
@@ -3999,18 +3999,18 @@ h4.kh {
 .conf-label {
   font-size: 11px;
   font-weight: 700;
-  color: var(--ink-soft, #64748b);
-  width: 48px;
+  color: #94a3b8;
+  width: 52px;
   flex-shrink: 0;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
 }
 
 .conf-bar-wrap {
   flex: 1;
   height: 6px;
   border-radius: 4px;
-  background: var(--line, #e2e8f0);
+  background: rgba(31, 52, 43, 0.8);
   overflow: hidden;
 }
 
@@ -4027,7 +4027,7 @@ h4.kh {
 .conf-row b {
   font-size: 12px;
   font-weight: 700;
-  color: var(--ink, #0f172a);
+  color: #f1f5f9;
   min-width: 32px;
   text-align: right;
 }
@@ -4048,49 +4048,61 @@ h4.kh {
 }
 
 .grounding-badge.grounded {
-  background: #dcfce7;
-  color: #15803d;
-  border: 1px solid #86efac;
+  background: rgba(22, 101, 52, 0.35);
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.4);
 }
 
 .grounding-badge.drifted {
-  background: #fef9c3;
-  color: #92400e;
-  border: 1px solid #fde68a;
+  background: rgba(180, 83, 9, 0.35);
+  color: #fde68a;
+  border: 1px solid rgba(245, 158, 11, 0.4);
 }
 
 /* Top-2 alternative suggestion */
 .top2-alt {
   margin-top: 8px;
-  padding: 6px 12px;
+  padding: 7px 12px;
   border-radius: 8px;
-  background: var(--surface, #f8fafc);
-  border: 1px dashed var(--line, #e2e8f0);
+  background: rgba(15, 28, 20, 0.75);
+  border: 1px dashed rgba(34, 197, 94, 0.35);
   font-size: 12px;
-  color: var(--ink-soft, #64748b);
+  color: #cbd5e1;
   font-style: italic;
 }
 
-/* ── Dark Mode: Confidence Breakdown + Top-2 Alt ── */
-:root[data-theme='dark'] .diag-confidence-breakdown {
-  background: rgba(15, 28, 20, 0.7);
-  border-color: #1f342b;
+/* Explicit Light Mode Override (only when light theme is actively toggled) */
+:root[data-theme='light'] .diag-confidence-breakdown {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
 }
 
-:root[data-theme='dark'] .conf-label {
-  color: #9ca3af;
+:root[data-theme='light'] .conf-label {
+  color: #475569;
 }
 
-:root[data-theme='dark'] .conf-bar-wrap {
-  background: #1f342b;
+:root[data-theme='light'] .conf-bar-wrap {
+  background: #e2e8f0;
 }
 
-:root[data-theme='dark'] .conf-row b {
-  color: #e5e7eb;
+:root[data-theme='light'] .conf-row b {
+  color: #0f172a;
 }
 
-:root[data-theme='dark'] .top2-alt {
-  background: rgba(15, 28, 20, 0.6);
-  border-color: #1f342b;
-  color: #9ca3af;
+:root[data-theme='light'] .top2-alt {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #334155;
+}
+
+:root[data-theme='light'] .grounding-badge.grounded {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+
+:root[data-theme='light'] .grounding-badge.drifted {
+  background: #fef9c3;
+  color: #92400e;
+  border: 1px solid #fde68a;
 }
